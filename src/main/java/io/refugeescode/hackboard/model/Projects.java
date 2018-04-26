@@ -1,4 +1,4 @@
-package io.refugeescode.hackboard.components;
+package io.refugeescode.hackboard.model;
 
 
 import javax.persistence.Entity;
@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class projects {
+public class Projects {
 
     @Id
     @GeneratedValue
@@ -15,7 +15,7 @@ public class projects {
     private String description;
     @Override
     public String toString() {
-        return "projects{" +
+        return "Projects{" +
             "id=" + id +
             ", title='" + title + '\'' +
             ", description='" + description + '\'' +
