@@ -44,6 +44,7 @@ public class CacheConfiguration {
             cm.createCache(io.refugeescode.hackboard.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(io.refugeescode.hackboard.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(io.refugeescode.hackboard.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
+
             // jhipster-needle-ehcache-add-entry
         };
     }
