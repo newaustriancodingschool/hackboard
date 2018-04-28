@@ -15,21 +15,15 @@ import java.io.Serializable;
 
 
 @Entity
-public class Projects {
-
+public class Project {
 
     @Id
-<<<<<<< HEAD
-    @GeneratedValue
-    private Long id;
-=======
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
     @Size(min = 1, max = 100)
     @Column(length = 100, nullable = false)
->>>>>>> 5c149daa549654040395e8a33be70c9bdd6fdbc5
     private String title;
 
     @NotNull
@@ -37,13 +31,9 @@ public class Projects {
     @Column(length = 10000,  nullable = false)
     private String description;
 
-    public Projects() {
+    public Project() {
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5c149daa549654040395e8a33be70c9bdd6fdbc5
     public Long getId() {
         return id;
     }
@@ -70,7 +60,7 @@ public class Projects {
 
     @Override
     public String toString() {
-        return "Projects{" +
+        return "Project{" +
             "id=" + id +
             ", title='" + title + '\'' +
             ", description='" + description + '\'' +
