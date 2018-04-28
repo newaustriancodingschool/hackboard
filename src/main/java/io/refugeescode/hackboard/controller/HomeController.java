@@ -1,23 +1,25 @@
 package io.refugeescode.hackboard.controller;
 
-import io.refugeescode.hackboard.model.Projects;
-import io.refugeescode.hackboard.repository.ProjectsRepository;
+import io.refugeescode.hackboard.domain.Project;
+import io.refugeescode.hackboard.repository.ProjectRepository;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
 
-    private ProjectsRepository projectsRepository;
+    private ProjectRepository projectRepository;
 
 
     //Return a list of all projects
     @RequestMapping("/projectsList")
     public String getProjects(Model model){
-        List<Projects> projects = projectsRepository.findAll();
+        List<Project> projects = projectRepository.findAll();
         model.addAttribute(projects);
         return "projectsList";
     }
@@ -27,7 +29,7 @@ public class HomeController {
     @RequestMapping("/projectsList/viewProject/{projectId}")
     public String viewProduct(@PathVariable Long projectId, Model model)  {
 
-        Projects projects = projectsRepository.findOne(projectId);
+        Project projects = projectRepository.findOne(projectId);
         model.addAttribute(projects);
 
         return "viewProduct";
@@ -38,7 +40,7 @@ public class HomeController {
     @RequestMapping("/projectsList/viewProject/deleteProject/{projectId}")
     public String deleteProject(@PathVariable Long projectId, Model model){
 
-        projectsRepository.delete(projectId);
+        projectRepository.delete(projectId);
         return "redirect:/projectsList";
     }
 
@@ -46,7 +48,7 @@ public class HomeController {
     //Edit a project
     @RequestMapping("/projectsList/viewProject/editProduct/{projectId}")
     public String editProjectt(@PathVariable("projectId") Long projectId, Model model) {
-        Projects projects =projectsRepository.findOne(projectId);
+        Project projects = projectRepository.findOne(projectId);
 
         model.addAttribute(projects);
 
@@ -56,8 +58,8 @@ public class HomeController {
 
     //Add a project
     @RequestMapping(value = "/projectsList/addProject", method = RequestMethod.POST)
-    public String addProject(@ModelAttribute("project") Projects projects) {
-        projectsRepository.save(projects);
+    public String addProject(@ModelAttribute("project") Project projects) {
+        projectRepository.save(projects);
         return "redirect:/projectsList";
     }
 

@@ -1,9 +1,10 @@
 package io.refugeescode.hackboard.initialise;
 
 
-import io.refugeescode.hackboard.model.Projects;
+import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.parser.Parser;
-import io.refugeescode.hackboard.repository.ProjectsRepository;
+import io.refugeescode.hackboard.repository.ProjectRepository;
+import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
@@ -13,18 +14,18 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationStarter {
 
     @Autowired
-    Parser parser;
+    private Parser parser;
 
 
     @Bean
-    ApplicationRunner applicationRunner(ProjectsRepository projectsRepository){
+    ApplicationRunner applicationRunner(ProjectRepository projectRepository){
         return applicationArguments ->{
 
-          projectsRepository.deleteAll();
-          String fileName="src\\main\\java\\io\\refugeescode\\hackboard\\data\\project1";
-          Projects allData = parser.getAllData(fileName);
+          projectRepository.deleteAll();
+          String fileName="src/main/java/io/refugeescode/hackboard/data/project1";
+          Project allData = parser.getAllData(fileName);
             System.out.println(allData);
-          projectsRepository.save(allData);
+          projectRepository.save(allData);
 
         };
     }
