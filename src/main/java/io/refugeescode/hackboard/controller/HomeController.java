@@ -1,66 +1,60 @@
 package io.refugeescode.hackboard.controller;
 
-import io.refugeescode.hackboard.domain.Project;
-import io.refugeescode.hackboard.repository.ProjectRepository;
-import java.util.List;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import io.refugeescode.hackboard.model.Project;
+import io.refugeescode.hackboard.repository.ProjectsRepository;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 public class HomeController {
 
-    private ProjectRepository projectRepository;
+    private ProjectsRepository projectsRepository;
 
+    public HomeController(ProjectsRepository projectsRepository) {
+        this.projectsRepository = projectsRepository;
+    }
 
     //Return a list of all projects
     @RequestMapping("/projectsList")
-    public String getProjects(Model model){
-        List<Project> projects = projectRepository.findAll();
-        model.addAttribute(projects);
-        return "projectsList";
+    public List<Project> getProjects() {
+
+        List<Project> projects = projectsRepository.findAll();
+        return projects;
     }
 
 
     //return the detail data of a project
     @RequestMapping("/projectsList/viewProject/{projectId}")
-    public String viewProduct(@PathVariable Long projectId, Model model)  {
+    public Project viewProject(@RequestBody Long projectId) {
 
-        Project projects = projectRepository.findOne(projectId);
-        model.addAttribute(projects);
-
-        return "viewProduct";
+        Project project = projectsRepository.findOne(projectId);
+        return project;
     }
 
 
     //Remove a project
     @RequestMapping("/projectsList/viewProject/deleteProject/{projectId}")
-    public String deleteProject(@PathVariable Long projectId, Model model){
+    public void deleteProject(@RequestBody Long projectId) {
 
-        projectRepository.delete(projectId);
-        return "redirect:/projectsList";
+        projectsRepository.delete(projectId);
     }
 
 
     //Edit a project
-    @RequestMapping("/projectsList/viewProject/editProduct/{projectId}")
-    public String editProjectt(@PathVariable("projectId") Long projectId, Model model) {
-        Project projects = projectRepository.findOne(projectId);
+    @RequestMapping("/projectsList/viewProject/editProject/{projectId}")
+    public Project editProject(@RequestBody Long projectId) {
 
-        model.addAttribute(projects);
-
-        return "editProduct";
+        Project project = projectsRepository.findOne(projectId);
+        return project;
     }
 
 
     //Add a project
     @RequestMapping(value = "/projectsList/addProject", method = RequestMethod.POST)
-    public String addProject(@ModelAttribute("project") Project projects) {
-        projectRepository.save(projects);
-        return "redirect:/projectsList";
+    public void addProject(@RequestBody Project project) {
+
+        projectsRepository.save(project);
     }
 
 }
