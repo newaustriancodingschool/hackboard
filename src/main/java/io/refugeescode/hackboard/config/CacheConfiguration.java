@@ -36,7 +36,7 @@ public class CacheConfiguration {
 
     @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
-        return cm -> {
+        return cm ->{
             cm.createCache(io.refugeescode.hackboard.repository.UserRepository.USERS_BY_LOGIN_CACHE, jcacheConfiguration);
             cm.createCache(io.refugeescode.hackboard.repository.UserRepository.USERS_BY_EMAIL_CACHE, jcacheConfiguration);
             cm.createCache(io.refugeescode.hackboard.domain.User.class.getName(), jcacheConfiguration);
@@ -44,6 +44,7 @@ public class CacheConfiguration {
             cm.createCache(io.refugeescode.hackboard.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(io.refugeescode.hackboard.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(io.refugeescode.hackboard.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
+            cm.createCache(io.refugeescode.hackboard.domain.Project.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

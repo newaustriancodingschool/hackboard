@@ -1,0 +1,20 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180428140611",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "project",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}
