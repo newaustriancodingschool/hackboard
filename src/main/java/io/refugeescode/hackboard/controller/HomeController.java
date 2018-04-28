@@ -1,7 +1,8 @@
 package io.refugeescode.hackboard.controller;
 
-import io.refugeescode.hackboard.model.Project;
-import io.refugeescode.hackboard.repository.ProjectsRepository;
+
+import io.refugeescode.hackboard.domain.Project;
+import io.refugeescode.hackboard.repository.ProjectRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,9 +10,9 @@ import java.util.List;
 @RestController
 public class HomeController {
 
-    private ProjectsRepository projectsRepository;
+    private ProjectRepository projectsRepository;
 
-    public HomeController(ProjectsRepository projectsRepository) {
+    public HomeController(ProjectRepository projectsRepository) {
         this.projectsRepository = projectsRepository;
     }
 
