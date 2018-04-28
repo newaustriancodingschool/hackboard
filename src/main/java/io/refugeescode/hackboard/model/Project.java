@@ -28,7 +28,7 @@ public class Project {
 
     @NotNull
     @Size(min = 1, max = 10000)
-    @Column(length = 10000,  nullable = false)
+    @Column(length = 10000, nullable = false)
     private String description;
 
     public Project() {
