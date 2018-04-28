@@ -1,7 +1,7 @@
 package io.refugeescode.hackboard.initialise;
 
 
-import io.refugeescode.hackboard.model.Projects;
+import io.refugeescode.hackboard.model.Project;
 import io.refugeescode.hackboard.parser.Parser;
 import io.refugeescode.hackboard.repository.ProjectsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class ApplicationStarter {
 
           projectsRepository.deleteAll();
           String fileName="src\\main\\java\\io\\refugeescode\\hackboard\\data\\project1";
-          Projects allData = parser.getAllData(fileName);
+          Project allData = parser.getAllData(fileName);
             System.out.println(allData);
           projectsRepository.save(allData);
 
