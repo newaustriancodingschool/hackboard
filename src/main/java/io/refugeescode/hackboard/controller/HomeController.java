@@ -26,8 +26,8 @@ public class HomeController {
 
 
     //return the detail data of a project
-    @RequestMapping("/projectsList/viewProject/{projectId}")
-    public Project viewProject(@RequestBody Long projectId) {
+    @GetMapping ("/projectsList/viewProject/{projectId}")
+    public Project viewProject(@PathVariable Long projectId) {
 
         Project project = projectsRepository.findOne(projectId);
         return project;
@@ -36,7 +36,7 @@ public class HomeController {
 
     //Remove a project
     @RequestMapping("/projectsList/viewProject/deleteProject/{projectId}")
-    public void deleteProject(@RequestBody Long projectId) {
+    public void deleteProject(@PathVariable Long projectId) {
 
         projectsRepository.delete(projectId);
     }
@@ -44,7 +44,7 @@ public class HomeController {
 
     //Edit a project
     @RequestMapping("/projectsList/viewProject/editProject/{projectId}")
-    public Project editProject(@RequestBody Long projectId) {
+    public Project editProject(@PathVariable Long projectId) {
 
         Project project = projectsRepository.findOne(projectId);
         return project;
