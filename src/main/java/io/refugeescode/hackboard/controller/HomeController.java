@@ -26,7 +26,7 @@ public class HomeController {
 
 
     //return the detail data of a project
-    @GetMapping ("/projectsList/viewProject/{projectId}")
+    @RequestMapping ("/projectsList/viewProject/{projectId}")
     public Project viewProject(@PathVariable Long projectId) {
 
         Project project = projectsRepository.findOne(projectId);
