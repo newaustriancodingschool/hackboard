@@ -82,7 +82,7 @@
             "id": "ID"
         },
         "ribbon": {
-            "dev":"Development"
+            "dev":"Refugees{code}"
         },
         "item-count": "Showing {{first}} - {{second}} of {{total}} items."
     },
@@ -129,5 +129,5 @@
         "emailexists": "Email is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
     },
-    "footer": "This is your footer"
+    "footer": "refugees{code} &copy2018 by hackboard team"
 }

@@ -1,7 +1,7 @@
 {
     "home": {
-        "title": "Willkommen, Java Hipster!",
-        "subtitle": "Dies ist Ihre Hauptseite",
+        "title": "Willkommen, Hackboard!",
+        "subtitle": "Dies ist Unsere Hackathon-Dashboard",
         "logged": {
             "message": "Sie sind als Benutzer \"{{username}}\" angemeldet."
         },
