@@ -5,7 +5,7 @@
         </a>
         <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
             <span class="logo-img"></span>
-            <span jhiTranslate="global.title" class="navbar-title">Hackboard</span> <span class="navbar-version">{{version}}</span>
+            <!-- <span jhiTranslate="global.title" class="navbar-title">Hackboard</span> <span class="navbar-version">{{version}}</span> -->
         </a>
     </div>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
@@ -14,7 +14,7 @@
                 <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
                     <span>
                         <i class="fa fa-home" aria-hidden="true"></i>
-                        <span jhiTranslate="global.menu.home">Home</span>
+                        <span >Hackboard</span>
                     </span>
                 </a>
             </li>

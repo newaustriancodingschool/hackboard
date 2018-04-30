@@ -3,6 +3,7 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { Account, LoginModalService, Principal } from '../shared';
+import {NgbPanelChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'jhi-home',

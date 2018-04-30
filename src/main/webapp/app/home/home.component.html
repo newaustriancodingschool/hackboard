@@ -3,8 +3,8 @@
         <span class="hipster img-fluid rounded"></span>
     </div>
     <div class="col-md-9">
-        <h1 class="display-4" jhiTranslate="home.title">Welcome anythin</h1>
-        <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
+        <h1 class="display-4" >Welcome Hackboard !!!</h1>
+        <!-- <p class="lead" >This is your </p> -->
 
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
@@ -22,20 +22,35 @@
             </div>
         </div>
 
-        <p jhiTranslate="home.question">
-            If you have any question on JHipster:
-        </p>
-
-        <ul>
-            <li><a href="http://www.jhipster.tech/" target="_blank" rel="noopener" jhiTranslate="home.link.homepage">JHipster homepage</a></li>
-            <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener" jhiTranslate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>
-            <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener" jhiTranslate="home.link.bugtracker">JHipster bug tracker</a></li>
-            <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener" jhiTranslate="home.link.chat">JHipster public chat room</a></li>
-            <li><a href="https://twitter.com/java_hipster" target="_blank" rel="noopener" jhiTranslate="home.link.follow">follow @java_hipster on Twitter</a></li>
-        </ul>
-
+    
+        
         <p>
-            <span jhiTranslate="home.like">If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener" jhiTranslate="home.github">GitHub</a>!
+            <span class="text-danger d-block p-3 mb-2 bg-primary">"Find a project teame" </span>
         </p>
+        <div class="row">
+            <div class="col-12">
+                    <table class="table table-dark">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Projects</th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <tr>Text-Based Role-Play-Game RPG</tr>
+                                <tr>A Treasure Hunt Map</tr>
+                                <tr>Klasse & Kasse, crowd-funding for school projects</tr>
+                              </tr>
+                            </tbody>
+                          </table>
+            </div>
+        </div>
+        <button class="btn btn-success">Add</button>
     </div>
+    <p>
+        <span>If you interested, this is our project on GitHub </span> <a href="https://github.com/RefugeesCodeAT/hackboard" target="_blank" rel="noopener">GitHub</a>!
+    </p>
 </div>
