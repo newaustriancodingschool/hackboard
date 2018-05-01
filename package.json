@@ -7,6 +7,19 @@
   "cacheDirectories": [
     "node_modules"
   ],
+  "config": {
+    "commit-message-validator": {
+      "pattern": "\\#\\d+\\:\\s",
+      "errorMessage": "Commit message in wrong format: Must be '#[issuenr]: [message]', e.g. '#123: added value property'"
+    }
+  },
+  "contributors": [
+    {
+      "name": "Rainer Hahnekamp",
+      "email": "rainer.hahnekamp@gmail.com",
+      "url": "https://www.rainerhahnekamp.com"
+    }
+  ],
   "dependencies": {
     "@angular/common": "5.2.0",
     "@angular/compiler": "5.2.0",
@@ -41,6 +54,7 @@
     "browser-sync": "2.18.13",
     "browser-sync-webpack-plugin": "1.2.0",
     "codelyzer": "4.0.1",
+    "commit-message-validator": "^0.1.6",
     "copy-webpack-plugin": "4.2.3",
     "css-loader": "0.28.4",
     "exports-loader": "0.6.4",
@@ -49,6 +63,7 @@
     "generator-jhipster": "4.14.3",
     "html-loader": "0.5.0",
     "html-webpack-plugin": "2.30.1",
+    "husky": "^0.14.3",
     "jasmine-core": "2.7.0",
     "karma": "1.7.1",
     "karma-chrome-launcher": "2.2.0",
@@ -62,9 +77,12 @@
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "2.0.4",
     "merge-jsons-webpack-plugin": "1.0.11",
+    "node-sass": "4.5.3",
     "phantomjs-prebuilt": "2.1.16",
+    "postcss-loader": "2.0.9",
     "proxy-middleware": "0.15.0",
     "rimraf": "2.6.1",
+    "sass-loader": "6.0.6",
     "source-map": "0.6.1",
     "sourcemap-istanbul-instrumenter-loader": "0.2.0",
     "style-loader": "0.18.2",
@@ -72,19 +90,16 @@
     "tslint": "5.5.0",
     "tslint-loader": "3.5.3",
     "typescript": "2.6.2",
-    "sass-loader": "6.0.6",
-    "node-sass": "4.5.3",
-    "postcss-loader": "2.0.9",
-    "xml2js": "0.4.17",
     "uglifyjs-webpack-plugin": "1.1.5",
+    "web-app-manifest-loader": "0.1.1",
     "webpack": "3.10.0",
     "webpack-dev-server": "2.9.5",
     "webpack-merge": "4.1.1",
     "webpack-notifier": "1.5.1",
     "webpack-visualizer-plugin": "0.1.11",
-    "web-app-manifest-loader": "0.1.1",
     "workbox-webpack-plugin": "3.0.0-beta.1",
-    "write-file-webpack-plugin": "4.1.0"
+    "write-file-webpack-plugin": "4.1.0",
+    "xml2js": "0.4.17"
   },
   "engines": {
     "node": ">=6.9.0"
@@ -98,6 +113,7 @@
     "ngc": "ngc -p tsconfig-aot.json",
     "cleanup": "rimraf target/{aot,www}",
     "clean-www": "rimraf target//www/app/{src,target/}",
+    "commitmsg": "commit-message-validator",
     "start": "yarn run webpack:dev",
     "serve": "yarn run start",
     "build": "yarn run webpack:prod",
