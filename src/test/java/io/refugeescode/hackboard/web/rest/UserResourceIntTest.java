@@ -1,14 +1,13 @@
 package io.refugeescode.hackboard.web.rest;
 
 import io.refugeescode.hackboard.HackboardApp;
-import io.refugeescode.hackboard.config.CacheConfiguration;
 import io.refugeescode.hackboard.domain.Authority;
 import io.refugeescode.hackboard.domain.User;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.service.MailService;
 import io.refugeescode.hackboard.service.UserService;
-import io.refugeescode.hackboard.service.dto.UserDTO;
+import io.refugeescode.hackboard.service.dto.UserDto;
 import io.refugeescode.hackboard.service.mapper.UserMapper;
 import io.refugeescode.hackboard.web.rest.errors.ExceptionTranslator;
 import io.refugeescode.hackboard.web.rest.vm.ManagedUserVM;
@@ -531,20 +530,20 @@ public class UserResourceIntTest {
 
     @Test
     public void testUserDTOtoUser() {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(DEFAULT_ID);
-        userDTO.setLogin(DEFAULT_LOGIN);
-        userDTO.setFirstName(DEFAULT_FIRSTNAME);
-        userDTO.setLastName(DEFAULT_LASTNAME);
-        userDTO.setEmail(DEFAULT_EMAIL);
-        userDTO.setActivated(true);
-        userDTO.setImageUrl(DEFAULT_IMAGEURL);
-        userDTO.setLangKey(DEFAULT_LANGKEY);
-        userDTO.setCreatedBy(DEFAULT_LOGIN);
-        userDTO.setLastModifiedBy(DEFAULT_LOGIN);
-        userDTO.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
+        UserDto userDto = new UserDto();
+        userDto.setId(DEFAULT_ID);
+        userDto.setLogin(DEFAULT_LOGIN);
+        userDto.setFirstName(DEFAULT_FIRSTNAME);
+        userDto.setLastName(DEFAULT_LASTNAME);
+        userDto.setEmail(DEFAULT_EMAIL);
+        userDto.setActivated(true);
+        userDto.setImageUrl(DEFAULT_IMAGEURL);
+        userDto.setLangKey(DEFAULT_LANGKEY);
+        userDto.setCreatedBy(DEFAULT_LOGIN);
+        userDto.setLastModifiedBy(DEFAULT_LOGIN);
+        userDto.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
-        User user = userMapper.userDTOToUser(userDTO);
+        User user = userMapper.userDTOToUser(userDto);
         assertThat(user.getId()).isEqualTo(DEFAULT_ID);
         assertThat(user.getLogin()).isEqualTo(DEFAULT_LOGIN);
         assertThat(user.getFirstName()).isEqualTo(DEFAULT_FIRSTNAME);
@@ -573,22 +572,22 @@ public class UserResourceIntTest {
         authorities.add(authority);
         user.setAuthorities(authorities);
 
-        UserDTO userDTO = userMapper.userToUserDTO(user);
+        UserDto userDto = userMapper.userToUserDTO(user);
 
-        assertThat(userDTO.getId()).isEqualTo(DEFAULT_ID);
-        assertThat(userDTO.getLogin()).isEqualTo(DEFAULT_LOGIN);
-        assertThat(userDTO.getFirstName()).isEqualTo(DEFAULT_FIRSTNAME);
-        assertThat(userDTO.getLastName()).isEqualTo(DEFAULT_LASTNAME);
-        assertThat(userDTO.getEmail()).isEqualTo(DEFAULT_EMAIL);
-        assertThat(userDTO.isActivated()).isEqualTo(true);
-        assertThat(userDTO.getImageUrl()).isEqualTo(DEFAULT_IMAGEURL);
-        assertThat(userDTO.getLangKey()).isEqualTo(DEFAULT_LANGKEY);
-        assertThat(userDTO.getCreatedBy()).isEqualTo(DEFAULT_LOGIN);
-        assertThat(userDTO.getCreatedDate()).isEqualTo(user.getCreatedDate());
-        assertThat(userDTO.getLastModifiedBy()).isEqualTo(DEFAULT_LOGIN);
-        assertThat(userDTO.getLastModifiedDate()).isEqualTo(user.getLastModifiedDate());
-        assertThat(userDTO.getAuthorities()).containsExactly(AuthoritiesConstants.USER);
-        assertThat(userDTO.toString()).isNotNull();
+        assertThat(userDto.getId()).isEqualTo(DEFAULT_ID);
+        assertThat(userDto.getLogin()).isEqualTo(DEFAULT_LOGIN);
+        assertThat(userDto.getFirstName()).isEqualTo(DEFAULT_FIRSTNAME);
+        assertThat(userDto.getLastName()).isEqualTo(DEFAULT_LASTNAME);
+        assertThat(userDto.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(userDto.isActivated()).isEqualTo(true);
+        assertThat(userDto.getImageUrl()).isEqualTo(DEFAULT_IMAGEURL);
+        assertThat(userDto.getLangKey()).isEqualTo(DEFAULT_LANGKEY);
+        assertThat(userDto.getCreatedBy()).isEqualTo(DEFAULT_LOGIN);
+        assertThat(userDto.getCreatedDate()).isEqualTo(user.getCreatedDate());
+        assertThat(userDto.getLastModifiedBy()).isEqualTo(DEFAULT_LOGIN);
+        assertThat(userDto.getLastModifiedDate()).isEqualTo(user.getLastModifiedDate());
+        assertThat(userDto.getAuthorities()).containsExactly(AuthoritiesConstants.USER);
+        assertThat(userDto.toString()).isNotNull();
     }
 
     @Test

@@ -9,7 +9,7 @@ import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.SecurityUtils;
 import io.refugeescode.hackboard.service.MailService;
 import io.refugeescode.hackboard.service.UserService;
-import io.refugeescode.hackboard.service.dto.UserDTO;
+import io.refugeescode.hackboard.service.dto.UserDto;
 import io.refugeescode.hackboard.web.rest.errors.*;
 import io.refugeescode.hackboard.web.rest.vm.KeyAndPasswordVM;
 import io.refugeescode.hackboard.web.rest.vm.ManagedUserVM;
@@ -108,24 +108,24 @@ public class AccountResource {
      */
     @GetMapping("/account")
     @Timed
-    public UserDTO getAccount() {
+    public UserDto getAccount() {
         return userService.getUserWithAuthorities()
-            .map(UserDTO::new)
+            .map(UserDto::new)
             .orElseThrow(() -> new InternalServerErrorException("User could not be found"));
     }
 
     /**
      * POST  /account : update the current user information.
      *
-     * @param userDTO the current user information
+     * @param userDto the current user information
      * @throws EmailAlreadyUsedException 400 (Bad Request) if the email is already used
      * @throws RuntimeException 500 (Internal Server Error) if the user login wasn't found
      */
     @PostMapping("/account")
     @Timed
-    public void saveAccount(@Valid @RequestBody UserDTO userDTO) {
+    public void saveAccount(@Valid @RequestBody UserDto userDto) {
         final String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new InternalServerErrorException("Current user login not found"));
-        Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
+        Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDto.getEmail());
         if (existingUser.isPresent() && (!existingUser.get().getLogin().equalsIgnoreCase(userLogin))) {
             throw new EmailAlreadyUsedException();
         }
@@ -133,8 +133,8 @@ public class AccountResource {
         if (!user.isPresent()) {
             throw new InternalServerErrorException("User could not be found");
         }
-        userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
-            userDTO.getLangKey(), userDTO.getImageUrl());
+        userService.updateUser(userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(),
+            userDto.getLangKey(), userDto.getImageUrl());
    }
 
     /**

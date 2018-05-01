@@ -10,7 +10,7 @@ import io.refugeescode.hackboard.repository.PersistentTokenRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.service.MailService;
-import io.refugeescode.hackboard.service.dto.UserDTO;
+import io.refugeescode.hackboard.service.dto.UserDto;
 import io.refugeescode.hackboard.web.rest.errors.ExceptionTranslator;
 import io.refugeescode.hackboard.web.rest.vm.KeyAndPasswordVM;
 import io.refugeescode.hackboard.web.rest.vm.ManagedUserVM;
@@ -468,29 +468,29 @@ public class AccountResourceIntTest {
 
         userRepository.saveAndFlush(user);
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setLogin("not-used");
-        userDTO.setFirstName("firstname");
-        userDTO.setLastName("lastname");
-        userDTO.setEmail("save-account@example.com");
-        userDTO.setActivated(false);
-        userDTO.setImageUrl("http://placehold.it/50x50");
-        userDTO.setLangKey(Constants.DEFAULT_LANGUAGE);
-        userDTO.setAuthorities(Collections.singleton(AuthoritiesConstants.ADMIN));
+        UserDto userDto = new UserDto();
+        userDto.setLogin("not-used");
+        userDto.setFirstName("firstname");
+        userDto.setLastName("lastname");
+        userDto.setEmail("save-account@example.com");
+        userDto.setActivated(false);
+        userDto.setImageUrl("http://placehold.it/50x50");
+        userDto.setLangKey(Constants.DEFAULT_LANGUAGE);
+        userDto.setAuthorities(Collections.singleton(AuthoritiesConstants.ADMIN));
 
         restMvc.perform(
             post("/api/account")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(userDTO)))
+                .content(TestUtil.convertObjectToJsonBytes(userDto)))
             .andExpect(status().isOk());
 
         User updatedUser = userRepository.findOneByLogin(user.getLogin()).orElse(null);
-        assertThat(updatedUser.getFirstName()).isEqualTo(userDTO.getFirstName());
-        assertThat(updatedUser.getLastName()).isEqualTo(userDTO.getLastName());
-        assertThat(updatedUser.getEmail()).isEqualTo(userDTO.getEmail());
-        assertThat(updatedUser.getLangKey()).isEqualTo(userDTO.getLangKey());
+        assertThat(updatedUser.getFirstName()).isEqualTo(userDto.getFirstName());
+        assertThat(updatedUser.getLastName()).isEqualTo(userDto.getLastName());
+        assertThat(updatedUser.getEmail()).isEqualTo(userDto.getEmail());
+        assertThat(updatedUser.getLangKey()).isEqualTo(userDto.getLangKey());
         assertThat(updatedUser.getPassword()).isEqualTo(user.getPassword());
-        assertThat(updatedUser.getImageUrl()).isEqualTo(userDTO.getImageUrl());
+        assertThat(updatedUser.getImageUrl()).isEqualTo(userDto.getImageUrl());
         assertThat(updatedUser.getActivated()).isEqualTo(true);
         assertThat(updatedUser.getAuthorities()).isEmpty();
     }
@@ -507,20 +507,20 @@ public class AccountResourceIntTest {
 
         userRepository.saveAndFlush(user);
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setLogin("not-used");
-        userDTO.setFirstName("firstname");
-        userDTO.setLastName("lastname");
-        userDTO.setEmail("invalid email");
-        userDTO.setActivated(false);
-        userDTO.setImageUrl("http://placehold.it/50x50");
-        userDTO.setLangKey(Constants.DEFAULT_LANGUAGE);
-        userDTO.setAuthorities(Collections.singleton(AuthoritiesConstants.ADMIN));
+        UserDto userDto = new UserDto();
+        userDto.setLogin("not-used");
+        userDto.setFirstName("firstname");
+        userDto.setLastName("lastname");
+        userDto.setEmail("invalid email");
+        userDto.setActivated(false);
+        userDto.setImageUrl("http://placehold.it/50x50");
+        userDto.setLangKey(Constants.DEFAULT_LANGUAGE);
+        userDto.setAuthorities(Collections.singleton(AuthoritiesConstants.ADMIN));
 
         restMvc.perform(
             post("/api/account")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(userDTO)))
+                .content(TestUtil.convertObjectToJsonBytes(userDto)))
             .andExpect(status().isBadRequest());
 
         assertThat(userRepository.findOneByEmailIgnoreCase("invalid email")).isNotPresent();
@@ -546,20 +546,20 @@ public class AccountResourceIntTest {
 
         userRepository.saveAndFlush(anotherUser);
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setLogin("not-used");
-        userDTO.setFirstName("firstname");
-        userDTO.setLastName("lastname");
-        userDTO.setEmail("save-existing-email2@example.com");
-        userDTO.setActivated(false);
-        userDTO.setImageUrl("http://placehold.it/50x50");
-        userDTO.setLangKey(Constants.DEFAULT_LANGUAGE);
-        userDTO.setAuthorities(Collections.singleton(AuthoritiesConstants.ADMIN));
+        UserDto userDto = new UserDto();
+        userDto.setLogin("not-used");
+        userDto.setFirstName("firstname");
+        userDto.setLastName("lastname");
+        userDto.setEmail("save-existing-email2@example.com");
+        userDto.setActivated(false);
+        userDto.setImageUrl("http://placehold.it/50x50");
+        userDto.setLangKey(Constants.DEFAULT_LANGUAGE);
+        userDto.setAuthorities(Collections.singleton(AuthoritiesConstants.ADMIN));
 
         restMvc.perform(
             post("/api/account")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(userDTO)))
+                .content(TestUtil.convertObjectToJsonBytes(userDto)))
             .andExpect(status().isBadRequest());
 
         User updatedUser = userRepository.findOneByLogin("save-existing-email").orElse(null);
@@ -578,20 +578,20 @@ public class AccountResourceIntTest {
 
         userRepository.saveAndFlush(user);
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setLogin("not-used");
-        userDTO.setFirstName("firstname");
-        userDTO.setLastName("lastname");
-        userDTO.setEmail("save-existing-email-and-login@example.com");
-        userDTO.setActivated(false);
-        userDTO.setImageUrl("http://placehold.it/50x50");
-        userDTO.setLangKey(Constants.DEFAULT_LANGUAGE);
-        userDTO.setAuthorities(Collections.singleton(AuthoritiesConstants.ADMIN));
+        UserDto userDto = new UserDto();
+        userDto.setLogin("not-used");
+        userDto.setFirstName("firstname");
+        userDto.setLastName("lastname");
+        userDto.setEmail("save-existing-email-and-login@example.com");
+        userDto.setActivated(false);
+        userDto.setImageUrl("http://placehold.it/50x50");
+        userDto.setLangKey(Constants.DEFAULT_LANGUAGE);
+        userDto.setAuthorities(Collections.singleton(AuthoritiesConstants.ADMIN));
 
         restMvc.perform(
             post("/api/account")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(userDTO)))
+                .content(TestUtil.convertObjectToJsonBytes(userDto)))
             .andExpect(status().isOk());
 
         User updatedUser = userRepository.findOneByLogin("save-existing-email-and-login").orElse(null);

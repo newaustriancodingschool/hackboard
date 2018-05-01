@@ -83,7 +83,7 @@ jhipster:
     mail:
         from: hackboard@localhost
     swagger:
-        default-include-pattern: /api/.*
+        default-include-pattern: /.*
         title: hackboard API
         description: hackboard API documentation
         version: 0.0.1

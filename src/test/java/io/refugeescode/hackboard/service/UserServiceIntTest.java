@@ -6,7 +6,7 @@ import io.refugeescode.hackboard.domain.PersistentToken;
 import io.refugeescode.hackboard.domain.User;
 import io.refugeescode.hackboard.repository.PersistentTokenRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
-import io.refugeescode.hackboard.service.dto.UserDTO;
+import io.refugeescode.hackboard.service.dto.UserDto;
 import io.refugeescode.hackboard.service.util.RandomUtil;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -184,7 +184,7 @@ public class UserServiceIntTest {
             userRepository.saveAndFlush(user);
         }
         final PageRequest pageable = new PageRequest(0, (int) userRepository.count());
-        final Page<UserDTO> allManagedUsers = userService.getAllManagedUsers(pageable);
+        final Page<UserDto> allManagedUsers = userService.getAllManagedUsers(pageable);
         assertThat(allManagedUsers.getContent().stream()
             .noneMatch(user -> Constants.ANONYMOUS_USER.equals(user.getLogin())))
             .isTrue();
