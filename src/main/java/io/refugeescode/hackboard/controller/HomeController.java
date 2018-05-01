@@ -17,7 +17,7 @@ public class HomeController {
     }
 
     //Return a list of all projects
-    @RequestMapping("/projectsList")
+    @GetMapping("/projects")
     public List<Project> getProjects() {
 
         List<Project> projects = projectsRepository.findAll();
@@ -26,7 +26,7 @@ public class HomeController {
 
 
     //return the detail data of a project
-    @RequestMapping ("/projectsList/viewProject/{projectId}")
+    @GetMapping ("/projects/{projectId}")
     public Project viewProject(@PathVariable Long projectId) {
 
         Project project = projectsRepository.findOne(projectId);
@@ -35,7 +35,7 @@ public class HomeController {
 
 
     //Remove a project
-    @RequestMapping("/projectsList/viewProject/deleteProject/{projectId}")
+    @DeleteMapping("/projects/{projectId}")
     public void deleteProject(@PathVariable Long projectId) {
 
         projectsRepository.delete(projectId);
@@ -43,7 +43,7 @@ public class HomeController {
 
 
     //Edit a project
-    @RequestMapping("/projectsList/viewProject/editProject/{projectId}")
+    @PutMapping("/projects/{projectId}")
     public Project editProject(@PathVariable Long projectId) {
 
         Project project = projectsRepository.findOne(projectId);
@@ -52,7 +52,7 @@ public class HomeController {
 
 
     //Add a project
-    @RequestMapping(value = "/projectsList/addProject", method = RequestMethod.POST)
+    @PostMapping("/projects")
     public void addProject(@RequestBody Project project) {
 
         projectsRepository.save(project);
