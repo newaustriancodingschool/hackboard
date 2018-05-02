@@ -13,6 +13,7 @@
       "errorMessage": "Commit message in wrong format: Must be '#[issuenr]: [message]', e.g. '#123: added value property'"
     }
   },
+
   "contributors": [
     {
       "name": "Rainer Hahnekamp",
@@ -30,6 +31,16 @@
     {
       "name": "Farah Alrybaye",
       "email": "farahalrubaye7@gmail.com"
+    },
+    {
+      "name": "Hosam Almoghraby",
+      "email": "hosam.moghraby@gmail.com",
+      "url": "https://www.hos.am"
+
+    },
+    {
+      "name": "Mohammad Alsalkini",
+      "email": "eng.salkini@hotmail.com"
     }
   ],
   "dependencies": {
