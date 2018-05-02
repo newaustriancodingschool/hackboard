@@ -23,7 +23,7 @@ paths:
     get:
       tags:
       - "project"
-      summary: "List all projects"
+      summary: "List all projects.csv"
       operationId: "listProjects"
       produces:
       - "application/json"
