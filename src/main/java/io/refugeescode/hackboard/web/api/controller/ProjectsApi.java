@@ -64,4 +64,17 @@ public interface ProjectsApi {
         return new ResponseEntity<List<ProjectDto>>(HttpStatus.OK);
     }
 
+
+    @ApiOperation(value = "View Project", notes = "", response = ProjectDto.class, tags={ "project", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation", response = ProjectDto.class) })
+    
+    @RequestMapping(value = "/projects/{projectId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<ProjectDto> viewProject() {
+        // do some magic!
+        return new ResponseEntity<ProjectDto>(HttpStatus.OK);
+    }
+
 }

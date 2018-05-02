@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HomeController implements ProjectsApi {
+public class ProjectsController implements ProjectsApi {
 
     private ProjectRepository projectsRepository;
 
-    public HomeController(ProjectRepository projectsRepository) {
+    public ProjectsController(ProjectRepository projectsRepository) {
         this.projectsRepository = projectsRepository;
     }
 
