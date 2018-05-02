@@ -9,7 +9,7 @@
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span *ngIf="account" jhiTranslate="home.logged.message"
-                    translateValues="{username: '{{account.login}}'}"> You are logged in as user "{{account.login}}". </span>
+                      translateValues="{username: '{{account.login}}'}"> You are logged in as user "{{account.login}}". </span>
             </div>
 
             <div class="alert alert-warning" *ngSwitchCase="false">
@@ -35,11 +35,12 @@
             As a user I need to see where in the city I live and where the action is.<br>
             As a group of people I want to have an overview of what products are being looked at, what can be purchased, and how much money is still available.<br>
             As an organisation I want to democratically furnish a place.<br>
-            </p>
+        </p>
 
         <a routerLink="projects/list" class="btn btn-success">Go to projects's list</a>
 
-    <p>
-        <span>If you interested, this is our project on GitHub </span> <a href="https://github.com/RefugeesCodeAT/hackboard" target="_blank" rel="noopener">GitHub</a>!
-    </p>
+        <p>
+            <span>If you interested, this is our project on GitHub </span> <a href="https://github.com/RefugeesCodeAT/hackboard" target="_blank" rel="noopener">GitHub</a>!
+        </p>
+    </div>
 </div>
