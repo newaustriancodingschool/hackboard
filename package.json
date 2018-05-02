@@ -35,10 +35,12 @@
       "name": "Hosam Almoghraby",
       "email": "hosam.moghraby@gmail.com",
       "url": "https://www.hos.am"
+
     },
     {
       "name": "Mohammad Alsalkini",
       "email": "eng.salkini@hotmail.com"
+
     }
   ],
   "dependencies": {

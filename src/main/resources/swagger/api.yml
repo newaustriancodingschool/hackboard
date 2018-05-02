@@ -1,0 +1,86 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Swagger Hackboard"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "petstore.swagger.io"
+basePath: "/v2"
+tags:
+- name: "project"
+  description: "The Projects API"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "http"
+paths:
+  /projects:
+    get:
+      tags:
+      - "project"
+      summary: "List all projects"
+      operationId: "listProjects"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ProjectDto"
+    post:
+      tags:
+      - "project"
+      summary: "Add a new project"
+      operationId: "addProject"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "project"
+        required: true
+        schema:
+          $ref: "#/definitions/ProjectDto"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "boolean"
+    put:
+      tags:
+      - "project"
+      summary: "Edit project"
+      operationId: "editProject"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "project"
+        required: true
+        schema:
+          $ref: "#/definitions/ProjectDto"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "boolean"
+definitions:
+  ProjectDto:
+    type: "object"
+    required:
+      - "title"
+      - "description"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      description:
+        type: "string"

@@ -1,12 +1,12 @@
 package io.refugeescode.hackboard.web.rest.vm;
 
-import io.refugeescode.hackboard.service.dto.UserDTO;
+import io.refugeescode.hackboard.service.dto.UserDto;
 import javax.validation.constraints.Size;
 
 /**
  * View Model extending the UserDTO, which is meant to be used in the user management UI.
  */
-public class ManagedUserVM extends UserDTO {
+public class ManagedUserVM extends UserDto {
 
     public static final int PASSWORD_MIN_LENGTH = 4;
 

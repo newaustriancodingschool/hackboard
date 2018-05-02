@@ -21,7 +21,7 @@
     "serviceDiscoveryType": false,
     "buildTool": "maven",
     "enableSocialSignIn": false,
-    "enableSwaggerCodegen": false,
+    "enableSwaggerCodegen": true,
     "rememberMeKey": "bc857743b9c199cb5a2dd10198b71544a8d73946",
     "clientFramework": "angularX",
     "useSass": true,
