@@ -22,7 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-01T22:35:09.975+02:00")
+<<<<<<< Updated upstream
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-02T15:21:32.089+02:00")
+=======
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-02T14:03:46.045+02:00")
+>>>>>>> Stashed changes
 
 @Api(value = "projects", description = "the projects API")
 public interface ProjectsApi {
@@ -53,7 +57,7 @@ public interface ProjectsApi {
     }
 
 
-    @ApiOperation(value = "List all projects", notes = "", response = ProjectDto.class, responseContainer = "List", tags={ "project", })
+    @ApiOperation(value = "List all projects.csv", notes = "", response = ProjectDto.class, responseContainer = "List", tags={ "project", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = ProjectDto.class, responseContainer = "List") })
     

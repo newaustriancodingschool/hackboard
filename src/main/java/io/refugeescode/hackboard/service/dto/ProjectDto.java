@@ -11,7 +11,11 @@ import javax.validation.constraints.*;
 /**
  * ProjectDto
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-01T23:21:45.616+02:00")
+<<<<<<< Updated upstream
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-02T15:21:32.089+02:00")
+=======
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-02T14:03:46.045+02:00")
+>>>>>>> Stashed changes
 
 public class ProjectDto   {
   @JsonProperty("id")
