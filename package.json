@@ -13,6 +13,7 @@
       "errorMessage": "Commit message in wrong format: Must be '#[issuenr]: [message]', e.g. '#123: added value property'"
     }
   },
+
   "contributors": [
     {
       "name": "Rainer Hahnekamp",
