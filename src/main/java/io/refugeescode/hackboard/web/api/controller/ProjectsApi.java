@@ -52,7 +52,7 @@ public interface ProjectsApi {
     }
 
 
-    @ApiOperation(value = "List all projects.csv", notes = "", response = ProjectDto.class, responseContainer = "List", tags={ "project", })
+    @ApiOperation(value = "List all projects", notes = "", response = ProjectDto.class, responseContainer = "List", tags={ "project", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = ProjectDto.class, responseContainer = "List") })
     
