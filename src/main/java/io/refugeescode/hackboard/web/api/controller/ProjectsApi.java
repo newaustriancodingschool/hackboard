@@ -39,6 +39,19 @@ public interface ProjectsApi {
     }
 
 
+    @ApiOperation(value = "Delete Project", notes = "", response = Boolean.class, tags={ "project", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
+    
+    @RequestMapping(value = "/projects/{projectId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.DELETE)
+    default ResponseEntity<Boolean> deleteProject(@ApiParam(value = "ID of project",required=true ) @PathVariable("projectId") Long projectId) {
+        // do some magic!
+        return new ResponseEntity<Boolean>(HttpStatus.OK);
+    }
+
+
     @ApiOperation(value = "Edit project", notes = "", response = Boolean.class, tags={ "project", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
@@ -72,7 +85,7 @@ public interface ProjectsApi {
     @RequestMapping(value = "/projects/{projectId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<ProjectDto> viewProject() {
+    default ResponseEntity<ProjectDto> viewProject(@ApiParam(value = "ID of project",required=true ) @PathVariable("projectId") Long projectId) {
         // do some magic!
         return new ResponseEntity<ProjectDto>(HttpStatus.OK);
     }
