@@ -4,16 +4,14 @@
   "description": "Description for hackboard",
   "private": true,
   "license": "UNLICENSED",
-  "cacheDirectories": [
-    "node_modules"
-  ],
+  "cacheDirectories": ["node_modules"],
   "config": {
     "commit-message-validator": {
       "pattern": "\\#\\d+\\:\\s",
-      "errorMessage": "Commit message in wrong format: Must be '#[issuenr]: [message]', e.g. '#123: added value property'"
+      "errorMessage":
+        "Commit message in wrong format: Must be '#[issuenr]: [message]', e.g. '#123: added value property'"
     }
   },
-
   "contributors": [
     {
       "name": "Rainer Hahnekamp",
@@ -36,7 +34,6 @@
       "name": "Hosam Almoghraby",
       "email": "hosam.moghraby@gmail.com",
       "url": "https://www.hos.am"
-
     },
     {
       "name": "Mohammad Alsalkini",
@@ -103,6 +100,8 @@
     "node-sass": "4.5.3",
     "phantomjs-prebuilt": "2.1.16",
     "postcss-loader": "2.0.9",
+    "prettier": "^1.12.1",
+    "pretty-quick": "^1.4.1",
     "proxy-middleware": "0.15.0",
     "rimraf": "2.6.1",
     "sass-loader": "6.0.6",
@@ -136,20 +135,27 @@
     "ngc": "ngc -p tsconfig-aot.json",
     "cleanup": "rimraf target/{aot,www}",
     "clean-www": "rimraf target//www/app/{src,target/}",
+    "precommit": "pretty-quick --staged",
     "commitmsg": "commit-message-validator",
     "start": "yarn run webpack:dev",
     "serve": "yarn run start",
     "build": "yarn run webpack:prod",
     "test": "yarn run lint && karma start src/test/javascript/karma.conf.js",
     "test:watch": "yarn test -- --watch",
-    "webpack:dev": "yarn run webpack-dev-server -- --config webpack/webpack.dev.js --progress --inline --hot --profile --port=9060 --watch-content-base",
-    "webpack:build:main": "yarn run webpack -- --config webpack/webpack.dev.js --progress --profile",
+    "webpack:dev":
+      "yarn run webpack-dev-server -- --config webpack/webpack.dev.js --progress --inline --hot --profile --port=9060 --watch-content-base",
+    "webpack:build:main":
+      "yarn run webpack -- --config webpack/webpack.dev.js --progress --profile",
     "webpack:build": "yarn run cleanup && yarn run webpack:build:main",
-    "webpack:prod:main": "yarn run webpack -- --config webpack/webpack.prod.js --profile",
-    "webpack:prod": "yarn run cleanup && yarn run webpack:prod:main && yarn run clean-www",
+    "webpack:prod:main":
+      "yarn run webpack -- --config webpack/webpack.prod.js --profile",
+    "webpack:prod":
+      "yarn run cleanup && yarn run webpack:prod:main && yarn run clean-www",
     "webpack:test": "yarn run test",
-    "webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
+    "webpack-dev-server":
+      "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "webpack":
+      "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
     "postinstall": "node node_modules/phantomjs-prebuilt/install.js"
   }
 }
