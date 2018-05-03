@@ -17,23 +17,12 @@
     <!--
         Added the entity Project.
     -->
-    <changeSet id="20180428140611-1" author="jhipster">
-        <createTable tableName="project">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="title" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="description" type="varchar(10000)">
-                <constraints nullable="false" />
-            </column>
-
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
-        </createTable>
-
-
+    <changeSet id="20180502" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/projects.csv"
+                  separator=";"
+                  tableName="project"/>
     </changeSet>
+
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>
