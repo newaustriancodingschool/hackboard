@@ -11,8 +11,6 @@ import {
   projectsRoute
 } from './';
 
-console.log(settingsRoute);
-
 import { projectViewRoute } from './project-view/project-view.route';
 import { projectEditRoute } from './project-edit/project-edit.route';
 
@@ -29,7 +27,6 @@ const ACCOUNT_ROUTES = [
   projectsRoute
 ];
 
-console.log(projectsRoute);
 export const accountState: Routes = [
   {
     path: '',

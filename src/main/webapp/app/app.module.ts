@@ -23,7 +23,8 @@ import {
   ErrorComponent,
   FooterComponent,
   JhiMainComponent,
-  NavbarComponent
+  NavbarComponent,
+  ProfileService
 } from './layouts';
 import { ApiModule, Configuration } from './api';
 
@@ -49,6 +50,7 @@ import { ApiModule, Configuration } from './api';
   ],
   providers: [
     PaginationConfig,
+    ProfileService,
     UserRouteAccessService,
     {
       provide: HTTP_INTERCEPTORS,
