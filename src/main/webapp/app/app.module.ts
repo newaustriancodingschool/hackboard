@@ -23,9 +23,7 @@ import {
   ErrorComponent,
   FooterComponent,
   JhiMainComponent,
-  NavbarComponent,
-  PageRibbonComponent,
-  ProfileService
+  NavbarComponent
 } from './layouts';
 import { ApiModule, Configuration } from './api';
 
@@ -46,12 +44,10 @@ import { ApiModule, Configuration } from './api';
     JhiMainComponent,
     NavbarComponent,
     ErrorComponent,
-    PageRibbonComponent,
     ActiveMenuDirective,
     FooterComponent
   ],
   providers: [
-    ProfileService,
     PaginationConfig,
     UserRouteAccessService,
     {
