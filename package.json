@@ -45,6 +45,7 @@
     "@angular/compiler": "5.2.0",
     "@angular/core": "5.2.0",
     "@angular/forms": "5.2.0",
+    "@angular/http": "^6.0.0",
     "@angular/platform-browser": "5.2.0",
     "@angular/platform-browser-dynamic": "5.2.0",
     "@angular/router": "5.2.0",
@@ -109,7 +110,7 @@
     "sourcemap-istanbul-instrumenter-loader": "0.2.0",
     "style-loader": "0.18.2",
     "to-string-loader": "1.1.5",
-    "tslint": "5.5.0",
+    "tslint": "^5.8.0",
     "tslint-loader": "3.5.3",
     "typescript": "2.6.2",
     "uglifyjs-webpack-plugin": "1.1.5",
@@ -130,7 +131,7 @@
     "source-map": "0.6.1"
   },
   "scripts": {
-    "lint": "tslint --project tsconfig.json -e 'node_modules/**'",
+    "lint": "tslint --project tsconfig.json -e 'node_modules/**' -e 'src/main/webapp/app/api/**'",
     "lint:fix": "yarn run lint -- --fix",
     "ngc": "ngc -p tsconfig-aot.json",
     "cleanup": "rimraf target/{aot,www}",
@@ -147,15 +148,12 @@
     "webpack:build:main":
       "yarn run webpack -- --config webpack/webpack.dev.js --progress --profile",
     "webpack:build": "yarn run cleanup && yarn run webpack:build:main",
-    "webpack:prod:main":
-      "yarn run webpack -- --config webpack/webpack.prod.js --profile",
-    "webpack:prod":
-      "yarn run cleanup && yarn run webpack:prod:main && yarn run clean-www",
+    "webpack:prod:main": "yarn run webpack -- --config webpack/webpack.prod.js --profile",
+    "webpack:prod": "yarn run cleanup && yarn run webpack:prod:main && yarn run clean-www",
     "webpack:test": "yarn run test",
     "webpack-dev-server":
       "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "webpack":
-      "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
+    "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
     "postinstall": "node node_modules/phantomjs-prebuilt/install.js"
   }
 }
