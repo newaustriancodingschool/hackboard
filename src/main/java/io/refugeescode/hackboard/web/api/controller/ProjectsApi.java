@@ -22,17 +22,16 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-01T22:35:09.975+02:00")
 
 @Api(value = "projects", description = "the projects API")
 public interface ProjectsApi {
 
     @ApiOperation(value = "Add a new project", notes = "", response = Boolean.class, tags={ "project", })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
-    
+
     @RequestMapping(value = "/projects",
-        produces = { "application/json" }, 
+        produces = { "application/json" },
         method = RequestMethod.POST)
     default ResponseEntity<Boolean> addProject(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ProjectDto project) {
         // do some magic!
@@ -40,12 +39,25 @@ public interface ProjectsApi {
     }
 
 
-    @ApiOperation(value = "Edit project", notes = "", response = Boolean.class, tags={ "project", })
-    @ApiResponses(value = { 
+    @ApiOperation(value = "Delete Project", notes = "", response = Boolean.class, tags={ "project", })
+    @ApiResponses(value = {
         @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
-    
+
+    @RequestMapping(value = "/projects/{projectId}",
+        produces = { "application/json" },
+        method = RequestMethod.DELETE)
+    default ResponseEntity<Boolean> deleteProject(@ApiParam(value = "ID of project",required=true ) @PathVariable("projectId") Long projectId) {
+        // do some magic!
+        return new ResponseEntity<Boolean>(HttpStatus.OK);
+    }
+
+
+    @ApiOperation(value = "Edit project", notes = "", response = Boolean.class, tags={ "project", })
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
+
     @RequestMapping(value = "/projects",
-        produces = { "application/json" }, 
+        produces = { "application/json" },
         method = RequestMethod.PUT)
     default ResponseEntity<Boolean> editProject(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ProjectDto project) {
         // do some magic!
@@ -54,15 +66,28 @@ public interface ProjectsApi {
 
 
     @ApiOperation(value = "List all projects", notes = "", response = ProjectDto.class, responseContainer = "List", tags={ "project", })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(code = 200, message = "successful operation", response = ProjectDto.class, responseContainer = "List") })
-    
+
     @RequestMapping(value = "/projects",
-        produces = { "application/json" }, 
+        produces = { "application/json" },
         method = RequestMethod.GET)
     default ResponseEntity<List<ProjectDto>> listProjects() {
         // do some magic!
         return new ResponseEntity<List<ProjectDto>>(HttpStatus.OK);
+    }
+
+
+    @ApiOperation(value = "View Project", notes = "", response = ProjectDto.class, tags={ "project", })
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "successful operation", response = ProjectDto.class) })
+
+    @RequestMapping(value = "/projects/{projectId}",
+        produces = { "application/json" },
+        method = RequestMethod.GET)
+    default ResponseEntity<ProjectDto> viewProject(@ApiParam(value = "ID of project",required=true ) @PathVariable("projectId") Long projectId) {
+        // do some magic!
+        return new ResponseEntity<ProjectDto>(HttpStatus.OK);
     }
 
 }
