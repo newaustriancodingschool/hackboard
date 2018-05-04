@@ -588,6 +588,7 @@
                             <modelPackage>io.refugeescode.hackboard.service.dto</modelPackage>
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <configOptions>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <interfaceOnly>true</interfaceOnly>
                                 <java8>true</java8>
                             </configOptions>

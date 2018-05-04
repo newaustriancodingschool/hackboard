@@ -9,7 +9,7 @@
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span *ngIf="account" jhiTranslate="home.logged.message"
-                    translateValues="{username: '{{account.login}}'}"> You are logged in as user "{{account.login}}". </span>
+                      translateValues="{username: '{{account.login}}'}"> You are logged in as user "{{account.login}}". </span>
             </div>
 
             <div class="alert alert-warning" *ngSwitchCase="false">
@@ -21,36 +21,31 @@
                 <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
             </div>
         </div>
+        <div>
+            <p>
+                <span class=" font-weight-bold text-capitalize display-3 shadow p-4 mb-4 bg-white">"Find a project team" </span>
+            </p>
+        </div><br>
+        <div>
+            <p class="border border-success"> Purpose: Making lots of purchases of second hand stuff around a city, in an efficient way.
+                What’s the problem: When making many purchases second hand, it may be cheaper but you’ll be travelling through all of the city. But with a group of people furnishing a place together, for example when refugees code finds a new headquarter, it would allow a group to look for nice offers together.<br>
 
-    
-        
-        <p>
-            <span class="text-danger d-block p-3 mb-2 bg-primary">"Find a project teame" </span>
-        </p>
-        <div class="row">
-            <div class="col-12">
-                    <table class="table table-dark">
-                            <thead>
-                              <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Projects</th>
-                                
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <tr>Text-Based Role-Play-Game RPG</tr>
-                                <tr>A Treasure Hunt Map</tr>
-                                <tr>Klasse & Kasse, crowd-funding for school projects</tr>
-                              </tr>
-                            </tbody>
-                          </table>
-            </div>
+                User Stories:<br>
+
+                As a buyer, I want to add something to a city map.<br>
+                As a seller I want one person to talk to.<br>
+                As a user I need to see where in the city I live and where the action is.<br>
+                As a group of people I want to have an overview of what products are being looked at, what can be purchased, and how much money is still available.<br>
+                As an organisation I want to democratically furnish a place.<br>
+            </p>
         </div>
-        <button class="btn btn-success">Add</button>
+
+        <a routerLink="projects" class="btn btn-success">List of projects</a>
+        <a routerLink="project-view" class="btn btn-success">View project</a>
+        <a routerLink="project-edit" class="btn btn-success">Edit project</a>
+        <br><br>
+        <p>
+            <span>If you interested, this is our project on GitHub </span> <a href="https://github.com/RefugeesCodeAT/hackboard" target="_blank" rel="noopener">GitHub</a>!
+        </p>
     </div>
-    <p>
-        <span>If you interested, this is our project on GitHub </span> <a href="https://github.com/RefugeesCodeAT/hackboard" target="_blank" rel="noopener">GitHub</a>!
-    </p>
 </div>

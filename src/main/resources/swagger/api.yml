@@ -8,8 +8,6 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "petstore.swagger.io"
-basePath: "/v2"
 tags:
 - name: "project"
   description: "The Projects API"
@@ -70,6 +68,46 @@ paths:
           description: "successful operation"
           schema:
             type: "boolean"
+  /projects/{projectId}:
+    get:
+      tags:
+      - "project"
+      summary: "View Project"
+      operationId: "viewProject"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "projectId"
+        in: "path"
+        description: "ID of project"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ProjectDto"
+    delete:
+      tags:
+      - "project"
+      summary: "Delete Project"
+      operationId: "deleteProject"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "projectId"
+        in: "path"
+        description: "ID of project"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "boolean"
+
 definitions:
   ProjectDto:
     type: "object"

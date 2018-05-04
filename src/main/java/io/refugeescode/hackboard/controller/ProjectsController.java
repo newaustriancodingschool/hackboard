@@ -10,20 +10,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HomeController implements ProjectsApi {
+public class ProjectsController implements ProjectsApi {
 
     private ProjectRepository projectsRepository;
 
-    public HomeController(ProjectRepository projectsRepository) {
+    public ProjectsController(ProjectRepository projectsRepository) {
         this.projectsRepository = projectsRepository;
     }
 
@@ -57,5 +52,20 @@ public class HomeController implements ProjectsApi {
                 .collect(Collectors.toList()),
             HttpStatus.OK
         );
+    }
+
+    @Override
+    public ResponseEntity<ProjectDto> viewProject(@PathVariable("projectId") Long projectId) {
+        return new ResponseEntity<>(
+            ProjectMapper.INSTANCE.projectToProjectDto(
+                projectsRepository.findOne(projectId)),
+            HttpStatus.OK
+        );
+    }
+
+    @Override
+    public ResponseEntity<Boolean> deleteProject(@PathVariable("projectId") Long projectId) {
+        projectsRepository.delete(projectId);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }
