@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const writeFilePlugin = require('write-file-webpack-plugin');
 const webpackMerge = require('webpack-merge');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const path = require('path');
 
@@ -50,7 +49,11 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
         test: /\.ts$/,
         enforce: 'pre',
         loaders: 'tslint-loader',
-        exclude: ['node_modules', new RegExp('reflect-metadata\\' + path.sep + 'Reflect\\.ts')]
+        exclude: [
+          'node_modules',
+          /src\/main\/webapp\/app\/api/,
+          new RegExp('reflect-metadata\\' + path.sep + 'Reflect\\.ts')
+        ]
       },
       {
         test: /\.ts$/,
@@ -78,24 +81,12 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     ]
   },
   plugins: [
-    new BrowserSyncPlugin(
-      {
-        host: 'localhost',
-        port: 9000,
-        proxy: {
-          target: 'http://localhost:9060'
-        }
-      },
-      {
-        reload: false
-      }
-    ),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.NamedModulesPlugin(),
     new writeFilePlugin(),
     new webpack.WatchIgnorePlugin([utils.root('src/test')]),
     new WebpackNotifierPlugin({
-      title: 'JHipster',
+      title: 'HackBoard',
       contentImage: path.join(__dirname, 'logo-jhipster.png')
     })
   ]
