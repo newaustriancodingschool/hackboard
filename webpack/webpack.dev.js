@@ -49,7 +49,11 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
         test: /\.ts$/,
         enforce: 'pre',
         loaders: 'tslint-loader',
-        exclude: ['node_modules', /src\/main\/webapp\/app\/api/, new RegExp('reflect-metadata\\' + path.sep + 'Reflect\\.ts')]
+        exclude: [
+          'node_modules',
+          /src\/main\/webapp\/app\/api/,
+          new RegExp('reflect-metadata\\' + path.sep + 'Reflect\\.ts')
+        ]
       },
       {
         test: /\.ts$/,
