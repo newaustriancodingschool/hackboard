@@ -11,121 +11,119 @@ import javax.validation.constraints.*;
 /**
  * ProjectDto
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-01T23:21:45.616+02:00")
 
 public class ProjectDto   {
-  @JsonProperty("id")
-  private Long id = null;
+    @JsonProperty("id")
+    private Long id = null;
 
-  @JsonProperty("title")
-  private String title = null;
+    @JsonProperty("title")
+    private String title = null;
 
-  @JsonProperty("description")
-  private String description = null;
+    @JsonProperty("description")
+    private String description = null;
 
-  public ProjectDto id(Long id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public ProjectDto title(String title) {
-    this.title = title;
-    return this;
-  }
-
-   /**
-   * Get title
-   * @return title
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public ProjectDto description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * Get description
-   * @return description
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public ProjectDto id(Long id) {
+        this.id = id;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get id
+     * @return id
+     **/
+    @ApiModelProperty(value = "")
+
+
+    public Long getId() {
+        return id;
     }
-    ProjectDto projectDto = (ProjectDto) o;
-    return Objects.equals(this.id, projectDto.id) &&
-        Objects.equals(this.title, projectDto.title) &&
-        Objects.equals(this.description, projectDto.description);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, title, description);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectDto {\n");
-    
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    title: ").append(toIndentedString(title)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setId(Long id) {
+        this.id = id;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public ProjectDto title(String title) {
+        this.title = title;
+        return this;
+    }
+
+    /**
+     * Get title
+     * @return title
+     **/
+    @ApiModelProperty(required = true, value = "")
+    @NotNull
+
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public ProjectDto description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * Get description
+     * @return description
+     **/
+    @ApiModelProperty(required = true, value = "")
+    @NotNull
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ProjectDto projectDto = (ProjectDto) o;
+        return Objects.equals(this.id, projectDto.id) &&
+            Objects.equals(this.title, projectDto.title) &&
+            Objects.equals(this.description, projectDto.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, description);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ProjectDto {\n");
+
+        sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    title: ").append(toIndentedString(title)).append("\n");
+        sb.append("    description: ").append(toIndentedString(description)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 }
-
