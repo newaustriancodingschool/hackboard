@@ -1,11 +1,11 @@
 import { Route } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { ProjectEditComponent } from './project-edit.component';
+import { EditComponent } from './edit.component';
 
-export const projectEditRoute: Route = {
+export const editRoute: Route = {
   path: 'project-edit',
-  component: ProjectEditComponent,
+  component: EditComponent,
   data: {
     authorities: ['ROLE_USER'],
     pageTitle: 'project-edit.title'

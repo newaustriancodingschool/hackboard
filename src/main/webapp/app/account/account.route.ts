@@ -7,12 +7,8 @@ import {
   passwordResetInitRoute,
   registerRoute,
   sessionsRoute,
-  settingsRoute,
-  projectsRoute
+  settingsRoute
 } from './';
-
-import { projectViewRoute } from './project-view/project-view.route';
-import { projectEditRoute } from './project-edit/project-edit.route';
 
 const ACCOUNT_ROUTES = [
   activateRoute,
@@ -21,10 +17,7 @@ const ACCOUNT_ROUTES = [
   passwordResetInitRoute,
   registerRoute,
   sessionsRoute,
-  settingsRoute,
-  projectViewRoute,
-  projectEditRoute,
-  projectsRoute
+  settingsRoute
 ];
 
 export const accountState: Routes = [

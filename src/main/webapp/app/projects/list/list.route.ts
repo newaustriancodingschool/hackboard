@@ -1,11 +1,11 @@
 import { Route } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { ProjectsComponent } from './projects.component';
+import { ListComponent } from './list.component';
 
-export const projectsRoute: Route = {
+export const listRoute: Route = {
   path: 'projects',
-  component: ProjectsComponent,
+  component: ListComponent,
   data: {
     authorities: ['ROLE_USER'],
     pageTitle: 'global/menu/account/projects'

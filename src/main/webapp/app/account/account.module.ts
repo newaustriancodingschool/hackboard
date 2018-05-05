@@ -20,21 +20,9 @@ import {
   SettingsComponent,
   accountState
 } from './';
-import { ProjectViewComponent } from './project-view/project-view.component';
-import { ProjectViewModule } from './project-view/project-view.module';
-import { ProjectEditComponent } from './project-edit/project-edit.component';
-import { ProjectEditModule } from './project-edit/project-edit.module';
-import { ProjectsComponent } from './projects/projects.component';
-import { ProjectsModule } from './projects/projects.module';
 
 @NgModule({
-  imports: [
-    HackboardSharedModule,
-    RouterModule.forChild(accountState),
-    ProjectViewModule,
-    ProjectEditModule,
-    ProjectsModule
-  ],
+  imports: [HackboardSharedModule, RouterModule.forChild(accountState)],
   declarations: [
     ActivateComponent,
     RegisterComponent,
@@ -43,10 +31,7 @@ import { ProjectsModule } from './projects/projects.module';
     PasswordResetInitComponent,
     PasswordResetFinishComponent,
     SessionsComponent,
-    SettingsComponent,
-    ProjectViewComponent,
-    ProjectEditComponent,
-    ProjectsComponent
+    SettingsComponent
   ],
   providers: [
     SessionsService,
