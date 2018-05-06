@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './view.component.html',
   styles: []
 })
-export class ViewComponent implements OnInit {
+export class ProjectViewComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}

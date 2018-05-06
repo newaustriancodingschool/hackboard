@@ -5,26 +5,20 @@ import { HackboardSharedModule } from '../shared';
 
 import {
   projectsState,
-  AddComponent,
-  AddModule,
-  EditComponent,
-  EditModule,
-  ListComponent,
-  ListModule,
-  ViewComponent,
-  ViewModule
+  ProjectAddComponent,
+  ProjectEditComponent,
+  ProjectListComponent,
+  ProjectViewComponent
 } from './';
 
 @NgModule({
-  imports: [
-    HackboardSharedModule,
-    RouterModule.forChild(projectsState),
-    AddModule,
-    EditModule,
-    ListModule,
-    ViewModule
+  imports: [HackboardSharedModule, RouterModule.forChild(projectsState)],
+  declarations: [
+    ProjectAddComponent,
+    ProjectEditComponent,
+    ProjectListComponent,
+    ProjectViewComponent
   ],
-  declarations: [AddComponent, EditComponent, ListComponent, ViewComponent],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

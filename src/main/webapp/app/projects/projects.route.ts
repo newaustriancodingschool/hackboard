@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 
-import { addRoute, editRoute, listRoute, viewRoute } from './';
+import { projectAddRoute, projectEditRoute, projectListRoute, projectViewRoute } from './';
 
-const PROJECTS_ROUTES = [addRoute, editRoute, listRoute, viewRoute];
+const PROJECTS_ROUTES = [projectAddRoute, projectEditRoute, projectListRoute, projectViewRoute];
 
 export const projectsState: Routes = [
   {
