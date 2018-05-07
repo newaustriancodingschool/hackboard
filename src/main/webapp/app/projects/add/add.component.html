@@ -1,11 +1,12 @@
 <h2 class="orange text-capitalize">Add your project info.</h2>
-  
-  <div class="form-group">
-    <label class="lightBlue font-weight-bold" for="usr">Title:</label>
-    <input type="text" class="form-control" id="usr">
-  </div>
-  <div class="form-group ">
-      <label  class="lightBlue font-weight-bold" for="comment ">Description:</label>
-      <textarea class="form-control" rows="5" id="comment"></textarea>
-  </div>
-  <a routerLink="/" class="btn btn-success darkBlue d-inline-block">Finish</a> 
+<form (ngSubmit)="submit()">
+    <div class="form-group">
+        <label class="lightBlue font-weight-bold" for="usr">Title:</label>
+        <input type="text" class="form-control" [(ngModel)]="data.title" name="title" id="usr">
+    </div>
+    <div class="form-group ">
+        <label  class="lightBlue font-weight-bold" for="comment ">Description:</label>
+        <textarea class="form-control" rows="5" id="comment" [(ngModel)]="data.description" name="description"></textarea>
+    </div>
+    <button class="btn btn-success darkBlue d-inline-block">Finish</button>
+</form>
