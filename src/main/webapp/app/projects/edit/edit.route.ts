@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { ProjectEditComponent } from './project-edit.component';
+import { ProjectEditComponent } from './edit.component';
 
 export const projectEditRoute: Route = {
   path: 'project-edit',

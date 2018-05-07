@@ -27,6 +27,7 @@ import {
   ProfileService
 } from './layouts';
 import { ApiModule, Configuration } from './api';
+import { HackboardProjectsModule } from './projects/projects.module';
 
 @NgModule({
   imports: [
@@ -38,8 +39,9 @@ import { ApiModule, Configuration } from './api';
     HackboardHomeModule,
     HackboardAdminModule,
     HackboardAccountModule,
-    HackboardEntityModule
+    HackboardEntityModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
+    HackboardProjectsModule
   ],
   declarations: [
     JhiMainComponent,
