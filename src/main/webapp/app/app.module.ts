@@ -2,7 +2,7 @@ import './vendor.ts';
 
 import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, HttpClientXsrfModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { JhiEventManager } from 'ng-jhipster';
 
@@ -28,7 +28,6 @@ import {
 } from './layouts';
 import { ApiModule, Configuration } from './api';
 import { HackboardProjectsModule } from './projects/projects.module';
-import { XSRFStrategy } from '@angular/http';
 import { XsrfInterceptor } from './blocks/interceptor/XsrfInterceptor';
 
 @NgModule({
