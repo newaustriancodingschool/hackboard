@@ -87,7 +87,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     new webpack.WatchIgnorePlugin([utils.root('src/test')]),
     new WebpackNotifierPlugin({
       title: 'HackBoard',
-      contentImage: path.join(__dirname, 'logo-jhipster.png')
+      contentImage: path.join(__dirname, 'logo-hackboard.png')
     })
   ]
 });
