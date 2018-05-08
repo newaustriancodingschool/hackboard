@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,7 +24,7 @@ public class ProjectsController implements ProjectsApi {
     }
 
     @Override
-    public ResponseEntity<Boolean> addProject(ProjectDto project) {
+    public ResponseEntity<Boolean> addProject(@RequestBody ProjectDto project) {
         Project entity = new Project();
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
@@ -34,7 +35,7 @@ public class ProjectsController implements ProjectsApi {
     }
 
     @Override
-    public ResponseEntity<Boolean> editProject(ProjectDto project) {
+    public ResponseEntity<Boolean> editProject(@RequestBody ProjectDto project) {
         Project entity = projectsRepository.findOne(project.getId());
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
