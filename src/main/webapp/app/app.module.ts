@@ -14,7 +14,6 @@ import { HackboardAppRoutingModule } from './app-routing.module';
 import { HackboardHomeModule } from './home/home.module';
 import { HackboardAdminModule } from './admin/admin.module';
 import { HackboardAccountModule } from './account/account.module';
-import { HackboardEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 import { StateStorageService } from './shared/auth/state-storage.service';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
@@ -40,7 +39,6 @@ import { XsrfInterceptor } from './blocks/interceptor/XsrfInterceptor';
     HackboardHomeModule,
     HackboardAdminModule,
     HackboardAccountModule,
-    HackboardEntityModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     HackboardProjectsModule
   ],
