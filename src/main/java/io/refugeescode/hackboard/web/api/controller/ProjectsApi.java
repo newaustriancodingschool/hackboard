@@ -125,7 +125,7 @@ public interface ProjectsApi {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"description\" : \"description\",  \"id\" : 0,  \"title\" : \"title\",  \"username\" : \"username\"}, {  \"description\" : \"description\",  \"id\" : 0,  \"title\" : \"title\",  \"username\" : \"username\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"description\" : \"description\",  \"id\" : 0,  \"title\" : \"title\"}, {  \"description\" : \"description\",  \"id\" : 0,  \"title\" : \"title\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -148,7 +148,7 @@ public interface ProjectsApi {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("{  \"description\" : \"description\",  \"id\" : 0,  \"title\" : \"title\",  \"username\" : \"username\"}", ProjectDto.class), HttpStatus.NOT_IMPLEMENTED);
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("{  \"description\" : \"description\",  \"id\" : 0,  \"title\" : \"title\"}", ProjectDto.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
