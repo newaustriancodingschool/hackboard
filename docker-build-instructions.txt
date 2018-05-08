@@ -1,0 +1,5 @@
+To create a Docker image of your application, and push it into your Docker registry:
+
+With Maven, type: ./mvnw package -Pprod dockerfile:build
+
+./mvnw package -Pprod dockerfile:build
