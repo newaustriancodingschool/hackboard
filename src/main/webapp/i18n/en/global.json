@@ -9,6 +9,7 @@
         "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "project": "Project",
         "jhipster-needle-menu-add-entry":
           "JHipster will add additional entities here (do not translate!)"
       },

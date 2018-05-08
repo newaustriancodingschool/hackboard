@@ -23,16 +23,23 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="title" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_user" type="bigint">
                 <constraints nullable="false" />
             </column>
 
-            <column name="description" type="varchar(10000)">
+            <column name="user_fk_id" type="bigint">
                 <constraints nullable="false" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-
 
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

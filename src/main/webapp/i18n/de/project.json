@@ -1,0 +1,24 @@
+{
+  "hackboardApp": {
+    "project": {
+      "home": {
+        "title": "Projects",
+        "createLabel": "Project erstellen",
+        "createOrEditLabel": "Project erstellen oder bearbeiten"
+      },
+      "created": "Project erstellt mit ID {{ param }}",
+      "updated": "Project aktualisiert mit ID {{ param }}",
+      "deleted": "Project gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Project {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Project"
+      },
+      "title": "Title",
+      "description": "Description",
+      "user": "User",
+      "user_fk": "User Fk"
+    }
+  }
+}

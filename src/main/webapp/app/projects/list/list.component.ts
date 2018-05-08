@@ -1,18 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectDto, ProjectService } from '../../api';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'jhi-list',
   templateUrl: './list.component.html',
   styles: []
 })
 export class ProjectListComponent implements OnInit {
-  constructor(private projectService: ProjectService, private router: Router) {}
+  private projects: Array<ProjectDto>;
+  constructor(private projectService: ProjectService) {}
 
-  ngOnInit() {}
-
-  submit() {
-    this.projectService.addProject(this.data).subscribe(() => this.router.navigate(['/projects']));
+  ngOnInit() {
+    this.projectService.listProjects().subscribe(projects => (this.projects = projects));
   }
 }

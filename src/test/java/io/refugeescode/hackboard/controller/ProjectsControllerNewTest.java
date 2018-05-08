@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 
 import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.repository.ProjectRepository;
+import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -19,7 +20,7 @@ public class ProjectsControllerNewTest {
         projectDto.setId(1L);
         projectDto.setDescription("foo");
         projectDto.setTitle("bar");
-        new ProjectsController(repository).addProject(projectDto);
+        new ProjectsController(repository, mock(UserRepository.class)).addProject(projectDto);
         ArgumentCaptor<Project> argumentCaptor = ArgumentCaptor.forClass(Project.class);
 
         verify(repository).save(argumentCaptor.capture());
