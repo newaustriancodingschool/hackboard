@@ -1,4 +1,4 @@
-id;title;description
-1;Text-Based Role-Play-Game RPG;A game around which we can build our coding school.
-2;A Treasure Hunt Map;A map with things to do.
-3;Klasse & Kasse, crowd-function for school projects.csv;building a crowdfunding platform for school projects.csv
+id;title;description;jhi_user
+1;Text-Based Role-Play-Game RPG;A game around which we can build our coding school.;1
+2;A Treasure Hunt Map;A map with things to do.;1
+3;Klasse & Kasse, crowd-function for school projects.csv;building a crowdfunding platform for school projects.csv;2

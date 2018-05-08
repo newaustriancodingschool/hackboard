@@ -31,9 +31,6 @@
     "jhiPrefix": "jhi",
     "enableTranslation": true,
     "nativeLanguage": "en",
-    "languages": [
-      "en",
-      "de"
-    ]
+    "languages": ["en", "de"]
   }
 }
