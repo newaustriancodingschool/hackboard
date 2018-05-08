@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectDto, ProjectService } from '../../api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-add',
@@ -6,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class ProjectAddComponent implements OnInit {
-  constructor() {}
+  private data: ProjectDto = { title: '', description: '' };
+
+  constructor(private projectService: ProjectService, private router: Router) {}
 
   ngOnInit() {}
+
+  submit() {
+    this.projectService.addProject(this.data).subscribe(() => this.router.navigate(['/projects']));
+  }
 }

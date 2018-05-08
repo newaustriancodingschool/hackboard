@@ -10,9 +10,10 @@ import {
   ProjectListComponent,
   ProjectViewComponent
 } from './';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [HackboardSharedModule, RouterModule.forChild(projectsState)],
+  imports: [FormsModule, HackboardSharedModule, RouterModule.forChild(projectsState)],
   declarations: [
     ProjectAddComponent,
     ProjectEditComponent,

@@ -28,6 +28,7 @@ import {
 } from './layouts';
 import { ApiModule, Configuration } from './api';
 import { HackboardProjectsModule } from './projects/projects.module';
+import { XsrfInterceptor } from './blocks/interceptor/XsrfInterceptor';
 
 @NgModule({
   imports: [
@@ -71,6 +72,11 @@ import { HackboardProjectsModule } from './projects/projects.module';
       useClass: NotificationInterceptor,
       multi: true,
       deps: [Injector]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: XsrfInterceptor,
+      multi: true
     }
   ],
   bootstrap: [JhiMainComponent]
