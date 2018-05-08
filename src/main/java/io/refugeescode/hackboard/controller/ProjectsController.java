@@ -3,6 +3,7 @@ package io.refugeescode.hackboard.controller;
 
 import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.repository.ProjectRepository;
+import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
 import io.refugeescode.hackboard.service.mapper.ProjectMapper;
@@ -20,17 +21,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProjectsController implements ProjectsApi {
 
     private ProjectRepository projectsRepository;
+    private UserRepository userRepository;
 
-    public ProjectsController(ProjectRepository projectsRepository) {
+    public ProjectsController(ProjectRepository projectsRepository, UserRepository userRepository) {
+
         this.projectsRepository = projectsRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
-    @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
-    public ResponseEntity<Boolean> addProject(ProjectDto project) {
+//    @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
+    public ResponseEntity<Boolean> addProject(@RequestBody ProjectDto project) {
         Project entity = new Project();
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
+        entity.setUser(4L);
+        entity.setUser_fk(userRepository.findOne(2L));
 
         projectsRepository.save(entity);
 
@@ -38,7 +44,7 @@ public class ProjectsController implements ProjectsApi {
     }
 
     @Override
-    @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
+//    @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
     public ResponseEntity<Boolean> editProject(ProjectDto project) {
         Project entity = projectsRepository.findOne(project.getId());
         entity.setTitle(project.getTitle());
@@ -50,7 +56,7 @@ public class ProjectsController implements ProjectsApi {
     }
 
     @Override
-    @Secured(AuthoritiesConstants.ANONYMOUS)
+//    @Secured(AuthoritiesConstants.ANONYMOUS)
     public ResponseEntity<List<ProjectDto>> listProjects() {
         return new ResponseEntity<>(
             projectsRepository.findAll().stream()
@@ -61,7 +67,7 @@ public class ProjectsController implements ProjectsApi {
     }
 
     @Override
-    @Secured(AuthoritiesConstants.ANONYMOUS)
+//    @Secured(AuthoritiesConstants.ANONYMOUS)
     public ResponseEntity<ProjectDto> viewProject(@PathVariable("projectId") Long projectId) {
         return new ResponseEntity<>(
             ProjectMapper.INSTANCE.projectToProjectDto(
@@ -71,7 +77,7 @@ public class ProjectsController implements ProjectsApi {
     }
 
     @Override
-    @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
+//    @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
     public ResponseEntity<Boolean> deleteProject(@PathVariable("projectId") Long projectId) {
         projectsRepository.delete(projectId);
         return new ResponseEntity<>(true, HttpStatus.OK);

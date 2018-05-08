@@ -29,8 +29,7 @@ public class Project implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @NotNull
-    @Column(name = "jhi_user", nullable = false)
+    @Column(name = "jhi_user")
     private Long user;
 
     @ManyToOne
