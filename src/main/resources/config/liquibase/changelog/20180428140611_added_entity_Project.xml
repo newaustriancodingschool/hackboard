@@ -30,13 +30,10 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="jhi_user" type="bigint">
+            <column name="owner" type="bigint">
                 <constraints nullable="false" />
             </column>
 
-            <column name="user_fk_id" type="bigint">
-                <constraints nullable="false" />
-            </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
