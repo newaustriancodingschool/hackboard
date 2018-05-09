@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.refugeescode.hackboard</groupId>
-    <artifactId>hackboard</artifactId>
+    <artifactId>rc-hackboard</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>Hackboard</name>
 
     <properties>
