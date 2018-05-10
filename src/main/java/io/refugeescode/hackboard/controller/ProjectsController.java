@@ -38,7 +38,13 @@ public class ProjectsController implements ProjectsApi {
         Project entity = new Project();
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
-
+        if (SecurityUtils.getCurrentUserLogin().isPresent()){
+            String userlogin = SecurityUtils.getCurrentUserLogin().get();
+            Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
+            if (oneByLogin.isPresent()){
+                entity.setOwner(oneByLogin.get());
+            }
+        }
         projectsRepository.save(entity);
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
@@ -49,7 +55,6 @@ public class ProjectsController implements ProjectsApi {
         Project entity = projectsRepository.findOne(project.getId());
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
-
         projectsRepository.save(entity);
 
         return new ResponseEntity<>(true, HttpStatus.OK);
@@ -69,6 +74,7 @@ public class ProjectsController implements ProjectsApi {
     @Override
 //    @Secured(AuthoritiesConstants.ANONYMOUS)
     public ResponseEntity<ProjectDto> viewProject(@PathVariable("projectId") Long projectId) {
+
         return new ResponseEntity<>(
             ProjectMapper.INSTANCE.projectToProjectDto(
                 projectsRepository.findOne(projectId)),

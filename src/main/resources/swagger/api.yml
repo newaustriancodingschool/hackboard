@@ -114,6 +114,7 @@ definitions:
     required:
       - "title"
       - "description"
+      - "owner_id"
     properties:
       id:
         type: "integer"
@@ -122,3 +123,8 @@ definitions:
         type: "string"
       description:
         type: "string"
+      owner_id:
+        type: "integer"
+        format: "int64"
+
+

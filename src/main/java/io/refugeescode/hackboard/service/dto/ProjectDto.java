@@ -24,6 +24,9 @@ public class ProjectDto   {
   @JsonProperty("description")
   private String description = null;
 
+  @JsonProperty("owner_id")
+  private Long ownerId = null;
+
   public ProjectDto id(Long id) {
     this.id = id;
     return this;
@@ -86,6 +89,27 @@ public class ProjectDto   {
     this.description = description;
   }
 
+  public ProjectDto ownerId(Long ownerId) {
+    this.ownerId = ownerId;
+    return this;
+  }
+
+  /**
+   * Get ownerId
+   * @return ownerId
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public Long getOwnerId() {
+    return ownerId;
+  }
+
+  public void setOwnerId(Long ownerId) {
+    this.ownerId = ownerId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -98,12 +122,13 @@ public class ProjectDto   {
     ProjectDto projectDto = (ProjectDto) o;
     return Objects.equals(this.id, projectDto.id) &&
         Objects.equals(this.title, projectDto.title) &&
-        Objects.equals(this.description, projectDto.description);
+        Objects.equals(this.description, projectDto.description) &&
+        Objects.equals(this.ownerId, projectDto.ownerId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description);
+    return Objects.hash(id, title, description, ownerId);
   }
 
   @Override
@@ -114,6 +139,7 @@ public class ProjectDto   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
