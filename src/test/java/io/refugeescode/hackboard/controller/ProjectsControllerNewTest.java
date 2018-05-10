@@ -20,6 +20,7 @@ public class ProjectsControllerNewTest {
         projectDto.setId(1L);
         projectDto.setDescription("foo");
         projectDto.setTitle("bar");
+
         new ProjectsController(repository, mock(UserRepository.class)).addProject(projectDto);
         ArgumentCaptor<Project> argumentCaptor = ArgumentCaptor.forClass(Project.class);
 

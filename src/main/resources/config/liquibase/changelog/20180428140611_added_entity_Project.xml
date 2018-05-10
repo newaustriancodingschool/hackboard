@@ -30,11 +30,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="jhi_user" type="bigint">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="user_fk_id" type="bigint">
+            <column name="owner_id" type="bigint">
                 <constraints nullable="false" />
             </column>
 

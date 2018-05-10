@@ -4,7 +4,6 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -29,11 +28,10 @@ public class Project implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "jhi_user")
-    private Long user;
-
     @ManyToOne
-    private User user_fk;
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
+
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -70,30 +68,17 @@ public class Project implements Serializable {
         this.description = description;
     }
 
-    public Long getUser() {
-        return user;
-    }
-
-    public Project user(Long user) {
-        this.user = user;
-        return this;
-    }
-
-    public void setUser(Long user) {
-        this.user = user;
-    }
-
-    public User getUser_fk() {
-        return user_fk;
+    public User getOwner() {
+        return owner;
     }
 
     public Project user_fk(User user) {
-        this.user_fk = user;
+        this.owner = user;
         return this;
     }
 
-    public void setUser_fk(User user) {
-        this.user_fk = user;
+    public void setOwner(User user) {
+        this.owner = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -123,7 +108,6 @@ public class Project implements Serializable {
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
-            ", user=" + getUser() +
             "}";
     }
 }
