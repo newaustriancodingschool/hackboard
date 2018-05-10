@@ -20,9 +20,8 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "user",
-      "fieldType": "Long",
-      "fieldValidateRules": ["required"]
+      "fieldName": "owner",
+      "fieldType": "Long"
     }
   ],
   "changelogDate": "20180428140611",

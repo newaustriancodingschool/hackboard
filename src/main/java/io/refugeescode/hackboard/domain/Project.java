@@ -51,6 +51,12 @@ public class Project implements Serializable {
         return this;
     }
 
+    public Project owner(User user) {
+        this.owner = user;
+        return this;
+    }
+
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -70,11 +76,6 @@ public class Project implements Serializable {
 
     public User getOwner() {
         return owner;
-    }
-
-    public Project user_fk(User user) {
-        this.owner = user;
-        return this;
     }
 
     public void setOwner(User user) {

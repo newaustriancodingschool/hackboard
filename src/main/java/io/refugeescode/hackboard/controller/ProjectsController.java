@@ -40,7 +40,6 @@ public class ProjectsController implements ProjectsApi {
         entity.setDescription(project.getDescription());
 
         projectsRepository.save(entity);
-
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
