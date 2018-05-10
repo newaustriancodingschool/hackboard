@@ -7,8 +7,8 @@
         Added the constraints for entity Project.
     -->
     <changeSet id="20180428140611-2" author="jhipster">
-
-        <addForeignKeyConstraint baseColumnNames="owner"
+        
+        <addForeignKeyConstraint baseColumnNames="user_fk_id"
                                  baseTableName="project"
                                  constraintName="fk_project_user_fk_id"
                                  referencedColumnNames="id"

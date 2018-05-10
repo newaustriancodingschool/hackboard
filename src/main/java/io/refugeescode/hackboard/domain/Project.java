@@ -29,22 +29,11 @@ public class Project implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "jhi_user")
+    private Long user;
+
     @ManyToOne
-    private User  owner;
-
-    public Project owner(User user) {
-        this.owner = user;
-        return this;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
+    private User user_fk;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -81,7 +70,31 @@ public class Project implements Serializable {
         this.description = description;
     }
 
+    public Long getUser() {
+        return user;
+    }
 
+    public Project user(Long user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(Long user) {
+        this.user = user;
+    }
+
+    public User getUser_fk() {
+        return user_fk;
+    }
+
+    public Project user_fk(User user) {
+        this.user_fk = user;
+        return this;
+    }
+
+    public void setUser_fk(User user) {
+        this.user_fk = user;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -107,10 +120,10 @@ public class Project implements Serializable {
     @Override
     public String toString() {
         return "Project{" +
-            "id=" + id +
-            ", title='" + title + '\'' +
-            ", description='" + description + '\'' +
-            ", owner=" + owner +
-            '}';
+            "id=" + getId() +
+            ", title='" + getTitle() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", user=" + getUser() +
+            "}";
     }
 }
