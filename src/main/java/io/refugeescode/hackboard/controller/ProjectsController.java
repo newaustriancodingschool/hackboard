@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,14 @@ public class ProjectsController implements ProjectsApi {
     }
 
     @Override
-//    @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
+    /*        @Secured(AuthoritiesConstants.ADMIN)
+
+or
+
+        @PreAuthorize("hasRole('ROLE_USER')")
+*/
+
+    //@PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<Boolean> addProject(@RequestBody ProjectDto project) {
         Project entity = new Project();
         entity.setTitle(project.getTitle());
@@ -50,7 +58,7 @@ public class ProjectsController implements ProjectsApi {
     }
 
     @Override
-//    @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
+    //@PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<Boolean> editProject(ProjectDto project) {
         Project entity = projectsRepository.findOne(project.getId());
         entity.setTitle(project.getTitle());
@@ -61,7 +69,6 @@ public class ProjectsController implements ProjectsApi {
     }
 
     @Override
-//    @Secured(AuthoritiesConstants.ANONYMOUS)
     public ResponseEntity<List<ProjectDto>> listProjects() {
         return new ResponseEntity<>(
             projectsRepository.findAll().stream()
@@ -72,7 +79,7 @@ public class ProjectsController implements ProjectsApi {
     }
 
     @Override
-//    @Secured(AuthoritiesConstants.ANONYMOUS)
+    //@PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<ProjectDto> viewProject(@PathVariable("projectId") Long projectId) {
 
         return new ResponseEntity<>(
@@ -83,7 +90,7 @@ public class ProjectsController implements ProjectsApi {
     }
 
     @Override
-//    @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
+    //@PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<Boolean> deleteProject(@PathVariable("projectId") Long projectId) {
         projectsRepository.delete(projectId);
         return new ResponseEntity<>(true, HttpStatus.OK);

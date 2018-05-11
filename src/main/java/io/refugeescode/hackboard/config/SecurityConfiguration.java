@@ -30,6 +30,7 @@ import javax.annotation.PostConstruct;
 @Configuration
 @Import(SecurityProblemSupport.class)
 @EnableWebSecurity
+
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -143,11 +144,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/v2/api-docs/**").permitAll()
             .antMatchers("/swagger-resources/configuration/ui").permitAll()
-            .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN);
+            .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
+            .anyRequest().permitAll();
+            //.antMatchers("/projects").permitAll()
+            //.antMatchers("/projects").hasAuthority(AuthoritiesConstants.ADMIN);
+
+
+
+
 /*
             .antMatchers("/projects").permitAll()
-            .antMatchers("/project-add").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("rest/project-add*").hasRole("ADMIN")
+            .anyRequest().permitAll()
+            .antMatchers("/projects").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/editProject").denyAll();
+            ..antMatchers("/api/**").authenticated()
 */
     }
 
