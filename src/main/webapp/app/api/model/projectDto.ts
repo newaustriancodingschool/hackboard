@@ -15,5 +15,5 @@ export interface ProjectDto {
     id?: number;
     title: string;
     description: string;
-    ownerId: number;
+    ownerId?: number;
 }

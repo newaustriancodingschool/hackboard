@@ -24,7 +24,7 @@ public class ProjectDto   {
   @JsonProperty("description")
   private String description = null;
 
-  @JsonProperty("owner_id")
+  @JsonProperty("ownerId")
   private Long ownerId = null;
 
   public ProjectDto id(Long id) {
@@ -98,8 +98,7 @@ public class ProjectDto   {
    * Get ownerId
    * @return ownerId
   **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public Long getOwnerId() {

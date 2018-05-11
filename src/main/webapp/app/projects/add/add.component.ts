@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class ProjectAddComponent implements OnInit {
-  private data: ProjectDto = { title: '', description: '' };
+  private data: ProjectDto = { title: '', description: '', ownerId: 0 };
 
   constructor(private projectService: ProjectService, private router: Router) {}
 

@@ -29,7 +29,7 @@ public class Project implements Serializable {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+    @JoinColumn(name = "ownerId", nullable = false)
     private User owner;
 
 

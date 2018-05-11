@@ -123,7 +123,7 @@ definitions:
         type: "string"
       description:
         type: "string"
-      owner_id:
+      ownerId:
         type: "integer"
         format: "int64"
 
