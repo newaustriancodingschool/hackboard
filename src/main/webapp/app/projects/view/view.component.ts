@@ -12,11 +12,11 @@ import { Observable } from 'rxjs';
 export class ProjectViewComponent implements OnInit {
   private project: ProjectDto;
   private selectedId: number;
-  constructor(private projectService: ProjectService, private router: Router) {}
+  constructor(private projectService: ProjectService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.project$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.service.getProject(params.get('id')))
+      switchMap((params: ParamMap) => this.projectService.getProject(params.get('id')))
     );
   }
 }
