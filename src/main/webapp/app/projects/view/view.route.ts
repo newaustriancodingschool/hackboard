@@ -4,7 +4,7 @@ import { UserRouteAccessService } from '../../shared';
 import { ProjectViewComponent } from './view.component';
 
 export const projectViewRoute: Route = {
-  path: 'project-view',
+  path: 'project-view/:id',
   component: ProjectViewComponent,
   data: {
     authorities: ['ROLE_USER'],

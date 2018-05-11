@@ -11,7 +11,14 @@
 <div class="row mt-3">
     <div class="col-12">
         <div class="list-group">
-            <a *ngFor="let project of projects" routerLink="/project-view" [queryParams]= "{id:project.id}"  class="list-group-item list-group-item-action beige ">{{project.id}}: {{ project.title }}</a>
+                <li *ngFor="let project of projects " [class.selected]="project.id === selectedId">
+                <a [routerLink]="['/project', project.id]">
+                  <span class="badge">{{ project.id }}</span>{{ project.title }}
+                </a>
+              </li>
+          
+        
+          
         </div>
     </div>
 </div>
