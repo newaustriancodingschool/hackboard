@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectDto, ProjectService } from '../../api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-view',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class ProjectViewComponent implements OnInit {
-  constructor() {}
+  private data: ProjectDto = { id: 0, title: '', description: '', ownerId: 0 };
+  private id;
+  constructor(private projectService: ProjectService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.projectService.viewProject(this.id).subscribe(project => (this.data = project));
+  }
 }
