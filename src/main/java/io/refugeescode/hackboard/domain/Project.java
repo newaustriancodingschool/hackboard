@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * A Project.
@@ -18,19 +17,6 @@ import java.util.Set;
 public class Project implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @OneToMany
-    @JoinColumn(name = "competencyId", nullable = false)
-    private Set<Competency> competencies;
-
-    public Set<Competency> getCompetencies() {
-        return competencies;
-    }
-
-    public void setCompetencies(Set<Competency> competencies) {
-        this.competencies = competencies;
-    }
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
