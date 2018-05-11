@@ -10,13 +10,15 @@ import { Observable } from 'rxjs';
   styles: []
 })
 export class ProjectViewComponent implements OnInit {
-  private project: ProjectDto;
-  private selectedId: number;
+  private data: ProjectDto = { id: 0, title: '', description: '' };
+
   constructor(private projectService: ProjectService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.project = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.projectService.viewProject(params.get('id')))
-    );
+    const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+    this.projectService.viewProject(id).subscribe(project => {
+      console.log(project);
+      this.data = project;
+    });
   }
 }

@@ -12,13 +12,10 @@
     <div class="col-12">
         <div class="list-group">
                 <li *ngFor="let project of projects " [class.selected]="project.id === selectedId">
-                <a [routerLink]="['/project', project.id]">
+                <a [routerLink]="['/project-view', project.id]">
                   <span class="badge">{{ project.id }}</span>{{ project.title }}
                 </a>
               </li>
-          
-        
-          
         </div>
     </div>
 </div>
