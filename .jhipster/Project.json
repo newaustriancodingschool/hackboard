@@ -20,7 +20,7 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "owner",
+      "fieldName": "owner_id",
       "fieldType": "Long"
     }
   ],

@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
-
 public class Competency {
 
     @Id
@@ -31,5 +30,11 @@ public class Competency {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Competency{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            '}';
+    }
 }
