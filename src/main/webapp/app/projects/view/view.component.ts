@@ -16,7 +16,7 @@ export class ProjectViewComponent implements OnInit {
 
   ngOnInit() {
     this.project$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.projectService.getProject(params.get('id')))
+      switchMap((params: ParamMap) => this.projectService.viewProject(params.get('id')))
     );
   }
 }
