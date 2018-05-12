@@ -11,7 +11,23 @@ public class Competency {
     @GeneratedValue
     private Long id;
 
-    private String name;
+    @Override
+    public String toString() {
+        return "Competency{" +
+            "id=" + id +
+            ", title='" + title + '\'' +
+            '}';
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    private String title;
 
     public Long getId() {
         return id;
@@ -21,20 +37,5 @@ public class Competency {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Competency{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            '}';
-    }
 }

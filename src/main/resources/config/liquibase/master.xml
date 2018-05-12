@@ -5,12 +5,9 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+
     <include file="config/liquibase/changelog/20180428140611_added_entity_Project.xml" relativeToChangelogFile="false"/>
-
-
-
-    <include file="config/liquibase/changelog/20180511_add_entity.xml" relativeToChangelogFile="false"/>
-
+    <include file="config/liquibase/changelog/competency_entity.xml" relativeToChangelogFile="false"/>
 
 
     <include file="config/liquibase/changelog/20180502_add_database_seeding.xml" relativeToChangelogFile="false"/>

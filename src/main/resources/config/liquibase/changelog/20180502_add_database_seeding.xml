@@ -14,9 +14,6 @@
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
-    <!--
-        Added the entity Project.
-    -->
     <changeSet id="20180502" author="jhipster">
         <loadData encoding="UTF-8"
                   file="config/liquibase/projects.csv"
