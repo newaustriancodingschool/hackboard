@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectDto, ProjectService } from '../../api';
-import { Router } from '@angular/router';
-import { Route, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'jhi-edit',
   templateUrl: './edit.component.html',
   styles: []
 })
 export class ProjectEditComponent implements OnInit {
-  private data: ProjectDto = { id: 0, title: '', description: '' };
+  data: ProjectDto = { id: 0, title: '', description: '' };
 
   constructor(
     private projectService: ProjectService,
