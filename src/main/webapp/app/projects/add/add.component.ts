@@ -3,7 +3,6 @@ import { ProjectDto, ProjectService } from '../../api';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'jhi-add',
   templateUrl: './add.component.html',
   styles: []
 })
