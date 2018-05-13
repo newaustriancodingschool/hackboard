@@ -6,8 +6,8 @@ import { ProjectDto, ProjectService } from '../../api';
   styles: []
 })
 export class ProjectListComponent implements OnInit {
-  private projects: Array<ProjectDto>;
-  private data: ProjectDto = { id: 0, title: '', description: '', ownerId: 0 };
+  projects: Array<ProjectDto>;
+
   constructor(private projectService: ProjectService) {}
 
   ngOnInit() {
