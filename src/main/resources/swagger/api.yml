@@ -14,6 +14,12 @@ tags:
   externalDocs:
     description: "Find out more"
     url: "http://swagger.io"
+- name: "competency"
+  description: "The Competency API"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+
 schemes:
 - "http"
 paths:
@@ -107,6 +113,57 @@ paths:
           description: "successful operation"
           schema:
             type: "boolean"
+  /competency:
+    get:
+      tags:
+      - "competency"
+      summary: "List all competency"
+      operationId: "listCompetency"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/CompetencyDto"
+    post:
+      tags:
+      - "competency"
+      summary: "Add a new competency"
+      operationId: "addCompetency"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "competency"
+        required: true
+        schema:
+          $ref: "#/definitions/competencyDto"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "boolean"
+    put:
+      tags:
+      - "competency"
+      summary: "Edit competency"
+      operationId: "editCompetency"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "competency"
+        required: true
+        schema:
+          $ref: "#/definitions/CompetencyDto"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "boolean"
 
 definitions:
   ProjectDto:
@@ -126,5 +183,15 @@ definitions:
       ownerId:
         type: "integer"
         format: "int64"
+  CompetencyDto:
+    type: "object"
+    required:
+      - "title"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
 
 
