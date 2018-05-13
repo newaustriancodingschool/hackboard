@@ -4,7 +4,7 @@ import { UserRouteAccessService } from '../../shared';
 import { ProjectEditComponent } from './edit.component';
 
 export const projectEditRoute: Route = {
-  path: 'project-edit',
+  path: 'project-edit/:id',
   component: ProjectEditComponent,
   data: {
     authorities: ['ROLE_USER'],
