@@ -1,7 +1,7 @@
 FROM openjdk:8-jre-alpine
 
-CMD java -jar /app.jar
+CMD java -jar /app.war
 
 EXPOSE 8080
 
-ADD target/*.jar /app.jar
+ADD target/*.war /app.war
