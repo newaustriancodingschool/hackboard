@@ -1,17 +1,16 @@
 <h2 class="orange text-capitalize">Edit your project info.</h2>
-<form (ngSubmit)="submit()">
-    <div class="form-group">
+
+    <div>
         <label class="lightBlue font-weight-bold" for="usr">ID:</label>
-        <input type="number" class="form-control" [(ngModel)]="data.id" name="id" id="usr">
+        <p name="id" id="usr">{{data.id}}</p>
     </div>
   
-    <div class="form-group">
+    <div>
         <label class="lightBlue font-weight-bold" for="usr">Title:</label>
-        <input type="text" class="form-control" [(ngModel)]="data.title" name="title" id="usr">
+        <p name="title" id="usr">{{data.title}}</p>
     </div>
     <div class="form-group ">
         <label  class="lightBlue font-weight-bold" for="comment ">Description:</label>
-        <textarea class="form-control" rows="5" id="comment" [(ngModel)]="data.description" name="description"></textarea>
-    </div>
-    <button class="btn btn-success darkBlue d-inline-block">Edit</button>
-</form>
+        <p id="comment" name="description">{{data.description}}</p>
+    </div>    
+<a [routerLink]="['/project-edit', data.id]">Edit</a>
