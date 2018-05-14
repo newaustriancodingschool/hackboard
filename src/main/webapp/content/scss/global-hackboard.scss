@@ -34,3 +34,19 @@
 // .MyText{
 
 // }
+.MyImg {
+  width: 100px;
+
+  /* #1 */
+  border: 5px solid hsl(0, 0%, 40%);
+
+  /* #2 */
+  padding: 5px;
+  background: hsl(0, 0%, 20%);
+
+  /* #3 */
+  outline: 5px solid hsl(0, 0%, 60%);
+
+  /* #4 AND INFINITY!!! (CSS3 only) */
+  box-shadow: 0 0 0 10px hsl(0, 0%, 80%), 0 0 0 15px hsl(0, 0%, 90%);
+}
