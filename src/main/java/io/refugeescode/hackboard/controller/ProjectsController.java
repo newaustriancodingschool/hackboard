@@ -85,7 +85,7 @@ public class ProjectsController implements ProjectsApi {
     @Override
 //    @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
     public ResponseEntity<Boolean> deleteProject(@PathVariable("projectId") Long projectId) {
-        projectsRepository.delete(projectId);
-        return new ResponseEntity<>(true, HttpStatus.OK);
+            projectsRepository.delete(projectId);
+            return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }

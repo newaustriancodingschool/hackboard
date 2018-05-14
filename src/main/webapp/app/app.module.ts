@@ -29,9 +29,13 @@ import { ApiModule, Configuration } from './api';
 import { HackboardProjectsModule } from './projects/projects.module';
 import { XsrfInterceptor } from './blocks/interceptor/XsrfInterceptor';
 
+export function apiConfig() {
+  return new Configuration({ basePath: location.origin });
+}
+
 @NgModule({
   imports: [
-    ApiModule.forRoot(() => new Configuration({ basePath: location.origin })),
+    ApiModule.forRoot(apiConfig),
     BrowserModule,
     HackboardAppRoutingModule,
     Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),

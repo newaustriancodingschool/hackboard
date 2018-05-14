@@ -1,6 +1,7 @@
-FROM frolvlad/alpine-oraclejdk8:slim
-VOLUME /tmp
+FROM openjdk:8-jre-alpine
+
+CMD java -jar /app.war
+
 EXPOSE 8080
-ADD target/rc-hackboard-0.0.1-SNAPSHOT.jar app.jar
-RUN sh -c 'touch /app.jar'
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+
+ADD target/*.war /app.war

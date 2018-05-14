@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './configuration';
 
+import { CompetencyService } from './api/competency.service';
 import { ProjectService } from './api/project.service';
 
 @NgModule({
@@ -10,6 +11,7 @@ import { ProjectService } from './api/project.service';
   declarations: [],
   exports:      [],
   providers: [
+    CompetencyService,
     ProjectService ]
 })
 export class ApiModule {
