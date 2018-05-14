@@ -51,7 +51,7 @@ public class ProjectsController implements ProjectsApi {
 
     @Override
 //    @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
-    public ResponseEntity<Boolean> editProject(ProjectDto project) {
+    public ResponseEntity<Boolean> editProject(@RequestBody ProjectDto project) {
         Project entity = projectsRepository.findOne(project.getId());
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
