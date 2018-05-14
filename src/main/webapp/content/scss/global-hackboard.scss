@@ -1,4 +1,6 @@
 // My style
+@import url('https://fonts.googleapis.com/css?family=Acme|Archivo+Narrow|Bangers|Cabin+Condensed|Handlee|Indie+Flower|Pacifico|Permanent+Marker');
+
 .lightBlue {
   color: #4f797f;
 }
@@ -18,3 +20,17 @@
   font-size: 4em;
   color: #01233f;
 }
+.MyBtn {
+  background-color: #01233f;
+  color: #e78200;
+  font-size: 16px;
+  font-family: 'Acme', sans-serif;
+  text-transform: text-capitalize;
+  padding: 15px 25px;
+}
+.MyShadow {
+  box-shadow: 5px 10px 18px #f3af6cc4;
+}
+// .MyText{
+
+// }
