@@ -7,8 +7,6 @@ export const projectListRoute: Route = {
   path: 'projects',
   component: ProjectListComponent,
   data: {
-    authorities: ['ROLE_USER'],
     pageTitle: 'global/menu/account/projects'
-  },
-  canActivate: [UserRouteAccessService]
+  }
 };
