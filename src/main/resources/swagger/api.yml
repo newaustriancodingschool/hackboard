@@ -187,7 +187,10 @@ definitions:
         type: "string"
       ownerLastName:
         type: "string"
-
+      roles:
+        type: "array"
+        items:
+          type: "string"
   CompetencyDto:
     type: "object"
     required:

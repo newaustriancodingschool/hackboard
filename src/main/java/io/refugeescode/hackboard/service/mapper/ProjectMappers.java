@@ -19,6 +19,7 @@ public class ProjectMappers {
     private UserRepository userRepository;
 
 
+
     public ProjectDto projectToProjectDto(Project project) {
         if (project == null){
             return null;
@@ -31,6 +32,7 @@ public class ProjectMappers {
             projectDto.setOwnerId(project.getOwner().getId());
             projectDto.setOwnerFirstName(project.getOwner().getFirstName());
             projectDto.setOwnerLastName(project.getOwner().getLastName());
+
             return projectDto;
         }
     }

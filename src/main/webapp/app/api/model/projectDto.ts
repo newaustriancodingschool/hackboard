@@ -18,4 +18,5 @@ export interface ProjectDto {
     ownerId?: number;
     ownerFirstName?: string;
     ownerLastName?: string;
+    roles?: Array<string>;
 }
