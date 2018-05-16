@@ -183,6 +183,11 @@ definitions:
       ownerId:
         type: "integer"
         format: "int64"
+      ownerFirstName:
+        type: "string"
+      ownerLastName:
+        type: "string"
+
   CompetencyDto:
     type: "object"
     required:

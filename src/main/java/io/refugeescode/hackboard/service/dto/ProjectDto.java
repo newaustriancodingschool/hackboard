@@ -27,6 +27,12 @@ public class ProjectDto   {
   @JsonProperty("ownerId")
   private Long ownerId = null;
 
+  @JsonProperty("ownerFirstName")
+  private String ownerFirstName = null;
+
+  @JsonProperty("ownerLastName")
+  private String ownerLastName = null;
+
   public ProjectDto id(Long id) {
     this.id = id;
     return this;
@@ -109,6 +115,46 @@ public class ProjectDto   {
     this.ownerId = ownerId;
   }
 
+  public ProjectDto ownerFirstName(String ownerFirstName) {
+    this.ownerFirstName = ownerFirstName;
+    return this;
+  }
+
+  /**
+   * Get ownerFirstName
+   * @return ownerFirstName
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getOwnerFirstName() {
+    return ownerFirstName;
+  }
+
+  public void setOwnerFirstName(String ownerFirstName) {
+    this.ownerFirstName = ownerFirstName;
+  }
+
+  public ProjectDto ownerLastName(String ownerLastName) {
+    this.ownerLastName = ownerLastName;
+    return this;
+  }
+
+  /**
+   * Get ownerLastName
+   * @return ownerLastName
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getOwnerLastName() {
+    return ownerLastName;
+  }
+
+  public void setOwnerLastName(String ownerLastName) {
+    this.ownerLastName = ownerLastName;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -122,12 +168,14 @@ public class ProjectDto   {
     return Objects.equals(this.id, projectDto.id) &&
         Objects.equals(this.title, projectDto.title) &&
         Objects.equals(this.description, projectDto.description) &&
-        Objects.equals(this.ownerId, projectDto.ownerId);
+        Objects.equals(this.ownerId, projectDto.ownerId) &&
+        Objects.equals(this.ownerFirstName, projectDto.ownerFirstName) &&
+        Objects.equals(this.ownerLastName, projectDto.ownerLastName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, ownerId);
+    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName);
   }
 
   @Override
@@ -139,6 +187,8 @@ public class ProjectDto   {
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    ownerFirstName: ").append(toIndentedString(ownerFirstName)).append("\n");
+    sb.append("    ownerLastName: ").append(toIndentedString(ownerLastName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
