@@ -8,6 +8,7 @@ import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.SecurityUtils;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
 import io.refugeescode.hackboard.service.mapper.ProjectMapper;
+import io.refugeescode.hackboard.service.mapper.ProjectMappers;
 import io.refugeescode.hackboard.web.api.controller.ProjectsApi;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import io.refugeescode.hackboard.web.rest.util.HeaderUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +34,9 @@ public class ProjectsController implements ProjectsApi {
 
     private ProjectRepository projectsRepository;
     private UserRepository userRepository;
+
+    @Autowired
+    private ProjectMappers projectMappers;
 
     public ProjectsController(ProjectRepository projectsRepository, UserRepository userRepository) {
 
@@ -81,7 +86,7 @@ public class ProjectsController implements ProjectsApi {
 //        }
         return new ResponseEntity<>(
             projectsRepository.findAll().stream()
-                .map(ProjectMapper.INSTANCE::projectToProjectDto)
+                .map(project -> projectMappers.projectToProjectDto(project))
                 .collect(Collectors.toList()),
             HttpStatus.OK
         );
@@ -95,7 +100,7 @@ public class ProjectsController implements ProjectsApi {
             return ResponseEntity.badRequest().header(String.valueOf(HeaderUtil.createFailureAlert(ENTITY_NAME, "Not authenticated", "You need to be n admin to perform this action "))).body(null);
         }
         return new ResponseEntity<>(
-            ProjectMapper.INSTANCE.projectToProjectDto(
+            projectMappers.projectToProjectDto(
                 projectsRepository.findOne(projectId)),
             HttpStatus.OK
         );

@@ -8,6 +8,7 @@
 
     <include file="config/liquibase/changelog/20180428140611_added_entity_Project.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/competency_entity.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/project_role_entity.xml" relativeToChangelogFile="false"/>
 
 
     <include file="config/liquibase/changelog/20180502_add_database_seeding.xml" relativeToChangelogFile="false"/>
@@ -18,7 +19,7 @@
     <include file="config/liquibase/changelog/20180428140611_added_entity_constraints_Project.xml" relativeToChangelogFile="false"/>
 
     <include file="config/liquibase/changelog/competency_database_seeding.xml" relativeToChangelogFile="false"/>
-
+    <include file="config/liquibase/changelog/project_role_database_seeding.xml" relativeToChangelogFile="false"/>
 
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

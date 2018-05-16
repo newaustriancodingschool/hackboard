@@ -16,4 +16,6 @@ export interface ProjectDto {
     title: string;
     description: string;
     ownerId?: number;
+    ownerFirstName?: string;
+    ownerLastName?: string;
 }
