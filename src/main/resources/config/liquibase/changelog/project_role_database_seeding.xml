@@ -14,7 +14,7 @@
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
-    <changeSet id="20180502" author="jhipster">
+    <changeSet id="20180503" author="jhipster">
         <loadData encoding="UTF-8"
                   file="config/liquibase/project_role.csv"
                   separator=";"

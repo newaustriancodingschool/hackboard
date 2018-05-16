@@ -13,7 +13,7 @@
 
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
-    <changeSet id="20180428140611-1" author="jhipster">
+    <changeSet id="20180428140611-3" author="jhipster">
         <createTable tableName="project_role">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
@@ -21,7 +21,7 @@
             <column name="color" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="roleName" type="varchar(255)">
+            <column name="role_name" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
