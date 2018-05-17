@@ -8,7 +8,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "project_role_relation")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class ProjectRoleRelation {
 
     @Id

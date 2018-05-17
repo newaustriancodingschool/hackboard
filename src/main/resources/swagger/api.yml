@@ -202,4 +202,18 @@ definitions:
       title:
         type: "string"
 
+  ProjectRoleDto:
+    type: "object"
+    required:
+      - "roleName"
+      - "color"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      RoleName:
+        type: "string"
+      color:
+        type: "string"
+
 
