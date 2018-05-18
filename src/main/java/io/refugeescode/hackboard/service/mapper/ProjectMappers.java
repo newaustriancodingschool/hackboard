@@ -32,6 +32,11 @@ public class ProjectMappers {
             projectDto.setOwnerId(project.getOwner().getId());
             projectDto.setOwnerFirstName(project.getOwner().getFirstName());
             projectDto.setOwnerLastName(project.getOwner().getLastName());
+            System.out.println(project.getProjectRoles());
+
+            List<String> collect = project.getProjectRoles().stream().map(e -> e.getRoleName()).collect(Collectors.toList());
+            projectDto.setRoles(collect);
+            System.out.println(projectDto);
 
             return projectDto;
         }
