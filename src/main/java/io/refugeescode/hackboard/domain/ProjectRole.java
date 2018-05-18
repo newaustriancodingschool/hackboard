@@ -16,7 +16,7 @@ public class ProjectRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "color")
+   
     private String color;
 
     @Column(name = "role_name")
