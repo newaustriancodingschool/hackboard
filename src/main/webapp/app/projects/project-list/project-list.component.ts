@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectDto, ProjectService } from '../../api';
 
 @Component({
-  templateUrl: './list.component.html',
+  templateUrl: './project-list.component.html',
   styles: []
 })
 export class ProjectListComponent implements OnInit {

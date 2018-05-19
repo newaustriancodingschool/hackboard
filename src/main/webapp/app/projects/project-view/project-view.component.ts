@@ -3,7 +3,7 @@ import { ProjectDto, ProjectService } from '../../api';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  templateUrl: './view.component.html',
+  templateUrl: './project-view.component.html',
   styles: []
 })
 export class ProjectViewComponent implements OnInit {

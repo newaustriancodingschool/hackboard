@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { ProjectAddComponent } from './add.component';
+import { ProjectAddComponent } from './project-add.component';
 
 export const projectAddRoute: Route = {
   path: 'project-add',
