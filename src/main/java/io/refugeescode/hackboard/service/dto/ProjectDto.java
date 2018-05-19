@@ -3,6 +3,7 @@ package io.refugeescode.hackboard.service.dto;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.refugeescode.hackboard.service.dto.ProjectDtoRoles;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class ProjectDto   {
 
   @JsonProperty("roles")
   @Valid
-  private List<String> roles = null;
+  private List<ProjectDtoRoles> roles = null;
 
   public ProjectDto id(Long id) {
     this.id = id;
@@ -161,12 +162,12 @@ public class ProjectDto   {
     this.ownerLastName = ownerLastName;
   }
 
-  public ProjectDto roles(List<String> roles) {
+  public ProjectDto roles(List<ProjectDtoRoles> roles) {
     this.roles = roles;
     return this;
   }
 
-  public ProjectDto addRolesItem(String rolesItem) {
+  public ProjectDto addRolesItem(ProjectDtoRoles rolesItem) {
     if (this.roles == null) {
       this.roles = new ArrayList<>();
     }
@@ -180,12 +181,13 @@ public class ProjectDto   {
   **/
   @ApiModelProperty(value = "")
 
+  @Valid
 
-  public List<String> getRoles() {
+  public List<ProjectDtoRoles> getRoles() {
     return roles;
   }
 
-  public void setRoles(List<String> roles) {
+  public void setRoles(List<ProjectDtoRoles> roles) {
     this.roles = roles;
   }
 

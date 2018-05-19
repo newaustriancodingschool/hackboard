@@ -188,9 +188,17 @@ definitions:
       ownerLastName:
         type: "string"
       roles:
-        type: "array"
+        type: array
         items:
-          type: "string"
+            type: "object"
+            properties:
+                roleName:
+                    type: "string"
+                color:
+                    type: "string"
+                count:
+                    type: "integer"
+                    format: "int64"
   CompetencyDto:
     type: "object"
     required:

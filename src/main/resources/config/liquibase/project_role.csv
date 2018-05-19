@@ -1,5 +1,5 @@
 id;role_name;color
-1;Frontend;1F55
-2;Backend;00F1
-3;Designer;F0D1
-4;WebpageDeveloper;0000
+1;Frontend;#bf00ff
+2;Backend;#00FF00
+3;Designer;#ffff00
+4;WebpageDeveloper;#0080ff
