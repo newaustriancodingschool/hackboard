@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -32,6 +33,12 @@ public class Project implements Serializable {
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "project_role_relation",
+        joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+    private List<ProjectRole> projectRoles;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -110,5 +117,13 @@ public class Project implements Serializable {
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
             "}";
+    }
+
+    public List<ProjectRole> getProjectRoles() {
+        return projectRoles;
+    }
+
+    public void setProjectRoles(List<ProjectRole> projectRoles) {
+        this.projectRoles = projectRoles;
     }
 }

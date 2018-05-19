@@ -15,10 +15,16 @@
                 <thead>
                     <td>Title</td>
                     <td>Owner</td>
+                    <td>Roles</td>
                 </thead>
                 <Tr *ngFor="let project of projects " [class.selected]="project.id === selectedId">
                     <td ><a [routerLink]="['/project-view', project.id]" class="MyListFont">{{project.title}}</a></td>
                     <td >{{ project.ownerFirstName }} {{ project.ownerLastName }}</td>
+                    <td>
+                        <tr *ngFor="let role of project.roles">
+                            <td> {{role}}</td>
+                        </tr>
+                    </td>
                 </Tr>
 
             </table>

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -32,6 +34,10 @@ public class ProjectDto   {
 
   @JsonProperty("ownerLastName")
   private String ownerLastName = null;
+
+  @JsonProperty("roles")
+  @Valid
+  private List<String> roles = null;
 
   public ProjectDto id(Long id) {
     this.id = id;
@@ -155,6 +161,34 @@ public class ProjectDto   {
     this.ownerLastName = ownerLastName;
   }
 
+  public ProjectDto roles(List<String> roles) {
+    this.roles = roles;
+    return this;
+  }
+
+  public ProjectDto addRolesItem(String rolesItem) {
+    if (this.roles == null) {
+      this.roles = new ArrayList<>();
+    }
+    this.roles.add(rolesItem);
+    return this;
+  }
+
+  /**
+   * Get roles
+   * @return roles
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public List<String> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(List<String> roles) {
+    this.roles = roles;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -170,12 +204,13 @@ public class ProjectDto   {
         Objects.equals(this.description, projectDto.description) &&
         Objects.equals(this.ownerId, projectDto.ownerId) &&
         Objects.equals(this.ownerFirstName, projectDto.ownerFirstName) &&
-        Objects.equals(this.ownerLastName, projectDto.ownerLastName);
+        Objects.equals(this.ownerLastName, projectDto.ownerLastName) &&
+        Objects.equals(this.roles, projectDto.roles);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName);
+    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, roles);
   }
 
   @Override
@@ -189,6 +224,7 @@ public class ProjectDto   {
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    ownerFirstName: ").append(toIndentedString(ownerFirstName)).append("\n");
     sb.append("    ownerLastName: ").append(toIndentedString(ownerLastName)).append("\n");
+    sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("}");
     return sb.toString();
   }

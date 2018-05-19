@@ -11,12 +11,8 @@
  */
 
 
-export interface ProjectDto {
+export interface ProjectRoleDto {
     id?: number;
-    title: string;
-    description: string;
-    ownerId?: number;
-    ownerFirstName?: string;
-    ownerLastName?: string;
-    roles?: Array<string>;
+    roleName?: string;
+    color: string;
 }

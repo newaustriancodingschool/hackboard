@@ -5,6 +5,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "project_role")
@@ -12,12 +13,14 @@ import javax.persistence.*;
 public class ProjectRole {
 
     @Id
-    @GeneratedValue
-    Long id;
-    @Column(name = "color")
-    String color;
-    @Column(name = "roleName")
-    String roleName;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+   
+    private String color;
+
+    @Column(name = "role_name")
+    private String roleName;
 
     public Long getId() {
         return id;
@@ -50,5 +53,21 @@ public class ProjectRole {
             ", color='" + color + '\'' +
             ", roleName='" + roleName + '\'' +
             '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProjectRole that = (ProjectRole) o;
+        return Objects.equals(id, that.id) &&
+            Objects.equals(color, that.color) &&
+            Objects.equals(roleName, that.roleName);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, color, roleName);
     }
 }
