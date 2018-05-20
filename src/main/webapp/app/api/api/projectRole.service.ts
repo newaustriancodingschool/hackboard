@@ -25,7 +25,7 @@ import { Configuration }                                     from '../configurat
 
 
 @Injectable()
-export class ProjectRoleService {
+export class ProjectroleService {
 
     protected basePath = 'http://localhost';
     public defaultHeaders = new HttpHeaders();
@@ -57,64 +57,15 @@ export class ProjectRoleService {
 
 
     /**
-     * Add a new project role
+     * List all /projectRole
      * 
-     * @param project 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addProjectRole(project: ProjectRoleDto, observe?: 'body', reportProgress?: boolean): Observable<boolean>;
-    public addProjectRole(project: ProjectRoleDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<boolean>>;
-    public addProjectRole(project: ProjectRoleDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<boolean>>;
-    public addProjectRole(project: ProjectRoleDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (project === null || project === undefined) {
-            throw new Error('Required parameter project was null or undefined when calling addProjectRole.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<boolean>(`${this.basePath}/projectRole`,
-            project,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Delete Project role
-     * 
-     * @param projectId ID of project role
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public deleteProjectRole(projectId: number, observe?: 'body', reportProgress?: boolean): Observable<boolean>;
-    public deleteProjectRole(projectId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<boolean>>;
-    public deleteProjectRole(projectId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<boolean>>;
-    public deleteProjectRole(projectId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (projectId === null || projectId === undefined) {
-            throw new Error('Required parameter projectId was null or undefined when calling deleteProjectRole.');
-        }
+    public listprojectRoles(observe?: 'body', reportProgress?: boolean): Observable<Array<ProjectRoleDto>>;
+    public listprojectRoles(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ProjectRoleDto>>>;
+    public listprojectRoles(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ProjectRoleDto>>>;
+    public listprojectRoles(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -131,47 +82,7 @@ export class ProjectRoleService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<boolean>(`${this.basePath}/projectRole/${encodeURIComponent(String(projecRoletId))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * View Project Roles
-     * 
-     * @param projecRoletId ID of project role
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public viewProjectRoles(projecRoletId: number, observe?: 'body', reportProgress?: boolean): Observable<ProjectRoleDto>;
-    public viewProjectRoles(projecRoletId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ProjectRoleDto>>;
-    public viewProjectRoles(projecRoletId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ProjectRoleDto>>;
-    public viewProjectRoles(projecRoletId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (projecRoletId === null || projecRoletId === undefined) {
-            throw new Error('Required parameter projecRoletId was null or undefined when calling viewProjectRoles.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<ProjectRoleDto>(`${this.basePath}/projectRole/${encodeURIComponent(String(projecRoletId))}`,
+        return this.httpClient.get<Array<ProjectRoleDto>>(`${this.basePath}/projectRole`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

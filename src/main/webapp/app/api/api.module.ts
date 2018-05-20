@@ -5,7 +5,6 @@ import { Configuration } from './configuration';
 
 import { CompetencyService } from './api/competency.service';
 import { ProjectService } from './api/project.service';
-import { ProjectRoleService } from './api/projectRole.service';
 
 @NgModule({
   imports:      [ CommonModule, HttpClientModule ],
@@ -13,8 +12,7 @@ import { ProjectRoleService } from './api/projectRole.service';
   exports:      [],
   providers: [
     CompetencyService,
-    ProjectService,
-    ProjectRoleService ]
+    ProjectService ]
 })
 export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders {

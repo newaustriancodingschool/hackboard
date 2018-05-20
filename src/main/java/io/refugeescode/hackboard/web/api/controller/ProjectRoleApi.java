@@ -92,7 +92,7 @@ public interface ProjectRoleApi {
     }
 
 
-    @ApiOperation(value = "List all /projectRole", nickname = "listprojectRoles", notes = "", response = ProjectRoleDto.class, responseContainer = "List", tags={ "project", })
+    @ApiOperation(value = "List all /projectRole", nickname = "listprojectRoles", notes = "", response = ProjectRoleDto.class, responseContainer = "List", tags={ "projectrole", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = ProjectRoleDto.class, responseContainer = "List") })
     @RequestMapping(value = "/projectRole",
@@ -121,7 +121,7 @@ public interface ProjectRoleApi {
     @RequestMapping(value = "/projectRole/{projecRoletId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<ProjectRoleDto> viewProjectRoles(@ApiParam(value = "ID of project role",required=true) @PathVariable("projecRoletId") Long projecRoletId) {
+    default ResponseEntity<ProjectRoleDto> viewProjectRoles(@ApiParam(value = "ID of project role",required=true) @PathVariable("projectRoletId") Long projectRoletId) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
