@@ -25,7 +25,7 @@ import { Configuration }                                     from '../configurat
 
 
 @Injectable()
-export class ProjectroleService {
+export class ProjectRoleService {
 
     protected basePath = 'http://localhost';
     public defaultHeaders = new HttpHeaders();
@@ -57,15 +57,100 @@ export class ProjectroleService {
 
 
     /**
+     * Add a new project role
+     * 
+     * @param projectRole 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public addProjectRole(projectRole: ProjectRoleDto, observe?: 'body', reportProgress?: boolean): Observable<boolean>;
+    public addProjectRole(projectRole: ProjectRoleDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<boolean>>;
+    public addProjectRole(projectRole: ProjectRoleDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<boolean>>;
+    public addProjectRole(projectRole: ProjectRoleDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (projectRole === null || projectRole === undefined) {
+            throw new Error('Required parameter projectRole was null or undefined when calling addProjectRole.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<boolean>(`${this.basePath}/projectRole`,
+            projectRole,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Delete Project role
+     * 
+     * @param projectRoleId ID of project role
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public deleteProjectRole(projectRoleId: number, observe?: 'body', reportProgress?: boolean): Observable<boolean>;
+    public deleteProjectRole(projectRoleId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<boolean>>;
+    public deleteProjectRole(projectRoleId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<boolean>>;
+    public deleteProjectRole(projectRoleId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (projectRoleId === null || projectRoleId === undefined) {
+            throw new Error('Required parameter projectRoleId was null or undefined when calling deleteProjectRole.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.delete<boolean>(`${this.basePath}/projectRole/${encodeURIComponent(String(projectRoleId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * List all /projectRole
      * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listprojectRoles(observe?: 'body', reportProgress?: boolean): Observable<Array<ProjectRoleDto>>;
-    public listprojectRoles(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ProjectRoleDto>>>;
-    public listprojectRoles(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ProjectRoleDto>>>;
-    public listprojectRoles(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listProjectRoles(observe?: 'body', reportProgress?: boolean): Observable<Array<ProjectRoleDto>>;
+    public listProjectRoles(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ProjectRoleDto>>>;
+    public listProjectRoles(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ProjectRoleDto>>>;
+    public listProjectRoles(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -83,6 +168,46 @@ export class ProjectroleService {
         ];
 
         return this.httpClient.get<Array<ProjectRoleDto>>(`${this.basePath}/projectRole`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * View Project Roles
+     * 
+     * @param projectRoleId ID of project role
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public viewProjectRoles(projectRoleId: number, observe?: 'body', reportProgress?: boolean): Observable<ProjectRoleDto>;
+    public viewProjectRoles(projectRoleId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ProjectRoleDto>>;
+    public viewProjectRoles(projectRoleId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ProjectRoleDto>>;
+    public viewProjectRoles(projectRoleId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (projectRoleId === null || projectRoleId === undefined) {
+            throw new Error('Required parameter projectRoleId was null or undefined when calling viewProjectRoles.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<ProjectRoleDto>(`${this.basePath}/projectRole/${encodeURIComponent(String(projectRoleId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

@@ -50,7 +50,7 @@ public class RoleController {
     }
 
 
-    public ResponseEntity<Boolean> deleteProject(@PathVariable("projecRoletId") Long projectRoleId) {
+    public ResponseEntity<Boolean> deleteProject(@PathVariable("projectRoleId") Long projectRoleId) {
         //||!SecurityUtils.isCurrentUserInRole(Owner) not working
         if (!SecurityUtils.isCurrentUserInRole(ADMIN)) {
             return ResponseEntity.badRequest().header(String.valueOf(HeaderUtil.createFailureAlert(ENTITY_NAME, "Not authenticated", "You need to be n admin or owner to perform this action "))).body(null);
