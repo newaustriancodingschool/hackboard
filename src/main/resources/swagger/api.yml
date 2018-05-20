@@ -164,6 +164,79 @@ paths:
           description: "successful operation"
           schema:
             type: "boolean"
+  /projectRole:
+    get:
+      tags:
+      - "project"
+      summary: "List all /projectRole"
+      operationId: "list/projectRoles"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ProjectRoleDto"
+    post:
+      tags:
+      - "projectRole"
+      summary: "Add a new project role"
+      operationId: "addProjectRole"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "project"
+        required: true
+        schema:
+          $ref: "#/definitions/ProjectRoleDto"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "boolean"
+
+  /projectRole/{projecRoletId}:
+    get:
+      tags:
+      - "projectRole"
+      summary: "View Project Roles"
+      operationId: "viewProjectRoles"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "projecRoletId"
+        in: "path"
+        description: "ID of project role"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ProjectRoleDto"
+    delete:
+      tags:
+      - "projectRole"
+      summary: "Delete Project role"
+      operationId: "deleteProjectRole"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "projectId"
+        in: "path"
+        description: "ID of project role"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "boolean"
 
 definitions:
   ProjectDto:
@@ -199,6 +272,7 @@ definitions:
                 count:
                     type: "integer"
                     format: "int64"
+
   CompetencyDto:
     type: "object"
     required:
