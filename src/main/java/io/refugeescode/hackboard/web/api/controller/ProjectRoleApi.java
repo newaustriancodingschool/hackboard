@@ -46,52 +46,6 @@ public interface ProjectRoleApi {
         return getRequest().map(r -> r.getHeader("Accept"));
     }
 
-    @ApiOperation(value = "Add a new project role", nickname = "addProjectRole", notes = "", response = Boolean.class, tags={ "projectRole", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
-    @RequestMapping(value = "/projectRole",
-        produces = { "application/json" }, 
-        method = RequestMethod.POST)
-    default ResponseEntity<Boolean> addProjectRole(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ProjectRoleDto projectRole) {
-        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
-            if (getAcceptHeader().get().contains("application/json")) {
-                try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("true", Boolean.class), HttpStatus.NOT_IMPLEMENTED);
-                } catch (IOException e) {
-                    log.error("Couldn't serialize response for content type application/json", e);
-                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-                }
-            }
-        } else {
-            log.warn("ObjectMapper or HttpServletRequest not configured in default ProjectRoleApi interface so no example is generated");
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-
-    @ApiOperation(value = "Delete Project role", nickname = "deleteProjectRole", notes = "", response = Boolean.class, tags={ "projectRole", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
-    @RequestMapping(value = "/projectRole/{projectRoleId}",
-        produces = { "application/json" }, 
-        method = RequestMethod.DELETE)
-    default ResponseEntity<Boolean> deleteProjectRole(@ApiParam(value = "ID of project role",required=true) @PathVariable("projectRoleId") Long projectRoleId) {
-        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
-            if (getAcceptHeader().get().contains("application/json")) {
-                try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("true", Boolean.class), HttpStatus.NOT_IMPLEMENTED);
-                } catch (IOException e) {
-                    log.error("Couldn't serialize response for content type application/json", e);
-                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-                }
-            }
-        } else {
-            log.warn("ObjectMapper or HttpServletRequest not configured in default ProjectRoleApi interface so no example is generated");
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-
     @ApiOperation(value = "List all /projectRole", nickname = "listProjectRoles", notes = "", response = ProjectRoleDto.class, responseContainer = "List", tags={ "projectRole", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = ProjectRoleDto.class, responseContainer = "List") })
@@ -103,29 +57,6 @@ public interface ProjectRoleApi {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
                     return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"RoleName\" : \"RoleName\",  \"color\" : \"color\",  \"id\" : 0}, {  \"RoleName\" : \"RoleName\",  \"color\" : \"color\",  \"id\" : 0} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
-                } catch (IOException e) {
-                    log.error("Couldn't serialize response for content type application/json", e);
-                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-                }
-            }
-        } else {
-            log.warn("ObjectMapper or HttpServletRequest not configured in default ProjectRoleApi interface so no example is generated");
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-
-    @ApiOperation(value = "View Project Roles", nickname = "viewProjectRoles", notes = "", response = ProjectRoleDto.class, tags={ "projectRole", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = ProjectRoleDto.class) })
-    @RequestMapping(value = "/projectRole/{projectRoleId}",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    default ResponseEntity<ProjectRoleDto> viewProjectRoles(@ApiParam(value = "ID of project role",required=true) @PathVariable("projectRoleId") Long projectRoleId) {
-        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
-            if (getAcceptHeader().get().contains("application/json")) {
-                try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("{  \"RoleName\" : \"RoleName\",  \"color\" : \"color\",  \"id\" : 0}", ProjectRoleDto.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
