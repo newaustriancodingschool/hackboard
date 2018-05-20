@@ -2,6 +2,7 @@ package io.refugeescode.hackboard.service.mapper;
 
 import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.domain.ProjectRole;
+import io.refugeescode.hackboard.repository.ProjectRoleRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
 import io.refugeescode.hackboard.service.dto.ProjectDtoRoles;
@@ -19,6 +20,9 @@ public class ProjectMappers {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ProjectRoleRepository projectRoleRepository;
 
 
 
@@ -57,8 +61,6 @@ public class ProjectMappers {
                     projectDtoRoles.setColor(projectDtoRoles.getColor());
                     projectDtoRoles.setCount(projectDtoRoles.getCount()+1);
                     dtoRolesSet.set(itemIndex,projectDtoRoles);
-                    //dtoRolesSet.remove(itemIndex);
-                    //dtoRolesSet.add(projectDtoRoles);
                 }
                 else{
                     ProjectDtoRoles projectDtoRoles = new ProjectDtoRoles();
@@ -69,9 +71,7 @@ public class ProjectMappers {
                 }
                 ;
             }
-            //List<Project>
             projectDto.setRoles(dtoRolesSet);
-
             return projectDto;
         }
     }
@@ -105,6 +105,22 @@ public class ProjectMappers {
             project.setTitle(projectDto.getTitle());
             project.setDescription(projectDto.getDescription());
             project.setId(projectDto.getId());
+
+            int size = projectDto.getRoles().size();
+            List<ProjectRole> projectRoleslist = new ArrayList<>();
+            for(int i=0 ; i< size ; i++){
+                String roleName = projectDto.getRoles().get(i).getRoleName();
+                Optional<ProjectRole> oneByRoleName = projectRoleRepository.findOneByRoleName(roleName);
+                if (oneByRoleName.isPresent()) {
+                    Long count = projectDto.getRoles().get(i).getCount();
+                    ProjectRole projectRole = oneByRoleName.get();
+                    for (int index = 0; index < count; index = index++) {
+                        projectRoleslist.add(projectRole);
+                    }
+                }
+
+            }
+            project.setProjectRoles(projectRoleslist);
             return project;
         }
     }
