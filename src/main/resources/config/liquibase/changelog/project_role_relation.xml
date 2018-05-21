@@ -25,7 +25,16 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-
+        <addForeignKeyConstraint baseColumnNames="project_id"
+                                         baseTableName="project_role_relation"
+                                         constraintName="fk_project_role_relation_project_id"
+                                         referencedColumnNames="id"
+                                         referencedTableName="project"/>
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                         baseTableName="project_role_relation"
+                                         constraintName="fk_project_role_relation_role_id"
+                                         referencedColumnNames="id"
+                                         referencedTableName="project_role"/>
 
 
     </changeSet>
