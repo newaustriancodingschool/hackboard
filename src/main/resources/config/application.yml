@@ -27,8 +27,7 @@ management:
 
 spring:
 
-
-    application:
+   application:
         name: hackboard
     profiles:
         # The commented value for `active` can be replaced with valid Spring profiles to load.
