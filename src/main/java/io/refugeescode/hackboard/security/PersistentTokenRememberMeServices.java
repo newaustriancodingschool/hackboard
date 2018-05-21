@@ -55,7 +55,6 @@ import java.util.Date;
  * The main algorithm comes from Spring Security's PersistentTokenBasedRememberMeServices, but this class
  * couldn't be cleanly extended.
  */
-@Service
 public class PersistentTokenRememberMeServices extends
     AbstractRememberMeServices {
 
