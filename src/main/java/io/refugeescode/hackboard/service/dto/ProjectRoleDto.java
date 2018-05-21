@@ -24,6 +24,9 @@ public class ProjectRoleDto   {
   @JsonProperty("color")
   private String color = null;
 
+  @JsonProperty("count")
+  private Long count = null;
+
   public ProjectRoleDto id(Long id) {
     this.id = id;
     return this;
@@ -85,6 +88,27 @@ public class ProjectRoleDto   {
     this.color = color;
   }
 
+  public ProjectRoleDto count(Long count) {
+    this.count = count;
+    return this;
+  }
+
+  /**
+   * Get count
+   * @return count
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public Long getCount() {
+    return count;
+  }
+
+  public void setCount(Long count) {
+    this.count = count;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -97,12 +121,13 @@ public class ProjectRoleDto   {
     ProjectRoleDto projectRoleDto = (ProjectRoleDto) o;
     return Objects.equals(this.id, projectRoleDto.id) &&
         Objects.equals(this.roleName, projectRoleDto.roleName) &&
-        Objects.equals(this.color, projectRoleDto.color);
+        Objects.equals(this.color, projectRoleDto.color) &&
+        Objects.equals(this.count, projectRoleDto.count);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, roleName, color);
+    return Objects.hash(id, roleName, color, count);
   }
 
   @Override
@@ -113,6 +138,7 @@ public class ProjectRoleDto   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    roleName: ").append(toIndentedString(roleName)).append("\n");
     sb.append("    color: ").append(toIndentedString(color)).append("\n");
+    sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("}");
     return sb.toString();
   }

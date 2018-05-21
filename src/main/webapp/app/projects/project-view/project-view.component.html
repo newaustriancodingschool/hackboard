@@ -1,17 +1,22 @@
 <h2 class="orange text-capitalize">Edit your project info.</h2>
 
+<!--
     <div>
         <label class="lightBlue font-weight-bold" for="usr">ID:</label>
         <p name="id" id="usr">{{data.id}}</p>
     </div>
-  
+-->
     <div>
-        <label class="lightBlue font-weight-bold" for="usr">Title:</label>
-        <p name="title" id="usr">{{data.title}}</p>
+        <label class="lightBlue font-weight-bold" for="owner">Owner Name:</label>
+        <p name="owner" id="owner">{{data.ownerFirstName}} {{data.ownerLastName}}</p>
+    </div>
+    <div>
+        <label class="lightBlue font-weight-bold" for="title">Title:</label>
+        <p name="title" id="title">{{data.title}}</p>
     </div>
     <div class="form-group ">
-        <label  class="lightBlue font-weight-bold" for="comment ">Description:</label>
-        <p id="comment" name="description">{{data.description}}</p>
-    </div>    
+        <label  class="lightBlue font-weight-bold" for="comment">Description:</label>
+        <p id="comment" name="description" id="comment">{{data.description}}</p>
+    </div>
 <a class="btn btn-defult MyBtn MyShadow" [routerLink]="['/project-edit', data.id]">Edit</a>
 <button class="btn btn-defult MyBtn MyShadow" (click)="delete()">Delete!</button>
