@@ -15,5 +15,4 @@ export interface ProjectRoleDto {
     id?: number;
     roleName?: string;
     color: string;
-    count: number;
 }

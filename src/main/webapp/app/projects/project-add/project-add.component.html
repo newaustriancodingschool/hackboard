@@ -8,5 +8,11 @@
         <label  class="lightBlue font-weight-bold" for="comment ">Description:</label>
         <textarea class="form-control" rows="5" id="comment" [(ngModel)]="data.description" name="description"></textarea>
     </div>
+    <dir>
+        
+<select ng-model="selectedCar" *ngFor="let role of roles " >
+    <option>role.roleName</option>
+    
+    </dir>
     <button class="btn btn-defult MyBtn MyShadow">Add</button>
 </form>
