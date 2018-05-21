@@ -20,8 +20,8 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "owner_id",
-      "fieldType": "Long"
+      "fieldName": "github",
+      "fieldType": "String"
     }
   ],
   "changelogDate": "20180428140611",

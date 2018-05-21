@@ -29,6 +29,10 @@ public class Project implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "github")
+    private String github;
+
+
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
@@ -45,6 +49,13 @@ public class Project implements Serializable {
         return id;
     }
 
+    public String getGithub() {
+        return github;
+    }
+
+    public void setGithub(String github) {
+        this.github = github;
+    }
     public void setId(Long id) {
         this.id = id;
     }

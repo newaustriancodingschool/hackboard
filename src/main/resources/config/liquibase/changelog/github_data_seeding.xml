@@ -14,28 +14,18 @@
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
-    <!--
-        Added the entity Project.
-    -->
-    <changeSet id="20180428140611-1" author="jhipster">
-        <createTable tableName="project">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="title" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="description" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="owner_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
-        </createTable>
+    <changeSet id="201805402" author="jhipster">
+        <loadUpdateData
+                        encoding="UTF-8"
+                        file="config/liquibase/github.csv"
+                        primaryKey="id"
+                        schemaName="public"
+                        separator=";"
+                        tableName="project">
+            <column name="github" type="varchar(255)"/>
+        </loadUpdateData>
 
     </changeSet>
+
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>
