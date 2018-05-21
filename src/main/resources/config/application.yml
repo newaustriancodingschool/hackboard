@@ -26,10 +26,8 @@ management:
             enabled: false # When using the MailService, configure an SMTP server and set this to true
 
 spring:
-<<<<<<< HEAD
 
-=======
->>>>>>> 595a82cffc1b3752ef43cf24b0d2df3cb74b4544
+
     application:
         name: hackboard
     profiles:

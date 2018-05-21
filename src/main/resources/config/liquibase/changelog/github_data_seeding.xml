@@ -22,7 +22,7 @@
                         schemaName="public"
                         separator=";"
                         tableName="project">
-            <column name="github" type="varchar(255)"/>
+            <column name="github" type="string"/>
         </loadUpdateData>
 
     </changeSet>
