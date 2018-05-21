@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './configuration';
 
-import { CompetencyService } from './api/competency.service';
 import { ProjectService } from './api/project.service';
 import { ProjectRoleService } from './api/projectRole.service';
 
@@ -12,7 +11,6 @@ import { ProjectRoleService } from './api/projectRole.service';
   declarations: [],
   exports:      [],
   providers: [
-    CompetencyService,
     ProjectService,
     ProjectRoleService ]
 })
