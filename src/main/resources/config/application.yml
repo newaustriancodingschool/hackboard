@@ -26,8 +26,8 @@ management:
             enabled: false # When using the MailService, configure an SMTP server and set this to true
 
 spring:
-
-
+    aop:
+      proxy-target-class: true
     application:
         name: hackboard
     profiles:

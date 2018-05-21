@@ -1,5 +1,7 @@
 package io.refugeescode.hackboard.config;
 
+import io.refugeescode.hackboard.repository.PersistentTokenRepository;
+import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.*;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -39,20 +41,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final JHipsterProperties jHipsterProperties;
 
-    private final RememberMeServices rememberMeServices;
-
     private final CorsFilter corsFilter;
 
     private final SecurityProblemSupport problemSupport;
+    private PersistentTokenRepository persistentTokenRepository;
+    private UserRepository userRepository;
 
-    public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder, UserDetailsService userDetailsService,
-        JHipsterProperties jHipsterProperties, RememberMeServices rememberMeServices,CorsFilter corsFilter, SecurityProblemSupport problemSupport) {
+    public SecurityConfiguration(
+        AuthenticationManagerBuilder authenticationManagerBuilder,
+        UserDetailsService userDetailsService,
+        JHipsterProperties jHipsterProperties, CorsFilter corsFilter,
+        SecurityProblemSupport problemSupport,
+        PersistentTokenRepository persistentTokenRepository,
+        UserRepository userRepository) {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDetailsService = userDetailsService;
         this.jHipsterProperties = jHipsterProperties;
-        this.rememberMeServices = rememberMeServices;
         this.corsFilter = corsFilter;
         this.problemSupport = problemSupport;
+        this.persistentTokenRepository = persistentTokenRepository;
+        this.userRepository = userRepository;
     }
 
     @PostConstruct
@@ -100,20 +108,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        RememberMeServices rememberMeServices = new PersistentTokenRememberMeServices(
+            jHipsterProperties, userDetailsService,
+            persistentTokenRepository, userRepository);
+
         http
             .csrf()
             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-        .and()
+            .and()
             .addFilterBefore(corsFilter, CsrfFilter.class)
             .exceptionHandling()
             .authenticationEntryPoint(problemSupport)
             .accessDeniedHandler(problemSupport)
-        .and()
+            .and()
             .rememberMe()
             .rememberMeServices(rememberMeServices)
             .rememberMeParameter("remember-me")
             .key(jHipsterProperties.getSecurity().getRememberMe().getKey())
-        .and()
+            .and()
             .formLogin()
             .loginProcessingUrl("/api/authentication")
             .successHandler(ajaxAuthenticationSuccessHandler())
@@ -121,16 +133,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .usernameParameter("j_username")
             .passwordParameter("j_password")
             .permitAll()
-        .and()
+            .and()
             .logout()
             .logoutUrl("/api/logout")
             .logoutSuccessHandler(ajaxLogoutSuccessHandler())
             .permitAll()
-        .and()
+            .and()
             .headers()
             .frameOptions()
             .disable()
-        .and()
+            .and()
             .authorizeRequests()
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
