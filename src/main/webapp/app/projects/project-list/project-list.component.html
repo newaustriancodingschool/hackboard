@@ -22,7 +22,9 @@
                     <td >{{ project.ownerFirstName }} {{ project.ownerLastName }}</td>
                     <td>
                         <tr *ngFor="let role of project.roles">
-                            <td bgcolor= role.color >{{role.roleName}} * {{role.count}}</td>
+                            <div class="circle" [ngStyle]="{'background-color':role.color}">{{role.count}}
+                                    <span class="tooltiptext">{{role.roleName}}</span>
+                            </div>
                         </tr>
                     </td>
                 </Tr>

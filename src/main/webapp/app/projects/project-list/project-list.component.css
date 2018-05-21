@@ -1,39 +1,26 @@
-.animateme {
-  color: red;
-  -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
-  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
-  animation-name: example;
-  animation-duration: 4s;
-}
+.round {
+  -webkit-border-top-left-radius: 1px;
+  -webkit-border-top-right-radius: 2px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 4px;
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes example {
-  0% {
-    color: red;
-  }
-  25% {
-    color: yellow;
-  }
-  50% {
-    color: blue;
-  }
-  100% {
-    color: green;
-  }
-}
+  -moz-border-radius-topleft: 1px;
+  -moz-border-radius-topright: 2px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 4px;
 
-/* Standard syntax */
-@keyframes example {
-  0% {
-    color: red;
-  }
-  25% {
-    color: yellow;
-  }
-  50% {
-    color: blue;
-  }
-  100% {
-    color: green;
-  }
+  border-top-left-radius: 1px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 4px;
+}
+.circle {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  font-size: 50px;
+  color: #fff;
+  line-height: 500px;
+  text-align: center;
+  background: #000;
 }

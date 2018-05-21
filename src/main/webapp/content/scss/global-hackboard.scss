@@ -52,3 +52,46 @@
   /* #4 AND INFINITY!!! (CSS3 only) */
   box-shadow: 0 0 0 10px hsl(0, 0%, 80%), 0 0 0 15px hsl(0, 0%, 90%);
 }
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  font-size: 20px;
+  color: rgba(27, 26, 26, 0.74);
+  line-height: 50px;
+  text-align: center;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltiptext::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.circle:hover .tooltiptext {
+  visibility: visible;
+}
