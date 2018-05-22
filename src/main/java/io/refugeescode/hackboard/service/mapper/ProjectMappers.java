@@ -5,11 +5,8 @@ import io.refugeescode.hackboard.domain.ProjectRole;
 import io.refugeescode.hackboard.repository.ProjectRoleRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
-import io.refugeescode.hackboard.service.dto.ProjectDtoRoles;
-import org.apache.commons.io.filefilter.FalseFileFilter;
-import org.mapstruct.Mapper;
+import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -39,16 +36,16 @@ public class ProjectMappers {
             projectDto.setOwnerFirstName(project.getOwner().getFirstName());
             projectDto.setOwnerLastName(project.getOwner().getLastName());
 
-            List<ProjectDtoRoles> collect = project.getProjectRoles().stream()
+            List<ProjectRoleDto> collect = project.getProjectRoles().stream()
                 .map(e -> convertToProjectDTORoles(e)).collect(Collectors.toList());
 
             boolean found= false;
             Integer itemIndex = 0;
-            List<ProjectDtoRoles> dtoRolesSet = new ArrayList<>();
-            for (ProjectDtoRoles item:collect) {
+            List<ProjectRoleDto> dtoRolesSet = new ArrayList<>();
+            for (ProjectRoleDto item:collect) {
                 found = false;
                 Integer currentIndex = 0;
-                for(ProjectDtoRoles item1 : dtoRolesSet) {
+                for(ProjectRoleDto item1 : dtoRolesSet) {
                     if (item.getRoleName().equalsIgnoreCase(item1.getRoleName())) {
                         found = true;
                         itemIndex = currentIndex;
@@ -56,14 +53,14 @@ public class ProjectMappers {
                     currentIndex = currentIndex +1;
                 }
                 if (found == true){
-                    ProjectDtoRoles projectDtoRoles = dtoRolesSet.get(itemIndex);
+                    ProjectRoleDto projectDtoRoles = dtoRolesSet.get(itemIndex);
                     projectDtoRoles.setRoleName(projectDtoRoles.getRoleName());
                     projectDtoRoles.setColor(projectDtoRoles.getColor());
                     projectDtoRoles.setCount(projectDtoRoles.getCount()+1);
                     dtoRolesSet.set(itemIndex,projectDtoRoles);
                 }
                 else{
-                    ProjectDtoRoles projectDtoRoles = new ProjectDtoRoles();
+                    ProjectRoleDto projectDtoRoles = new ProjectRoleDto();
                     projectDtoRoles.setColor(item.getColor());
                     projectDtoRoles.setRoleName(item.getRoleName());
                     projectDtoRoles.setCount(1L);
@@ -71,13 +68,13 @@ public class ProjectMappers {
                 }
                 ;
             }
-            projectDto.setRoles(dtoRolesSet);
+            projectDto.setProjectRole(dtoRolesSet);
             return projectDto;
         }
     }
 
-    private ProjectDtoRoles convertToProjectDTORoles(ProjectRole e) {
-        ProjectDtoRoles projectDtoRoles = new ProjectDtoRoles();
+    private ProjectRoleDto convertToProjectDTORoles(ProjectRole e) {
+        ProjectRoleDto projectDtoRoles = new ProjectRoleDto();
         projectDtoRoles.setColor(e.getColor());
         projectDtoRoles.setRoleName(e.getRoleName());
         projectDtoRoles.setCount(1L);
@@ -106,13 +103,13 @@ public class ProjectMappers {
             project.setDescription(projectDto.getDescription());
             project.setId(projectDto.getId());
 
-            int size = projectDto.getRoles().size();
+            int size = projectDto.getProjectRole().size();
             List<ProjectRole> projectRoleslist = new ArrayList<>();
             for(int i=0 ; i< size ; i++){
-                String roleName = projectDto.getRoles().get(i).getRoleName();
+                String roleName = projectDto.getProjectRole().get(i).getRoleName();
                 Optional<ProjectRole> oneByRoleName = projectRoleRepository.findOneByRoleName(roleName);
                 if (oneByRoleName.isPresent()) {
-                    Long count = projectDto.getRoles().get(i).getCount();
+                    Long count = projectDto.getProjectRole().get(i).getCount();
                     ProjectRole projectRole = oneByRoleName.get();
                     for (int index = 0; index < count; index = index++) {
                         projectRoleslist.add(projectRole);
