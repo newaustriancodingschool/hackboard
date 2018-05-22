@@ -29,7 +29,6 @@
 
         <include file="config/liquibase/changelog/github_database.xml" relativeToChangelogFile="false"/>
 
-        <include file="config/liquibase/changelog/github_data_seeding.xml" relativeToChangelogFile="false"/>
         <!--******************************************tag************************************************-->
     <include file="config/liquibase/changelog/tag_database.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/tag_database_seeding.xml" relativeToChangelogFile="false"/>
