@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tag")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

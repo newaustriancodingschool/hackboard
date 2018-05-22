@@ -36,6 +36,9 @@ public class ProjectDto   {
   @JsonProperty("ownerLastName")
   private String ownerLastName = null;
 
+  @JsonProperty("github")
+  private String github = null;
+
   @JsonProperty("projectRole")
   @Valid
   private List<ProjectRoleDto> projectRole = null;
@@ -162,6 +165,26 @@ public class ProjectDto   {
     this.ownerLastName = ownerLastName;
   }
 
+  public ProjectDto github(String github) {
+    this.github = github;
+    return this;
+  }
+
+  /**
+   * Get github
+   * @return github
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getGithub() {
+    return github;
+  }
+
+  public void setGithub(String github) {
+    this.github = github;
+  }
+
   public ProjectDto projectRole(List<ProjectRoleDto> projectRole) {
     this.projectRole = projectRole;
     return this;
@@ -207,12 +230,13 @@ public class ProjectDto   {
         Objects.equals(this.ownerId, projectDto.ownerId) &&
         Objects.equals(this.ownerFirstName, projectDto.ownerFirstName) &&
         Objects.equals(this.ownerLastName, projectDto.ownerLastName) &&
+        Objects.equals(this.github, projectDto.github) &&
         Objects.equals(this.projectRole, projectDto.projectRole);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, projectRole);
+    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, github, projectRole);
   }
 
   @Override
@@ -226,6 +250,7 @@ public class ProjectDto   {
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    ownerFirstName: ").append(toIndentedString(ownerFirstName)).append("\n");
     sb.append("    ownerLastName: ").append(toIndentedString(ownerLastName)).append("\n");
+    sb.append("    github: ").append(toIndentedString(github)).append("\n");
     sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
     sb.append("}");
     return sb.toString();

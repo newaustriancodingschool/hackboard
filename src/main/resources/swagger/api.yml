@@ -146,6 +146,8 @@ definitions:
         type: "string"
       ownerLastName:
         type: "string"
+      github:
+        type: "string"
       projectRole:
         type: array
         items:

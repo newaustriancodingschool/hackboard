@@ -19,5 +19,6 @@ export interface ProjectDto {
     ownerId?: number;
     ownerFirstName?: string;
     ownerLastName?: string;
+    github?: string;
     projectRole?: Array<ProjectRoleDto>;
 }

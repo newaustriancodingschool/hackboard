@@ -35,7 +35,7 @@ public class ProjectMappers {
             projectDto.setOwnerId(project.getOwner().getId());
             projectDto.setOwnerFirstName(project.getOwner().getFirstName());
             projectDto.setOwnerLastName(project.getOwner().getLastName());
-
+            projectDto.setGithub(projectDto.getGithub());
             List<ProjectRoleDto> collect = project.getProjectRoles().stream()
                 .map(e -> convertToProjectDTORoles(e)).collect(Collectors.toList());
 
@@ -102,6 +102,7 @@ public class ProjectMappers {
             project.setTitle(projectDto.getTitle());
             project.setDescription(projectDto.getDescription());
             project.setId(projectDto.getId());
+            project.setGithub(projectDto.getGithub());
 
             int size = projectDto.getProjectRole().size();
             List<ProjectRole> projectRoleslist = new ArrayList<>();
