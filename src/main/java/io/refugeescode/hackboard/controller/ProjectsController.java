@@ -63,9 +63,6 @@ public class ProjectsController implements ProjectsApi {
     @Override
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
     public ResponseEntity<Boolean> editProject(@RequestBody ProjectDto project) {
-        if (!SecurityUtils.isCurrentUserInRole(ADMIN)) {
-            return ResponseEntity.badRequest().header(String.valueOf(HeaderUtil.createFailureAlert(ENTITY_NAME, "Not authenticated", "You need to be n admin to perform this action "))).body(null);
-        }
         Project entity = projectsRepository.findOne(project.getId());
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
@@ -88,10 +85,6 @@ public class ProjectsController implements ProjectsApi {
     @Override
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
     public ResponseEntity<ProjectDto> viewProject(@PathVariable("projectId") Long projectId) {
-
-        if (!SecurityUtils.isCurrentUserInRole(ADMIN) || !SecurityUtils.isCurrentUserInRole(USER)) {
-            return ResponseEntity.badRequest().header(String.valueOf(HeaderUtil.createFailureAlert(ENTITY_NAME, "Not authenticated", "You need to be n admin to perform this action "))).body(null);
-        }
         return new ResponseEntity<>(
             projectMappers.projectToProjectDto(
                 projectsRepository.findOne(projectId)),
@@ -102,9 +95,6 @@ public class ProjectsController implements ProjectsApi {
     @Override
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
     public ResponseEntity<Boolean> deleteProject(@PathVariable("projectId") Long projectId) {
-        if (!SecurityUtils.isCurrentUserInRole(ADMIN)) {
-            return ResponseEntity.badRequest().header(String.valueOf(HeaderUtil.createFailureAlert(ENTITY_NAME, "Not authenticated", "You need to be n admin to perform this action "))).body(null);
-        }
         projectsRepository.delete(projectId);
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
