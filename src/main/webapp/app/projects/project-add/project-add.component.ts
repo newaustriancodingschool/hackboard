@@ -1,6 +1,5 @@
 import { ProjectRoleService } from './../../api/api/projectRole.service';
 import { ProjectDtoRoles } from './../../api/model/projectDtoRoles';
-import { ProjectRoleDto } from './../../api/model/projectRoleDto';
 import { Component, OnInit } from '@angular/core';
 import { ProjectDto, ProjectService } from '../../api';
 import { Router } from '@angular/router';
