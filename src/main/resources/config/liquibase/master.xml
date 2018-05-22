@@ -11,22 +11,19 @@
 
     <include file="config/liquibase/changelog/project_role_entity.xml" relativeToChangelogFile="false"/>
 
+    <include file="config/liquibase/changelog/project_role_relation.xml" relativeToChangelogFile="false"/>
 
 
 
 
     <include file="config/liquibase/changelog/20180502_add_database_seeding.xml" relativeToChangelogFile="false"/>
 
-    <include file="config/liquibase/changelog/project_role_relation.xml" relativeToChangelogFile="false"/>
-
+    <include file="config/liquibase/changelog/20180428140611_added_entity_constraints_Project.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180428140611_added_entity_constraints_Project.xml" relativeToChangelogFile="false"/>
 
     <include file="config/liquibase/changelog/competency_database_seeding.xml" relativeToChangelogFile="false"/>
 
     <include file="config/liquibase/changelog/project_role_database_seeding.xml" relativeToChangelogFile="false"/>
-
-
-    <include file="config/liquibase/changelog/project_role_relation_seeding.xml" relativeToChangelogFile="false"/>
 
 
     <include file="config/liquibase/changelog/github_database.xml" relativeToChangelogFile="false"/>
