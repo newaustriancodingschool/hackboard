@@ -164,3 +164,17 @@ definitions:
             count:
                type: "integer"
                format: "int64"
+
+  TagDto:
+        type: "object"
+        required:
+          - "roleName"
+          - "color"
+        properties:
+          roleName:
+            type: "string"
+          color:
+             type: "string"
+          count:
+             type: "integer"
+             format: "int64"

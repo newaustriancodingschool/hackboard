@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * A Project.
+ *
  */
 @Entity
 @Table(name = "project")
