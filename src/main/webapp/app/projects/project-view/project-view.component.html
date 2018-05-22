@@ -18,5 +18,11 @@
         <label  class="lightBlue font-weight-bold" for="comment">Description:</label>
         <p id="comment" name="description" id="comment">{{data.description}}</p>
     </div>
-<a class="btn btn-defult MyBtn MyShadow" [routerLink]="['/project-edit', data.id]">Edit</a>
-<button class="btn btn-defult MyBtn MyShadow" (click)="delete()">Delete!</button>
+    <div>
+            <p class="lightBlue font-weight-bold" for="title1">check out this project on GitHub:</p>
+        
+    </div>
+    <a class="btn btn-defult MyBtn MyShadow" [routerLink]="['/project-edit', data.id]">GitHub</a>
+            
+<a class="btn btn-defult MyBtn MyShadow btn pull-right" [routerLink]="['/project-edit', data.id]">Edit</a>
+<button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="delete()">Delete!</button>
