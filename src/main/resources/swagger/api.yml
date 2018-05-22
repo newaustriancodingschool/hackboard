@@ -146,29 +146,21 @@ definitions:
         type: "string"
       ownerLastName:
         type: "string"
-      roles:
+      projectRole:
         type: array
         items:
-            type: "object"
-            properties:
-                roleName:
-                    type: "string"
-                color:
-                    type: "string"
-                count:
-                    type: "integer"
-                    format: "int64"
+            $ref: '#/definitions/ProjectRoleDto'
 
   ProjectRoleDto:
-    type: "object"
-    required:
-      - "roleName"
-      - "color"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      RoleName:
-        type: "string"
-      color:
-        type: "string"
+          type: "object"
+          required:
+            - "roleName"
+            - "color"
+          properties:
+            roleName:
+              type: "string"
+            color:
+               type: "string"
+            count:
+               type: "integer"
+               format: "int64"

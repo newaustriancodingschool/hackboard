@@ -15,34 +15,14 @@ import javax.validation.constraints.*;
 @Validated
 
 public class ProjectRoleDto   {
-  @JsonProperty("id")
-  private Long id = null;
-
-  @JsonProperty("RoleName")
+  @JsonProperty("roleName")
   private String roleName = null;
 
   @JsonProperty("color")
   private String color = null;
 
-  public ProjectRoleDto id(Long id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
+  @JsonProperty("count")
+  private Long count = null;
 
   public ProjectRoleDto roleName(String roleName) {
     this.roleName = roleName;
@@ -53,7 +33,8 @@ public class ProjectRoleDto   {
    * Get roleName
    * @return roleName
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
 
 
   public String getRoleName() {
@@ -85,6 +66,26 @@ public class ProjectRoleDto   {
     this.color = color;
   }
 
+  public ProjectRoleDto count(Long count) {
+    this.count = count;
+    return this;
+  }
+
+  /**
+   * Get count
+   * @return count
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getCount() {
+    return count;
+  }
+
+  public void setCount(Long count) {
+    this.count = count;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -95,14 +96,14 @@ public class ProjectRoleDto   {
       return false;
     }
     ProjectRoleDto projectRoleDto = (ProjectRoleDto) o;
-    return Objects.equals(this.id, projectRoleDto.id) &&
-        Objects.equals(this.roleName, projectRoleDto.roleName) &&
-        Objects.equals(this.color, projectRoleDto.color);
+    return Objects.equals(this.roleName, projectRoleDto.roleName) &&
+        Objects.equals(this.color, projectRoleDto.color) &&
+        Objects.equals(this.count, projectRoleDto.count);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, roleName, color);
+    return Objects.hash(roleName, color, count);
   }
 
   @Override
@@ -110,9 +111,9 @@ public class ProjectRoleDto   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectRoleDto {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    roleName: ").append(toIndentedString(roleName)).append("\n");
     sb.append("    color: ").append(toIndentedString(color)).append("\n");
+    sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("}");
     return sb.toString();
   }

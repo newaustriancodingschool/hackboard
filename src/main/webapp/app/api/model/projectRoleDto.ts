@@ -12,7 +12,7 @@
 
 
 export interface ProjectRoleDto {
-    id?: number;
-    roleName?: string;
+    roleName: string;
     color: string;
+    count?: number;
 }

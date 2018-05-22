@@ -3,7 +3,7 @@ package io.refugeescode.hackboard.service.dto;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.refugeescode.hackboard.service.dto.ProjectDtoRoles;
+import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -36,9 +36,9 @@ public class ProjectDto   {
   @JsonProperty("ownerLastName")
   private String ownerLastName = null;
 
-  @JsonProperty("roles")
+  @JsonProperty("projectRole")
   @Valid
-  private List<ProjectDtoRoles> roles = null;
+  private List<ProjectRoleDto> projectRole = null;
 
   public ProjectDto id(Long id) {
     this.id = id;
@@ -162,33 +162,33 @@ public class ProjectDto   {
     this.ownerLastName = ownerLastName;
   }
 
-  public ProjectDto roles(List<ProjectDtoRoles> roles) {
-    this.roles = roles;
+  public ProjectDto projectRole(List<ProjectRoleDto> projectRole) {
+    this.projectRole = projectRole;
     return this;
   }
 
-  public ProjectDto addRolesItem(ProjectDtoRoles rolesItem) {
-    if (this.roles == null) {
-      this.roles = new ArrayList<>();
+  public ProjectDto addProjectRoleItem(ProjectRoleDto projectRoleItem) {
+    if (this.projectRole == null) {
+      this.projectRole = new ArrayList<>();
     }
-    this.roles.add(rolesItem);
+    this.projectRole.add(projectRoleItem);
     return this;
   }
 
   /**
-   * Get roles
-   * @return roles
+   * Get projectRole
+   * @return projectRole
   **/
   @ApiModelProperty(value = "")
 
   @Valid
 
-  public List<ProjectDtoRoles> getRoles() {
-    return roles;
+  public List<ProjectRoleDto> getProjectRole() {
+    return projectRole;
   }
 
-  public void setRoles(List<ProjectDtoRoles> roles) {
-    this.roles = roles;
+  public void setProjectRole(List<ProjectRoleDto> projectRole) {
+    this.projectRole = projectRole;
   }
 
 
@@ -207,12 +207,12 @@ public class ProjectDto   {
         Objects.equals(this.ownerId, projectDto.ownerId) &&
         Objects.equals(this.ownerFirstName, projectDto.ownerFirstName) &&
         Objects.equals(this.ownerLastName, projectDto.ownerLastName) &&
-        Objects.equals(this.roles, projectDto.roles);
+        Objects.equals(this.projectRole, projectDto.projectRole);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, roles);
+    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, projectRole);
   }
 
   @Override
@@ -226,7 +226,7 @@ public class ProjectDto   {
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    ownerFirstName: ").append(toIndentedString(ownerFirstName)).append("\n");
     sb.append("    ownerLastName: ").append(toIndentedString(ownerLastName)).append("\n");
-    sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
+    sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -8,7 +8,6 @@ import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.security.SecurityUtils;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
-import io.refugeescode.hackboard.service.mapper.ProjectMapper;
 import io.refugeescode.hackboard.service.mapper.ProjectMappers;
 import io.refugeescode.hackboard.web.api.controller.ProjectsApi;
 
@@ -24,8 +23,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
 
 import static io.refugeescode.hackboard.security.AuthoritiesConstants.ADMIN;
 import static io.refugeescode.hackboard.security.AuthoritiesConstants.USER;
