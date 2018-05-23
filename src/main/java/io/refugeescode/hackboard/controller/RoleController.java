@@ -4,6 +4,7 @@ package io.refugeescode.hackboard.controller;
 import io.refugeescode.hackboard.repository.ProjectRoleRepository;
 
 import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
+import io.refugeescode.hackboard.web.api.controller.ProjectRoleApi;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 
 @RestController
-public class RoleController {
+public class RoleController implements ProjectRoleApi{
     private ProjectRoleRepository projectRoleRepository;
 
     public RoleController(ProjectRoleRepository projectRoleRepository) {
