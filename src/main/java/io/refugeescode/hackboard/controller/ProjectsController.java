@@ -67,6 +67,7 @@ public class ProjectsController implements ProjectsApi {
         Project entity = projectsRepository.findOne(project.getId());
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
+        entity.setGithub(project.getGithub());
         projectsRepository.save(entity);
 
         return new ResponseEntity<>(true, HttpStatus.OK);

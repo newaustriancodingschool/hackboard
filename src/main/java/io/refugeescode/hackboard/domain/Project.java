@@ -47,11 +47,10 @@ public class Project implements Serializable {
         inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<ProjectRole> projectRoles;
 
-
-    //@ElementCollection( targetClass = String.class )
-
-    //@CollectionTable(name="project_story", joinColumns=@JoinColumn(name="project_id"))
 /*
+
+    @ElementCollection( targetClass = String.class )
+   // @CollectionTable(name="project_story", joinColumns=@JoinColumn(name="project_id"))
     private List<String> project_story = new ArrayList<>();
 
     public List<String> getProject_story() {
@@ -62,6 +61,7 @@ public class Project implements Serializable {
         this.project_story = project_story;
     }
 */
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
