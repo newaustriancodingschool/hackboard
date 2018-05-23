@@ -21,7 +21,7 @@
                     <td ><a [routerLink]="['/project-view', project.id]" class="MyListFont">{{project.title}}</a></td>
                     <td >{{ project.ownerFirstName }} {{ project.ownerLastName }}</td>
                     <td>
-                        <tr *ngFor="let role of project.roles">
+                        <tr *ngFor="let role of project.projectRoles">
                             <div class="circle" [ngStyle]="{'background-color':role.color}">{{role.count}}
                                     <span class="tooltiptext">{{role.roleName}}</span>
                             </div>

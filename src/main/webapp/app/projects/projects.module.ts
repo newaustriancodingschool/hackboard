@@ -1,3 +1,4 @@
+import { SelectModule } from 'ng2-select';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -13,7 +14,7 @@ import {
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [FormsModule, HackboardSharedModule, RouterModule.forChild(projectsState)],
+  imports: [FormsModule, HackboardSharedModule, RouterModule.forChild(projectsState), SelectModule],
   declarations: [
     ProjectAddComponent,
     ProjectEditComponent,

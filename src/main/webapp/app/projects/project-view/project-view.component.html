@@ -22,7 +22,21 @@
             <p class="lightBlue font-weight-bold" for="title1">check out this project on GitHub:</p>
         
     </div>
-    <a class="btn btn-defult MyBtn MyShadow" [routerLink]="['/project-edit', data.id]">GitHub</a>
+     <h2> {{data.github}}</h2>   
+    <a href="https://github.com/RefugeesCodeAT/hackboard">GitHub</a>
+    
             
 <a class="btn btn-defult MyBtn MyShadow btn pull-right" [routerLink]="['/project-edit', data.id]">Edit</a>
 <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="delete()">Delete!</button>
+<div style="width: 300px; margin-bottom: 20px;">
+    <h3>Select multiple roles</h3>
+    <ng-select  [multiple]="true"
+                [items]="roles"
+                (data)="refreshValue($event)"
+                (selected)="selected($event)"
+                (removed)="removed($event)"
+                placeholder="choose your role"></ng-select>
+            
+    <pre>{{rolesToString(value) | json}}</pre>
+    
+  </div>
