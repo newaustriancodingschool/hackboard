@@ -14,22 +14,28 @@
     <include file="config/liquibase/changelog/project_role_relation.xml" relativeToChangelogFile="false"/>
 
 
-
-
     <include file="config/liquibase/changelog/20180502_add_database_seeding.xml" relativeToChangelogFile="false"/>
 
-    <include file="config/liquibase/changelog/20180428140611_added_entity_constraints_Project.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180428140611_added_entity_constraints_Project.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180428140611_added_entity_constraints_Project.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180428140611_added_entity_constraints_Project.xml"
+             relativeToChangelogFile="false"/>
 
     <include file="config/liquibase/changelog/competency_database_seeding.xml" relativeToChangelogFile="false"/>
+    <!--*************************
+        <include file="config/liquibase/changelog/project_role_database_seeding.xml" relativeToChangelogFile="false"/>
 
-    <include file="config/liquibase/changelog/project_role_database_seeding.xml" relativeToChangelogFile="false"/>
+    *-->
 
+        <include file="config/liquibase/changelog/github_database.xml" relativeToChangelogFile="false"/>
 
-    <include file="config/liquibase/changelog/github_database.xml" relativeToChangelogFile="false"/>
-
-    <include file="config/liquibase/changelog/github_data_seeding.xml" relativeToChangelogFile="false"/>
-
-
+        <!--******************************************tag************************************************-->
+    <include file="config/liquibase/changelog/tag_database.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/tag_database_seeding.xml" relativeToChangelogFile="false"/>
+    <!--***************************************project_tag_relation***********************************-->
+    <include file="config/liquibase/changelog/project_tag_relation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/project_tag_seeding.xml" relativeToChangelogFile="false"/>
+    <!--***************************************drop competency***********************************-->
+    <include file="config/liquibase/changelog/competency_database_drop.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

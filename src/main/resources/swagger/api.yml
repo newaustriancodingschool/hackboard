@@ -89,6 +89,7 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/ProjectDto"
+
     delete:
       tags:
       - "project"
@@ -123,6 +124,81 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/ProjectRoleDto"
+  /tags:
+      get:
+        tags:
+        - "tag"
+        summary: "List all /tags"
+        operationId: "showAllTags"
+        produces:
+        - "application/json"
+        responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/TagDto"
+      post:
+        tags:
+        - "tag"
+        summary: "Add a new tag"
+        operationId: "addTag"
+        produces:
+        - "application/json"
+        parameters:
+        - in: "body"
+          name: "tag"
+          required: true
+          schema:
+            $ref: "#/definitions/TagDto"
+        responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "boolean"
+
+
+  /tags/{tagId}:
+      get:
+        tags:
+        - "tag"
+        summary: "View tag"
+        operationId: "viewTag"
+        produces:
+        - "application/json"
+        parameters:
+        - name: "tagId"
+          in: "path"
+          description: "ID of tag"
+          required: true
+          type: "integer"
+          format: "int64"
+        responses:
+          200:
+            description: "successful operation"
+            schema:
+              $ref: "#/definitions/TagDto"
+
+      delete:
+        tags:
+        - "tag"
+        summary: "Delete tag"
+        operationId: "deleteTag"
+        produces:
+        - "application/json"
+        parameters:
+        - name: "tagId"
+          in: "path"
+          description: "ID of tag"
+          required: true
+          type: "integer"
+          format: "int64"
+        responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "boolean"
 
 definitions:
   ProjectDto:
@@ -146,6 +222,8 @@ definitions:
         type: "string"
       ownerLastName:
         type: "string"
+      github:
+        type: "string"
       projectRole:
         type: array
         items:
@@ -164,3 +242,11 @@ definitions:
             count:
                type: "integer"
                format: "int64"
+
+  TagDto:
+        type: "object"
+        required:
+          - "tag"
+        properties:
+          tag:
+            type: "string"
