@@ -3,7 +3,6 @@ import { ProjectDto, ProjectService } from '../../api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectDtoRoles } from './../../api/model/projectDtoRoles';
 import { ProjectRoleService } from './../../api/api/projectRole.service';
-import { SelectModule } from 'ng2-select';
 
 @Component({
   templateUrl: './project-view.component.html'
@@ -11,8 +10,8 @@ import { SelectModule } from 'ng2-select';
 export class ProjectViewComponent implements OnInit {
   data: ProjectDto = { id: 0, title: '', description: '', github: '' };
   roleData: ProjectDtoRoles = { roleName: '', color: '' };
-  roles: Array<ProjectDtoRoles>;
-  value: ProjectDtoRoles;
+  roles: Array<any>;
+  value: any;
 
   constructor(
     private projectRoleService: ProjectRoleService,
