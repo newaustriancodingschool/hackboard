@@ -27,9 +27,9 @@
 
     *-->
 
-        <include file="config/liquibase/changelog/github_database.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/github_database.xml" relativeToChangelogFile="false"/>
 
-        <!--******************************************tag************************************************-->
+    <!--******************************************tag************************************************-->
     <include file="config/liquibase/changelog/tag_database.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/tag_database_seeding.xml" relativeToChangelogFile="false"/>
     <!--***************************************project_tag_relation***********************************-->
@@ -37,15 +37,17 @@
     <include file="config/liquibase/changelog/project_tag_seeding.xml" relativeToChangelogFile="false"/>
 
 
-
     <!--********************************* Add User Story Table Mohamed Dahman**************************************-->
-       <include file="config/liquibase/changelog/project_story.xml" relativeToChangelogFile="false"/>
-       <include file="config/liquibase/changelog/project_story_seeding.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/project_story.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/project_story_seeding.xml" relativeToChangelogFile="false"/>
     <!--********************************* Add User Story Table Mohamed Dahman**************************************-->
 
 
-
-<!--***************************************drop competency***********************************-->
+    <!--***************************************drop competency***********************************-->
     <include file="config/liquibase/changelog/competency_database_drop.xml" relativeToChangelogFile="false"/>
+    <!--***************************************github***********************************-->
+    <include file="config/liquibase/changelog/github_database.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/github_data_seeding.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+
 </databaseChangeLog>
