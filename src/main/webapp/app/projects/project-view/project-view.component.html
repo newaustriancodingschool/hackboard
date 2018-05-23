@@ -1,4 +1,4 @@
-<h2 class="orange text-capitalize">Edit your project info.</h2>
+<h2 class="orange text-capitalize">View your project info.</h2>
 
 <!--
     <div>
@@ -22,10 +22,8 @@
             <p class="lightBlue font-weight-bold" for="title1">check out this project on GitHub:</p>
         
     </div>
-     <h2> {{data.github}}</h2>   
-    <a href="https://github.com/RefugeesCodeAT/hackboard">GitHub</a>
-    
-            
+    <a class="btn btn-defult MyBtn MyShadow" href={{data.github}} target="_blank"><i class="fa fa-github"></i></a>
+
 <a class="btn btn-defult MyBtn MyShadow btn pull-right" [routerLink]="['/project-edit', data.id]">Edit</a>
 <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="delete()">Delete!</button>
 <div style="width: 300px; margin-bottom: 20px;">

@@ -9,7 +9,7 @@ import { SelectModule } from 'ng2-select';
   templateUrl: './project-view.component.html'
 })
 export class ProjectViewComponent implements OnInit {
-  data: ProjectDto = { id: 0, title: '', description: '' };
+  data: ProjectDto = { id: 0, title: '', description: '', github: '' };
   roleData: ProjectDtoRoles = { roleName: '', color: '' };
   roles: Array<ProjectDtoRoles>;
   value: ProjectDtoRoles;

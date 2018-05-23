@@ -6,6 +6,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+
+import java.util.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -44,6 +46,23 @@ public class Project implements Serializable {
         joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<ProjectRole> projectRoles;
+
+
+    public List<String> getProject_story() {
+        return project_story;
+    }
+
+    public void setProject_story(List<String> project_story) {
+        this.project_story = project_story;
+    }
+
+    @ElementCollection( targetClass = String.class )
+    @CollectionTable(name="project_story", joinColumns=@JoinColumn(name="project_id",referencedColumnName ="id"))
+    @Column(name="description")
+    private List<String> project_story = new ArrayList<>();
+
+
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

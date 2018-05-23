@@ -1,17 +1,18 @@
 <h2 class="orange text-capitalize">Add your project info.</h2>
 <form (ngSubmit)="submit()">
     <div class="form-group">
-        <label class="lightBlue font-weight-bold" for="usr">Title:</label>
-        <input type="text" class="form-control" [(ngModel)]="data.title" name="title" id="usr">
+        <label class="lightBlue font-weight-bold" for="title">Title:</label>
+        <input type="text" class="form-control" [(ngModel)]="data.title" name="title" id="title">
     </div>
     <div class="form-group ">
-        <label  class="lightBlue font-weight-bold" for="comment ">Description:</label>
+        <label  class="lightBlue font-weight-bold" for="comment">Description:</label>
         <textarea class="form-control" rows="5" id="comment" [(ngModel)]="data.description" name="description"></textarea>
     </div>
-    <div>       
-    <select *ngFor="let role of roles " >
-        <option>role.roleName</option>
+    <div class="form-group">
+        <label class="lightBlue font-weight-bold" for="github">GitHub Link:</label>
+        <input type="text" class="form-control" [(ngModel)]="data.github" name="github" id="github">
     </div>
+    
     <button class="btn btn-defult MyBtn MyShadow">Add</button>
 </form>
 <select name="appCalendar" id="appCalendar">

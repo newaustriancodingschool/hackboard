@@ -224,6 +224,10 @@ definitions:
         type: "string"
       github:
         type: "string"
+      project_story:
+        type: array
+        items:
+          type: "string"
       projectRole:
         type: array
         items:

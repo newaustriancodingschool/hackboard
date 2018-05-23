@@ -35,7 +35,7 @@ public class ProjectMappers {
             projectDto.setOwnerId(project.getOwner().getId());
             projectDto.setOwnerFirstName(project.getOwner().getFirstName());
             projectDto.setOwnerLastName(project.getOwner().getLastName());
-            projectDto.setGithub(projectDto.getGithub());
+            projectDto.setGithub(project.getGithub());
             List<ProjectRoleDto> collect = project.getProjectRoles().stream()
                 .map(e -> convertToProjectDTORoles(e)).collect(Collectors.toList());
 
