@@ -48,6 +48,7 @@ public class ProjectsController implements ProjectsApi {
     public ResponseEntity<Boolean> addProject(@RequestBody ProjectDto project) {
         Project entity = new Project();
         entity.setTitle(project.getTitle());
+        entity.setGithub(project.getGithub());
         entity.setDescription(project.getDescription());
         if (SecurityUtils.getCurrentUserLogin().isPresent()) {
             String userlogin = SecurityUtils.getCurrentUserLogin().get();

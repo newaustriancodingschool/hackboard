@@ -39,6 +39,10 @@ public class ProjectDto   {
   @JsonProperty("github")
   private String github = null;
 
+  @JsonProperty("project_story")
+  @Valid
+  private List<String> projectStory = null;
+
   @JsonProperty("projectRole")
   @Valid
   private List<ProjectRoleDto> projectRole = null;
@@ -185,6 +189,34 @@ public class ProjectDto   {
     this.github = github;
   }
 
+  public ProjectDto projectStory(List<String> projectStory) {
+    this.projectStory = projectStory;
+    return this;
+  }
+
+  public ProjectDto addProjectStoryItem(String projectStoryItem) {
+    if (this.projectStory == null) {
+      this.projectStory = new ArrayList<>();
+    }
+    this.projectStory.add(projectStoryItem);
+    return this;
+  }
+
+  /**
+   * Get projectStory
+   * @return projectStory
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public List<String> getProjectStory() {
+    return projectStory;
+  }
+
+  public void setProjectStory(List<String> projectStory) {
+    this.projectStory = projectStory;
+  }
+
   public ProjectDto projectRole(List<ProjectRoleDto> projectRole) {
     this.projectRole = projectRole;
     return this;
@@ -231,12 +263,13 @@ public class ProjectDto   {
         Objects.equals(this.ownerFirstName, projectDto.ownerFirstName) &&
         Objects.equals(this.ownerLastName, projectDto.ownerLastName) &&
         Objects.equals(this.github, projectDto.github) &&
+        Objects.equals(this.projectStory, projectDto.projectStory) &&
         Objects.equals(this.projectRole, projectDto.projectRole);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, github, projectRole);
+    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, github, projectStory, projectRole);
   }
 
   @Override
@@ -251,6 +284,7 @@ public class ProjectDto   {
     sb.append("    ownerFirstName: ").append(toIndentedString(ownerFirstName)).append("\n");
     sb.append("    ownerLastName: ").append(toIndentedString(ownerLastName)).append("\n");
     sb.append("    github: ").append(toIndentedString(github)).append("\n");
+    sb.append("    projectStory: ").append(toIndentedString(projectStory)).append("\n");
     sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
     sb.append("}");
     return sb.toString();
