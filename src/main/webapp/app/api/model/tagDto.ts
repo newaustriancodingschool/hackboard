@@ -12,7 +12,5 @@
 
 
 export interface TagDto {
-    roleName: string;
-    color: string;
-    count?: number;
+    tag: string;
 }

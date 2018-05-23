@@ -18,7 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { ProjectRoleDto } from '../model/projectRoleDto';
+import { TagDto } from '../model/tagDto';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -57,15 +57,64 @@ export class TagService {
 
 
     /**
-     * List all /tags
+     * Add a new tag
      * 
+     * @param tag 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listProjectTags(observe?: 'body', reportProgress?: boolean): Observable<Array<ProjectRoleDto>>;
-    public listProjectTags(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ProjectRoleDto>>>;
-    public listProjectTags(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ProjectRoleDto>>>;
-    public listProjectTags(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public addTag(tag: TagDto, observe?: 'body', reportProgress?: boolean): Observable<boolean>;
+    public addTag(tag: TagDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<boolean>>;
+    public addTag(tag: TagDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<boolean>>;
+    public addTag(tag: TagDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (tag === null || tag === undefined) {
+            throw new Error('Required parameter tag was null or undefined when calling addTag.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<boolean>(`${this.basePath}/tags`,
+            tag,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Delete tag
+     * 
+     * @param tagId ID of tag
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public deleteTag(tagId: number, observe?: 'body', reportProgress?: boolean): Observable<boolean>;
+    public deleteTag(tagId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<boolean>>;
+    public deleteTag(tagId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<boolean>>;
+    public deleteTag(tagId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (tagId === null || tagId === undefined) {
+            throw new Error('Required parameter tagId was null or undefined when calling deleteTag.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -82,7 +131,83 @@ export class TagService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<ProjectRoleDto>>(`${this.basePath}/tags`,
+        return this.httpClient.delete<boolean>(`${this.basePath}/tags/${encodeURIComponent(String(tagId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * List all /tags
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public showAllTags(observe?: 'body', reportProgress?: boolean): Observable<Array<TagDto>>;
+    public showAllTags(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<TagDto>>>;
+    public showAllTags(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<TagDto>>>;
+    public showAllTags(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<TagDto>>(`${this.basePath}/tags`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * View tag
+     * 
+     * @param tagId ID of tag
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public viewTag(tagId: number, observe?: 'body', reportProgress?: boolean): Observable<TagDto>;
+    public viewTag(tagId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<TagDto>>;
+    public viewTag(tagId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<TagDto>>;
+    public viewTag(tagId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (tagId === null || tagId === undefined) {
+            throw new Error('Required parameter tagId was null or undefined when calling viewTag.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<TagDto>(`${this.basePath}/tags/${encodeURIComponent(String(tagId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

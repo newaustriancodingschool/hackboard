@@ -15,75 +15,28 @@ import javax.validation.constraints.*;
 @Validated
 
 public class TagDto   {
-  @JsonProperty("roleName")
-  private String roleName = null;
+  @JsonProperty("tag")
+  private String tag = null;
 
-  @JsonProperty("color")
-  private String color = null;
-
-  @JsonProperty("count")
-  private Long count = null;
-
-  public TagDto roleName(String roleName) {
-    this.roleName = roleName;
+  public TagDto tag(String tag) {
+    this.tag = tag;
     return this;
   }
 
   /**
-   * Get roleName
-   * @return roleName
+   * Get tag
+   * @return tag
   **/
   @ApiModelProperty(required = true, value = "")
   @NotNull
 
 
-  public String getRoleName() {
-    return roleName;
+  public String getTag() {
+    return tag;
   }
 
-  public void setRoleName(String roleName) {
-    this.roleName = roleName;
-  }
-
-  public TagDto color(String color) {
-    this.color = color;
-    return this;
-  }
-
-  /**
-   * Get color
-   * @return color
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-
-  public String getColor() {
-    return color;
-  }
-
-  public void setColor(String color) {
-    this.color = color;
-  }
-
-  public TagDto count(Long count) {
-    this.count = count;
-    return this;
-  }
-
-  /**
-   * Get count
-   * @return count
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getCount() {
-    return count;
-  }
-
-  public void setCount(Long count) {
-    this.count = count;
+  public void setTag(String tag) {
+    this.tag = tag;
   }
 
 
@@ -96,14 +49,12 @@ public class TagDto   {
       return false;
     }
     TagDto tagDto = (TagDto) o;
-    return Objects.equals(this.roleName, tagDto.roleName) &&
-        Objects.equals(this.color, tagDto.color) &&
-        Objects.equals(this.count, tagDto.count);
+    return Objects.equals(this.tag, tagDto.tag);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(roleName, color, count);
+    return Objects.hash(tag);
   }
 
   @Override
@@ -111,9 +62,7 @@ public class TagDto   {
     StringBuilder sb = new StringBuilder();
     sb.append("class TagDto {\n");
     
-    sb.append("    roleName: ").append(toIndentedString(roleName)).append("\n");
-    sb.append("    color: ").append(toIndentedString(color)).append("\n");
-    sb.append("    count: ").append(toIndentedString(count)).append("\n");
+    sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
     sb.append("}");
     return sb.toString();
   }

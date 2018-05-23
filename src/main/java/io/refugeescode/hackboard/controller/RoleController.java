@@ -22,7 +22,6 @@ public class RoleController {
         this.projectRoleRepository = projectRoleRepository;
     }
 
-
     public ResponseEntity<List<ProjectRoleDto>> listProjectRoles() {
 
         return new ResponseEntity<List<ProjectRoleDto>>(
