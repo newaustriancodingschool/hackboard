@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styles: []
 })
 export class ProjectViewComponent implements OnInit {
-  data: ProjectDto = { id: 0, title: '', description: '' };
+  data: ProjectDto = { id: 0, title: '', description: '', github: '' };
 
   constructor(
     private projectService: ProjectService,
