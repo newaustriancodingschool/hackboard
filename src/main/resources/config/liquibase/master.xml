@@ -37,5 +37,13 @@
     <include file="config/liquibase/changelog/project_tag_seeding.xml" relativeToChangelogFile="false"/>
 
 
+
+    <!--********************************* Add User Story Table Mohamed Dahman**************************************-->
+       <include file="config/liquibase/changelog/project_story.xml" relativeToChangelogFile="false"/>
+       <include file="config/liquibase/changelog/project_story_seeding.xml" relativeToChangelogFile="false"/>
+    <!--********************************* Add User Story Table Mohamed Dahman**************************************-->
+
+
+
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
