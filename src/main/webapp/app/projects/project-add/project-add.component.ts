@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class ProjectAddComponent implements OnInit {
-  data: ProjectDto = { title: '', description: '', ownerId: 0 };
+  data: ProjectDto = { title: '', description: '', ownerId: 0, github: '' };
   roleData: ProjectDtoRoles = { roleName: '', color: '' };
   roles: Array<ProjectDtoRoles>;
 
