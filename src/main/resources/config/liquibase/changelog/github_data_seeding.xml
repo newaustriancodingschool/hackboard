@@ -15,16 +15,26 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <changeSet id="201805402" author="jhipster">
-        <loadUpdateData
-                        encoding="UTF-8"
-                        file="config/liquibase/github.csv"
-                        primaryKey="id"
-                        schemaName="public"
-                        separator=";"
-                        tableName="project">
-            <column name="github" type="string"/>
-        </loadUpdateData>
-
+        <update
+            tableName="project">
+            <column name="github" value="https://github.com/Thaerohde"/>
+            <where>id =1</where>
+        </update>
+        <update
+            tableName="project">
+            <column name="github" value="https://github.com/MohamedDahman"/>
+            <where>id=2</where>
+        </update>
+        <update
+            tableName="project">
+            <column name="github" value="https://github.com/Farah7Tawfeek"/>
+            <where>id=3</where>
+        </update>
+        <update
+            tableName="project">
+            <column name="github" value="https://github.com/husam"/>
+            <where>id=3</where>
+        </update>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
