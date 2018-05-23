@@ -5,7 +5,7 @@
  */
 package io.refugeescode.hackboard.web.api.controller;
 
-import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
+import io.refugeescode.hackboard.service.dto.TagDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
@@ -46,17 +46,86 @@ public interface TagsApi {
         return getRequest().map(r -> r.getHeader("Accept"));
     }
 
-    @ApiOperation(value = "List all /tags", nickname = "listProjectTags", notes = "", response = ProjectRoleDto.class, responseContainer = "List", tags={ "tag", })
+    @ApiOperation(value = "Add a new tag", nickname = "addTag", notes = "", response = Boolean.class, tags={ "tag", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = ProjectRoleDto.class, responseContainer = "List") })
+        @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
     @RequestMapping(value = "/tags",
         produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    default ResponseEntity<List<ProjectRoleDto>> listProjectTags() {
+        method = RequestMethod.POST)
+    default ResponseEntity<Boolean> addTag(@ApiParam(value = "" ,required=true )  @Valid @RequestBody TagDto tag) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"color\" : \"color\",  \"roleName\" : \"roleName\",  \"count\" : 1}, {  \"color\" : \"color\",  \"roleName\" : \"roleName\",  \"count\" : 1} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("true", Boolean.class), HttpStatus.NOT_IMPLEMENTED);
+                } catch (IOException e) {
+                    log.error("Couldn't serialize response for content type application/json", e);
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            }
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default TagsApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+
+    @ApiOperation(value = "Delete tag", nickname = "deleteTag", notes = "", response = Boolean.class, tags={ "tag", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
+    @RequestMapping(value = "/tags/{tagId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.DELETE)
+    default ResponseEntity<Boolean> deleteTag(@ApiParam(value = "ID of tag",required=true) @PathVariable("tagId") Long tagId) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
+            if (getAcceptHeader().get().contains("application/json")) {
+                try {
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("true", Boolean.class), HttpStatus.NOT_IMPLEMENTED);
+                } catch (IOException e) {
+                    log.error("Couldn't serialize response for content type application/json", e);
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            }
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default TagsApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+
+    @ApiOperation(value = "List all /tags", nickname = "showAllTags", notes = "", response = TagDto.class, responseContainer = "List", tags={ "tag", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation", response = TagDto.class, responseContainer = "List") })
+    @RequestMapping(value = "/tags",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<List<TagDto>> showAllTags() {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
+            if (getAcceptHeader().get().contains("application/json")) {
+                try {
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"tag\" : \"tag\"}, {  \"tag\" : \"tag\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                } catch (IOException e) {
+                    log.error("Couldn't serialize response for content type application/json", e);
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            }
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default TagsApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+
+    @ApiOperation(value = "View tag", nickname = "viewTag", notes = "", response = TagDto.class, tags={ "tag", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation", response = TagDto.class) })
+    @RequestMapping(value = "/tags/{tagId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<TagDto> viewTag(@ApiParam(value = "ID of tag",required=true) @PathVariable("tagId") Long tagId) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
+            if (getAcceptHeader().get().contains("application/json")) {
+                try {
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("{  \"tag\" : \"tag\"}", TagDto.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -6,7 +6,11 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+
 import java.util.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  *
@@ -58,6 +62,13 @@ public class Project implements Serializable {
         this.project_story = project_story;
     }
 */
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "project_tag_relation",
+        joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "id")})
+    private Set<Tag> tags;
 
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
