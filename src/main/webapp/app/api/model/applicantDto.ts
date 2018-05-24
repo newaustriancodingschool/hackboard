@@ -12,5 +12,7 @@
 
 
 export interface ApplicantDto {
-    tag?: number;
+    userId: number;
+    projectId: number;
+    roleId: number;
 }

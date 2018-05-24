@@ -255,4 +255,19 @@ definitions:
           tag:
             type: "string"
 
-
+  ApplicantDto:
+        type: "object"
+        required:
+          - "user_id"
+          - "project_id"
+          - "role_id"
+        properties:
+          user_id:
+            type: "integer"
+            format: "int64"
+          project_id:
+            type: "integer"
+            format: "int64"
+          role_id:
+             type: "integer"
+             format: "int64"
