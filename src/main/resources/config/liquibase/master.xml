@@ -51,17 +51,16 @@
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 
 
-
     <!--***************************************add Project Role Mohamed Dahman***********************************-->
-    <include file="config/liquibase/changelog/project_role/xml/project_role_database_seeding1.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/project_role/xml/project_role_database_seeding1.xml"
+             relativeToChangelogFile="false"/>
 
-    <include file="config/liquibase/changelog/project_role/xml/project_role_relation_seeding1.xml" relativeToChangelogFile="false"/>
-
-
-
+    <include file="config/liquibase/changelog/project_role/xml/project_role_relation_seeding1.xml"
+             relativeToChangelogFile="false"/>
+    <!--*************************************** applicant  ***********************************-->
+    <include file="config/liquibase/changelog/applicant_database.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/applicant_database_seeding.xml" relativeToChangelogFile="false"/>
     <!--***************************************Project Role ***********************************-->
-
-
 
 
 </databaseChangeLog>
