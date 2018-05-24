@@ -3,6 +3,7 @@ package io.refugeescode.hackboard.service.dto;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.refugeescode.hackboard.service.dto.ApplicantDto;
 import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -46,6 +47,10 @@ public class ProjectDto   {
   @JsonProperty("projectRole")
   @Valid
   private List<ProjectRoleDto> projectRole = null;
+
+  @JsonProperty("ApplicantDto")
+  @Valid
+  private List<ApplicantDto> applicantDto = null;
 
   public ProjectDto id(Long id) {
     this.id = id;
@@ -246,6 +251,35 @@ public class ProjectDto   {
     this.projectRole = projectRole;
   }
 
+  public ProjectDto applicantDto(List<ApplicantDto> applicantDto) {
+    this.applicantDto = applicantDto;
+    return this;
+  }
+
+  public ProjectDto addApplicantDtoItem(ApplicantDto applicantDtoItem) {
+    if (this.applicantDto == null) {
+      this.applicantDto = new ArrayList<>();
+    }
+    this.applicantDto.add(applicantDtoItem);
+    return this;
+  }
+
+  /**
+   * Get applicantDto
+   * @return applicantDto
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public List<ApplicantDto> getApplicantDto() {
+    return applicantDto;
+  }
+
+  public void setApplicantDto(List<ApplicantDto> applicantDto) {
+    this.applicantDto = applicantDto;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -264,12 +298,13 @@ public class ProjectDto   {
         Objects.equals(this.ownerLastName, projectDto.ownerLastName) &&
         Objects.equals(this.github, projectDto.github) &&
         Objects.equals(this.projectStory, projectDto.projectStory) &&
-        Objects.equals(this.projectRole, projectDto.projectRole);
+        Objects.equals(this.projectRole, projectDto.projectRole) &&
+        Objects.equals(this.applicantDto, projectDto.applicantDto);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, github, projectStory, projectRole);
+    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, github, projectStory, projectRole, applicantDto);
   }
 
   @Override
@@ -286,6 +321,7 @@ public class ProjectDto   {
     sb.append("    github: ").append(toIndentedString(github)).append("\n");
     sb.append("    projectStory: ").append(toIndentedString(projectStory)).append("\n");
     sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
+    sb.append("    applicantDto: ").append(toIndentedString(applicantDto)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -232,6 +232,10 @@ definitions:
         type: array
         items:
             $ref: '#/definitions/ProjectRoleDto'
+      ApplicantDto:
+        type: array
+        items:
+          $ref: '#/definitions/ApplicantDto'
 
   ProjectRoleDto:
           type: "object"
@@ -246,7 +250,6 @@ definitions:
             count:
                type: "integer"
                format: "int64"
-
   TagDto:
         type: "object"
         required:
