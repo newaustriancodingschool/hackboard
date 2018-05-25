@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ProjectAddComponent implements OnInit {
   data: ProjectDto = { title: '', description: '', ownerId: 0, github: '' };
-  roleData: ProjectRoleDto = { roleName: '', color: '' };
+  roleData: ProjectRoleDto = { roleName: '', color: '', count: 0 };
   roles: Array<ProjectRoleDto>;
 
   constructor(
@@ -20,7 +20,7 @@ export class ProjectAddComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = this.roles));
+    this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
   }
 
   submit() {
