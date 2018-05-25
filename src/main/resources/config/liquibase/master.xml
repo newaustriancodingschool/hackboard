@@ -63,4 +63,11 @@
     <!--***************************************Project Role ***********************************-->
 
 
+    <!--***********************update  user Profile to include Github Account Mohamed Dahman issue #77*****************************-->
+    <include file="config/liquibase/changelog/user_profile/xml/user_profile_github.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/user_profile/xml/user_profile_github_seeding.xml" relativeToChangelogFile="false"/>
+
+    <!--***********************update  user Profile to include Github Account Mohamed Dahman*****************************-->
+
+
 </databaseChangeLog>
