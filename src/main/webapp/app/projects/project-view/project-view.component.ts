@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectDto, ProjectService } from '../../api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectDtoRoles } from './../../api/model/projectDtoRoles';
+import { ProjectRoleDto } from './../../api/model/projectRoleDto';
 import { ProjectRoleService } from './../../api/api/projectRole.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ProjectRoleService } from './../../api/api/projectRole.service';
 })
 export class ProjectViewComponent implements OnInit {
   data: ProjectDto = { id: 0, title: '', description: '', github: '' };
-  roleData: ProjectDtoRoles = { roleName: '', color: '' };
+  roleData: ProjectRoleDto = { roleName: '', color: '' };
   roles: Array<any>;
   value: any;
 
