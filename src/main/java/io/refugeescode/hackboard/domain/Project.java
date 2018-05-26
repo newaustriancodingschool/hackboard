@@ -71,6 +71,21 @@ public class Project implements Serializable {
         inverseJoinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "id")})
     private Set<Tag> tags;
 
+    public Set<Applicant> getApplicants() {
+        return applicants;
+    }
+
+    public void setApplicants(Set<Applicant> applicants) {
+        this.applicants = applicants;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "project_applicant_relation",
+        joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "applicant_id", referencedColumnName = "id")})
+    private Set<Applicant> applicants;
+
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
