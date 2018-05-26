@@ -43,6 +43,7 @@ public class UserMapper {
             user.setActivated(userDto.isActivated());
             user.setLangKey(userDto.getLangKey());
             user.setGithub(userDto.getGithub());
+            user.setDescription(userDto.getDescription());
             Set<Authority> authorities = this.authoritiesFromStrings(userDto.getAuthorities());
             if (authorities != null) {
                 user.setAuthorities(authorities);

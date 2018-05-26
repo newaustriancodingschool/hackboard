@@ -20,7 +20,6 @@ export class User {
     firstName?: string,
     lastName?: string,
     email?: string,
-    github?: string,
     activated?: Boolean,
     langKey?: string,
     authorities?: any[],
@@ -28,7 +27,8 @@ export class User {
     createdDate?: Date,
     lastModifiedBy?: string,
     lastModifiedDate?: Date,
-    password?: string
+    password?: string,
+    github?: string
   ) {
     this.id = id ? id : null;
     this.login = login ? login : null;

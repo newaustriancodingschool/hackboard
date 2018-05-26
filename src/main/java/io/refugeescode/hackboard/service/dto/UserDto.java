@@ -55,6 +55,16 @@ public class UserDto {
 
     private String github;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
+
     public String getGithub() {
         return github;
     }

@@ -88,6 +88,16 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "github")
     private String github;
 
+    @Column(name = "description")
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     @JsonIgnore
     @ManyToMany
