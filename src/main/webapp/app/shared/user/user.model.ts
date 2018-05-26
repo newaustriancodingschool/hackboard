@@ -5,6 +5,7 @@ export class User {
   public lastName?: string;
   public email?: string;
   public github?: string;
+  public description?: string;
   public activated?: Boolean;
   public langKey?: string;
   public authorities?: any[];
@@ -28,7 +29,8 @@ export class User {
     lastModifiedBy?: string,
     lastModifiedDate?: Date,
     password?: string,
-    github?: string
+    github?: string,
+    description?: string
   ) {
     this.id = id ? id : null;
     this.login = login ? login : null;
@@ -36,6 +38,7 @@ export class User {
     this.lastName = lastName ? lastName : null;
     this.github = github ? github : null;
     this.email = email ? email : null;
+    this.description = description ? description : null;
     this.activated = activated ? activated : false;
     this.langKey = langKey ? langKey : null;
     this.authorities = authorities ? authorities : null;

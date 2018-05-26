@@ -3,8 +3,8 @@
         <h2 class="m-0 ml-2">Projects from backend</h2>
     </div>
 
-    <div class="col-12 col-md-6 mt-2 mt-md-0 text-left">
-        <a routerLink="/project-add" class="btn btn-defult MyBtn MyShadow ">Add Project</a>
+    <div class="col-12 col-md-6 mt-2 mt-md-0 float-right">
+        <a routerLink="/project-add" class="btn btn-defult MyBtn  MyShadow ">Add Project</a>
     </div>
 </div>
 
@@ -23,20 +23,12 @@
                     <td>
                         <tr *ngFor="let role of project.projectRole">
                             <div class="circle" [ngStyle]="{'background-color':role.color}">{{role.count}}
-                                    <span class="tooltiptext">{{role.roleName}}</span>
+                                <span class="tooltiptext">{{role.roleName}}</span>
                             </div>
                         </tr>
                     </td>
                 </Tr>
-
             </table>
- <!--           <ol class="list-group list-group-flush d-flex justify-content-between align-items-left">
-              <li class="list-group-item" *ngFor="let project of projects " [class.selected]="project.id === selectedId">
-                <a [routerLink]="['/project-view', project.id]" class="MyListFont">
-                 <li>{{project.title}}  -      {{ project.ownerLastName }}</li>
-                </a>
-              </li>
-            </ol>
- -->       </div>
+        </div>
     </div>
 </div>

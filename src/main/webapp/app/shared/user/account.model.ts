@@ -5,6 +5,7 @@ export class Account {
     public email: string,
     public github: string,
     public firstName: string,
+    public description: string,
     public langKey: string,
     public lastName: string,
     public login: string,
