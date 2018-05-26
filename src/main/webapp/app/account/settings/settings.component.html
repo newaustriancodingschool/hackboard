@@ -72,6 +72,17 @@
                         </small>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="github">Github</label>
+                    <input type="url" class="form-control" id="github" name="github"
+                           [(ngModel)]="settingsAccount.github" minlength="5" maxlength="100" #githubInput="ngModel" github required>
+                    <div *ngIf="githubInput.dirty && githubInput.invalid">
+                        <small class="form-text text-danger"
+                           *ngIf="githubInput.errors.required">
+                            Your github is required.
+                        </small>
+                    </div>
+                </div>
                 <div class="form-group" *ngIf="languages && languages.length > 0">
                     <label for="langKey" jhiTranslate="settings.form.language">Language</label>
                     <select class="form-control" id="langKey" name="langKey" [(ngModel)]="settingsAccount.langKey">

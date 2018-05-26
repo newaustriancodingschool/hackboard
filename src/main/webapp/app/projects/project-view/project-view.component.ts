@@ -24,6 +24,7 @@ export class ProjectViewComponent implements OnInit {
     const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
     this.projectService.viewProject(id).subscribe(project => {
       this.data = project;
+      this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
     });
     this.projectRoleService
       .listProjectRoles()
