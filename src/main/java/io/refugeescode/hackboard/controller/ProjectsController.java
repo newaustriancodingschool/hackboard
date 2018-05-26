@@ -50,6 +50,7 @@ public class ProjectsController implements ProjectsApi {
         entity.setTitle(project.getTitle());
         entity.setGithub(project.getGithub());
         entity.setDescription(project.getDescription());
+        entity.setApplicants(entity.getApplicants());
         if (SecurityUtils.getCurrentUserLogin().isPresent()) {
             String userlogin = SecurityUtils.getCurrentUserLogin().get();
             Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
@@ -68,6 +69,7 @@ public class ProjectsController implements ProjectsApi {
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
         entity.setGithub(project.getGithub());
+        entity.setApplicants(entity.getApplicants());
         projectsRepository.save(entity);
 
         return new ResponseEntity<>(true, HttpStatus.OK);
