@@ -109,6 +109,8 @@ public class UserService {
         newUser.setEmail(userDto.getEmail());
         newUser.setImageUrl(userDto.getImageUrl());
         newUser.setLangKey(userDto.getLangKey());
+        newUser.setGithub( userDto.getGithub());
+        newUser.setDescription(userDto.getDescription());
         // new user is not active
         newUser.setActivated(false);
         // new user gets registration key
@@ -129,6 +131,8 @@ public class UserService {
         user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());
         user.setImageUrl(userDto.getImageUrl());
+        user.setGithub(userDto.getGithub());
+        user.setDescription(userDto.getDescription());
         if (userDto.getLangKey() == null) {
             user.setLangKey(Constants.DEFAULT_LANGUAGE); // default language
         } else {
@@ -161,7 +165,7 @@ public class UserService {
      * @param langKey   language key
      * @param imageUrl  image URL of user
      */
-    public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
+    public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl,String github , String description) {
         SecurityUtils.getCurrentUserLogin()
             .flatMap(userRepository::findOneByLogin)
             .ifPresent(user -> {
@@ -170,6 +174,8 @@ public class UserService {
                 user.setEmail(email);
                 user.setLangKey(langKey);
                 user.setImageUrl(imageUrl);
+                user.setGithub(github);
+                user.setDescription(description);
                 cacheManager.getCache(UserRepository.USERS_BY_LOGIN_CACHE).evict(user.getLogin());
                 cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE).evict(user.getEmail());
                 log.debug("Changed Information for User: {}", user);
@@ -193,6 +199,8 @@ public class UserService {
                 user.setImageUrl(userDto.getImageUrl());
                 user.setActivated(userDto.isActivated());
                 user.setLangKey(userDto.getLangKey());
+                user.setGithub(userDto.getGithub());
+                user.setDescription(userDto.getDescription());
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
                 userDto.getAuthorities().stream()
