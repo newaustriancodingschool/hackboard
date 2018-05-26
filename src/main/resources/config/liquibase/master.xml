@@ -65,4 +65,14 @@
     <include file="config/liquibase/changelog/project_applicant_relation.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/project_applicant_relation_seeding.xml" relativeToChangelogFile="false"/>
 
+
+
+    <!--***********************update  user Profile to include Github Account Mohamed Dahman issue #77*****************************-->
+    <include file="config/liquibase/changelog/user_profile/user_profile_github.xml" relativeToChangelogFile="false"/>
+
+   <include file="config/liquibase/changelog/user_profile/user_profile_github_seeding.xml" relativeToChangelogFile="false"/>
+
+    <!--***********************update  user Profile to include Github Account Mohamed Dahman*****************************-->
+
+
 </databaseChangeLog>
