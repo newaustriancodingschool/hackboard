@@ -53,6 +53,17 @@ public class UserDto {
 
     private Set<String> authorities;
 
+    private String github;
+
+    public String getGithub() {
+        return github;
+    }
+
+    public void setGithub(String github) {
+        this.github = github;
+    }
+
+
     public UserDto() {
         // Empty constructor needed for Jackson.
     }
