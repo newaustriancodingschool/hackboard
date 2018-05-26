@@ -35,4 +35,12 @@ public class Applicant {
     public void setRole_id(Long role_id) {
         this.role_id = role_id;
     }
+
+    public Long getProject_id() {
+        return project_id;
+    }
+
+    public void setProject_id(Long project_id) {
+        this.project_id = project_id;
+    }
 }
