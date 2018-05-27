@@ -9,9 +9,10 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class ProjectAddComponent implements OnInit {
-  data: ProjectDto = { title: '', description: '', ownerId: 0, github: '' };
+  data: ProjectDto = { title: '', description: '', ownerId: 0, github: '', projectRole: [] };
   roleData: ProjectRoleDto = { roleName: '', color: '', count: 0 };
   roles: Array<ProjectRoleDto>;
+  projectRoles: Array<ProjectRoleDto>;
 
   constructor(
     private projectService: ProjectService,
@@ -21,9 +22,18 @@ export class ProjectAddComponent implements OnInit {
 
   ngOnInit() {
     this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
+    this.projectRoles = [];
   }
 
   submit() {
+    this.data.projectRole = this.projectRoles;
     this.projectService.addProject(this.data).subscribe(() => this.router.navigate(['/projects']));
+  }
+
+  addRole(roleValue, countValue) {
+    const newRoleData = { roleName: '', color: '', count: 0 };
+    newRoleData.roleName = roleValue;
+    newRoleData.count = countValue;
+    this.projectRoles.push(newRoleData);
   }
 }

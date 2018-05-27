@@ -45,7 +45,7 @@ public class Project implements Serializable {
         name = "project_role_relation",
         joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
-    private List<ProjectRole> projectRoles;
+    private List<ProjectRole> projectRoles = new ArrayList<>();
 
 
     public List<String> getProject_story() {

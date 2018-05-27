@@ -4,8 +4,6 @@
     </div>
     <div class="col-md-9">
         <h1 class="display-4" >Welcome Hackboard !!!</h1>
-        <!-- <p class="lead" >This is your </p> -->
-
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span *ngIf="account" jhiTranslate="home.logged.message"
@@ -27,22 +25,9 @@
             </p>
         </div>
         <div class="col-12 col-md-6 text-left">
-                <h2 class="m-0 ml-2 paragraphHead">A good idea BECOMES A great idea when you Let it OUT .. Share it WITH Us</h2>
-            </div>
-        <div>
-            <p class="font-italic"> Purpose: Making lots of purchases of second hand stuff around a city, in an efficient way.
-                What’s the problem: When making many purchases second hand, it may be cheaper but you’ll be travelling through all of the city. But with a group of people furnishing a place together, for example when refugees code finds a new headquarter, it would allow a group to look for nice offers together.<br>
-
-                User Stories:<br>
-
-                As a buyer, I want to add something to a city map.<br>
-                As a seller I want one person to talk to.<br>
-                As a user I need to see where in the city I live and where the action is.<br>
-                As a group of people I want to have an overview of what products are being looked at, what can be purchased, and how much money is still available.<br>
-                As an organisation I want to democratically furnish a place.<br>
-            </p>
+            <h2 class="m-0 ml-2 paragraphHead">A good idea BECOMES A great idea when you Let it OUT .. Share it WITH Us</h2>
         </div>
-
+        
         <a routerLink="projects" class="btn btn-defult MyBtn float-right MyShadow">List of Projects</a>
         <br><br>
         <p>
