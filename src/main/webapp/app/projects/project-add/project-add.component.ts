@@ -30,10 +30,27 @@ export class ProjectAddComponent implements OnInit {
     this.projectService.addProject(this.data).subscribe(() => this.router.navigate(['/projects']));
   }
 
-  addRole(roleValue, countValue) {
+  addRole(roleValue, countValue: number) {
     const newRoleData = { roleName: '', color: '', count: 0 };
     newRoleData.roleName = roleValue;
     newRoleData.count = countValue;
-    this.projectRoles.push(newRoleData);
+    let roleFound = false;
+    for (let i = 0; i < this.projectRoles.length; i++) {
+      if (roleValue === this.projectRoles[i].roleName) {
+        this.projectRoles[i].count += countValue;
+        roleFound = true;
+      }
+    }
+    if (roleFound === false) {
+      this.projectRoles.push(newRoleData);
+    }
+  }
+
+  deleteRole(role) {
+    for (let i = 0; i < this.projectRoles.length; i++) {
+      if (role === this.projectRoles[i].roleName) {
+        this.projectRoles.splice(i, 1);
+      }
+    }
   }
 }

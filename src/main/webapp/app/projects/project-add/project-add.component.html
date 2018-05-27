@@ -12,27 +12,24 @@
         <label class="lightBlue font-weight-bold" for="github">GitHub Link:</label>
         <input type="text" class="form-control" [(ngModel)]="data.github" name="github" id="github">
     </div>
-  </br>
-    <button class="btn btn-defult MyBtn MyShadow">Add</button>
-</form>
-<form (ngSubmit)="addRole(dropRoles.value, count.value)">
-        <div>
-            <label class="lightBlue font-weight-bold">Roles:</label>
-            <select #dropRoles>
-                <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color':role.color}">{{role.roleName}}</option>
-            </select>
-            <input type="text" value=1 #count>
-            <button>Add</button>
-        </div>
+    <form (ngSubmit)="addRole(dropRoles.value, count.value)">
+        <label class="lightBlue font-weight-bold">Roles:</label>
+        <select #dropRoles>
+            <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color':role.color}">{{role.roleName}}</option>
+        </select>
+        <input type="number" value=1 #count>
+        <button>+</button>
     </form>
-
+    
     <div>
         <table>
             <tr *ngFor = "let role of projectRoles">
                 <td>{{role.roleName}}</td>
                 <td>{{role.count}}</td>
-                <td><button (click)="deleteHobby(hobby)">delete</button></td>
+                <td><button (click)="deleteRole(role.roleName)">-</button></td>
             </tr>
         </table>
     </div>
-</div>
+    <br>
+    <button class="btn btn-defult MyBtn MyShadow">Add</button>
+</form>
