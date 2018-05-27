@@ -2,13 +2,16 @@ package io.refugeescode.hackboard.controller;
 
 
 import io.refugeescode.hackboard.domain.Project;
+import io.refugeescode.hackboard.domain.ProjectRole;
 import io.refugeescode.hackboard.domain.User;
 import io.refugeescode.hackboard.repository.ProjectRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.security.SecurityUtils;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
+import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
 import io.refugeescode.hackboard.service.mapper.ProjectMappers;
+import io.refugeescode.hackboard.service.mapper.ProjectRoleMapper;
 import io.refugeescode.hackboard.web.api.controller.ProjectsApi;
 
 import java.util.List;
@@ -37,6 +40,9 @@ public class ProjectsController implements ProjectsApi {
     @Autowired
     private ProjectMappers projectMappers;
 
+    @Autowired
+    private ProjectRoleMapper projectRoleMapper;
+
     public ProjectsController(ProjectRepository projectsRepository, UserRepository userRepository) {
 
         this.projectsRepository = projectsRepository;
@@ -50,7 +56,13 @@ public class ProjectsController implements ProjectsApi {
         entity.setTitle(project.getTitle());
         entity.setGithub(project.getGithub());
         entity.setDescription(project.getDescription());
-        entity.setApplicants(entity.getApplicants());
+        //entity.setApplicants(project.getApplicants());
+
+        List<ProjectRoleDto> projectRole = project.getProjectRole();
+        List<ProjectRole> collect = projectRole.stream().map(e -> projectRoleMapper.projectRoleDtoToProjectRole(e)).collect(Collectors.toList());
+        entity.setProjectRoles(collect);
+
+
         if (SecurityUtils.getCurrentUserLogin().isPresent()) {
             String userlogin = SecurityUtils.getCurrentUserLogin().get();
             Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
