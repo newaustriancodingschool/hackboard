@@ -35,6 +35,36 @@
                 (removed)="removed($event)"
                 placeholder="choose your role"></ng-select>
             
-    <pre>{{rolesToString(value) | json}}</pre>
-    
-  </div>
+    <pre>{{rolesToString(value) | json}}</pre>    
+</div>
+<div style="margin-bottom: 1em">
+    <button type="submit"
+            [disabled]="heroForm.pristine" class="btn btn-success">Save</button> &nbsp;
+    <button type="button" (click)="revert()"
+            [disabled]="heroForm.pristine" class="btn btn-danger">Revert</button>
+</div>
+<form action="/process-edition" method="post">
+    <div>My nice things</div>
+    <button type="submit" name="subAction" value="delete">Delete</button>
+    <button type="submit" name="subAction" value="addOne">+1</button>
+</form>
+<button class="styled">Hello World</button>
+<input id="btn" type="button" value="click" onclick="pay(); cls();"/>
+
+<button id="button">Button</button>
+<input type="text" class = "form-control" [(ngModel)]="siteFilter.site_name">
+<button type="button"  class="btn btn-default">Address</button>
+<button type="button"  class="btn btn-default">Site</button>
+<button type="button"  class="btn btn-default">Phone</button>
+
+<input type="text" [(ngModel)]="siteFilter[filterType]">
+
+<button type="button"  class="btn btn-default" (click)="changeFilter('address')">Address</button>
+<button type="button"  class="btn btn-default" (click)="changeFilter('site_name')">Site</button>
+<button type="button"  class="btn btn-default" (click)="changeFilter('phone')">Phone</button>
+<br><select onchange="test()" id="select_id">
+    <option value="0">-Select-</option>
+    <option value="1">Communication</option>
+</select>
+<input type="radio" name="radionbutton" value="1" id="button1"/>
+<input type="radio" name="radionbutton" value="2" id="button"/>

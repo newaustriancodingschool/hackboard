@@ -94,3 +94,26 @@
 .circle:hover .tooltiptext {
   visibility: visible;
 }
+button.styled {
+  color: #fff;
+  background: #00b48c; /* CHANGE ONLY THIS ONE AND SEE IT HAPPEN ;) */
+  padding: 10px 45px 10px 15px;
+  border-radius: 4px;
+  /* Do not edit below */
+  border: 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+button.styled:after {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 11px;
+  content: '\25be'; /* \25bc \25be */
+  /* Do not edit below */
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.button-clicked {
+  background: green;
+}
