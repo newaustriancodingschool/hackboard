@@ -4,7 +4,6 @@ import { JhiLanguageService } from 'ng-jhipster';
 import { Principal, AccountService, JhiLanguageHelper } from '../../shared';
 
 @Component({
-  selector: 'jhi-settings',
   templateUrl: './settings.component.html'
 })
 export class SettingsComponent implements OnInit {
@@ -12,6 +11,7 @@ export class SettingsComponent implements OnInit {
   success: string;
   settingsAccount: any;
   languages: any[];
+  value: any;
 
   constructor(
     private account: AccountService,
@@ -49,7 +49,6 @@ export class SettingsComponent implements OnInit {
       }
     );
   }
-
   copyAccount(account) {
     return {
       activated: account.activated,
@@ -62,5 +61,24 @@ export class SettingsComponent implements OnInit {
       login: account.login,
       imageUrl: account.imageUrl
     };
+  }
+  selected(value: any): void {
+    console.log('Selected value is: ', value);
+  }
+
+  removed(value: any): void {
+    console.log('Removed value is: ', value);
+  }
+
+  refreshValue(value: any): void {
+    this.value = value;
+  }
+
+  rolesToString(value: Array<any> = []): string {
+    return value
+      .map((item: any) => {
+        return item.text;
+      })
+      .join(',');
   }
 }

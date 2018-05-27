@@ -95,6 +95,17 @@
                         [(ngModel)]="settingsAccount.description" #descriptionInput="ngModel"></textarea>  
                 </div>
                 <button type="submit" [disabled]="settingsForm.form.invalid" class="btn btn-primary" jhiTranslate="settings.form.button">Save</button>
+                <div style="width: 300px; margin-bottom: 20px;">
+                    <h3>Select multiple roles</h3>
+                    <ng-select  [multiple]="true"
+                                [items]="roles"
+                                (data)="refreshValue($event)"
+                                (selected)="selected($event)"
+                                (removed)="removed($event)"
+                                placeholder="choose your role"></ng-select>
+                            
+                    <pre>{{rolesToString(value) | json}}</pre>    
+                </div>
             </form>
         </div>
     </div>

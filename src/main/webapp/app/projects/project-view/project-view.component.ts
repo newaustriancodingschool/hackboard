@@ -11,10 +11,6 @@ export class ProjectViewComponent implements OnInit {
   data: ProjectDto = { id: 0, title: '', description: '', github: '' };
   roleData: ProjectRoleDto = { roleName: '', color: '' };
   roles: Array<any>;
-  value: any;
-  button1 = document.getElementById('button1');
-  button2 = document.getElementById('button2');
-
   constructor(
     private projectRoleService: ProjectRoleService,
     private projectService: ProjectService,
@@ -36,25 +32,5 @@ export class ProjectViewComponent implements OnInit {
     this.projectService
       .deleteProject(this.data.id)
       .subscribe(() => this.router.navigate(['/projects']));
-  }
-
-  selected(value: any): void {
-    console.log('Selected value is: ', value);
-  }
-
-  removed(value: any): void {
-    console.log('Removed value is: ', value);
-  }
-
-  refreshValue(value: any): void {
-    this.value = value;
-  }
-
-  rolesToString(value: Array<any> = []): string {
-    return value
-      .map((item: any) => {
-        return item.text;
-      })
-      .join(',');
   }
 }

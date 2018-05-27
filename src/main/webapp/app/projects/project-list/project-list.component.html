@@ -1,34 +1,26 @@
 <div class="row">
     <div class="col-12 col-md-6 text-left">
-        <h2 class="m-0 ml-2">Projects from backend</h2>
+        <h1 class="m-0 ml-2 orange text-capitalize">The list of projects:</h1>
     </div>
 
     <div class="col-12 col-md-6 mt-2 mt-md-0 float-right">
-        <a routerLink="/project-add" class="btn btn-defult MyBtn  MyShadow ">Add Project</a>
+        <a routerLink="/project-add" class="btn btn-defult MyBtn float-right">Add New Project</a>
     </div>
 </div>
-
 <div class="row mt-3">
     <div class="col-12">
-        <div class="list-group darkBlue">
-            <table >
-                <thead>
-                    <td>Title</td>
-                    <td>Owner</td>
-                    <td>Roles</td>
-                </thead>
-                <Tr *ngFor="let project of projects " [class.selected]="project.id === selectedId">
-                    <td ><a [routerLink]="['/project-view', project.id]" class="MyListFont">{{project.title}}</a></td>
-                    <td >{{ project.ownerFirstName }} {{ project.ownerLastName }}</td>
-                    <td>
-                        <tr *ngFor="let role of project.projectRole">
-                            <div class="circle" [ngStyle]="{'background-color':role.color}">{{role.count}}
-                                <span class="tooltiptext">{{role.roleName}}</span>
-                            </div>
-                        </tr>
-                    </td>
-                </Tr>
-            </table>
+        <div class="list-group">
+                <ul *ngFor="let project of projects" class="list-group">
+                    <li class="list-group-item"><a [routerLink]="['/project-view', project.id]" class="MyListFont">{{project.title}}</a>
+                        <p> by {{ project.ownerFirstName }} {{ project.ownerLastName }}</p>
+                        <div *ngFor="let role of project.projectRole">
+                                <div class="float-left circle" [ngStyle]="{'border-color': role.color}">
+                                    <span class="tooltiptext">{{role.roleName}}</span>
+                                </div>
+                        </div>
+                    </li>
+                </ul>
         </div>
     </div>
 </div>
+
