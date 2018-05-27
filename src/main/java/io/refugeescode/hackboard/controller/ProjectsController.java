@@ -62,6 +62,7 @@ public class ProjectsController implements ProjectsApi {
         entity.setTitle(project.getTitle());
         entity.setGithub(project.getGithub());
         entity.setDescription(project.getDescription());
+        entity.setTags(entity.getTags());
         //entity.setApplicants(project.getApplicants());
 /*
         List<ProjectRoleDto> projectRole = project.getProjectRole();
@@ -89,6 +90,7 @@ public class ProjectsController implements ProjectsApi {
         entity.setDescription(project.getDescription());
         entity.setGithub(project.getGithub());
         entity.setApplicants(entity.getApplicants());
+        entity.setTags(entity.getTags());
         projectsRepository.save(entity);
 
         return new ResponseEntity<>(true, HttpStatus.OK);
