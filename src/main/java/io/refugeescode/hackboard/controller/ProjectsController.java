@@ -52,15 +52,22 @@ public class ProjectsController implements ProjectsApi {
     @Override
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
     public ResponseEntity<Boolean> addProject(@RequestBody ProjectDto project) {
+
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+
         Project entity = new Project();
         entity.setTitle(project.getTitle());
         entity.setGithub(project.getGithub());
         entity.setDescription(project.getDescription());
         //entity.setApplicants(project.getApplicants());
-
+/*
         List<ProjectRoleDto> projectRole = project.getProjectRole();
+
         List<ProjectRole> collect = projectRole.stream().map(e -> projectRoleMapper.projectRoleDtoToProjectRole(e)).collect(Collectors.toList());
-        entity.setProjectRoles(collect);
+        entity.setProjectRoles(collect);*/
 
 
         if (SecurityUtils.getCurrentUserLogin().isPresent()) {
