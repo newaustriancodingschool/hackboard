@@ -78,8 +78,16 @@
         <include file="config/liquibase/changelog/user_profile/user_profile_description.xml" relativeToChangelogFile="false"/>
         <include file="config/liquibase/changelog/user_profile/user_profile_description_seeding.xml" relativeToChangelogFile="false"/>
 
-
     <!--***********************update  user Profile to include Github Account Mohamed Dahman*****************************-->
+
+
+
+    <!--***********************update  user Profile to include tags  Mohamed Dahman issue #77*****************************-->
+        <include file="config/liquibase/changelog/user_profile/user_profile_tags.xml" relativeToChangelogFile="false"/>
+        <include file="config/liquibase/changelog/user_profile/user_profile_tags_seeding.xml" relativeToChangelogFile="false"/>
+    <!--***********************update  user Profile to include Github Account Mohamed Dahman*****************************-->
+
+
 
 
 
