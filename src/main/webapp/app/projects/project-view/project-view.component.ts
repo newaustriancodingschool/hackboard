@@ -12,6 +12,8 @@ export class ProjectViewComponent implements OnInit {
   roleData: ProjectRoleDto = { roleName: '', color: '' };
   roles: Array<any>;
   value: any;
+  button1 = document.getElementById('button1');
+  button2 = document.getElementById('button2');
 
   constructor(
     private projectRoleService: ProjectRoleService,
