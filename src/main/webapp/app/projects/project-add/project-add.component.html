@@ -1,5 +1,5 @@
 <h2 class="orange text-capitalize">Add your project info.</h2>
-<br (ngSubmit)="submit()">
+<form (ngSubmit)="submit()">
     <div class="form-group">
         <label class="lightBlue font-weight-bold" for="title">Title:</label>
         <input type="text" class="form-control" [(ngModel)]="data.title" name="title" id="title">
@@ -12,22 +12,32 @@
         <label class="lightBlue font-weight-bold" for="github">GitHub Link:</label>
         <input type="text" class="form-control" [(ngModel)]="data.github" name="github" id="github">
     </div>
-    <div>
-        <label class="lightBlue font-weight-bold">Roles:</label>
-        <select name="roles" ngModel>
-            <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color':role.color}"> {{ role.roleName }}</option>
-        </select>
-
-    </div>
-</br>
+  </br>
     <button class="btn btn-defult MyBtn MyShadow">Add</button>
 </form>
+<form (ngSubmit)="addRole(dropRoles.value, count.value)">
+        <div>
+            <label class="lightBlue font-weight-bold">Roles:</label>
+            <select #dropRoles>
+                <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color':role.color}">{{role.roleName}}</option>
+            </select>
+            <input type="text" value=1 #count>
+            <button>Add</button>
+        </div>
+    </form>
 
-
-
+    <div>
+        <table>
+            <tr *ngFor = "let role of projectRoles">
+                <td>{{role.roleName}}</td>
+                <td>{{role.count}}</td>
+                <td><button (click)="deleteHobby(hobby)">delete</button></td>
+            </tr>
+        </table>
+    </div>
 <!--
-<select name="appCalendar" id="appCalendar">
-    <option value="#000000" style="background-color: Black;color: #FFFFFF;">Black</option>
+    <select name="appCalendar" id="appCalendar">
+        <option value="#000000" style="background-color: Black;color: #FFFFFF;">Black</option>
     <option value="#808080" style="background-color: Gray;">Gray</option>
     <option value="#A9A9A9" style="background-color: DarkGray;">DarkGray</option>
     <option value="#FF0000" style="background-color: Red;">Red</option>
