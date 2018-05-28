@@ -89,6 +89,15 @@
 
 
 
+    <!--***********************drop  Table Applicant Mohamed Dahman*****************************-->
+    <include file="config/liquibase/changelog/maintenance/applicant_drop.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/maintenance/PROJECT_APPLICANT_RELATION_drop.xml" relativeToChangelogFile="false"/>
+
+
+
+
+    <!--***********************Application Table tags  Mohamed Dahman issue #86*****************************-->
+    <include file="config/liquibase/changelog/application/xml/application.xml" relativeToChangelogFile="false"/>
 
 
 </databaseChangeLog>

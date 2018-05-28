@@ -56,17 +56,10 @@ public class ProjectsController implements ProjectsApi {
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
     public ResponseEntity<Boolean> addProject(@RequestBody ProjectDto project) {
 
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-
         Project entity = new Project();
         entity.setTitle(project.getTitle());
         entity.setGithub(project.getGithub());
         entity.setDescription(project.getDescription());
-        //entity.setTags(project.getTags());
-        //entity.setApplicants(project.getApplicants());
 
         List<ProjectRole> projectRoleList = new ArrayList<>();
         if (! project.getProjectRole().isEmpty()) {
@@ -108,7 +101,6 @@ public class ProjectsController implements ProjectsApi {
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
         entity.setGithub(project.getGithub());
-        entity.setApplicants(entity.getApplicants());
         entity.setTags(entity.getTags());
         projectsRepository.save(entity);
 
