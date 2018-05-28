@@ -37,7 +37,7 @@ export class ProjectAddComponent implements OnInit {
     let roleFound = false;
     for (let i = 0; i < this.projectRoles.length; i++) {
       if (roleValue === this.projectRoles[i].roleName) {
-        this.projectRoles[i].count += countValue;
+        this.projectRoles[i].count = Number(this.projectRoles[i].count) + Number(countValue);
         roleFound = true;
       }
     }

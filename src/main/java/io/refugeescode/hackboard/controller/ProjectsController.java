@@ -5,6 +5,7 @@ import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.domain.ProjectRole;
 import io.refugeescode.hackboard.domain.User;
 import io.refugeescode.hackboard.repository.ProjectRepository;
+import io.refugeescode.hackboard.repository.ProjectRoleRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.security.SecurityUtils;
@@ -14,6 +15,7 @@ import io.refugeescode.hackboard.service.mapper.ProjectMappers;
 import io.refugeescode.hackboard.service.mapper.ProjectRoleMapper;
 import io.refugeescode.hackboard.web.api.controller.ProjectsApi;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,17 +38,18 @@ public class ProjectsController implements ProjectsApi {
 
     private ProjectRepository projectsRepository;
     private UserRepository userRepository;
-
+    private ProjectRoleRepository projectRoleRepository;
     @Autowired
     private ProjectMappers projectMappers;
 
     @Autowired
     private ProjectRoleMapper projectRoleMapper;
 
-    public ProjectsController(ProjectRepository projectsRepository, UserRepository userRepository) {
+    public ProjectsController(ProjectRepository projectsRepository, UserRepository userRepository ,ProjectRoleRepository projectRoleRepository) {
 
         this.projectsRepository = projectsRepository;
         this.userRepository = userRepository;
+        this.projectRoleRepository = projectRoleRepository;
     }
 
     @Override
@@ -62,8 +65,24 @@ public class ProjectsController implements ProjectsApi {
         entity.setTitle(project.getTitle());
         entity.setGithub(project.getGithub());
         entity.setDescription(project.getDescription());
-        entity.setTags(entity.getTags());
+        //entity.setTags(project.getTags());
         //entity.setApplicants(project.getApplicants());
+
+        List<ProjectRole> projectRoleList = new ArrayList<>();
+        if (! project.getProjectRole().isEmpty()) {
+            int size = project.getProjectRole().size();
+            for (int i = 0; i < size; i++) {
+                Long count = project.getProjectRole().get(i).getCount();
+                for (int j = 0; j < count; j++) {
+                    Optional<ProjectRole> oneByRoleName = projectRoleRepository.findOneByRoleName(project.getProjectRole().get(i).getRoleName());
+                    if (oneByRoleName.isPresent()) {
+                        projectRoleList.add(oneByRoleName.get());
+                    }
+                }
+            }
+        }
+        entity.setProjectRoles(projectRoleList);
+
 /*
         List<ProjectRoleDto> projectRole = project.getProjectRole();
 

@@ -15,12 +15,13 @@
     <form (ngSubmit)="addRole(dropRoles.value, count.value)">
         <label class="lightBlue font-weight-bold">Roles:</label>
         <select #dropRoles>
+
             <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color':role.color}">{{role.roleName}}</option>
         </select>
-        <input type="number" value=1 #count>
+        <input type="number" value=1  #count  >
         <button>+</button>
     </form>
-    
+
     <div>
         <table>
             <tr *ngFor = "let role of projectRoles">
