@@ -1,27 +1,50 @@
-<h2 class="orange text-capitalize">View your project info.</h2>
-
-<!--
-    <div>
-        <label class="lightBlue font-weight-bold" for="usr">ID:</label>
-        <p name="id" id="usr">{{data.id}}</p>
+<div>
+        <div class = "float-left">
+                <h2 class="orange text-capitalize">View your project info.</h2>
+        </div>
+        
+        <div class="float-right">
+                <a class="btn btn-defult MyBtn MyShadow btn pull-right" [routerLink]="['/project-edit', data.id]">Edit</a>
+                <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="delete()">Delete!</button>        
+        </div>        
+</div>
+</br>
+</br>
+<div>
+        <label class="lightBlue font-weight-bold" >Owner Name:</label>
+        <label name="owner" id="owner">{{data.ownerFirstName}} {{data.ownerLastName}}</label>
     </div>
--->
     <div>
-        <label class="lightBlue font-weight-bold" for="owner">Owner Name:</label>
-        <p name="owner" id="owner">{{data.ownerFirstName}} {{data.ownerLastName}}</p>
-    </div>
-    <div>
-        <label class="lightBlue font-weight-bold" for="title">Title:</label>
-        <p name="title" id="title">{{data.title}}</p>
+        <label class="lightBlue font-weight-bold">Title:</label>
+        <label name="title" id="title">{{data.title}}</label>
     </div>
     <div class="form-group ">
         <label  class="lightBlue font-weight-bold" for="comment">Description:</label>
         <p id="comment" name="description" id="comment">{{data.description}}</p>
     </div>
     <div>
-        <label class="lightBlue font-weight-bold" for="github">Check out this project on GitHub:</label>
+      
+        <!-- <label class="lightBlue font-weight-bold" for="github">Check out this project on GitHub:</label> btn btn-defult MyBtn MyShadow-->
+    
     </div>
-    <a class="btn btn-defult MyBtn MyShadow" href={{data.github}} target="_blank"><i class="fa fa-github "></i></a>
-
-<a class="btn btn-defult MyBtn MyShadow btn pull-right" [routerLink]="['/project-edit', data.id]">Edit</a>
-<button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="delete()">Delete!</button>
+    <a class="lightBlue font-weight-bold" href={{data.github}} target="_blank">Check out this project on GitHub<i class="fa fa-github "></i></a>
+</br>
+</br>
+            <label class="lightBlue font-weight-bold" for="role">Looking for these people:</label>   
+            <div *ngFor="let role of roles">
+            <div class="row">
+                    <div class="col-xs-6 col-md-4">                        
+                            
+                                    <div ng-repeat="n in [] | range:role.count">
+                                        <div class="circle fixed-bottom" [ngStyle]="{'border-color': role.color}"></div>
+                                    </div>                        
+                    </div>           
+                    <div class="col-xs-6 col-md-4">{{role.roleName}}</div>
+                    <div class="clearfix visible-xs-block"></div> 
+                    <div class="col-xs-6 col-md-4">
+                                <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="delete()">Apply!</button>
+                               </div> 
+                
+            </div> 
+            </div>
+           

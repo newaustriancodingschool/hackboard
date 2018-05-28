@@ -9,8 +9,8 @@ import { ProjectRoleService } from './../../api/api/projectRole.service';
 })
 export class ProjectViewComponent implements OnInit {
   data: ProjectDto = { id: 0, title: '', description: '', github: '' };
-  roleData: ProjectRoleDto = { roleName: '', color: '' };
-  roles: Array<any>;
+  roleData: ProjectRoleDto = { roleName: '', color: '', count: 0 };
+  roles: Array<ProjectRoleDto>;
   constructor(
     private projectRoleService: ProjectRoleService,
     private projectService: ProjectService,
