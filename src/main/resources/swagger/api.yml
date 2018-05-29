@@ -232,10 +232,10 @@ definitions:
         type: array
         items:
             $ref: '#/definitions/ProjectRoleDto'
-      ApplicantDto:
+      ApplicationDto:
         type: array
         items:
-          $ref: '#/definitions/ApplicantDto'
+          $ref: '#/definitions/ApplicationDto'
 
   ProjectRoleDto:
           type: "object"
@@ -258,14 +258,14 @@ definitions:
           tag:
             type: "string"
 
-  ApplicantDto:
+  ApplicationDto:
         type: "object"
         required:
-          - "user_id"
+          - "applicant"
           - "project_id"
           - "role_id"
         properties:
-          user_id:
+          applicant:
             type: "integer"
             format: "int64"
           project_id:

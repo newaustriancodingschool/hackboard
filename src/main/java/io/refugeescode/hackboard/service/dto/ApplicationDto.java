@@ -10,13 +10,13 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * ApplicantDto
+ * ApplicationDto
  */
 @Validated
 
-public class ApplicantDto   {
-  @JsonProperty("user_id")
-  private Long userId = null;
+public class ApplicationDto   {
+  @JsonProperty("applicant")
+  private Long applicant = null;
 
   @JsonProperty("project_id")
   private Long projectId = null;
@@ -24,28 +24,28 @@ public class ApplicantDto   {
   @JsonProperty("role_id")
   private Long roleId = null;
 
-  public ApplicantDto userId(Long userId) {
-    this.userId = userId;
+  public ApplicationDto applicant(Long applicant) {
+    this.applicant = applicant;
     return this;
   }
 
   /**
-   * Get userId
-   * @return userId
+   * Get applicant
+   * @return applicant
   **/
   @ApiModelProperty(required = true, value = "")
   @NotNull
 
 
-  public Long getUserId() {
-    return userId;
+  public Long getApplicant() {
+    return applicant;
   }
 
-  public void setUserId(Long userId) {
-    this.userId = userId;
+  public void setApplicant(Long applicant) {
+    this.applicant = applicant;
   }
 
-  public ApplicantDto projectId(Long projectId) {
+  public ApplicationDto projectId(Long projectId) {
     this.projectId = projectId;
     return this;
   }
@@ -66,7 +66,7 @@ public class ApplicantDto   {
     this.projectId = projectId;
   }
 
-  public ApplicantDto roleId(Long roleId) {
+  public ApplicationDto roleId(Long roleId) {
     this.roleId = roleId;
     return this;
   }
@@ -96,23 +96,23 @@ public class ApplicantDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ApplicantDto applicantDto = (ApplicantDto) o;
-    return Objects.equals(this.userId, applicantDto.userId) &&
-        Objects.equals(this.projectId, applicantDto.projectId) &&
-        Objects.equals(this.roleId, applicantDto.roleId);
+    ApplicationDto applicationDto = (ApplicationDto) o;
+    return Objects.equals(this.applicant, applicationDto.applicant) &&
+        Objects.equals(this.projectId, applicationDto.projectId) &&
+        Objects.equals(this.roleId, applicationDto.roleId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, projectId, roleId);
+    return Objects.hash(applicant, projectId, roleId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ApplicantDto {\n");
+    sb.append("class ApplicationDto {\n");
     
-    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    applicant: ").append(toIndentedString(applicant)).append("\n");
     sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    roleId: ").append(toIndentedString(roleId)).append("\n");
     sb.append("}");

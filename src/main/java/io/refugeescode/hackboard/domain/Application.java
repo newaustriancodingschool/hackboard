@@ -5,34 +5,20 @@ import org.checkerframework.checker.nullness.qual.EnsuresNonNull;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name = "application")
+@Entity
+@Table(name = "project_applications")
 public class Application {
 
-  //  @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-/*
     @ManyToOne
-    @JoinColumn(name = "user_id")
-*/
-    private User user_id;
+    private User applicant;
 
-
-/*
     @ManyToOne
-    @JoinColumn(name = "project_id")
-*/
-    private Project project_id;
+    private ProjectRole role;
 
-
-/*
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-*/
-    private ProjectRole role_id;
 
 
     public Long getId() {
@@ -43,20 +29,20 @@ public class Application {
         this.id = id;
     }
 
-    public User getUser_id() {
-        return user_id;
+
+    public User getApplicant() {
+        return applicant;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setApplicant(User applicant) {
+        this.applicant = applicant;
     }
 
-    public Project getProject_id() {
-        return project_id;
+    public ProjectRole getRole() {
+        return role;
     }
 
-    public void setProject_id(Project project_id) {
-        this.project_id = project_id;
+    public void setRole(ProjectRole role) {
+        this.role = role;
     }
-
 }
