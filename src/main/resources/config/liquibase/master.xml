@@ -103,4 +103,13 @@
     <include file="config/liquibase/changelog/application/xml/application.xml" relativeToChangelogFile="false"/>
 
 
+    <!--**********************delete Project role Table tags  Mohamed Dahman issue #86*****************************-->
+    <include file="config/liquibase/changelog/project_role/xml/project_role_relation_delete.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/project_role/xml/project_role_delete.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/project_role/xml/project_role_database2.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/project_role/xml/project_role_relation_database_seeding2.xml" relativeToChangelogFile="false"/>
+
+
+
+
 </databaseChangeLog>
