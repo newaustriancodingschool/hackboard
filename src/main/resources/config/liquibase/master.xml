@@ -91,9 +91,9 @@
 
 
     <!--***********************drop  Table Applicant Mohamed Dahman*****************************-->
-    <include file="config/liquibase/changelog/maintenance/applicant_drop.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/maintenance/PROJECT_APPLICANT_RELATION_drop.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/maintenance/applicant_drop.xml" relativeToChangelogFile="false"/>
     <!--***********************tag new  Table *****************************-->
     <include file="config/liquibase/changelog/maintenance/tag_database_new_seeding.xml"
              relativeToChangelogFile="false"/>
