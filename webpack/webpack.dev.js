@@ -24,7 +24,8 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
           '/h2-console',
           '/auth',
           '/projects',
-          '/projectRole'
+          '/projectRole',
+          '/application'
         ],
         target: 'http://127.0.0.1:8080',
         secure: false

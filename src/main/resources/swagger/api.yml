@@ -124,6 +124,68 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/ProjectRoleDto"
+  /application:
+    post:
+      tags:
+      - "application"
+      summary: "Add a new application"
+      operationId: "addapplication"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "application"
+        required: true
+        schema:
+          $ref: "#/definitions/ApplicationDto"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "boolean"
+
+  /application/{projectId}:
+      get:
+        tags:
+        - "application"
+        summary: "View Application"
+        operationId: "viewApplication"
+        produces:
+        - "application/json"
+        parameters:
+        - name: "projectId"
+          in: "path"
+          description: "ID of project"
+          required: true
+          type: "integer"
+          format: "int64"
+        responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/ApplicationDto"
+      delete:
+        tags:
+        - "application"
+        summary: "Delete all Application"
+        operationId: "deleteAllApplication"
+        produces:
+        - "application/json"
+        parameters:
+        - name: "projectId"
+          in: "path"
+          description: "ID of project"
+          required: true
+          type: "integer"
+          format: "int64"
+        responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "boolean"
+
   /tags:
       get:
         tags:

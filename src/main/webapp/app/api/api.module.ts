@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './configuration';
 
+import { ApplicationService } from './api/application.service';
 import { ProjectService } from './api/project.service';
 import { ProjectRoleService } from './api/projectRole.service';
 import { TagService } from './api/tag.service';
@@ -12,6 +13,7 @@ import { TagService } from './api/tag.service';
   declarations: [],
   exports:      [],
   providers: [
+    ApplicationService,
     ProjectService,
     ProjectRoleService,
     TagService ]
