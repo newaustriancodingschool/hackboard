@@ -33,7 +33,7 @@
             <tr *ngFor = "let role of projectRoles">
                 <td>{{role.roleName}}</td>
                 <td>{{role.count}}</td>
-                <td><button (click)="deleteRole(role.roleName)">-</button></td>
+                <td ><button class="ff" (click)="deleteRole(role.roleName)">-</button></td>
             </tr>
         </table>
     </div>

@@ -62,7 +62,7 @@
   border-radius: 50%;
   position: relative;
   display: inline-block;
-  background-color: rgba(211, 211, 211, 0.815);
+  background-color: rgba(211, 211, 211, 0.952);
   font-size: 20px;
   border-style: solid;
   margin-left: 10px;
@@ -139,5 +139,9 @@ p {
   font-weight: bold;
   box-shadow: 3px 3px 3px #f3af6cc4;
   margin-left: 25px;
-  font-size: 15px;
+  font-size: 14px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
