@@ -13,7 +13,9 @@
                 <li class="list-group-item"><a [routerLink]="['/project-view', project.id]" class="MyListFont">{{project.title}}</a>
                     <p> by {{project.ownerFirstName}} {{project.ownerLastName}}</p>
                     <div *ngFor="let role of project.projectRole">
+                            <div *ngFor="let counter of getFilledArray(role.count)">
                         <div class="float-left circle" [ngStyle]="{'border-color': role.color}">
+                        </div>
                             <span class="tooltiptext">{{role.roleName}}</span>
                         </div>
                     </div>

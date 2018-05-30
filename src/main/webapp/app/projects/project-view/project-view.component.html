@@ -25,7 +25,7 @@
 <div>
 
 </div>
-<a class="lightBlue font-weight-bold" href={{project.github}} target="_blank">Check out this project on GitHub<i class="fa fa-github "></i></a>
+<a class="lightBlue font-weight-bold" href={{project.github}} target="_blank">Check out this project on GitHub</a>
 </br>
 </br>
 <label class="lightBlue font-weight-bold">Looking for these people:</label>
@@ -33,7 +33,7 @@
     <div class="row">
         <div class="col-xs-6 col-md-4">
             <div *ngFor="let counter of getFilledArray(role.count)">
-                <div class="circle fixed-bottom" [ngStyle]="{'border-color': role.color}"></div>
+                <div class="circle float-left" [ngStyle]="{'border-color': role.color}"></div>
             </div>
         </div>
         <div class="col-xs-6 col-md-4">{{role.roleName}}</div>
