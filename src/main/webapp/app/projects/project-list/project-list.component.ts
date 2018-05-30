@@ -13,4 +13,7 @@ export class ProjectListComponent implements OnInit {
   ngOnInit() {
     this.projectService.listProjects().subscribe(projects => (this.projects = projects));
   }
+  getFilledArray(count) {
+    return Array(count).fill(true);
+  }
 }

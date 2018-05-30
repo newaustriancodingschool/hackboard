@@ -3,7 +3,7 @@ package io.refugeescode.hackboard.service.dto;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.refugeescode.hackboard.service.dto.ApplicantDto;
+import io.refugeescode.hackboard.service.dto.ApplicationDto;
 import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -48,9 +48,9 @@ public class ProjectDto   {
   @Valid
   private List<ProjectRoleDto> projectRole = null;
 
-  @JsonProperty("ApplicantDto")
+  @JsonProperty("ApplicationDto")
   @Valid
-  private List<ApplicantDto> applicantDto = null;
+  private List<ApplicationDto> applicationDto = null;
 
   public ProjectDto id(Long id) {
     this.id = id;
@@ -251,33 +251,33 @@ public class ProjectDto   {
     this.projectRole = projectRole;
   }
 
-  public ProjectDto applicantDto(List<ApplicantDto> applicantDto) {
-    this.applicantDto = applicantDto;
+  public ProjectDto applicationDto(List<ApplicationDto> applicationDto) {
+    this.applicationDto = applicationDto;
     return this;
   }
 
-  public ProjectDto addApplicantDtoItem(ApplicantDto applicantDtoItem) {
-    if (this.applicantDto == null) {
-      this.applicantDto = new ArrayList<>();
+  public ProjectDto addApplicationDtoItem(ApplicationDto applicationDtoItem) {
+    if (this.applicationDto == null) {
+      this.applicationDto = new ArrayList<>();
     }
-    this.applicantDto.add(applicantDtoItem);
+    this.applicationDto.add(applicationDtoItem);
     return this;
   }
 
   /**
-   * Get applicantDto
-   * @return applicantDto
+   * Get applicationDto
+   * @return applicationDto
   **/
   @ApiModelProperty(value = "")
 
   @Valid
 
-  public List<ApplicantDto> getApplicantDto() {
-    return applicantDto;
+  public List<ApplicationDto> getApplicationDto() {
+    return applicationDto;
   }
 
-  public void setApplicantDto(List<ApplicantDto> applicantDto) {
-    this.applicantDto = applicantDto;
+  public void setApplicationDto(List<ApplicationDto> applicationDto) {
+    this.applicationDto = applicationDto;
   }
 
 
@@ -299,12 +299,12 @@ public class ProjectDto   {
         Objects.equals(this.github, projectDto.github) &&
         Objects.equals(this.projectStory, projectDto.projectStory) &&
         Objects.equals(this.projectRole, projectDto.projectRole) &&
-        Objects.equals(this.applicantDto, projectDto.applicantDto);
+        Objects.equals(this.applicationDto, projectDto.applicationDto);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, github, projectStory, projectRole, applicantDto);
+    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, github, projectStory, projectRole, applicationDto);
   }
 
   @Override
@@ -321,7 +321,7 @@ public class ProjectDto   {
     sb.append("    github: ").append(toIndentedString(github)).append("\n");
     sb.append("    projectStory: ").append(toIndentedString(projectStory)).append("\n");
     sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
-    sb.append("    applicantDto: ").append(toIndentedString(applicantDto)).append("\n");
+    sb.append("    applicationDto: ").append(toIndentedString(applicationDto)).append("\n");
     sb.append("}");
     return sb.toString();
   }

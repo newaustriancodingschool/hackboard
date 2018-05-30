@@ -1,39 +1,46 @@
 <div>
     <div class = "float-left">
-            <h2 class="orange text-capitalize">View your project info.</h2>
+        <h2 class="orange text-capitalize">View your project info.</h2>
     </div>
-    
+
     <div class="float-right">
-            <a class="btn btn-defult MyBtn MyShadow btn pull-right" [routerLink]="['/project-edit', data.id]">Edit</a>
-            <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="delete()">Delete!</button>        
-    </div>        
-</div></br></br>
+        <a class="btn btn-defult MyBtn MyShadow btn pull-right" [routerLink]="['/project-edit', project.id]">Edit</a>
+        <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="delete()">Delete!</button>
+    </div>
+</div>
+</br>
+</br>
 <div>
     <label class="lightBlue font-weight-bold" >Owner Name:</label>
-    <label name="owner" id="owner">{{data.ownerFirstName}} {{data.ownerLastName}}</label>
+    <label name="owner" id="owner">{{project.ownerFirstName}} {{project.ownerLastName}}</label>
 </div>
 <div>
     <label class="lightBlue font-weight-bold">Title:</label>
-    <label name="title" id="title">{{data.title}}</label>
+    <label name="title" id="title">{{project.title}}</label>
 </div>
 <div class="form-group ">
     <label  class="lightBlue font-weight-bold" for="comment">Description:</label>
-    <p id="comment" name="description" id="comment">{{data.description}}</p>
-</div>    
-<a class="lightBlue font-weight-bold" href={{data.github}} target="_blank">Check out this project on GitHub<i class="fa fa-github "></i></a></br></br>
-<label class="lightBlue font-weight-bold" for="role">Looking for these people:</label>   
-<div *ngFor="let role of roles">
+    <p id="comment" name="description" id="comment">{{project.description}}</p>
+</div>
+<div>
+
+</div>
+<a class="lightBlue font-weight-bold" href={{project.github}} target="_blank">Check out this project on GitHub</a>
+</br>
+</br>
+<label class="lightBlue font-weight-bold">Looking for these people:</label>
+<div *ngFor="let role of project.projectRole">
     <div class="row">
-        <div class="col-xs-6 col-md-4">                        
-            <div ng-repeat="n in [] | range:role.count">
-                <div class="circle fixed-bottom" [ngStyle]="{'border-color': role.color}"></div>
-            </div>                        
-        </div>           
+        <div class="col-xs-6 col-md-4">
+            <div *ngFor="let counter of getFilledArray(role.count)">
+                <div class="circle float-left" [ngStyle]="{'border-color': role.color}"></div>
+            </div>
+        </div>
         <div class="col-xs-6 col-md-4">{{role.roleName}}</div>
-        <div class="clearfix visible-xs-block"></div> 
+        <div class="clearfix visible-xs-block"></div>
         <div class="col-xs-6 col-md-4">
             <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="delete()">Apply!</button>
-        </div> 
-    </div> 
+        </div>
+    </div>
 </div>
 

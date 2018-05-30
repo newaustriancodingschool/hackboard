@@ -1,0 +1,10 @@
+id;role_name;color
+1;Designer;#0A1A83
+2;Frontend developer Senior;#9E0A00
+3;Frontend developer Junior;#F20000
+4;Backend developer Senior;#055E1E
+5;Backend developer Junior;#00D93D
+6;Lead Developer;#FF8021
+7;DevOps;#908712
+8;Tester;#650D6B
+9;Other;#FEFF19

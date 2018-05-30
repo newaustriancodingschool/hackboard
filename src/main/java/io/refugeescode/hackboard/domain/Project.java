@@ -63,8 +63,6 @@ public class Project implements Serializable {
     private List<String> project_story = new ArrayList<>();
 
 
-
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "project_tag_relation",
@@ -72,20 +70,21 @@ public class Project implements Serializable {
         inverseJoinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "id")})
     private Set<Tag> tags;
 
-    public Set<Applicant> getApplicants() {
-        return applicants;
+
+    @ManyToMany
+    private List<Application> applications =  new ArrayList<>();
+
+    public List<Application> getApplications() {
+        return applications;
     }
 
-    public void setApplicants(Set<Applicant> applicants) {
-        this.applicants = applicants;
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "project_applicant_relation",
-        joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
-        inverseJoinColumns = {@JoinColumn(name = "applicant_id", referencedColumnName = "id")})
-    private Set<Applicant> applicants;
+
+
+
 
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
