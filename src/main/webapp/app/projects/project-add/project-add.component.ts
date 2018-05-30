@@ -30,14 +30,20 @@ export class ProjectAddComponent implements OnInit {
     this.projectService.addProject(this.data).subscribe(() => this.router.navigate(['/projects']));
   }
 
-  addRole(roleValue, countValue: number) {
-    const newRoleData = { roleName: '', color: '', count: 0 };
+  addRole(roleValue) {
+    const newRoleData = { roleName: '', color: '', count: 1 };
     newRoleData.roleName = roleValue;
-    newRoleData.count = countValue;
+    let tmpcolor = '';
+    for (let i = 0; i < this.roles.length; i++) {
+      if (this.roles[i].roleName === roleValue) {
+        tmpcolor = this.roles[i].color;
+      }
+    }
+    newRoleData.color = tmpcolor;
     let roleFound = false;
     for (let i = 0; i < this.projectRoles.length; i++) {
       if (roleValue === this.projectRoles[i].roleName) {
-        this.projectRoles[i].count = Number(this.projectRoles[i].count) + Number(countValue);
+        this.projectRoles[i].count++;
         roleFound = true;
       }
     }
@@ -49,8 +55,16 @@ export class ProjectAddComponent implements OnInit {
   deleteRole(role) {
     for (let i = 0; i < this.projectRoles.length; i++) {
       if (role === this.projectRoles[i].roleName) {
-        this.projectRoles.splice(i, 1);
+        if (this.projectRoles[i].count === 1) {
+          this.projectRoles.splice(i, 1);
+        } else {
+          this.projectRoles[i].count--;
+        }
       }
     }
+  }
+
+  getFilledArray(count) {
+    return Array(count).fill(true);
   }
 }

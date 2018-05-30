@@ -19,16 +19,14 @@
         <label class="lightBlue font-weight-bold" for="github">GitHub Link:</label>
         <input type="text" class="form-control" [(ngModel)]="data.github" name="github" id="github">
     </div>
-    <form (ngSubmit)="addRole(dropRoles.value, count.value)">
+    <form (ngSubmit)="addRole(dropRoles.value)">
         <label class="lightBlue font-weight-bold">Roles:</label>
         <select #dropRoles>
-            <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color':role.color}">{{role.roleName}}</option>
+            <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color': role.color}">{{role.roleName}}</option>
         </select>
-        <input  type="number" value=1  #count >
         <button class="ff">+</button>
     </form>
-
-    <div>
+    <!-- <div>
         <table>
             <tr *ngFor = "let role of projectRoles">
                 <td>{{role.roleName}}</td>
@@ -36,6 +34,18 @@
                 <td><button (click)="deleteRole(role.roleName)">-</button></td>
             </tr>
         </table>
-    </div>
+    </div> -->
     <br>
+    <label class="lightBlue font-weight-bold">Looking for these people:</label>
+    <div *ngFor="let role of projectRoles">
+        <div class="row">
+            <div class="col-xs-8 col-md-4">
+                <div *ngFor="let counter of getFilledArray(role.count)">
+                    <div class="circle float-left" [ngStyle]="{'border-color': role.color}"></div>
+                </div>
+            </div>
+            <button class="ff" (click)="deleteRole(role.roleName)">-</button>
+            <div class="lightBlue font-weight-bold">{{role.roleName}}</div>
+        </div>
+    </div>
 </form>
