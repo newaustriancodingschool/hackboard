@@ -1,6 +1,5 @@
 import { ApplicationDto } from './../../api/model/applicationDto';
 import { ApplicationService } from './../../api/api/application.service';
-import { ApplicantService } from './../../api/api/applicant.service';
 import { Component, OnInit } from '@angular/core';
 import { ProjectDto, ProjectService } from '../../api';
 import { ActivatedRoute, Router } from '@angular/router';
