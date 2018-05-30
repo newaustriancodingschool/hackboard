@@ -4,6 +4,7 @@ import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.domain.ProjectRole;
 import io.refugeescode.hackboard.repository.ProjectRoleRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
+import io.refugeescode.hackboard.service.dto.ApplicationDto;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
 import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,8 @@ public class ProjectMappers {
             List<ProjectRoleDto> collect = project.getProjectRoles().stream()
                 .map(e -> convertToProjectDTORoles(e)).collect(Collectors.toList());
 
+            //project.getApplications().stream().
+
             boolean found= false;
             Integer itemIndex = 0;
             List<ProjectRoleDto> dtoRolesSet = new ArrayList<>();
@@ -66,9 +69,11 @@ public class ProjectMappers {
                     projectDtoRoles.setCount(1L);
                     dtoRolesSet.add(projectDtoRoles);
                 }
-                ;
+
             }
             projectDto.setProjectRole(dtoRolesSet);
+
+
             return projectDto;
         }
     }

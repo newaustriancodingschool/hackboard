@@ -24,6 +24,10 @@
         <select #dropRoles>
             <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color': role.color}">{{role.roleName}}</option>
         </select>
+<<<<<<< HEAD
+=======
+        <input  type="number" value=1  #count ></input>
+>>>>>>> b268d01ff352ba5738d465674cf2352243bfd50d
         <button class="ff">+</button>
     </form>
     <!-- <div>
@@ -31,7 +35,7 @@
             <tr *ngFor = "let role of projectRoles">
                 <td>{{role.roleName}}</td>
                 <td>{{role.count}}</td>
-                <td><button (click)="deleteRole(role.roleName)">-</button></td>
+                <td ><button class="ff" (click)="deleteRole(role.roleName)">-</button></td>
             </tr>
         </table>
     </div> -->
