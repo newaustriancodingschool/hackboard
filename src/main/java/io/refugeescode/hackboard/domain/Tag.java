@@ -1,10 +1,12 @@
 package io.refugeescode.hackboard.domain;
 
+import lombok.Data;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "tag")
 public class Tag {
     @Id

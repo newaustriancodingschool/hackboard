@@ -31,8 +31,9 @@ export class ProjectViewComponent implements OnInit {
       .deleteProject(this.project.id)
       .subscribe(() => this.router.navigate(['/projects']));
   }
-  apply() {
-    this.applicant.projectId = 5;
+  apply(rolename) {
+    this.applicant.projectId = this.project.id;
+    console.log(this.applicant.projectId);
     this.applicant.roleId = 4;
     this.applicant.applicant = 3;
     this.applicationService

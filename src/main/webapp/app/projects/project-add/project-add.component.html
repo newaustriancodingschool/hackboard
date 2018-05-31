@@ -4,7 +4,7 @@
     </div>
     <div class="float-right">
         <button class="btn btn-defult MyBtn MyShadow">Add</button>
-    </div>   
+    </div>
 </div></br></br>
 <form (ngSubmit)="submit()">
     <div class="form-group">
@@ -24,10 +24,7 @@
         <select #dropRoles>
             <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color': role.color}">{{role.roleName}}</option>
         </select>
-<<<<<<< HEAD
-=======
-        <input  type="number" value=1  #count ></input>
->>>>>>> b268d01ff352ba5738d465674cf2352243bfd50d
+
         <button class="ff">+</button>
     </form>
     <!-- <div>

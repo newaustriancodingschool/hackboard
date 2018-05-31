@@ -8,6 +8,7 @@ import io.refugeescode.hackboard.repository.ProjectRepository;
 import io.refugeescode.hackboard.repository.ProjectRoleRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
+import io.refugeescode.hackboard.security.SecurityUtils;
 import io.refugeescode.hackboard.service.dto.ApplicationDto;
 import io.refugeescode.hackboard.service.mapper.ApplicationMapper;
 import io.refugeescode.hackboard.web.api.controller.ApplicationApi;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -44,13 +46,27 @@ public class ApplicationController implements ApplicationApi{
     @Override
     public ResponseEntity<Boolean> addapplication(@RequestBody ApplicationDto applicationDto) {
 
+        System.out.println("******************************************");
+        System.out.println("******************************************");
+        System.out.println(applicationDto.getApplicant());
+
+        System.out.println("******************************************");
+        System.out.println("******************************************");
+
+
         Long projectId = applicationDto.getProjectId();
         Project currentProject = projectRepository.findOne(projectId);
 
         Application application = new Application();
-        Long applicant = applicationDto.getApplicant();
-        User applicatUser = userRepository.findOne(applicant);
-        application.setApplicant(applicatUser);
+
+        if (SecurityUtils.getCurrentUserLogin().isPresent()) {
+            String userlogin = SecurityUtils.getCurrentUserLogin().get();
+            Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
+            if (oneByLogin.isPresent()) {
+                application.setApplicant(oneByLogin.get());
+            }
+        }
+
 
         ProjectRole currentRole = projectRoleRepository.findOne(applicationDto.getRoleId());
         application.setRole(currentRole);

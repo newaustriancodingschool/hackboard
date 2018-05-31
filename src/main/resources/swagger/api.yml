@@ -305,6 +305,9 @@ definitions:
             - "roleName"
             - "color"
           properties:
+            id:
+              type: "integer"
+              format: "int64"
             roleName:
               type: "string"
             color:

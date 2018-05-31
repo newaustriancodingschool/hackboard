@@ -15,6 +15,9 @@ import javax.validation.constraints.*;
 @Validated
 
 public class ProjectRoleDto   {
+  @JsonProperty("id")
+  private Long id = null;
+
   @JsonProperty("roleName")
   private String roleName = null;
 
@@ -23,6 +26,26 @@ public class ProjectRoleDto   {
 
   @JsonProperty("count")
   private Long count = null;
+
+  public ProjectRoleDto id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public ProjectRoleDto roleName(String roleName) {
     this.roleName = roleName;
@@ -96,14 +119,15 @@ public class ProjectRoleDto   {
       return false;
     }
     ProjectRoleDto projectRoleDto = (ProjectRoleDto) o;
-    return Objects.equals(this.roleName, projectRoleDto.roleName) &&
+    return Objects.equals(this.id, projectRoleDto.id) &&
+        Objects.equals(this.roleName, projectRoleDto.roleName) &&
         Objects.equals(this.color, projectRoleDto.color) &&
         Objects.equals(this.count, projectRoleDto.count);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(roleName, color, count);
+    return Objects.hash(id, roleName, color, count);
   }
 
   @Override
@@ -111,6 +135,7 @@ public class ProjectRoleDto   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectRoleDto {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    roleName: ").append(toIndentedString(roleName)).append("\n");
     sb.append("    color: ").append(toIndentedString(color)).append("\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
