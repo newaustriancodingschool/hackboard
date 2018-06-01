@@ -34,12 +34,15 @@
         <div class="col-xs-6 col-md-4">
             <div *ngFor="let counter of getFilledArray(role.count)">
                 <div class="circle float-left" [ngStyle]="{'border-color': role.color}"></div>
-        </div>
+            </div>
         <div class="col-xs-6 col-md-4">{{role.roleName}}</div>
         <div class="clearfix visible-xs-block"></div>
         <div class="col-xs-6 col-md-4">
 
-            <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="apply(role.id)">Apply !</button>
+          <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="apply(role.id)">Apply !</button>
+<!--
+            <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="anapply(role.id)">anApply!</button>
+            -->
         </div>
     </div>
 </div>

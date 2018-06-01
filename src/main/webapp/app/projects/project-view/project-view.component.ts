@@ -49,12 +49,20 @@ export class ProjectViewComponent implements OnInit {
   apply(roleid) {
     this.applicant.projectId = this.project.id;
     this.applicant.roleId = roleid;
-    console.log(this.applicant.projectId);
 
     this.applicationService
       .addapplication(this.applicant)
       .subscribe(() => this.router.navigate(['/projects']));
   }
+  anapply(roleid) {
+    this.applicant.projectId = this.project.id;
+    this.applicant.roleId = roleid;
+
+    this.applicationService
+      .addapplication(this.applicant)
+      .subscribe(() => this.router.navigate(['/projects']));
+  }
+
   copyAccount(account) {
     return {
       activated: account.activated,

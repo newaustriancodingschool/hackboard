@@ -69,6 +69,29 @@ public interface ApplicationApi {
     }
 
 
+    @ApiOperation(value = "Delete an application", nickname = "delapplication", notes = "", response = Boolean.class, tags={ "application", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
+    @RequestMapping(value = "/application",
+        produces = { "application/json" }, 
+        method = RequestMethod.DELETE)
+    default ResponseEntity<Boolean> delapplication(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ApplicationDto application) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
+            if (getAcceptHeader().get().contains("application/json")) {
+                try {
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("true", Boolean.class), HttpStatus.NOT_IMPLEMENTED);
+                } catch (IOException e) {
+                    log.error("Couldn't serialize response for content type application/json", e);
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            }
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default ApplicationApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+
     @ApiOperation(value = "Delete all Application", nickname = "deleteAllApplication", notes = "", response = Boolean.class, tags={ "application", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })

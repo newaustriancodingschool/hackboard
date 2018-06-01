@@ -38,9 +38,6 @@ public class ApplicationMapper {
             applicationDto.setApplicantFullName(applicant.getFirstName()+" "+applicant.getLastName());
             applicationDto.setUserGithub(applicant.getGithub());
 
-
-
-
             return applicationDto;
         }
     }

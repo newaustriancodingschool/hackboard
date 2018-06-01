@@ -143,7 +143,24 @@ paths:
           description: "successful operation"
           schema:
             type: "boolean"
-
+    delete:
+      tags:
+      - "application"
+      summary: "Delete an application"
+      operationId: "delapplication"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "application"
+        required: true
+        schema:
+          $ref: "#/definitions/ApplicationDto"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "boolean"
   /application/{projectId}:
       get:
         tags:

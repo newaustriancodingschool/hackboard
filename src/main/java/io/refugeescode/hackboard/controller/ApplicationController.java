@@ -18,16 +18,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.swing.plaf.synth.SynthRootPaneUI;
-import javax.xml.bind.SchemaOutputResolver;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-public class ApplicationController implements ApplicationApi{
+public class ApplicationController implements ApplicationApi {
 
     private ProjectRepository projectRepository;
     private UserRepository userRepository;
@@ -38,8 +34,7 @@ public class ApplicationController implements ApplicationApi{
     private ApplicationMapper applicationMapper;
 
 
-
-    public ApplicationController(ProjectRepository projectRepository, UserRepository userRepository ,ProjectRoleRepository projectRoleRepository,ApplicationRepository applicationRepository ) {
+    public ApplicationController(ProjectRepository projectRepository, UserRepository userRepository, ProjectRoleRepository projectRoleRepository, ApplicationRepository applicationRepository) {
         this.projectRepository = projectRepository;
         this.userRepository = userRepository;
         this.projectRoleRepository = projectRoleRepository;
@@ -71,7 +66,28 @@ public class ApplicationController implements ApplicationApi{
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<Boolean> delapplication(ApplicationDto application) {
 
+        User user= new User();
+        if (SecurityUtils.getCurrentUserLogin().isPresent()) {
+            String userlogin = SecurityUtils.getCurrentUserLogin().get();
+            Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
+            if (oneByLogin.isPresent()) {
+                user = oneByLogin.get();
+            }
+        }
+        final User user1 = user;
+            List<Application> applicationList = applicationRepository.findAll()
+            .stream()
+            .filter(e -> e.getProject().equals(application.getProjectId()))
+            .filter(e -> e.getApplicant().getId().equals(user1.getId()))
+            .filter(e -> e.getRole().getId().equals(application.getRoleId()))
+            .collect(Collectors.toList());
+        applicationList.stream().forEach(e->applicationRepository.delete(e));
+
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
 
 
 }

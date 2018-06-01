@@ -102,6 +102,50 @@ export class ApplicationService {
     }
 
     /**
+     * Delete an application
+     * 
+     * @param application 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public delapplication(application: ApplicationDto, observe?: 'body', reportProgress?: boolean): Observable<boolean>;
+    public delapplication(application: ApplicationDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<boolean>>;
+    public delapplication(application: ApplicationDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<boolean>>;
+    public delapplication(application: ApplicationDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (application === null || application === undefined) {
+            throw new Error('Required parameter application was null or undefined when calling delapplication.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.delete<boolean>(`${this.basePath}/application`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Delete all Application
      * 
      * @param projectId ID of project
