@@ -37,6 +37,9 @@ public class ProjectDto   {
   @JsonProperty("ownerLastName")
   private String ownerLastName = null;
 
+  @JsonProperty("ownerLoginName")
+  private String ownerLoginName = null;
+
   @JsonProperty("github")
   private String github = null;
 
@@ -174,6 +177,26 @@ public class ProjectDto   {
     this.ownerLastName = ownerLastName;
   }
 
+  public ProjectDto ownerLoginName(String ownerLoginName) {
+    this.ownerLoginName = ownerLoginName;
+    return this;
+  }
+
+  /**
+   * Get ownerLoginName
+   * @return ownerLoginName
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getOwnerLoginName() {
+    return ownerLoginName;
+  }
+
+  public void setOwnerLoginName(String ownerLoginName) {
+    this.ownerLoginName = ownerLoginName;
+  }
+
   public ProjectDto github(String github) {
     this.github = github;
     return this;
@@ -296,6 +319,7 @@ public class ProjectDto   {
         Objects.equals(this.ownerId, projectDto.ownerId) &&
         Objects.equals(this.ownerFirstName, projectDto.ownerFirstName) &&
         Objects.equals(this.ownerLastName, projectDto.ownerLastName) &&
+        Objects.equals(this.ownerLoginName, projectDto.ownerLoginName) &&
         Objects.equals(this.github, projectDto.github) &&
         Objects.equals(this.projectStory, projectDto.projectStory) &&
         Objects.equals(this.projectRole, projectDto.projectRole) &&
@@ -304,7 +328,7 @@ public class ProjectDto   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, github, projectStory, projectRole, applicationDto);
+    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, ownerLoginName, github, projectStory, projectRole, applicationDto);
   }
 
   @Override
@@ -318,6 +342,7 @@ public class ProjectDto   {
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    ownerFirstName: ").append(toIndentedString(ownerFirstName)).append("\n");
     sb.append("    ownerLastName: ").append(toIndentedString(ownerLastName)).append("\n");
+    sb.append("    ownerLoginName: ").append(toIndentedString(ownerLoginName)).append("\n");
     sb.append("    github: ").append(toIndentedString(github)).append("\n");
     sb.append("    projectStory: ").append(toIndentedString(projectStory)).append("\n");
     sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");

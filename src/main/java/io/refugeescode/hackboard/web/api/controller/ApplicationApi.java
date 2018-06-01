@@ -102,7 +102,7 @@ public interface ApplicationApi {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"project_id\" : 2,  \"role_id\" : 7,  \"applicant\" : 5}, {  \"project_id\" : 2,  \"role_id\" : 7,  \"applicant\" : 5} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"roleId\" : 7,  \"roleColor\" : \"roleColor\",  \"applicantFullName\" : \"applicantFullName\",  \"roleName\" : \"roleName\",  \"projectId\" : 2,  \"applicant\" : 5,  \"userGithub\" : \"userGithub\"}, {  \"roleId\" : 7,  \"roleColor\" : \"roleColor\",  \"applicantFullName\" : \"applicantFullName\",  \"roleName\" : \"roleName\",  \"projectId\" : 2,  \"applicant\" : 5,  \"userGithub\" : \"userGithub\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

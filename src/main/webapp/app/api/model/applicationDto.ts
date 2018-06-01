@@ -15,4 +15,8 @@ export interface ApplicationDto {
     applicant: number;
     projectId: number;
     roleId: number;
+    applicantFullName?: string;
+    roleName?: string;
+    roleColor?: string;
+    userGithub?: string;
 }

@@ -100,8 +100,12 @@
 
 
     <!--***********************Application Table tags  Mohamed Dahman issue #86*****************************-->
-    <include file="config/liquibase/changelog/application/xml/application.xml" relativeToChangelogFile="false"/>
+  <!--  <include file="config/liquibase/changelog/application/xml/application.xml" relativeToChangelogFile="false"/>
 
+    <include file="config/liquibase/changelog/application/xml/drop_Application.xml" relativeToChangelogFile="false"/>
+-->
+
+    <include file="config/liquibase/changelog/application/xml/application1.xml" relativeToChangelogFile="false"/>
 
     <!--**********************delete Project role Table tags  Mohamed Dahman issue #86*****************************-->
     <include file="config/liquibase/changelog/project_role/xml/project_role_relation_delete.xml" relativeToChangelogFile="false"/>

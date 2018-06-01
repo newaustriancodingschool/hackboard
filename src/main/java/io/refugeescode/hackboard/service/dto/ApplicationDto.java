@@ -18,11 +18,23 @@ public class ApplicationDto   {
   @JsonProperty("applicant")
   private Long applicant = null;
 
-  @JsonProperty("project_id")
+  @JsonProperty("projectId")
   private Long projectId = null;
 
-  @JsonProperty("role_id")
+  @JsonProperty("roleId")
   private Long roleId = null;
+
+  @JsonProperty("applicantFullName")
+  private String applicantFullName = null;
+
+  @JsonProperty("roleName")
+  private String roleName = null;
+
+  @JsonProperty("roleColor")
+  private String roleColor = null;
+
+  @JsonProperty("userGithub")
+  private String userGithub = null;
 
   public ApplicationDto applicant(Long applicant) {
     this.applicant = applicant;
@@ -87,6 +99,86 @@ public class ApplicationDto   {
     this.roleId = roleId;
   }
 
+  public ApplicationDto applicantFullName(String applicantFullName) {
+    this.applicantFullName = applicantFullName;
+    return this;
+  }
+
+  /**
+   * Get applicantFullName
+   * @return applicantFullName
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getApplicantFullName() {
+    return applicantFullName;
+  }
+
+  public void setApplicantFullName(String applicantFullName) {
+    this.applicantFullName = applicantFullName;
+  }
+
+  public ApplicationDto roleName(String roleName) {
+    this.roleName = roleName;
+    return this;
+  }
+
+  /**
+   * Get roleName
+   * @return roleName
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getRoleName() {
+    return roleName;
+  }
+
+  public void setRoleName(String roleName) {
+    this.roleName = roleName;
+  }
+
+  public ApplicationDto roleColor(String roleColor) {
+    this.roleColor = roleColor;
+    return this;
+  }
+
+  /**
+   * Get roleColor
+   * @return roleColor
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getRoleColor() {
+    return roleColor;
+  }
+
+  public void setRoleColor(String roleColor) {
+    this.roleColor = roleColor;
+  }
+
+  public ApplicationDto userGithub(String userGithub) {
+    this.userGithub = userGithub;
+    return this;
+  }
+
+  /**
+   * Get userGithub
+   * @return userGithub
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getUserGithub() {
+    return userGithub;
+  }
+
+  public void setUserGithub(String userGithub) {
+    this.userGithub = userGithub;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -99,12 +191,16 @@ public class ApplicationDto   {
     ApplicationDto applicationDto = (ApplicationDto) o;
     return Objects.equals(this.applicant, applicationDto.applicant) &&
         Objects.equals(this.projectId, applicationDto.projectId) &&
-        Objects.equals(this.roleId, applicationDto.roleId);
+        Objects.equals(this.roleId, applicationDto.roleId) &&
+        Objects.equals(this.applicantFullName, applicationDto.applicantFullName) &&
+        Objects.equals(this.roleName, applicationDto.roleName) &&
+        Objects.equals(this.roleColor, applicationDto.roleColor) &&
+        Objects.equals(this.userGithub, applicationDto.userGithub);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(applicant, projectId, roleId);
+    return Objects.hash(applicant, projectId, roleId, applicantFullName, roleName, roleColor, userGithub);
   }
 
   @Override
@@ -115,6 +211,10 @@ public class ApplicationDto   {
     sb.append("    applicant: ").append(toIndentedString(applicant)).append("\n");
     sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    roleId: ").append(toIndentedString(roleId)).append("\n");
+    sb.append("    applicantFullName: ").append(toIndentedString(applicantFullName)).append("\n");
+    sb.append("    roleName: ").append(toIndentedString(roleName)).append("\n");
+    sb.append("    roleColor: ").append(toIndentedString(roleColor)).append("\n");
+    sb.append("    userGithub: ").append(toIndentedString(userGithub)).append("\n");
     sb.append("}");
     return sb.toString();
   }

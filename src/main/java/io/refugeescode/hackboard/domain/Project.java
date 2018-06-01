@@ -71,7 +71,9 @@ public class Project implements Serializable {
     private Set<Tag> tags;
 
 
-    @ManyToMany
+/*
+
+    @ManyToOne
     private List<Application> applications =  new ArrayList<>();
 
     public List<Application> getApplications() {
@@ -81,7 +83,7 @@ public class Project implements Serializable {
     public void setApplications(List<Application> applications) {
         this.applications = applications;
     }
-
+*/
 
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

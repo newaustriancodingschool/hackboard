@@ -4,6 +4,8 @@ package io.refugeescode.hackboard.domain;
 import org.checkerframework.checker.nullness.qual.EnsuresNonNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "project_applications")
@@ -13,12 +15,14 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private User applicant;
+    @OneToOne
+    private User applicant ;
 
-    @ManyToOne
-    private ProjectRole role;
+    @OneToOne
+    private ProjectRole role ;
 
+    @OneToOne
+    private Project project;
 
 
     public Long getId() {
@@ -29,7 +33,6 @@ public class Application {
         this.id = id;
     }
 
-
     public User getApplicant() {
         return applicant;
     }
@@ -38,11 +41,20 @@ public class Application {
         this.applicant = applicant;
     }
 
+
     public ProjectRole getRole() {
         return role;
     }
 
     public void setRole(ProjectRole role) {
         this.role = role;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

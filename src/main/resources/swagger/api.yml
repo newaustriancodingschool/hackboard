@@ -284,6 +284,8 @@ definitions:
         type: "string"
       ownerLastName:
         type: "string"
+      ownerLoginName:
+        type: "string"
       github:
         type: "string"
       project_story:
@@ -327,15 +329,25 @@ definitions:
         type: "object"
         required:
           - "applicant"
-          - "project_id"
-          - "role_id"
+          - "projectId"
+          - "roleId"
         properties:
           applicant:
             type: "integer"
             format: "int64"
-          project_id:
+          projectId:
             type: "integer"
             format: "int64"
-          role_id:
+          roleId:
              type: "integer"
              format: "int64"
+          applicantFullName:
+             type: "string"
+          roleName:
+             type: "string"
+          roleColor:
+             type: "string"
+          userGithub:
+             type: "string"
+
+
