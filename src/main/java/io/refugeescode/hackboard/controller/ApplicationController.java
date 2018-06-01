@@ -50,7 +50,6 @@ public class ApplicationController implements ApplicationApi{
 
     @Override
     public ResponseEntity<Boolean> addapplication(@RequestBody ApplicationDto applicationDto) {
-
         Long projectId = applicationDto.getProjectId();
         Project currentProject = projectRepository.findOne(projectId);
         Application application = new Application();

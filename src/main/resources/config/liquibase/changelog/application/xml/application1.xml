@@ -14,7 +14,7 @@
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
     <changeSet id="20180428140611-5" author="jhipster">
-        <createTable tableName="project_applications">
+        <createTable tableName="project_application">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
