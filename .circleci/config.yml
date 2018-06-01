@@ -20,14 +20,14 @@ jobs: # a collection of steps
 
       - run: mvn dependency:go-offline # gets the project dependencies
 
+      - run:
+          name: Package
+          command: mvn -Pprod package # run the actual tests and package the jar file
+
       - save_cache: # saves the project dependencies
           paths:
             - ~/.m2
           key: $PROJECT_NAME-{{ checksum "pom.xml" }}
-
-      - run:
-          name: Package
-          command: mvn -Pprod package # run the actual tests and package the jar file
 
       - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
           path: target/surefire-reports
