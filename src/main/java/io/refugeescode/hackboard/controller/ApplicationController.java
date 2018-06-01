@@ -45,6 +45,9 @@ public class ApplicationController implements ApplicationApi {
 
     @Override
     public ResponseEntity<Boolean> addapplication(@RequestBody ApplicationDto applicationDto) {
+        System.out.println(applicationDto.getRoleId());
+        System.out.println(applicationDto.getProjectId());
+        System.out.println(applicationDto.getRoleId());
         Long projectId = applicationDto.getProjectId();
         Project currentProject = projectRepository.findOne(projectId);
         Application application = new Application();

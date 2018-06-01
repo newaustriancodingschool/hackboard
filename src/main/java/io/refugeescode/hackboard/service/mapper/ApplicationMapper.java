@@ -30,7 +30,7 @@ public class ApplicationMapper {
             applicationDto.setRoleId(application.getRole().getId());
             applicationDto.setProjectId(application.getId());
 
-            ProjectRole role = projectRoleRepository.findOne(application.getId());
+            ProjectRole role = projectRoleRepository.findOne(application.getRole().getId());
             applicationDto.setRoleName(role.getRoleName());
             applicationDto.setRoleColor(role.getColor());
 
