@@ -16,7 +16,7 @@ jobs: # a collection of steps
       - checkout # check out source code to wor"king directory
 
       - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
-          key: $PROJECT_NAME-{{ checksum "pom.xml" }}
+          key: hackboard-java-deps-{{ checksum "pom.xml" }}
 
       - run: mvn dependency:go-offline # gets the project dependencies
 
@@ -27,7 +27,7 @@ jobs: # a collection of steps
       - save_cache: # saves the project dependencies
           paths:
             - ~/.m2
-          key: $PROJECT_NAME-{{ checksum "pom.xml" }}
+          key: hackboard-java-deps-{{ checksum "pom.xml" }}
 
       - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
           path: target/surefire-reports
