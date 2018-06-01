@@ -2,9 +2,6 @@
     <div class = "float-left">
         <h2 class="orange text-capitalize">Add your project info.</h2>
     </div>
-    <div class="float-right">
-        <button class="btn btn-defult MyBtn MyShadow">Add</button>
-    </div>
 </div></br></br>
 <form (ngSubmit)="submit()">
     <div class="form-group">
@@ -24,29 +21,22 @@
         <select #dropRoles>
             <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color': role.color}">{{role.roleName}}</option>
         </select>
-
         <button class="ff">+</button>
     </form>
-    <!-- <div>
-        <table>
-            <tr *ngFor = "let role of projectRoles">
-                <td>{{role.roleName}}</td>
-                <td>{{role.count}}</td>
-                <td ><button class="ff" (click)="deleteRole(role.roleName)">-</button></td>
-            </tr>
-        </table>
-    </div> -->
-    <br>
-    <label class="lightBlue font-weight-bold">Looking for these people:</label>
-    <div *ngFor="let role of projectRoles">
-        <div class="row">
-            <div class="col-xs-8 col-md-4">
-                <div *ngFor="let counter of getFilledArray(role.count)">
-                    <div class="circle float-left" [ngStyle]="{'border-color': role.color}"></div>
-                </div>
-            </div>
-            <button class="ff" (click)="deleteRole(role.roleName)">-</button>
-            <div class="lightBlue font-weight-bold">{{role.roleName}}</div>
-        </div>
-    </div>
+    <div class="float-right">
+        <button class="btn btn-defult MyBtn MyShadow">Add</button>
+    </div></br>
 </form>
+<br>
+<label class="lightBlue font-weight-bold">Looking for these roles:</label>
+<div *ngFor="let role of projectRoles">
+    <div class="row">
+        <div class="col-xs-8 col-md-4">
+            <div *ngFor="let counter of getFilledArray(role.count)">
+                <div class="circle float-left" [ngStyle]="{'border-color': role.color}"></div>
+            </div>
+        </div>
+        <button class="ff" (click)="deleteRole(role.roleName)">-</button>
+        <div class="lightBlue font-weight-bold">{{role.roleName}}</div>
+    </div>
+</div>
