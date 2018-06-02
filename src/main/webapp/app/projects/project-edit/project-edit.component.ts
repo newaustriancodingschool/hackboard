@@ -9,7 +9,7 @@ import { ProjectRoleDto } from './../../api/model/projectRoleDto';
   styles: []
 })
 export class ProjectEditComponent implements OnInit {
-  data: ProjectDto = { id: 0, title: '', description: '', github: '' };
+  data: ProjectDto = { id: 0, title: '', description: '', github: '', projectRole: [] };
   roles: Array<ProjectRoleDto>;
   projectRoles: Array<ProjectRoleDto>;
 
@@ -26,6 +26,7 @@ export class ProjectEditComponent implements OnInit {
       this.data = project;
       this.projectRoles = [];
       this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
+      this.projectRoles = this.data.projectRole;
     });
   }
 
@@ -44,7 +45,7 @@ export class ProjectEditComponent implements OnInit {
     }
     newRoleData.color = tmpcolor;
     let roleFound = false;
-    for (let i = 0; i < this.projectRoles.length - 1; i++) {
+    for (let i = 0; i < this.projectRoles.length; i++) {
       if (roleValue === this.projectRoles[i].roleName) {
         this.projectRoles[i].count++;
         roleFound = true;

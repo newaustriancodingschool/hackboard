@@ -90,6 +90,8 @@ public class ProjectsController implements ProjectsApi {
                 entity.setOwner(oneByLogin.get());
             }
         }
+
+
         projectsRepository.save(entity);
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
@@ -101,7 +103,27 @@ public class ProjectsController implements ProjectsApi {
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
         entity.setGithub(project.getGithub());
-        entity.setTags(entity.getTags());
+//        entity.setTags(entity.getTags());
+
+
+
+        List<ProjectRole> projectRoleList = new ArrayList<>();
+        if (! project.getProjectRole().isEmpty()) {
+            int size = project.getProjectRole().size();
+            for (int i = 0; i < size; i++) {
+                Long count = project.getProjectRole().get(i).getCount();
+                for (int j = 0; j < count; j++) {
+                    Optional<ProjectRole> oneByRoleName = projectRoleRepository.findOneByRoleName(project.getProjectRole().get(i).getRoleName());
+                    if (oneByRoleName.isPresent()) {
+                        projectRoleList.add(oneByRoleName.get());
+                    }
+                }
+            }
+        }
+        entity.setProjectRoles(projectRoleList);
+
+
+
         projectsRepository.save(entity);
 
         return new ResponseEntity<>(true, HttpStatus.OK);
