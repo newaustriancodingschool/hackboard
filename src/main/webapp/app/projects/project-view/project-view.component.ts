@@ -18,6 +18,9 @@ export class ProjectViewComponent implements OnInit {
   isOwner: Boolean = false;
   settingsAccount: any;
   modalRef: NgbModalRef;
+  isApplied: Boolean = false;
+  applyButton: String = 'Apply';
+
   constructor(
     private projectService: ProjectService,
     private principal: Principal,
@@ -41,27 +44,51 @@ export class ProjectViewComponent implements OnInit {
     return Array(count).fill(true);
   }
 
+  toggleApply(roleid) {
+    if (this.isApplied) {
+      console.log(roleid);
+      console.log('111111111111111111111');
+      this.applicant.projectId = this.project.id;
+      this.applicant.roleId = roleid;
+      this.applicationService
+        .addapplication(this.applicant)
+        .subscribe(() => this.router.navigate(['/projects']));
+      this.isApplied = !this.isApplied;
+    } else {
+      console.log(roleid);
+      console.log('22222222222222222');
+      this.applicant.projectId = this.project.id;
+      this.applicant.roleId = roleid;
+      this.applicationService
+        .delapplication(this.applicant)
+        .subscribe(() => this.router.navigate(['/projects']));
+      this.isApplied = !this.isApplied;
+    }
+    this.isApplied ? (this.applyButton = 'Applied') : (this.applyButton = 'Apply');
+  }
+
   delete() {
     this.projectService
       .deleteProject(this.project.id)
       .subscribe(() => this.router.navigate(['/projects']));
   }
-  apply(roleid) {
-    this.applicant.projectId = this.project.id;
-    this.applicant.roleId = roleid;
 
-    this.applicationService
-      .addapplication(this.applicant)
-      .subscribe(() => this.router.navigate(['/projects']));
-  }
-  anapply(roleid) {
-    this.applicant.projectId = this.project.id;
-    this.applicant.roleId = roleid;
+  // apply(roleid) {
+  //   this.applicant.projectId = this.project.id;
+  //   this.applicant.roleId = roleid;
 
-    this.applicationService
-      .delapplication(this.applicant)
-      .subscribe(() => this.router.navigate(['/projects']));
-  }
+  //   this.applicationService
+  //     .addapplication(this.applicant)
+  //     .subscribe(() => this.router.navigate(['/projects']));
+  // }
+  // unApply(roleid) {
+  //   this.applicant.projectId = this.project.id;
+  //   this.applicant.roleId = roleid;
+
+  //   this.applicationService
+  //     .delapplication(this.applicant)
+  //     .subscribe(() => this.router.navigate(['/projects']));
+  // }
 
   copyAccount(account) {
     return {
