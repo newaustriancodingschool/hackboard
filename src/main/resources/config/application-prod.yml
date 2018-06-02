@@ -27,9 +27,9 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://mysql.refugeescode.io:3306/rc-hackboard?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: rc-hackboard
-        password: PW3BkTJxtnW695tG
+        url: ${HACKBOARD_DATABASE_URL}
+        username: ${HACKBOARD_DATABASE_USERNAME}
+        password: ${HACKBOARD_DATABASE_PASSWORD}
         hikari:
             data-source-properties:
                 cachePrepStmts: true
