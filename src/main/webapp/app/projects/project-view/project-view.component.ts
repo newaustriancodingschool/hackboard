@@ -59,7 +59,7 @@ export class ProjectViewComponent implements OnInit {
     this.applicant.roleId = roleid;
 
     this.applicationService
-      .addapplication(this.applicant)
+      .delapplication(this.applicant)
       .subscribe(() => this.router.navigate(['/projects']));
   }
 

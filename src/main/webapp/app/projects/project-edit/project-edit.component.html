@@ -1,5 +1,12 @@
-<h2 class="orange text-capitalize">Edit your project info.</h2>
 <form (ngSubmit)="submit()">
+<div class="float-left">
+<h2 class="orange text-capitalize">Edit your project info.</h2>
+</div>
+<div class="float-right">
+    <button type="submit" class="btn btn-defult MyBtn MyShadow">Apply</button>
+    </div>
+    </br>
+    </br>
     <input hidden name="id" [(ngModel)]="data.id" id="usr"/>
     <div class="form-group">
         <label class="lightBlue font-weight-bold" for="title">Title:</label>
@@ -13,18 +20,26 @@
         <label class="lightBlue font-weight-bold" for="github">GitHub Link:</label>
         <input type="text" class="form-control" [(ngModel)]="data.github" name="github" id="github">
     </div>
-    <form (ngSubmit)="editRole(dropRoles.value)">
-        <label class="lightBlue font-weight-bold">Roles:</label>
-        <select #dropRoles>
-            <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color': role.color}">{{role.roleName}}</option>
-        </select>
-        <button class="ff">+</button>
-    </form>
-    <div class="float-right">
-        <button type="submit" class="btn btn-defult MyBtn MyShadow">Apply</button>
-    </div>
+
+<!--
+
 </form>
+-->
+
 <br>
+
+
+<form (ngSubmit)="editRole(dropRoles.value)">
+
+
+    <label class="lightBlue font-weight-bold">Roles:</label>
+    <select #dropRoles>
+        <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color': role.color}">{{role.roleName}}</option>
+    </select>
+    <button class="ff">+</button>
+</form>
+</form>
+
 <label class="lightBlue font-weight-bold">Looking for these roles:</label>
 <div *ngFor="let role of data.projectRole">
     <div class="row">
@@ -37,3 +52,4 @@
         <div class="lightBlue font-weight-bold">{{role.roleName}}</div>
     </div>
 </div>
+

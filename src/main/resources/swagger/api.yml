@@ -313,7 +313,7 @@ definitions:
         type: array
         items:
             $ref: '#/definitions/ProjectRoleDto'
-      ApplicationDto:
+      applicationDto:
         type: array
         items:
           $ref: '#/definitions/ApplicationDto'

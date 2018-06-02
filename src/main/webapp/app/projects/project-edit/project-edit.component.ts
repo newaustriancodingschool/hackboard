@@ -24,8 +24,8 @@ export class ProjectEditComponent implements OnInit {
     const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
     this.projectService.viewProject(id).subscribe(project => {
       this.data = project;
-      this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
       this.projectRoles = [];
+      this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
     });
   }
 
@@ -44,12 +44,13 @@ export class ProjectEditComponent implements OnInit {
     }
     newRoleData.color = tmpcolor;
     let roleFound = false;
-    for (let i = 0; i < this.projectRoles.length; i++) {
+    for (let i = 0; i < this.projectRoles.length - 1; i++) {
       if (roleValue === this.projectRoles[i].roleName) {
         this.projectRoles[i].count++;
         roleFound = true;
       }
     }
+    console.log(roleFound);
     if (roleFound === false) {
       this.projectRoles.push(newRoleData);
     }

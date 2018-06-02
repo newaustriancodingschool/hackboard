@@ -45,34 +45,37 @@ public class ApplicationController implements ApplicationApi {
 
     @Override
     public ResponseEntity<Boolean> addapplication(@RequestBody ApplicationDto applicationDto) {
-        System.out.println(applicationDto.getRoleId());
-        System.out.println(applicationDto.getProjectId());
-        System.out.println(applicationDto.getRoleId());
-        Long projectId = applicationDto.getProjectId();
-        Project currentProject = projectRepository.findOne(projectId);
-        Application application = new Application();
-        application.setProject(currentProject);
-        if (SecurityUtils.getCurrentUserLogin().isPresent()) {
-            String userlogin = SecurityUtils.getCurrentUserLogin().get();
-            Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
-            if (oneByLogin.isPresent()) {
-                application.setApplicant(oneByLogin.get());
+
+
+        long count = applicationRepository.findAll()
+            .stream()
+            .filter(e -> e.getProject().getId().equals(applicationDto.getProjectId()))
+            .filter(e -> e.getApplicant().getId().equals(applicationDto.getApplicant()))
+            .filter(e -> e.getRole().getId().equals(applicationDto.getRoleId()))
+            .count();
+        if (count== 0){
+            Long projectId = applicationDto.getProjectId();
+            Project currentProject = projectRepository.findOne(projectId);
+            Application application = new Application();
+            application.setProject(currentProject);
+            if (SecurityUtils.getCurrentUserLogin().isPresent()) {
+                String userlogin = SecurityUtils.getCurrentUserLogin().get();
+                Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
+                if (oneByLogin.isPresent()) {
+                    application.setApplicant(oneByLogin.get());
+                }
             }
+            ProjectRole currentRole = projectRoleRepository.findOne(applicationDto.getRoleId());
+            application.setRole(currentRole);
+            applicationRepository.save(application);
         }
-
-
-        ProjectRole currentRole = projectRoleRepository.findOne(applicationDto.getRoleId());
-        application.setRole(currentRole);
-
-        applicationRepository.save(application);
-
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Boolean> delapplication(ApplicationDto application) {
 
-        User user= new User();
+        User user = new User();
         if (SecurityUtils.getCurrentUserLogin().isPresent()) {
             String userlogin = SecurityUtils.getCurrentUserLogin().get();
             Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
@@ -81,13 +84,13 @@ public class ApplicationController implements ApplicationApi {
             }
         }
         final User user1 = user;
-            List<Application> applicationList = applicationRepository.findAll()
+        List<Application> applicationList = applicationRepository.findAll()
             .stream()
             .filter(e -> e.getProject().equals(application.getProjectId()))
             .filter(e -> e.getApplicant().getId().equals(user1.getId()))
             .filter(e -> e.getRole().getId().equals(application.getRoleId()))
             .collect(Collectors.toList());
-        applicationList.stream().forEach(e->applicationRepository.delete(e));
+        applicationList.stream().forEach(e -> applicationRepository.delete(e));
 
         return new ResponseEntity<>(true, HttpStatus.OK);
     }

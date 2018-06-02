@@ -51,7 +51,7 @@ public class ProjectDto   {
   @Valid
   private List<ProjectRoleDto> projectRole = null;
 
-  @JsonProperty("ApplicationDto")
+  @JsonProperty("applicationDto")
   @Valid
   private List<ApplicationDto> applicationDto = null;
 

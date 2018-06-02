@@ -32,45 +32,21 @@
     <div *ngFor="let role of project.projectRole">
     <div class="row">
         <div class="col-xs-6 col-md-4">
-            <div *ngFor="let counter of getFilledArray(role.count)">
-                <div class="circle float-left" [ngStyle]="{'border-color': role.color}"></div>
-            </div>
-        <div class="col-xs-6 col-md-4">{{role.roleName}}</div>
-        <div class="clearfix visible-xs-block"></div>
-        <div class="col-xs-6 col-md-4">
-
-          <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="apply(role.id)">Apply !</button>
-<!--
-            <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="anapply(role.id)">anApply!</button>
-            -->
-        </div>
+            <div *ngFor="let counter of getFilledArray(role.count)"><div class="circle float-left" [ngStyle]="{'border-color': role.color}"></div></div></div>
+            <div class="col-xs-6 col-md-4">{{role.roleName}}</div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="col-xs-6 col-md-4"><button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="apply(role.id)">Apply !</button>
+           </div>
     </div>
-</div>
     </div>
-
-
-<!--
-
-<div *ng-if="{{settingsAccount.login}}=={{project.ownerLoginName}}">
-    <h1>Welcome {{settingsAccount.login}}</h1>
-</div>
--->
-
-<!--
-    <p>Welcome to my home. {{isOwner}}</p>
-    <hr>
-
-
-</div>
--->
-
-
 
 <label class="lightBlue font-weight-bold">people already apply in Project:<hr></label>
 <div *ngFor="let application of project.applicationDto">
     <div class="row">
         <div class="col-xs-6 col-md-4"><div class="circle float-left" [ngStyle]="{'border-color': application.roleColor}"></div></div>
         <div class="col-xs-6 col-md-4"><a class="lightBlue font-weight-bold" href={{application.userGithub}} target="_blank">{{application.applicantFullName}}</a> </div>
+        <div class="clearfix visible-xs-block"></div>
         <div class="col-xs-6 col-md-4">{{application.roleName}} </div>
     </div>
 </div>
+
