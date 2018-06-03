@@ -20,7 +20,8 @@ export class ProjectViewComponent implements OnInit {
   modalRef: NgbModalRef;
   isApplied: Boolean = false;
   applyButton: String = 'Apply';
-  isApply: string[][];
+  rolesApply: number[];
+  captionBtn: String;
 
   constructor(
     private projectService: ProjectService,
@@ -33,29 +34,16 @@ export class ProjectViewComponent implements OnInit {
 
   ngOnInit() {
     const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    this.projectService.viewProject(id).subscribe(project => (this.project = project));
-    this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
-
-    console.log('***********************************************');
-    for (let i = 0; i < this.roles.length; i++) {
-      this.isApply[i][0] = this.roles[i].roleName;
-      this.isApply[i][1] = 'Apply';
-    }
-    console.log('**********************');
-    for (let i = 0; i < this.project.applicationDto.length; i++) {
-      for (let x = 0; x < this.roles.length; x++) {
-        if (this.isApply[x][0] === this.project.applicationDto[i].roleName) {
-          this.isApply[x][1] = 'Applied';
-        }
-      }
-    }
-    for (let i = 0; i < this.roles.length; i++) {
-      console.log(this.isApply[i][1]);
-    }
-
+    this.projectService.viewProject(id).subscribe(project => {
+      this.project = project;
+      this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
+    });
     this.principal.identity().then(account => {
       this.settingsAccount = this.copyAccount(account);
     });
+    this.applicationService
+      .viewApplication(id)
+      .subscribe(rolesApply => (this.rolesApply = rolesApply));
   }
 
   getFilledArray(count) {
@@ -65,13 +53,20 @@ export class ProjectViewComponent implements OnInit {
   toggleApply(roleid) {
     this.applicant.projectId = this.project.id;
     this.applicant.roleId = roleid;
-    if (this.isApplied === false) {
+    let found = false;
+    for (let i = 0; i < this.rolesApply.length; i++) {
+      if (roleid === this.rolesApply[i]) {
+        found = true;
+      }
+    }
+
+    if (found === false) {
       this.applicationService
         .addapplication(this.applicant)
         .subscribe(() => this.router.navigate(['/projects']));
     } else {
       this.applicationService
-        .delapplication(this.applicant)
+        .delapplication(this.project.id, roleid)
         .subscribe(() => this.router.navigate(['/projects']));
     }
     this.isApplied ? (this.applyButton = 'Applied') : (this.applyButton = 'Apply');
@@ -83,22 +78,15 @@ export class ProjectViewComponent implements OnInit {
       .subscribe(() => this.router.navigate(['/projects']));
   }
 
-  // apply(roleid) {
-  //   this.applicant.projectId = this.project.id;
-  //   this.applicant.roleId = roleid;
-
-  //   this.applicationService
-  //     .addapplication(this.applicant)
-  //     .subscribe(() => this.router.navigate(['/projects']));
-  // }
-  // unApply(roleid) {
-  //   this.applicant.projectId = this.project.id;
-  //   this.applicant.roleId = roleid;
-
-  //   this.applicationService
-  //     .delapplication(this.applicant)
-  //     .subscribe(() => this.router.navigate(['/projects']));
-  // }
+  checkisApply(roleId) {
+    this.captionBtn = 'Apply';
+    for (let i = 0; i < this.rolesApply.length; i++) {
+      if (roleId === this.rolesApply[i]) {
+        this.captionBtn = 'Applied';
+      }
+    }
+    return this.captionBtn;
+  }
 
   copyAccount(account) {
     return {

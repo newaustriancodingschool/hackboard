@@ -15,6 +15,7 @@ import io.refugeescode.hackboard.web.api.controller.ApplicationApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,12 +46,6 @@ public class ApplicationController implements ApplicationApi {
 
     @Override
     public ResponseEntity<Boolean> addapplication(@RequestBody ApplicationDto applicationDto) {
-        System.out.println("****************************************");
-        System.out.println("****************************************");
-        System.out.println("****************************************");
-        System.out.println("****************************************");
-        System.out.println("****************************************");
-
 
         long count = applicationRepository.findAll()
             .stream()
@@ -77,8 +72,31 @@ public class ApplicationController implements ApplicationApi {
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
+     @Override
+     public ResponseEntity<Boolean> delapplication(@PathVariable("projectId") Long projectId , @PathVariable("roleId") Long roleId) {
+         User user = new User();
+         if (SecurityUtils.getCurrentUserLogin().isPresent()) {
+             String userlogin = SecurityUtils.getCurrentUserLogin().get();
+             Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
+             if (oneByLogin.isPresent()) {
+                 user = oneByLogin.get();
+             }
+         }
+         final User user1 = user;
+         Optional<Application> firstApplication = applicationRepository.findAll()
+             .stream()
+             .filter(e -> e.getProject().getId().equals(projectId))
+             .filter(e -> e.getApplicant().getId().equals(user1.getId()))
+             .filter(e -> e.getRole().getId().equals(roleId))
+             .findFirst();
+         if (firstApplication.isPresent())
+                 applicationRepository.delete(firstApplication.get().getId());
+
+         return new ResponseEntity<>(true, HttpStatus.OK);
+     }
+
     @Override
-    public ResponseEntity<Boolean> delapplication(ApplicationDto application) {
+    public ResponseEntity<List<Long>> viewApplication(@PathVariable("projectId") Long projectId) {
 
         User user = new User();
         if (SecurityUtils.getCurrentUserLogin().isPresent()) {
@@ -89,15 +107,18 @@ public class ApplicationController implements ApplicationApi {
             }
         }
         final User user1 = user;
-        List<Application> applicationList = applicationRepository.findAll()
-            .stream()
-            .filter(e -> e.getProject().equals(application.getProjectId()))
-            .filter(e -> e.getApplicant().getId().equals(user1.getId()))
-            .filter(e -> e.getRole().getId().equals(application.getRoleId()))
-            .collect(Collectors.toList());
-        applicationList.stream().forEach(e -> applicationRepository.delete(e));
 
-        return new ResponseEntity<>(true, HttpStatus.OK);
+
+        List<Long> collect = applicationRepository.findAll()
+            .stream()
+            .filter(e -> e.getProject().getId().equals(projectId))
+            .filter(e -> e.getApplicant().getId().equals(user1.getId()))
+            .map(e -> e.getRole().getId())
+            .collect(Collectors.toList());
+
+        return new ResponseEntity<>(collect, HttpStatus.OK);
+
+
     }
 
 

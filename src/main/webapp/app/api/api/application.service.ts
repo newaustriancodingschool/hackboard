@@ -104,60 +104,20 @@ export class ApplicationService {
     /**
      * Delete an application
      * 
-     * @param application 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public delapplication(application: ApplicationDto, observe?: 'body', reportProgress?: boolean): Observable<boolean>;
-    public delapplication(application: ApplicationDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<boolean>>;
-    public delapplication(application: ApplicationDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<boolean>>;
-    public delapplication(application: ApplicationDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (application === null || application === undefined) {
-            throw new Error('Required parameter application was null or undefined when calling delapplication.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.delete<boolean>(`${this.basePath}/application`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Delete all Application
-     * 
      * @param projectId ID of project
+     * @param roleId ID of role
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteAllApplication(projectId: number, observe?: 'body', reportProgress?: boolean): Observable<boolean>;
-    public deleteAllApplication(projectId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<boolean>>;
-    public deleteAllApplication(projectId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<boolean>>;
-    public deleteAllApplication(projectId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public delapplication(projectId: number, roleId: number, observe?: 'body', reportProgress?: boolean): Observable<boolean>;
+    public delapplication(projectId: number, roleId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<boolean>>;
+    public delapplication(projectId: number, roleId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<boolean>>;
+    public delapplication(projectId: number, roleId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (projectId === null || projectId === undefined) {
-            throw new Error('Required parameter projectId was null or undefined when calling deleteAllApplication.');
+            throw new Error('Required parameter projectId was null or undefined when calling delapplication.');
+        }
+        if (roleId === null || roleId === undefined) {
+            throw new Error('Required parameter roleId was null or undefined when calling delapplication.');
         }
 
         let headers = this.defaultHeaders;
@@ -175,7 +135,7 @@ export class ApplicationService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<boolean>(`${this.basePath}/application/${encodeURIComponent(String(projectId))}`,
+        return this.httpClient.delete<boolean>(`${this.basePath}/application/${encodeURIComponent(String(projectId))}/${encodeURIComponent(String(roleId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -186,15 +146,15 @@ export class ApplicationService {
     }
 
     /**
-     * View Application
+     * View one Application
      * 
      * @param projectId ID of project
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public viewApplication(projectId: number, observe?: 'body', reportProgress?: boolean): Observable<Array<ApplicationDto>>;
-    public viewApplication(projectId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ApplicationDto>>>;
-    public viewApplication(projectId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ApplicationDto>>>;
+    public viewApplication(projectId: number, observe?: 'body', reportProgress?: boolean): Observable<Array<number>>;
+    public viewApplication(projectId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<number>>>;
+    public viewApplication(projectId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<number>>>;
     public viewApplication(projectId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (projectId === null || projectId === undefined) {
             throw new Error('Required parameter projectId was null or undefined when calling viewApplication.');
@@ -215,7 +175,7 @@ export class ApplicationService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<ApplicationDto>>(`${this.basePath}/application/${encodeURIComponent(String(projectId))}`,
+        return this.httpClient.get<Array<number>>(`${this.basePath}/application/${encodeURIComponent(String(projectId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

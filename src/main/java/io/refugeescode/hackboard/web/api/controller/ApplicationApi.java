@@ -72,10 +72,10 @@ public interface ApplicationApi {
     @ApiOperation(value = "Delete an application", nickname = "delapplication", notes = "", response = Boolean.class, tags={ "application", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
-    @RequestMapping(value = "/application",
+    @RequestMapping(value = "/application/{projectId}/{roleId}",
         produces = { "application/json" }, 
         method = RequestMethod.DELETE)
-    default ResponseEntity<Boolean> delapplication(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ApplicationDto application) {
+    default ResponseEntity<Boolean> delapplication(@ApiParam(value = "ID of project",required=true) @PathVariable("projectId") Long projectId,@ApiParam(value = "ID of role",required=true) @PathVariable("roleId") Long roleId) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
@@ -92,40 +92,17 @@ public interface ApplicationApi {
     }
 
 
-    @ApiOperation(value = "Delete all Application", nickname = "deleteAllApplication", notes = "", response = Boolean.class, tags={ "application", })
+    @ApiOperation(value = "View one Application", nickname = "viewApplication", notes = "", response = Long.class, responseContainer = "List", tags={ "application", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
-    @RequestMapping(value = "/application/{projectId}",
-        produces = { "application/json" }, 
-        method = RequestMethod.DELETE)
-    default ResponseEntity<Boolean> deleteAllApplication(@ApiParam(value = "ID of project",required=true) @PathVariable("projectId") Long projectId) {
-        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
-            if (getAcceptHeader().get().contains("application/json")) {
-                try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("true", Boolean.class), HttpStatus.NOT_IMPLEMENTED);
-                } catch (IOException e) {
-                    log.error("Couldn't serialize response for content type application/json", e);
-                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-                }
-            }
-        } else {
-            log.warn("ObjectMapper or HttpServletRequest not configured in default ApplicationApi interface so no example is generated");
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-
-    @ApiOperation(value = "View Application", nickname = "viewApplication", notes = "", response = ApplicationDto.class, responseContainer = "List", tags={ "application", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = ApplicationDto.class, responseContainer = "List") })
+        @ApiResponse(code = 200, message = "successful operation", response = Long.class, responseContainer = "List") })
     @RequestMapping(value = "/application/{projectId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<List<ApplicationDto>> viewApplication(@ApiParam(value = "ID of project",required=true) @PathVariable("projectId") Long projectId) {
+    default ResponseEntity<List<Long>> viewApplication(@ApiParam(value = "ID of project",required=true) @PathVariable("projectId") Long projectId) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"roleId\" : 7,  \"roleColor\" : \"roleColor\",  \"applicantFullName\" : \"applicantFullName\",  \"roleName\" : \"roleName\",  \"projectId\" : 2,  \"applicant\" : 5,  \"userGithub\" : \"userGithub\"}, {  \"roleId\" : 7,  \"roleColor\" : \"roleColor\",  \"applicantFullName\" : \"applicantFullName\",  \"roleName\" : \"roleName\",  \"projectId\" : 2,  \"applicant\" : 5,  \"userGithub\" : \"userGithub\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ 0, 0 ]", List.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
