@@ -11,7 +11,7 @@ import { Principal } from './../../shared';
   templateUrl: './project-view.component.html'
 })
 export class ProjectViewComponent implements OnInit {
-  project: ProjectDto = { id: 0, title: '', description: '', projectRole: [] };
+  project: ProjectDto = { id: 0, title: '', description: '', projectRole: [], applicationDto: [] };
   applicant: ApplicationDto = { applicant: 0, projectId: 0, roleId: 0 };
   roleData: ProjectRoleDto = { id: 0, roleName: '', color: '', count: 0 };
   roles: Array<ProjectRoleDto>;
@@ -20,6 +20,7 @@ export class ProjectViewComponent implements OnInit {
   modalRef: NgbModalRef;
   isApplied: Boolean = false;
   applyButton: String = 'Apply';
+  isApply: string[][];
 
   constructor(
     private projectService: ProjectService,
@@ -35,6 +36,23 @@ export class ProjectViewComponent implements OnInit {
     this.projectService.viewProject(id).subscribe(project => (this.project = project));
     this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
 
+    console.log('***********************************************');
+    for (let i = 0; i < this.roles.length; i++) {
+      this.isApply[i][0] = this.roles[i].roleName;
+      this.isApply[i][1] = 'Apply';
+    }
+    console.log('**********************');
+    for (let i = 0; i < this.project.applicationDto.length; i++) {
+      for (let x = 0; x < this.roles.length; x++) {
+        if (this.isApply[x][0] === this.project.applicationDto[i].roleName) {
+          this.isApply[x][1] = 'Applied';
+        }
+      }
+    }
+    for (let i = 0; i < this.roles.length; i++) {
+      console.log(this.isApply[i][1]);
+    }
+
     this.principal.identity().then(account => {
       this.settingsAccount = this.copyAccount(account);
     });
@@ -45,24 +63,16 @@ export class ProjectViewComponent implements OnInit {
   }
 
   toggleApply(roleid) {
-    if (this.isApplied) {
-      console.log(roleid);
-      console.log('111111111111111111111');
-      this.applicant.projectId = this.project.id;
-      this.applicant.roleId = roleid;
+    this.applicant.projectId = this.project.id;
+    this.applicant.roleId = roleid;
+    if (this.isApplied === false) {
       this.applicationService
         .addapplication(this.applicant)
         .subscribe(() => this.router.navigate(['/projects']));
-      this.isApplied = !this.isApplied;
     } else {
-      console.log(roleid);
-      console.log('22222222222222222');
-      this.applicant.projectId = this.project.id;
-      this.applicant.roleId = roleid;
       this.applicationService
         .delapplication(this.applicant)
         .subscribe(() => this.router.navigate(['/projects']));
-      this.isApplied = !this.isApplied;
     }
     this.isApplied ? (this.applyButton = 'Applied') : (this.applyButton = 'Apply');
   }

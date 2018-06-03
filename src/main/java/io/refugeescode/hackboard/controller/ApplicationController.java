@@ -45,6 +45,11 @@ public class ApplicationController implements ApplicationApi {
 
     @Override
     public ResponseEntity<Boolean> addapplication(@RequestBody ApplicationDto applicationDto) {
+        System.out.println("****************************************");
+        System.out.println("****************************************");
+        System.out.println("****************************************");
+        System.out.println("****************************************");
+        System.out.println("****************************************");
 
 
         long count = applicationRepository.findAll()
