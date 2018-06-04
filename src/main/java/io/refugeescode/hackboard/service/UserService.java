@@ -1,6 +1,7 @@
 package io.refugeescode.hackboard.service;
 
 import io.refugeescode.hackboard.domain.Authority;
+import io.refugeescode.hackboard.domain.Tag;
 import io.refugeescode.hackboard.domain.User;
 import io.refugeescode.hackboard.repository.AuthorityRepository;
 import io.refugeescode.hackboard.repository.PersistentTokenRepository;
@@ -100,6 +101,8 @@ public class UserService {
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
         Set<Authority> authorities = new HashSet<>();
+        Set<Tag> tags = new HashSet<>();
+
         String encryptedPassword = passwordEncoder.encode(password);
         newUser.setLogin(userDto.getLogin());
         // new user gets initially a generated password
@@ -111,6 +114,8 @@ public class UserService {
         newUser.setLangKey(userDto.getLangKey());
         newUser.setGithub( userDto.getGithub());
         newUser.setDescription(userDto.getDescription());
+
+
         // new user is not active
         newUser.setActivated(false);
         // new user gets registration key

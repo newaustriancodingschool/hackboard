@@ -3,6 +3,7 @@ package io.refugeescode.hackboard.service.dto;
 import io.refugeescode.hackboard.config.Constants;
 
 import io.refugeescode.hackboard.domain.Authority;
+import io.refugeescode.hackboard.domain.Tag;
 import io.refugeescode.hackboard.domain.User;
 
 import org.hibernate.validator.constraints.Email;
@@ -53,6 +54,8 @@ public class UserDto {
 
     private Set<String> authorities;
 
+    private Set<String> tags;
+
     private String github;
 
     private String description;
@@ -75,9 +78,18 @@ public class UserDto {
     }
 
 
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
+    }
+
     public UserDto() {
         // Empty constructor needed for Jackson.
     }
+
 
     public UserDto(User user) {
         this.id = user.getId();
@@ -94,6 +106,12 @@ public class UserDto {
         this.lastModifiedDate = user.getLastModifiedDate();
         this.github  =user.getGithub();
         this.description = user.getDescription();
+        this.tags = user.getTags()
+                        .stream()
+                        .map(e->e.getTag())
+                        .collect(Collectors.toSet());
+
+
         this.authorities = user.getAuthorities().stream()
             .map(Authority::getName)
             .collect(Collectors.toSet());

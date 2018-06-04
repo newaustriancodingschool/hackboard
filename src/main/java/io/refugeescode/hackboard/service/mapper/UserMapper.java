@@ -1,9 +1,11 @@
 package io.refugeescode.hackboard.service.mapper;
 
 import io.refugeescode.hackboard.domain.Authority;
+import io.refugeescode.hackboard.domain.Tag;
 import io.refugeescode.hackboard.domain.User;
+import io.refugeescode.hackboard.repository.TagsRepository;
 import io.refugeescode.hackboard.service.dto.UserDto;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -11,12 +13,15 @@ import java.util.stream.Collectors;
 
 /**
  * Mapper for the entity User and its DTO called UserDTO.
- *
+ * <p>
  * Normal mappers are generated using MapStruct, this one is hand-coded as MapStruct
  * support is still in beta, and requires a manual step with an IDE.
  */
 @Service
 public class UserMapper {
+
+    @Autowired
+    private TagsRepository tagsRepository;
 
     public UserDto userToUserDTO(User user) {
         return new UserDto(user);
@@ -48,7 +53,34 @@ public class UserMapper {
             if (authorities != null) {
                 user.setAuthorities(authorities);
             }
-            return user;
+/*
+
+            Set<Tag> tags  =new HashSet<>();
+            if (! userDto.getTags().isEmpty()) {
+                userDto.getTags().forEach(
+                    e -> {
+                        Optional<Tag> firstTag = tagsRepository.findAll()
+                            .stream()
+                            .filter(tag -> tag.getTag().equalsIgnoreCase(e))
+                            .findFirst();
+                        if (firstTag.isPresent())
+                            tags.add(firstTag.get());
+                    }
+                );
+            }
+            if (!tags.isEmpty()){
+                user.setTags(tags);
+            }
+*/
+
+
+
+
+  /*          Set<Tag> tags = this.tagsFormsStrings(userDto.getTags());
+            if (tags != null) {
+                user.setTags(tags);
+            }
+  */          return user;
         }
     }
 
@@ -74,5 +106,23 @@ public class UserMapper {
             auth.setName(string);
             return auth;
         }).collect(Collectors.toSet());
+    }
+
+    public Set<Tag> tagsFormsStrings(Set<String> strings) {
+        return strings.stream()
+            .map(e -> {
+                Optional<Tag> tag = tagsRepository.findAll()
+                    .stream()
+                    .filter(currtage -> currtage.getTag().equalsIgnoreCase(e))
+                    .findFirst();
+                if (tag.isPresent())
+                    return tag.get();
+                else {
+                    Tag tag1 = new Tag();
+                    return tag1;
+                }
+
+            }).filter(Objects::nonNull)
+            .collect(Collectors.toSet());
     }
 }

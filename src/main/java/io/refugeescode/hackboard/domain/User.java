@@ -104,7 +104,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private Set<Authority> authorities = new HashSet<>();
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "user_tag_relation",
         joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
