@@ -12,7 +12,7 @@ import { Principal } from './../../shared';
 })
 export class ProjectViewComponent implements OnInit {
   project: ProjectDto = { id: 0, title: '', description: '', projectRole: [], applicationDto: [] };
-  applicant: ApplicationDto = { applicant: 0, projectId: 0, roleId: 0 };
+  applicant: ApplicationDto = { id: 0, applicant: 0, projectId: 0, roleId: 0 };
   roleData: ProjectRoleDto = { id: 0, roleName: '', color: '', count: 0 };
   roles: Array<ProjectRoleDto>;
   isOwner: Boolean = false;
@@ -44,7 +44,7 @@ export class ProjectViewComponent implements OnInit {
       this.settingsAccount = this.copyAccount(account);
     });
     this.applicationService
-      .viewApplication(id)
+      .getRoleApplication(id)
       .subscribe(rolesApply => (this.rolesApply = rolesApply));
   }
 

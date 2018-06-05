@@ -12,6 +12,7 @@
 
 
 export interface ApplicationDto {
+    id: number;
     applicant: number;
     projectId: number;
     roleId: number;

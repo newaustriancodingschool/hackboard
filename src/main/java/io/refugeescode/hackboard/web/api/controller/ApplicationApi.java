@@ -92,13 +92,13 @@ public interface ApplicationApi {
     }
 
 
-    @ApiOperation(value = "View one Application", nickname = "viewApplication", notes = "", response = Long.class, responseContainer = "List", tags={ "application", })
+    @ApiOperation(value = "Get All Roles for Application", nickname = "getRoleApplication", notes = "", response = Long.class, responseContainer = "List", tags={ "application", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = Long.class, responseContainer = "List") })
     @RequestMapping(value = "/application/{projectId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<List<Long>> viewApplication(@ApiParam(value = "ID of project",required=true) @PathVariable("projectId") Long projectId) {
+    default ResponseEntity<List<Long>> getRoleApplication(@ApiParam(value = "ID of project",required=true) @PathVariable("projectId") Long projectId) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {

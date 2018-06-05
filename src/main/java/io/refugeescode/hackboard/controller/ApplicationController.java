@@ -96,7 +96,7 @@ public class ApplicationController implements ApplicationApi {
      }
 
     @Override
-    public ResponseEntity<List<Long>> viewApplication(@PathVariable("projectId") Long projectId) {
+    public ResponseEntity<List<Long>> getRoleApplication(@PathVariable("projectId") Long projectId) {
 
         User user = new User();
         if (SecurityUtils.getCurrentUserLogin().isPresent()) {

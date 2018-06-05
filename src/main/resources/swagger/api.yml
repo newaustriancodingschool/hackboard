@@ -148,8 +148,8 @@ paths:
         get:
           tags:
           - "application"
-          summary: "View one Application"
-          operationId: "viewApplication"
+          summary: "Get All Roles for Application"
+          operationId: "getRoleApplication"
           produces:
           - "application/json"
           parameters:
@@ -336,10 +336,14 @@ definitions:
   ApplicationDto:
         type: "object"
         required:
+          - "id"
           - "applicant"
           - "projectId"
           - "roleId"
         properties:
+          id:
+            type: "integer"
+            format: "int64"
           applicant:
             type: "integer"
             format: "int64"

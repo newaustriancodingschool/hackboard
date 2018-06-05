@@ -15,6 +15,9 @@ import javax.validation.constraints.*;
 @Validated
 
 public class ApplicationDto   {
+  @JsonProperty("id")
+  private Long id = null;
+
   @JsonProperty("applicant")
   private Long applicant = null;
 
@@ -35,6 +38,27 @@ public class ApplicationDto   {
 
   @JsonProperty("userGithub")
   private String userGithub = null;
+
+  public ApplicationDto id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public ApplicationDto applicant(Long applicant) {
     this.applicant = applicant;
@@ -189,7 +213,8 @@ public class ApplicationDto   {
       return false;
     }
     ApplicationDto applicationDto = (ApplicationDto) o;
-    return Objects.equals(this.applicant, applicationDto.applicant) &&
+    return Objects.equals(this.id, applicationDto.id) &&
+        Objects.equals(this.applicant, applicationDto.applicant) &&
         Objects.equals(this.projectId, applicationDto.projectId) &&
         Objects.equals(this.roleId, applicationDto.roleId) &&
         Objects.equals(this.applicantFullName, applicationDto.applicantFullName) &&
@@ -200,7 +225,7 @@ public class ApplicationDto   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(applicant, projectId, roleId, applicantFullName, roleName, roleColor, userGithub);
+    return Objects.hash(id, applicant, projectId, roleId, applicantFullName, roleName, roleColor, userGithub);
   }
 
   @Override
@@ -208,6 +233,7 @@ public class ApplicationDto   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ApplicationDto {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    applicant: ").append(toIndentedString(applicant)).append("\n");
     sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    roleId: ").append(toIndentedString(roleId)).append("\n");

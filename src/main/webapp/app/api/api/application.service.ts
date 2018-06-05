@@ -146,18 +146,18 @@ export class ApplicationService {
     }
 
     /**
-     * View one Application
+     * Get All Roles for Application
      * 
      * @param projectId ID of project
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public viewApplication(projectId: number, observe?: 'body', reportProgress?: boolean): Observable<Array<number>>;
-    public viewApplication(projectId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<number>>>;
-    public viewApplication(projectId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<number>>>;
-    public viewApplication(projectId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getRoleApplication(projectId: number, observe?: 'body', reportProgress?: boolean): Observable<Array<number>>;
+    public getRoleApplication(projectId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<number>>>;
+    public getRoleApplication(projectId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<number>>>;
+    public getRoleApplication(projectId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (projectId === null || projectId === undefined) {
-            throw new Error('Required parameter projectId was null or undefined when calling viewApplication.');
+            throw new Error('Required parameter projectId was null or undefined when calling getRoleApplication.');
         }
 
         let headers = this.defaultHeaders;
