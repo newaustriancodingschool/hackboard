@@ -53,34 +53,38 @@ public class UserMapper {
             if (authorities != null) {
                 user.setAuthorities(authorities);
             }
-/*
 
-            Set<Tag> tags  =new HashSet<>();
-            if (! userDto.getTags().isEmpty()) {
-                userDto.getTags().forEach(
-                    e -> {
-                        Optional<Tag> firstTag = tagsRepository.findAll()
+            Set<Tag> tags = new HashSet<>();
+            if (userDto.getTags() != null) {
+                userDto.getTags()
+                    .stream()
+                    .filter(Objects::nonNull)
+                    .forEach(tag1 -> {
+                        Optional<Tag> firsttag = tagsRepository.findAll()
                             .stream()
-                            .filter(tag -> tag.getTag().equalsIgnoreCase(e))
-                            .findFirst();
-                        if (firstTag.isPresent())
-                            tags.add(firstTag.get());
-                    }
-                );
+                            .filter(tag -> tag.getTag().equalsIgnoreCase(tag1)).findFirst();
+                        if (firsttag.isPresent()) {
+                            tags.add(firsttag.get());
+                        }
+                    });
             }
-            if (!tags.isEmpty()){
-                user.setTags(tags);
+   /*         try {
+                List<String> taglist = userDto.getTags().stream().collect(Collectors.toList());
+                for (String item : taglist) {
+                    Optional<Tag> firsttag = tagsRepository.findAll()
+                        .stream()
+                        .filter(tag -> tag.getTag().equalsIgnoreCase(item)).findFirst();
+                    if (firsttag.isPresent()) {
+                        tags.add(firsttag.get());
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 */
+            user.setTags(tags);
 
-
-
-
-  /*          Set<Tag> tags = this.tagsFormsStrings(userDto.getTags());
-            if (tags != null) {
-                user.setTags(tags);
-            }
-  */          return user;
+            return user;
         }
     }
 
@@ -108,21 +112,5 @@ public class UserMapper {
         }).collect(Collectors.toSet());
     }
 
-    public Set<Tag> tagsFormsStrings(Set<String> strings) {
-        return strings.stream()
-            .map(e -> {
-                Optional<Tag> tag = tagsRepository.findAll()
-                    .stream()
-                    .filter(currtage -> currtage.getTag().equalsIgnoreCase(e))
-                    .findFirst();
-                if (tag.isPresent())
-                    return tag.get();
-                else {
-                    Tag tag1 = new Tag();
-                    return tag1;
-                }
-
-            }).filter(Objects::nonNull)
-            .collect(Collectors.toSet());
-    }
 }
+

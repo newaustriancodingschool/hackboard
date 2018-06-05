@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreFilter;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -98,12 +99,13 @@ public class ProjectsController implements ProjectsApi {
 
     @Override
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
+    //@PreFilter("hasRole('ADMIN') or ")
     public ResponseEntity<Boolean> editProject(@RequestBody ProjectDto project) {
         Project entity = projectsRepository.findOne(project.getId());
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
         entity.setGithub(project.getGithub());
-//        entity.setTags(entity.getTags());
+        //entity.setTags(entity.getTags());
 
 
 

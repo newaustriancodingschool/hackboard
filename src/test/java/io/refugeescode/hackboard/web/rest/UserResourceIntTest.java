@@ -470,6 +470,7 @@ public class UserResourceIntTest {
         managedUserVM.setLastModifiedDate(updatedUser.getLastModifiedDate());
         managedUserVM.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
+
         restUserMockMvc.perform(put("/api/users")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(managedUserVM)))
@@ -543,6 +544,8 @@ public class UserResourceIntTest {
         userDto.setLastModifiedBy(DEFAULT_LOGIN);
         userDto.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
+
+
         User user = userMapper.userDTOToUser(userDto);
         assertThat(user.getId()).isEqualTo(DEFAULT_ID);
         assertThat(user.getLogin()).isEqualTo(DEFAULT_LOGIN);
@@ -556,6 +559,9 @@ public class UserResourceIntTest {
         assertThat(user.getCreatedDate()).isNotNull();
         assertThat(user.getLastModifiedBy()).isNull();
         assertThat(user.getLastModifiedDate()).isNotNull();
+
+        //assertThat(user.getTags()).isEmpty();
+
         assertThat(user.getAuthorities()).extracting("name").containsExactly(AuthoritiesConstants.USER);
     }
 
