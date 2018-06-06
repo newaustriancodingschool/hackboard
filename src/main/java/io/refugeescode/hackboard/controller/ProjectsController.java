@@ -10,29 +10,22 @@ import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.security.SecurityUtils;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
-import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
 import io.refugeescode.hackboard.service.mapper.ProjectMappers;
 import io.refugeescode.hackboard.service.mapper.ProjectRoleMapper;
 import io.refugeescode.hackboard.web.api.controller.ProjectsApi;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import io.refugeescode.hackboard.web.rest.util.HeaderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreFilter;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import static io.refugeescode.hackboard.security.AuthoritiesConstants.ADMIN;
-import static io.refugeescode.hackboard.security.AuthoritiesConstants.USER;
-import static org.hibernate.id.IdentifierGenerator.ENTITY_NAME;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class ProjectsController implements ProjectsApi {
@@ -46,7 +39,7 @@ public class ProjectsController implements ProjectsApi {
     @Autowired
     private ProjectRoleMapper projectRoleMapper;
 
-    public ProjectsController(ProjectRepository projectsRepository, UserRepository userRepository ,ProjectRoleRepository projectRoleRepository) {
+    public ProjectsController(ProjectRepository projectsRepository, UserRepository userRepository, ProjectRoleRepository projectRoleRepository) {
 
         this.projectsRepository = projectsRepository;
         this.userRepository = userRepository;
@@ -63,7 +56,7 @@ public class ProjectsController implements ProjectsApi {
         entity.setDescription(project.getDescription());
 
         List<ProjectRole> projectRoleList = new ArrayList<>();
-        if (! project.getProjectRole().isEmpty()) {
+        if (!project.getProjectRole().isEmpty()) {
             int size = project.getProjectRole().size();
             for (int i = 0; i < size; i++) {
                 Long count = project.getProjectRole().get(i).getCount();
@@ -77,12 +70,7 @@ public class ProjectsController implements ProjectsApi {
         }
         entity.setProjectRoles(projectRoleList);
 
-/*
-        List<ProjectRoleDto> projectRole = project.getProjectRole();
-
-        List<ProjectRole> collect = projectRole.stream().map(e -> projectRoleMapper.projectRoleDtoToProjectRole(e)).collect(Collectors.toList());
-        entity.setProjectRoles(collect);*/
-
+        entity.setProject_story(project.getProjectStory());
 
         if (SecurityUtils.getCurrentUserLogin().isPresent()) {
             String userlogin = SecurityUtils.getCurrentUserLogin().get();
@@ -108,9 +96,8 @@ public class ProjectsController implements ProjectsApi {
         //entity.setTags(entity.getTags());
 
 
-
         List<ProjectRole> projectRoleList = new ArrayList<>();
-        if (! project.getProjectRole().isEmpty()) {
+        if (!project.getProjectRole().isEmpty()) {
             int size = project.getProjectRole().size();
             for (int i = 0; i < size; i++) {
                 Long count = project.getProjectRole().get(i).getCount();
@@ -123,7 +110,6 @@ public class ProjectsController implements ProjectsApi {
             }
         }
         entity.setProjectRoles(projectRoleList);
-
 
 
         projectsRepository.save(entity);

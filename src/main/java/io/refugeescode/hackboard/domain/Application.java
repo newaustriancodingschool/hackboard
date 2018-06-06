@@ -15,13 +15,13 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     private User applicant ;
 
-    @OneToOne
+    @ManyToOne
     private ProjectRole role ;
 
-    @OneToOne
+    @ManyToOne
     private Project project;
 
 

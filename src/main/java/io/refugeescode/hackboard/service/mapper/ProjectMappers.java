@@ -127,9 +127,11 @@ public class ProjectMappers {
                 }
 
             }
+
             project.setProjectRoles(projectRoleslist);
 
-            //applicationRepository.find
+            project.setProject_story(projectDto.getProjectStory());
+
 
             return project;
         }
