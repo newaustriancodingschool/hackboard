@@ -1,10 +1,13 @@
 package io.refugeescode.hackboard.domain;
 
 import lombok.Data;
+import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import java.io.Serializable;
 
@@ -41,26 +44,24 @@ public class Project implements Serializable {
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER )
     @JoinTable(
         name = "project_role_relation",
         joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<ProjectRole> projectRoles = new ArrayList<>();
 
-
-    @ElementCollection( targetClass = String.class )
-    @CollectionTable(name="project_story", joinColumns=@JoinColumn(name="project_id",referencedColumnName ="id"))
+/*
+    //@ElementCollection( targetClass = String.class )
+    @OneToMany
+    @JoinColumn(name="project_id")
+    //@JoinTable(name="project_story", joinColumns=@JoinColumn(name="project_id",referencedColumnName ="id") )
     @Column(name="description")
-    private List<String> project_story = new ArrayList<>();
+    //@LazyCollection(LazyCollectionOption.FALSE)*/
 
-    public List<String> getProject_story() {
-        return project_story;
-    }
 
-    public void setProject_story(List<String> project_story) {
-        this.project_story = project_story;
-    }
+
+
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -69,21 +70,6 @@ public class Project implements Serializable {
         joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "id")})
     private Set<Tag> tags;
-
-
-/*
-
-    @ManyToOne
-    private List<Application> applications =  new ArrayList<>();
-
-    public List<Application> getApplications() {
-        return applications;
-    }
-
-    public void setApplications(List<Application> applications) {
-        this.applications = applications;
-    }
-*/
 
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -163,15 +149,6 @@ public class Project implements Serializable {
         return Objects.hashCode(getId());
     }
 
-    @Override
-    public String toString() {
-        return "Project{" +
-            "id=" + getId() +
-            ", title='" + getTitle() + "'" +
-            ", description='" + getDescription() + "'" +
-            "}";
-    }
-
     public List<ProjectRole> getProjectRoles() {
         return projectRoles;
     }
@@ -186,5 +163,18 @@ public class Project implements Serializable {
 
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+            "id=" + id +
+            ", title='" + title + '\'' +
+            ", description='" + description + '\'' +
+            ", github='" + github + '\'' +
+            ", owner=" + owner +
+            ", projectRoles=" + projectRoles +
+            ", tags=" + tags +
+            '}';
     }
 }

@@ -118,6 +118,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private Set<PersistentToken> persistentTokens = new HashSet<>();
 
 
+
+
     public Long getId() {
         return id;
     }

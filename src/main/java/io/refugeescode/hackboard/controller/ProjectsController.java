@@ -6,6 +6,7 @@ import io.refugeescode.hackboard.domain.ProjectRole;
 import io.refugeescode.hackboard.domain.User;
 import io.refugeescode.hackboard.repository.ProjectRepository;
 import io.refugeescode.hackboard.repository.ProjectRoleRepository;
+import io.refugeescode.hackboard.repository.ProjectStoriesRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.security.SecurityUtils;
@@ -33,17 +34,20 @@ public class ProjectsController implements ProjectsApi {
     private ProjectRepository projectsRepository;
     private UserRepository userRepository;
     private ProjectRoleRepository projectRoleRepository;
+    private ProjectStoriesRepository projectStoriesRepository;
+
     @Autowired
     private ProjectMappers projectMappers;
 
     @Autowired
     private ProjectRoleMapper projectRoleMapper;
 
-    public ProjectsController(ProjectRepository projectsRepository, UserRepository userRepository, ProjectRoleRepository projectRoleRepository) {
+    public ProjectsController(ProjectRepository projectsRepository, UserRepository userRepository, ProjectRoleRepository projectRoleRepository , ProjectStoriesRepository projectStoriesRepository) {
 
         this.projectsRepository = projectsRepository;
         this.userRepository = userRepository;
         this.projectRoleRepository = projectRoleRepository;
+        this.projectStoriesRepository = projectStoriesRepository;
     }
 
     @Override
@@ -68,9 +72,6 @@ public class ProjectsController implements ProjectsApi {
                 }
             }
         }
-        entity.setProjectRoles(projectRoleList);
-
-        entity.setProject_story(project.getProjectStory());
 
         if (SecurityUtils.getCurrentUserLogin().isPresent()) {
             String userlogin = SecurityUtils.getCurrentUserLogin().get();
@@ -87,13 +88,11 @@ public class ProjectsController implements ProjectsApi {
 
     @Override
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
-    //@PreFilter("hasRole('ADMIN') or ")
     public ResponseEntity<Boolean> editProject(@RequestBody ProjectDto project) {
         Project entity = projectsRepository.findOne(project.getId());
         entity.setTitle(project.getTitle());
         entity.setDescription(project.getDescription());
         entity.setGithub(project.getGithub());
-        //entity.setTags(entity.getTags());
 
 
         List<ProjectRole> projectRoleList = new ArrayList<>();
@@ -110,6 +109,8 @@ public class ProjectsController implements ProjectsApi {
             }
         }
         entity.setProjectRoles(projectRoleList);
+
+
 
 
         projectsRepository.save(entity);

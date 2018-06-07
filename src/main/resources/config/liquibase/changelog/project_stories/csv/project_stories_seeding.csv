@@ -1,0 +1,30 @@
+id;project_id;description
+1;1;As a user I want an intuitive experience from the beginning.
+2;1;As a programmer, I want the ability to code my own modules and add them.
+3;1;As a participant, I want to see my character grow and buy nice things.
+4;1;As a gamer, I like to see some story line.
+5;1;As a participant, I want access to all kinds of apps that make my life easier. For food, for sports, for shopping, for voting, and all should be connected.
+6;2;As an organiser, I want to add markers to a map with some instructions and a to-do.
+7;2;As a participant, I want to enter the required information and mark the assignment complete.
+8;2;As a user I want to have an overview over the current situation.
+9;2;As a scientist, I may want to collect data throughout Vienna through this App.
+10;3;As an engaged teacher, I want to easily add my project to the site.
+11;3;As an engaged teacher, I know that videos are the best way to catch attention
+12;3;As an interested parent I want to easily donate money for my kid’s project.
+13;3;As a socially interested parent, I want to see a suggestion how much I can spend to support a less wealthy family.
+14;3;As an interested site-visitor, I want to browse through other projects.
+15;5;As a movie lover I want to suggest a movie to watch and explain why.
+16;5;As a movie watcher, I want to vote on a movie for tonight.
+17;5;As an organiser, I want to know which movie to prepare / download.
+18;6;As a cook, I like to pick the dish and allow people to sign up for eating.
+19;6;As a cook, I like to write a shopping list for others to buy.
+20;6;As an anti-cook, I can do the shopping because everything I touch burns down.
+21;6;As someone with no time this week I just want to sign up for the meal.
+22;6;As a cleaner I want to say thank you by promising to clean the kitchen afterwards
+23;6;As a normally talented person, I can sign up for cutting vegetables or helping the chef cook.
+24;6;As someone who cares about fairness, it’s nice to earn points for each role.
+25;6;As someone who’s hungry I want to see what’s on the menu this week.
+26;6;As someone who cares about money, I want to split up the costs between all participants.
+27;7;As an organizer, I want to add prices to an overview.
+28;7;As an organizer, I want to give tickets to different participants
+29;7;As a participant I want to put my tickets on a certain object, so I have more control to get what I want.

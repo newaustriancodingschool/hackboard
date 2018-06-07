@@ -8,6 +8,7 @@ import static org.mockito.Mockito.verify;
 import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.repository.ProjectRepository;
 import io.refugeescode.hackboard.repository.ProjectRoleRepository;
+import io.refugeescode.hackboard.repository.ProjectStoriesRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
 import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
@@ -30,7 +31,7 @@ public class ProjectsControllerNewTest {
         projectDto.setProjectRole(projectRoleDtos);
 
 
-        new ProjectsController(repository, mock(UserRepository.class), mock(ProjectRoleRepository.class)).addProject(projectDto);
+        new ProjectsController(repository, mock(UserRepository.class), mock(ProjectRoleRepository.class) , mock(ProjectStoriesRepository.class)).addProject(projectDto);
         ArgumentCaptor<Project> argumentCaptor = ArgumentCaptor.forClass(Project.class);
 
         verify(repository).save(argumentCaptor.capture());

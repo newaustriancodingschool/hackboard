@@ -114,6 +114,11 @@
     <include file="config/liquibase/changelog/project_role/xml/project_role_relation_database_seeding2.xml" relativeToChangelogFile="false"/>
 
 
+    <!--**********************Add  Project stories Table   Mohamed Dahman issue #46*****************************-->
+    <include file="config/liquibase/changelog/project_stories/xml/project_stories.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/project_stories/xml/project_stories_seeding.xml" relativeToChangelogFile="false"/>
+
+
 
 
 </databaseChangeLog>

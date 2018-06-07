@@ -296,7 +296,7 @@ definitions:
         type: "string"
       github:
         type: "string"
-      project_story:
+      project_stories:
         type: array
         items:
           type: "string"

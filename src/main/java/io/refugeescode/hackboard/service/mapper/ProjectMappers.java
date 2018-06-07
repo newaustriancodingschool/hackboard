@@ -1,10 +1,11 @@
 package io.refugeescode.hackboard.service.mapper;
 
-import io.refugeescode.hackboard.domain.Application;
 import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.domain.ProjectRole;
+import io.refugeescode.hackboard.domain.ProjectStories;
 import io.refugeescode.hackboard.repository.ApplicationRepository;
 import io.refugeescode.hackboard.repository.ProjectRoleRepository;
+import io.refugeescode.hackboard.repository.ProjectStoriesRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.service.dto.ApplicationDto;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
@@ -12,8 +13,10 @@ import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.sound.midi.Soundbank;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,6 +33,9 @@ public class ProjectMappers {
 
     @Autowired
     private ApplicationMapper applicationMapper;
+
+    @Autowired
+    private ProjectStoriesRepository projectStoriesRepository;
 
     public ProjectDto projectToProjectDto(Project project) {
         if (project == null) {
@@ -72,11 +78,24 @@ public class ProjectMappers {
             projectDto.setProjectRole(dtoRolesSet);
             List<ApplicationDto> collect = applicationRepository.findAll()
                 .stream().filter(e -> e.getProject().getId().equals(project.getId()))
-                .map(e->applicationMapper.applicationToApplicationDto(e))
+                .map(e -> applicationMapper.applicationToApplicationDto(e))
                 .collect(Collectors.toList());
 
             projectDto.setApplicationDto(collect);
 
+
+            //List<ProjectStories> allByProjectId = projectStoriesRepository.findAllByProjectId(project);
+
+            List<String> stories = projectStoriesRepository.findAll()
+                .stream().filter(story -> story.getProject().getId().equals(project.getId()))
+                .map(story -> story.getDescription())
+                .collect(Collectors.toList());
+            System.out.println("**********************************************");
+            System.out.println(stories);
+            System.out.println("**********************************************");
+
+
+            projectDto.setProjectStories(stories);
 
             return projectDto;
         }
@@ -129,9 +148,6 @@ public class ProjectMappers {
             }
 
             project.setProjectRoles(projectRoleslist);
-
-            project.setProject_story(projectDto.getProjectStory());
-
 
             return project;
         }

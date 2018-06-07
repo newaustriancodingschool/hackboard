@@ -9,9 +9,17 @@ import { ProjectRoleDto } from './../../api/model/projectRoleDto';
   styles: []
 })
 export class ProjectEditComponent implements OnInit {
-  data: ProjectDto = { id: 0, title: '', description: '', github: '', projectRole: [] };
+  data: ProjectDto = {
+    id: 0,
+    title: '',
+    description: '',
+    github: '',
+    projectRole: [],
+    projectStories: []
+  };
   roles: Array<ProjectRoleDto>;
   projectRoles: Array<ProjectRoleDto>;
+  stories: Array<string>;
 
   constructor(
     private projectService: ProjectService,
@@ -25,12 +33,21 @@ export class ProjectEditComponent implements OnInit {
     this.projectService.viewProject(id).subscribe(project => {
       this.data = project;
       this.projectRoles = [];
+      this.stories = [];
+
       this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
+
       this.projectRoles = this.data.projectRole;
+
+      console.log(this.data);
+      this.stories = this.data.projectStories;
+      console.log(this.data.projectStories);
     });
   }
 
   submit() {
+    this.data.projectRole = this.projectRoles;
+    this.data.projectStories = this.stories;
     this.projectService.editProject(this.data).subscribe(() => this.router.navigate(['/projects']));
   }
 
@@ -51,7 +68,6 @@ export class ProjectEditComponent implements OnInit {
         roleFound = true;
       }
     }
-    console.log(roleFound);
     if (roleFound === false) {
       this.projectRoles.push(newRoleData);
     }
@@ -66,6 +82,18 @@ export class ProjectEditComponent implements OnInit {
         } else {
           this.projectRoles[i].count--;
         }
+      }
+    }
+  }
+
+  addStory(story) {
+    this.stories.push(story);
+  }
+
+  delstory(story) {
+    for (let i = 0; i < this.stories.length; i++) {
+      if (story === this.stories[i]) {
+        this.stories.splice(i, 1);
       }
     }
   }

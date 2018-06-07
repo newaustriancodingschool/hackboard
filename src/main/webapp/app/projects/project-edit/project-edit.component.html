@@ -26,18 +26,35 @@
 </form>
 -->
 
-<br>
+    <form (ngSubmit)="addStory(userstory.value)">
+        <div class="form-group">
+            <label class="lightBlue font-weight-bold" >User Story:</label>
+            <div class="form-row">
+                <div class="form-group col-md-11"><input type="text"   #userstory class="form-control"></div>
+                <div class="form-group col-md-1"><button class="ff">+</button></div>
+            </div>
+        </div>
+    </form>
 
+    <ol>
+        <div *ngFor="let story of stories">
+            <div class="row">
+                <div class="form-group col-md-11"><li>{{story}}</li></div>
+                <div class="form-group col-md-1"><button class="ff" (click)="delstory(story)">-</button></div>
+            </div>
+        </div>
+    </ol>
 
-<form (ngSubmit)="editRole(dropRoles.value)">
+    <br>
+    <form (ngSubmit)="editRole(dropRoles.value)">
 
 
     <label class="lightBlue font-weight-bold">Roles:</label>
     <select #dropRoles>
         <option *ngFor="let role of roles" [ngValue]="roles" [ngStyle]="{'background-color': role.color}">{{role.roleName}}</option>
     </select>
-    <button class="ff">+</button>
-</form>
+        <button class="ff">+</button>
+    </form>
 </form>
 
 <label class="lightBlue font-weight-bold">Looking for these roles:</label>

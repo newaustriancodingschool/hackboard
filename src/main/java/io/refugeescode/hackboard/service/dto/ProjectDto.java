@@ -43,9 +43,9 @@ public class ProjectDto   {
   @JsonProperty("github")
   private String github = null;
 
-  @JsonProperty("project_story")
+  @JsonProperty("project_stories")
   @Valid
-  private List<String> projectStory = null;
+  private List<String> projectStories = null;
 
   @JsonProperty("projectRole")
   @Valid
@@ -217,32 +217,32 @@ public class ProjectDto   {
     this.github = github;
   }
 
-  public ProjectDto projectStory(List<String> projectStory) {
-    this.projectStory = projectStory;
+  public ProjectDto projectStories(List<String> projectStories) {
+    this.projectStories = projectStories;
     return this;
   }
 
-  public ProjectDto addProjectStoryItem(String projectStoryItem) {
-    if (this.projectStory == null) {
-      this.projectStory = new ArrayList<>();
+  public ProjectDto addProjectStoriesItem(String projectStoriesItem) {
+    if (this.projectStories == null) {
+      this.projectStories = new ArrayList<>();
     }
-    this.projectStory.add(projectStoryItem);
+    this.projectStories.add(projectStoriesItem);
     return this;
   }
 
   /**
-   * Get projectStory
-   * @return projectStory
+   * Get projectStories
+   * @return projectStories
   **/
   @ApiModelProperty(value = "")
 
 
-  public List<String> getProjectStory() {
-    return projectStory;
+  public List<String> getProjectStories() {
+    return projectStories;
   }
 
-  public void setProjectStory(List<String> projectStory) {
-    this.projectStory = projectStory;
+  public void setProjectStories(List<String> projectStories) {
+    this.projectStories = projectStories;
   }
 
   public ProjectDto projectRole(List<ProjectRoleDto> projectRole) {
@@ -321,14 +321,14 @@ public class ProjectDto   {
         Objects.equals(this.ownerLastName, projectDto.ownerLastName) &&
         Objects.equals(this.ownerLoginName, projectDto.ownerLoginName) &&
         Objects.equals(this.github, projectDto.github) &&
-        Objects.equals(this.projectStory, projectDto.projectStory) &&
+        Objects.equals(this.projectStories, projectDto.projectStories) &&
         Objects.equals(this.projectRole, projectDto.projectRole) &&
         Objects.equals(this.applicationDto, projectDto.applicationDto);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, ownerLoginName, github, projectStory, projectRole, applicationDto);
+    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, ownerLoginName, github, projectStories, projectRole, applicationDto);
   }
 
   @Override
@@ -344,7 +344,7 @@ public class ProjectDto   {
     sb.append("    ownerLastName: ").append(toIndentedString(ownerLastName)).append("\n");
     sb.append("    ownerLoginName: ").append(toIndentedString(ownerLoginName)).append("\n");
     sb.append("    github: ").append(toIndentedString(github)).append("\n");
-    sb.append("    projectStory: ").append(toIndentedString(projectStory)).append("\n");
+    sb.append("    projectStories: ").append(toIndentedString(projectStories)).append("\n");
     sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
     sb.append("    applicationDto: ").append(toIndentedString(applicationDto)).append("\n");
     sb.append("}");

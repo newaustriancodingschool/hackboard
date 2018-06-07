@@ -22,7 +22,7 @@ export interface ProjectDto {
     ownerLastName?: string;
     ownerLoginName?: string;
     github?: string;
-    projectStory?: Array<string>;
+    projectStories?: Array<string>;
     projectRole?: Array<ProjectRoleDto>;
     applicationDto?: Array<ApplicationDto>;
 }

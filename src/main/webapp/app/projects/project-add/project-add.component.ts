@@ -15,7 +15,7 @@ export class ProjectAddComponent implements OnInit {
     ownerId: 0,
     github: '',
     projectRole: [],
-    projectStory: []
+    projectStories: []
   };
   roleData: ProjectRoleDto = { roleName: '', color: '', count: 0 };
   roles: Array<ProjectRoleDto>;
@@ -36,8 +36,7 @@ export class ProjectAddComponent implements OnInit {
 
   submit() {
     this.data.projectRole = this.projectRoles;
-    this.data.projectStory = this.stories;
-    console.log(this.data.projectStory);
+    this.data.projectStories = this.stories;
     this.projectService.addProject(this.data).subscribe(() => this.router.navigate(['/projects']));
   }
 
@@ -64,7 +63,6 @@ export class ProjectAddComponent implements OnInit {
   }
 
   addStory(story) {
-    console.log(story);
     this.stories.push(story);
   }
 
