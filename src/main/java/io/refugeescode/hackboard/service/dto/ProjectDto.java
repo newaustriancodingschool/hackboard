@@ -43,7 +43,7 @@ public class ProjectDto   {
   @JsonProperty("github")
   private String github = null;
 
-  @JsonProperty("project_stories")
+  @JsonProperty("projectStories")
   @Valid
   private List<String> projectStories = null;
 
