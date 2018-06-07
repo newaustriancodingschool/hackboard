@@ -11,10 +11,6 @@
             </div>
 
             <div class="alert alert-warning" *ngSwitchCase="false">
-                <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
-                <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</a><span jhiTranslate="global.messages.info.authenticated.suffix">, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
-            </div>
-            <div class="alert alert-warning" *ngSwitchCase="false">
                 <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>
                 <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
             </div>
@@ -27,7 +23,7 @@
         <div class="col-12 col-md-6 text-left">
             <h2 class="m-0 ml-2 paragraphHead">A good idea BECOMES A great idea when you Let it OUT .. Share it WITH Us</h2>
         </div>
-        
+
         <a routerLink="projects" class="btn btn-defult MyBtn float-right MyShadow">List of Projects</a>
         <br><br>
         <p>
