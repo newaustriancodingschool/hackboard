@@ -11,7 +11,14 @@ import { Principal } from './../../shared';
   templateUrl: './project-view.component.html'
 })
 export class ProjectViewComponent implements OnInit {
-  project: ProjectDto = { id: 0, title: '', description: '', projectRole: [], applicationDto: [] };
+  project: ProjectDto = {
+    id: 0,
+    title: '',
+    description: '',
+    projectRole: [],
+    applicationDto: [],
+    projectStories: []
+  };
   applicant: ApplicationDto = { id: 0, applicant: 0, projectId: 0, roleId: 0 };
   roleData: ProjectRoleDto = { id: 0, roleName: '', color: '', count: 0 };
   roles: Array<ProjectRoleDto>;

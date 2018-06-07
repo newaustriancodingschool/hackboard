@@ -30,7 +30,9 @@ public class ProjectsControllerNewTest {
 
         projectDto.setProjectRole(projectRoleDtos);
 
-
+        List<String> listStories=new ArrayList<>();
+        listStories.add("As User");
+        projectDto.setProjectStories(listStories);
         new ProjectsController(repository, mock(UserRepository.class), mock(ProjectRoleRepository.class) , mock(ProjectStoriesRepository.class)).addProject(projectDto);
         ArgumentCaptor<Project> argumentCaptor = ArgumentCaptor.forClass(Project.class);
 

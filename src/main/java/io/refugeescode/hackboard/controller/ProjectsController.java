@@ -3,6 +3,7 @@ package io.refugeescode.hackboard.controller;
 
 import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.domain.ProjectRole;
+import io.refugeescode.hackboard.domain.ProjectStories;
 import io.refugeescode.hackboard.domain.User;
 import io.refugeescode.hackboard.repository.ProjectRepository;
 import io.refugeescode.hackboard.repository.ProjectRoleRepository;
@@ -72,7 +73,7 @@ public class ProjectsController implements ProjectsApi {
                 }
             }
         }
-
+        entity.setProjectRoles(projectRoleList);
         if (SecurityUtils.getCurrentUserLogin().isPresent()) {
             String userlogin = SecurityUtils.getCurrentUserLogin().get();
             Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
@@ -81,8 +82,16 @@ public class ProjectsController implements ProjectsApi {
             }
         }
 
-
         projectsRepository.save(entity);
+
+        project.getProjectStories().stream().forEach(story->{
+            ProjectStories projectStories =  new ProjectStories();
+            projectStories.setDescription(story);
+            projectStories.setProject(entity);
+            projectStoriesRepository.save(projectStories);
+        });
+
+
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
@@ -110,10 +119,19 @@ public class ProjectsController implements ProjectsApi {
         }
         entity.setProjectRoles(projectRoleList);
 
-
-
-
         projectsRepository.save(entity);
+        projectStoriesRepository.findAll()
+                            .stream()
+                            .filter(stories -> stories.getProject().getId().equals(entity.getId()))
+                            .forEach(story->projectStoriesRepository.delete(story.getId()));
+
+        project.getProjectStories().stream().forEach(story->{
+            ProjectStories projectStories =  new ProjectStories();
+            projectStories.setDescription(story);
+            projectStories.setProject(entity);
+            projectStoriesRepository.save(projectStories);
+        });
+
 
         return new ResponseEntity<>(true, HttpStatus.OK);
     }

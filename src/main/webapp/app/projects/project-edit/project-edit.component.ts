@@ -39,9 +39,7 @@ export class ProjectEditComponent implements OnInit {
 
       this.projectRoles = this.data.projectRole;
 
-      console.log(this.data);
       this.stories = this.data.projectStories;
-      console.log(this.data.projectStories);
     });
   }
 

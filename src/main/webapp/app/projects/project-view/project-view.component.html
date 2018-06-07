@@ -25,6 +25,14 @@
 <a *ngIf=isGithub class="lightBlue font-weight-bold" href={{project.github}} target="_blank"><u>Check out this project on GitHub</u></a>
 <p *ngIf=!isGithub class="lightBlue">no github project yet</p>
 </br>
+<label class="lightBlue font-weight-bold"><hr>Project Story:</label>
+<ol>
+    <div *ngFor="let story of project.projectStories">
+        <div class="row">
+            <div class="form-group col-md-11"><li>{{story}}</li></div>
+        </div>
+    </div>
+</ol>
 <label class="lightBlue font-weight-bold"><hr>Looking for these people:</label>
     <div *ngFor="let role of project.projectRole">
         <div class="row">
