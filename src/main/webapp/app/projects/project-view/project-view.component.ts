@@ -22,6 +22,7 @@ export class ProjectViewComponent implements OnInit {
   applyButton: String = 'Apply';
   rolesApply: number[];
   captionBtn: String;
+  isGithub: boolean;
 
   constructor(
     private projectService: ProjectService,
@@ -37,9 +38,8 @@ export class ProjectViewComponent implements OnInit {
     this.projectService.viewProject(id).subscribe(project => {
       this.project = project;
     });
-
+    this.project.github ? (this.isGithub = true) : (this.isGithub = false);
     this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
-
     this.principal.identity().then(account => {
       this.settingsAccount = this.copyAccount(account);
     });
