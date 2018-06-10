@@ -5,8 +5,7 @@ import { ProjectDto, ProjectService } from '../../api';
 import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: './project-add.component.html',
-  styles: []
+  templateUrl: './project-add.component.html'
 })
 export class ProjectAddComponent implements OnInit {
   data: ProjectDto = {
@@ -21,6 +20,8 @@ export class ProjectAddComponent implements OnInit {
   roles: Array<ProjectRoleDto>;
   stories: Array<string>;
   projectRoles: Array<ProjectRoleDto>;
+  tagsArray: Array<string>;
+  value: any;
 
   constructor(
     private projectService: ProjectService,
@@ -32,6 +33,8 @@ export class ProjectAddComponent implements OnInit {
     this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
     this.projectRoles = [];
     this.stories = [];
+    this.tagsArray = ['Java', 'C#', 'Php', 'Angular', 'Delphi'];
+    this.value = ['Java'];
   }
 
   submit() {
@@ -88,5 +91,25 @@ export class ProjectAddComponent implements OnInit {
 
   getFilledArray(count) {
     return Array(count).fill(true);
+  }
+
+  public selected(value: any): void {
+    console.log('Selected value is: ', value);
+  }
+
+  public removed(value: any): void {
+    console.log('Removed value is: ', value);
+  }
+
+  public refreshValue(value: any): void {
+    this.value = value;
+  }
+
+  public itemsToString(value: Array<any> = []): string {
+    return value
+      .map((item: any) => {
+        return item.text;
+      })
+      .join(',');
   }
 }

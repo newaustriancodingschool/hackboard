@@ -71,3 +71,15 @@
         <div class="lightBlue font-weight-bold">{{role.roleName}}</div>
     </div>
 </div>
+
+
+<div style="width: 300px; margin-bottom: 20px;">
+    <h3>Select multiple Tags</h3>
+    <ng-select  [multiple]="true"
+                [items]="tagsArray"
+                (data)="refreshValue($event)"
+                (selected)="selected($event)"
+                (removed)="removed($event)"
+                placeholder="No Tag selected"></ng-select>
+    <pre>{{itemsToString(value)}}</pre>
+</div>
