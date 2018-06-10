@@ -11,6 +11,7 @@ import io.refugeescode.hackboard.repository.ProjectStoriesRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.security.SecurityUtils;
+import io.refugeescode.hackboard.service.ApplicationService;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
 import io.refugeescode.hackboard.service.mapper.ProjectMappers;
 import io.refugeescode.hackboard.service.mapper.ProjectRoleMapper;
@@ -19,13 +20,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -37,13 +38,18 @@ public class ProjectsController implements ProjectsApi {
     private ProjectRoleRepository projectRoleRepository;
     private ProjectStoriesRepository projectStoriesRepository;
 
+
+    @Autowired
+    private ApplicationService applicationService;
+
+
     @Autowired
     private ProjectMappers projectMappers;
 
     @Autowired
     private ProjectRoleMapper projectRoleMapper;
 
-    public ProjectsController(ProjectRepository projectsRepository, UserRepository userRepository, ProjectRoleRepository projectRoleRepository , ProjectStoriesRepository projectStoriesRepository) {
+    public ProjectsController(ProjectRepository projectsRepository, UserRepository userRepository, ProjectRoleRepository projectRoleRepository, ProjectStoriesRepository projectStoriesRepository) {
 
         this.projectsRepository = projectsRepository;
         this.userRepository = userRepository;
@@ -54,7 +60,6 @@ public class ProjectsController implements ProjectsApi {
     @Override
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
     public ResponseEntity<Boolean> addProject(@RequestBody ProjectDto project) {
-
         Project entity = new Project();
         entity.setTitle(project.getTitle());
         entity.setGithub(project.getGithub());
@@ -84,8 +89,8 @@ public class ProjectsController implements ProjectsApi {
 
         projectsRepository.save(entity);
 
-        project.getProjectStories().stream().forEach(story->{
-            ProjectStories projectStories =  new ProjectStories();
+        project.getProjectStories().stream().forEach(story -> {
+            ProjectStories projectStories = new ProjectStories();
             projectStories.setDescription(story);
             projectStories.setProject(entity);
             projectStoriesRepository.save(projectStories);
@@ -97,6 +102,7 @@ public class ProjectsController implements ProjectsApi {
 
     @Override
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
+    @PreAuthorize("(#project.ownerLoginName == authentication.name) or (hasRole('ADMIN')) ")
     public ResponseEntity<Boolean> editProject(@RequestBody ProjectDto project) {
         Project entity = projectsRepository.findOne(project.getId());
         entity.setTitle(project.getTitle());
@@ -121,12 +127,12 @@ public class ProjectsController implements ProjectsApi {
 
         projectsRepository.save(entity);
         projectStoriesRepository.findAll()
-                            .stream()
-                            .filter(stories -> stories.getProject().getId().equals(entity.getId()))
-                            .forEach(story->projectStoriesRepository.delete(story.getId()));
+            .stream()
+            .filter(stories -> stories.getProject().getId().equals(entity.getId()))
+            .forEach(story -> projectStoriesRepository.delete(story.getId()));
 
-        project.getProjectStories().stream().forEach(story->{
-            ProjectStories projectStories =  new ProjectStories();
+        project.getProjectStories().stream().forEach(story -> {
+            ProjectStories projectStories = new ProjectStories();
             projectStories.setDescription(story);
             projectStories.setProject(entity);
             projectStoriesRepository.save(projectStories);
@@ -159,8 +165,33 @@ public class ProjectsController implements ProjectsApi {
 
     @Override
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
+    @PreAuthorize("(@applicationService.hasPermission(#projectId , authentication.name)) or (hasRole('ADMIN')) ")
     public ResponseEntity<Boolean> deleteProject(@PathVariable("projectId") Long projectId) {
+        System.out.println("*************************************************");
+        System.out.println("this is before  delete Stories by id");
+        System.out.println("*************************************************");
+
+        List<ProjectStories> currentProjectStrories = projectStoriesRepository.findAll().stream()
+            .filter(story -> story.getProject().getId().equals(projectId)).collect(Collectors.toList());
+        currentProjectStrories.stream()
+            .forEach(stories -> projectStoriesRepository.delete(stories));
+
+        System.out.println("*************************************************");
+        System.out.println("this is After delete Stories by id");
+        System.out.println("*************************************************");
+
+
+        System.out.println("*************************************************");
+        System.out.println("this is before delete project by id");
+        System.out.println("*************************************************");
         projectsRepository.delete(projectId);
+        System.out.println("*************************************************");
+        System.out.println("this is After delete project by id");
+        System.out.println("*************************************************");
+
         return new ResponseEntity<>(true, HttpStatus.OK);
+
     }
+
+
 }

@@ -1,5 +1,6 @@
 package io.refugeescode.hackboard.config;
 
+import io.refugeescode.hackboard.domain.Application;
 import io.refugeescode.hackboard.repository.PersistentTokenRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.*;
@@ -7,7 +8,9 @@ import io.refugeescode.hackboard.security.*;
 import io.github.jhipster.config.JHipsterProperties;
 import io.github.jhipster.security.*;
 
+import io.refugeescode.hackboard.service.ApplicationService;
 import org.springframework.beans.factory.BeanInitializationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -34,6 +37,10 @@ import javax.annotation.PostConstruct;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+
+    @Autowired
+    private ApplicationService applicationService;
 
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
@@ -144,6 +151,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .disable()
             .and()
             .authorizeRequests()
+          ///  .antMatchers("/projects/{projectId}").access("@applicationService.hasPermission(projectId,authentication.name)")
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/authenticate").permitAll()

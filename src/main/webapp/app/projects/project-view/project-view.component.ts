@@ -15,6 +15,7 @@ export class ProjectViewComponent implements OnInit {
     id: 0,
     title: '',
     description: '',
+    github: '',
     projectRole: [],
     applicationDto: [],
     projectStories: []
@@ -45,6 +46,9 @@ export class ProjectViewComponent implements OnInit {
     this.projectService.viewProject(id).subscribe(project => {
       this.project = project;
     });
+    console.log('***************************');
+    console.log(this.project.github);
+    console.log('***************************');
     this.project.github ? (this.isGithub = true) : (this.isGithub = false);
     this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
     this.principal.identity().then(account => {
@@ -72,11 +76,11 @@ export class ProjectViewComponent implements OnInit {
     if (found === false) {
       this.applicationService
         .addapplication(this.applicant)
-        .subscribe(() => this.router.navigate(['/projects']));
+        .subscribe(() => this.router.navigate(['/#']));
     } else {
       this.applicationService
         .delapplication(this.project.id, roleid)
-        .subscribe(() => this.router.navigate(['/projects']));
+        .subscribe(() => this.router.navigate(['/#']));
     }
     this.isApplied ? (this.applyButton = 'Applied') : (this.applyButton = 'Apply');
   }
