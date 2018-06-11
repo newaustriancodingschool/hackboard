@@ -20,6 +20,8 @@ export class ProjectEditComponent implements OnInit {
   roles: Array<ProjectRoleDto>;
   projectRoles: Array<ProjectRoleDto>;
   stories: Array<string>;
+  tags: Array<string> = ['tag1', 'tag2', 'tag3'];
+  selectedTags: Array<string> = ['tag1'];
 
   constructor(
     private projectService: ProjectService,
