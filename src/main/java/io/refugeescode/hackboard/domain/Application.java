@@ -15,13 +15,13 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private User applicant ;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private ProjectRole role ;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Project project;
 
 

@@ -43,7 +43,9 @@
             </div>
             <div class="col-xs-6 col-md-4">{{role.roleName}}</div>
             <div class="clearfix visible-xs-block"></div>
-            <div class="col-xs-6 col-md-4"><button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="toggleApply(role.id)">{{checkisApply(role.id)}}</button></div>
+            <div class="col-xs-6 col-md-4">
+                <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="toggleApply(role.id)">{{checkisApply(role.id)}}</button>
+            </div>
         </div>
     </div>
     <label class="lightBlue font-weight-bold">people already apply in Project:<hr></label>

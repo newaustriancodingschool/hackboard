@@ -31,7 +31,7 @@ export class ProjectViewComponent implements OnInit {
   rolesApply: number[];
   captionBtn: String;
   isGithub: boolean;
-
+  id: number;
   constructor(
     private projectService: ProjectService,
     private principal: Principal,
@@ -42,11 +42,12 @@ export class ProjectViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    this.projectService.viewProject(id).subscribe(project => {
+    this.id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+    this.projectService.viewProject(this.id).subscribe(project => {
       this.project = project;
     });
     console.log('***************************');
+    console.log(this.project);
     console.log(this.project.github);
     console.log('***************************');
     this.project.github ? (this.isGithub = true) : (this.isGithub = false);
@@ -55,7 +56,7 @@ export class ProjectViewComponent implements OnInit {
       this.settingsAccount = this.copyAccount(account);
     });
     this.applicationService
-      .getRoleApplication(id)
+      .getRoleApplication(this.id)
       .subscribe(rolesApply => (this.rolesApply = rolesApply));
   }
 
@@ -82,6 +83,7 @@ export class ProjectViewComponent implements OnInit {
         .delapplication(this.project.id, roleid)
         .subscribe(() => this.router.navigate(['/#']));
     }
+    window.location.reload();
     this.isApplied ? (this.applyButton = 'Applied') : (this.applyButton = 'Apply');
   }
 
@@ -114,4 +116,16 @@ export class ProjectViewComponent implements OnInit {
       imageUrl: account.imageUrl
     };
   }
+
+  myloadFunction() {
+    console.log('+++++++++++++++++++++++++++++++++++');
+    console.log(this.project);
+    console.log('+++++++++++++++++++++++++++++++++++');
+  }
+  /*ProjectViewComponent.prototype.addEventListener = function(){
+        if ( === void 0) {  = 'DOMContentLoaded'; }
+    alert('Ready!');
+    console.log(this.project);
+   }, false);
+*/
 }

@@ -155,7 +155,7 @@ public class ProjectsController implements ProjectsApi {
 
     @Override
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
-    public ResponseEntity<ProjectDto> viewProject(@PathVariable("projectId") Long projectId) {
+    public  ResponseEntity<ProjectDto> viewProject(@PathVariable("projectId") Long projectId) {
         return new ResponseEntity<>(
             projectMappers.projectToProjectDto(
                 projectsRepository.findOne(projectId)),

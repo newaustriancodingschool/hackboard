@@ -1,5 +1,6 @@
 package io.refugeescode.hackboard.service.mapper;
 
+import io.refugeescode.hackboard.domain.Application;
 import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.domain.ProjectRole;
 import io.refugeescode.hackboard.domain.ProjectStories;
@@ -76,11 +77,15 @@ public class ProjectMappers {
                 }
             }
             projectDto.setProjectRole(dtoRolesSet);
-            List<ApplicationDto> collect = applicationRepository.findAll()
+            List<Application> allByProject = applicationRepository.findAllByProject(project);
+            List<ApplicationDto> collect = allByProject.stream().map(e -> applicationMapper.applicationToApplicationDto(e))
+                .collect(Collectors.toList());
+
+         /*   List<ApplicationDto> collect = applicationRepository.findAll()
                 .stream().filter(e -> e.getProject().getId().equals(project.getId()))
                 .map(e -> applicationMapper.applicationToApplicationDto(e))
                 .collect(Collectors.toList());
-
+*/
             projectDto.setApplicationDto(collect);
 
 
