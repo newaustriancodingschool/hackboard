@@ -50,7 +50,7 @@ export class ProjectViewComponent implements OnInit {
     console.log(this.project);
     console.log(this.project.github);
     console.log('***************************');
-    this.project.github ? (this.isGithub = true) : (this.isGithub = false);
+
     this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
     this.principal.identity().then(account => {
       this.settingsAccount = this.copyAccount(account);
@@ -101,6 +101,18 @@ export class ProjectViewComponent implements OnInit {
       }
     }
     return this.captionBtn;
+  }
+  checkGitHub() {
+    console.log('*******************************');
+    console.log('*******************************');
+    console.log(this.project.github);
+    console.log('*******************************');
+    console.log('*******************************');
+    console.log('*******************************');
+    if (this.project.github === null) {
+      return false;
+    }
+    return true;
   }
 
   copyAccount(account) {
