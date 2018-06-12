@@ -30,8 +30,8 @@ export class ProjectViewComponent implements OnInit {
   applyButton: String = 'Apply';
   rolesApply: number[];
   captionBtn: String;
-  isGithub: boolean;
   id: number;
+
   constructor(
     private projectService: ProjectService,
     private principal: Principal,
@@ -98,11 +98,9 @@ export class ProjectViewComponent implements OnInit {
     }
     return this.captionBtn;
   }
-  checkGitHub() {
-    if (this.project.github === null) {
-      return false;
-    }
-    return true;
+
+  isGitHub() {
+    return this.project.github ? true : false;
   }
 
   copyAccount(account) {
