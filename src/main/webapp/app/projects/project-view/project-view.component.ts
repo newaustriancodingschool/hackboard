@@ -46,10 +46,6 @@ export class ProjectViewComponent implements OnInit {
     this.projectService.viewProject(this.id).subscribe(project => {
       this.project = project;
     });
-    console.log('***************************');
-    console.log(this.project);
-    console.log(this.project.github);
-    console.log('***************************');
 
     this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
     this.principal.identity().then(account => {
@@ -103,12 +99,6 @@ export class ProjectViewComponent implements OnInit {
     return this.captionBtn;
   }
   checkGitHub() {
-    console.log('*******************************');
-    console.log('*******************************');
-    console.log(this.project.github);
-    console.log('*******************************');
-    console.log('*******************************');
-    console.log('*******************************');
     if (this.project.github === null) {
       return false;
     }
