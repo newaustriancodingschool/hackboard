@@ -34,7 +34,7 @@
     </div>
 </ol>
 <label class="lightBlue font-weight-bold"><hr>Looking for these people:</label>
-    <div *ngFor="let role of project.projectRole">
+    <div *ngFor="let role of project.projectRole; let i = index">
         <div class="row">
             <div class="col-xs-6 col-md-4">
                 <div *ngFor="let counter of getFilledArray(role.count)">
@@ -44,7 +44,7 @@
             <div class="col-xs-6 col-md-4">{{role.roleName}}</div>
             <div class="clearfix visible-xs-block"></div>
             <div class="col-xs-6 col-md-4">
-                <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="toggleApply(role.id)">{{applyButton.id}}</button>           
+                <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="toggleApply(role.id)">{{applyButton[i]}}</button>           
             </div>
         </div>
     </div>

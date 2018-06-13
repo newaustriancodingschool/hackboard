@@ -27,9 +27,9 @@ export class ProjectViewComponent implements OnInit {
   settingsAccount: any;
   modalRef: NgbModalRef;
   isApplied: Boolean = false;
-  applyButton: String = 'Apply';
+  applyButton: String[];
   rolesApply: number[];
-  captionBtn: String;
+  // captionBtn: String;
   id: number;
   isGithub: boolean;
 
@@ -54,6 +54,21 @@ export class ProjectViewComponent implements OnInit {
     });
     this.applicationService.getRoleApplication(this.id).subscribe(rolesApply => {
       this.rolesApply = rolesApply;
+      //
+      this.applyButton = new Array<string>(this.project.projectRole.length);
+      this.applyButton = new Array(this.project.projectRole.length).fill('Apply');
+      console.log(this.applyButton);
+      console.log(this.applyButton.length);
+      for (let i = 0; i < this.project.projectRole.length; i++) {
+        for (let n = 0; n < this.rolesApply.length; n++) {
+          if (this.project.projectRole[i].id === rolesApply[n]) {
+            this.applyButton[i] = 'Applied';
+          }
+        }
+      }
+      console.log(this.project.projectRole);
+      console.log(this.rolesApply);
+      console.log(this.applyButton);
     });
   }
 
@@ -61,43 +76,51 @@ export class ProjectViewComponent implements OnInit {
     return Array(count).fill(true);
   }
 
+  // checkisApply(roleId) {
+  //   this.captionBtn = 'Apply';
+  //   for (let i = 0; i < this.rolesApply.length; i++) {
+  //     if (roleId === this.rolesApply[i]) {
+  //       this.captionBtn = 'Applied';
+  //     }
+  //   }
+  //   return this.captionBtn;
+  // }
+
   toggleApply(roleId) {
     this.applicant.projectId = this.project.id;
     this.applicant.roleId = roleId;
-    let roleFound = false;
+    // let roleFound = false;
     for (let i = 0; i < this.rolesApply.length; i++) {
       if (roleId === this.rolesApply[i]) {
-        roleFound = true;
+        this.applicationService
+          .addapplication(this.applicant)
+          .subscribe(() => this.router.navigate(['/#']));
+        this.applyButton[i] = 'Apply';
+      } else {
+        this.applicationService
+          .delapplication(this.project.id, roleId)
+          .subscribe(() => this.router.navigate(['/#']));
+        this.applyButton[i] = 'Applied';
       }
     }
 
-    if (roleFound === false) {
-      this.applicationService
-        .addapplication(this.applicant)
-        .subscribe(() => this.router.navigate(['/#']));
-    } else {
-      this.applicationService
-        .delapplication(this.project.id, roleId)
-        .subscribe(() => this.router.navigate(['/#']));
-    }
-    window.location.reload();
-    this.isApplied ? (this.applyButton = 'Applied') : (this.applyButton = 'Apply');
+    // if (roleFound === false) {
+    //   this.applicationService
+    //     .addapplication(this.applicant)
+    //     .subscribe(() => this.router.navigate(['/#']));
+    // } else {
+    //   this.applicationService
+    //     .delapplication(this.project.id, roleId)
+    //     .subscribe(() => this.router.navigate(['/#']));
+    // }
+    // window.location.reload();
+    // this.isApplied ? (this.applyButton = 'Applied') : (this.applyButton = 'Apply');
   }
 
   deleteProject() {
     this.projectService
       .deleteProject(this.project.id)
       .subscribe(() => this.router.navigate(['/projects']));
-  }
-
-  checkisApply(roleId) {
-    this.captionBtn = 'Apply';
-    for (let i = 0; i < this.rolesApply.length; i++) {
-      if (roleId === this.rolesApply[i]) {
-        this.captionBtn = 'Applied';
-      }
-    }
-    return this.captionBtn;
   }
 
   copyAccount(account) {
