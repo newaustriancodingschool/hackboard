@@ -20,7 +20,7 @@ export class ProjectViewComponent implements OnInit {
     applicationDto: [],
     projectStories: []
   };
-  applicant: ApplicationDto = { id: 0, applicant: 0, projectId: 0, roleId: 0 };
+  applicant: ApplicationDto = { id: 0, applicant: 0, projectId: 0, roleId: 0, status: 1 };
   roleData: ProjectRoleDto = { id: 0, roleName: '', color: '', count: 0 };
   roles: Array<ProjectRoleDto>;
   isOwner: Boolean = false;
@@ -135,5 +135,10 @@ export class ProjectViewComponent implements OnInit {
       login: account.login,
       imageUrl: account.imageUrl
     };
+  }
+
+  changeStatus(roleid, statusid) {
+    console.log(roleid);
+    console.log(statusid);
   }
 }

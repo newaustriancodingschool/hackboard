@@ -20,4 +20,5 @@ export interface ApplicationDto {
     roleName?: string;
     roleColor?: string;
     userGithub?: string;
+    status: number;
 }

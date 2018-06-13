@@ -1,13 +1,7 @@
 package io.refugeescode.hackboard.controller;
 
-import io.refugeescode.hackboard.domain.Application;
-import io.refugeescode.hackboard.domain.Project;
-import io.refugeescode.hackboard.domain.ProjectRole;
-import io.refugeescode.hackboard.domain.User;
-import io.refugeescode.hackboard.repository.ApplicationRepository;
-import io.refugeescode.hackboard.repository.ProjectRepository;
-import io.refugeescode.hackboard.repository.ProjectRoleRepository;
-import io.refugeescode.hackboard.repository.UserRepository;
+import io.refugeescode.hackboard.domain.*;
+import io.refugeescode.hackboard.repository.*;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.security.SecurityUtils;
 import io.refugeescode.hackboard.service.dto.ApplicationDto;
@@ -36,6 +30,8 @@ public class ApplicationController implements ApplicationApi {
     @Autowired
     private ApplicationMapper applicationMapper;
 
+    @Autowired
+    ApplicationStatusRepository applicationStatusRepository;
 
     public ApplicationController(ProjectRepository projectRepository, UserRepository userRepository, ProjectRoleRepository projectRoleRepository, ApplicationRepository applicationRepository) {
         this.projectRepository = projectRepository;
@@ -61,6 +57,8 @@ public class ApplicationController implements ApplicationApi {
             Project currentProject = projectRepository.findOne(projectId);
             Application application = new Application();
             application.setProject(currentProject);
+            ApplicationStatus applicationStatusrequest = applicationStatusRepository.findOne(1L);
+            application.setStatus(applicationStatusrequest);
             if (SecurityUtils.getCurrentUserLogin().isPresent()) {
                 String userlogin = SecurityUtils.getCurrentUserLogin().get();
                 Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
@@ -98,6 +96,34 @@ public class ApplicationController implements ApplicationApi {
 
          return new ResponseEntity<>(true, HttpStatus.OK);
      }
+
+    @Override
+    public ResponseEntity<Boolean> editstatusapplication(Long projectId, Long roleId, Long statusId) {
+        User user = new User();
+        if (SecurityUtils.getCurrentUserLogin().isPresent()) {
+            String userlogin = SecurityUtils.getCurrentUserLogin().get();
+            Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
+            if (oneByLogin.isPresent()) {
+                user = oneByLogin.get();
+            }
+        }
+        final User user1 = user;
+        Optional<Application> firstApplication = applicationRepository.findAll()
+            .stream()
+            .filter(e -> e.getProject().getId().equals(projectId))
+            .filter(e -> e.getApplicant().getId().equals(user1.getId()))
+            .filter(e -> e.getRole().getId().equals(roleId))
+            .findFirst();
+        if (firstApplication.isPresent()) {
+            ApplicationStatus applicationStatus = applicationStatusRepository.findOne(statusId);
+            firstApplication.get().setStatus(applicationStatus);
+            applicationRepository.save(firstApplication.get());
+
+        }
+
+        return new ResponseEntity<>(true, HttpStatus.OK);
+
+    }
 
     //@Override
     public ResponseEntity<List<Long>> getRoleApplication(@PathVariable("projectId") Long projectId) {

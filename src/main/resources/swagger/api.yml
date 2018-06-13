@@ -193,6 +193,38 @@ paths:
                 description: "successful operation"
                 schema:
                     type: "boolean"
+  /application/{projectId}/{roleId}/{statusId}:
+        put:
+            tags:
+            - "application"
+            summary: "update  an application status"
+            operationId: "editstatusapplication"
+            produces:
+            - "application/json"
+            parameters:
+            - name: "projectId"
+              in: "path"
+              description: "ID of project"
+              required: true
+              type: "integer"
+              format: "int64"
+            - name: "roleId"
+              in: "path"
+              description: "ID of role"
+              required: true
+              type: "integer"
+              format: "int64"
+            - name: "statusId"
+              in: "path"
+              description: "ID of Status "
+              required: true
+              type: "integer"
+              format: "int64"
+            responses:
+              200:
+                description: "successful operation"
+                schema:
+                    type: "boolean"
 
   /tags:
       get:
@@ -340,6 +372,7 @@ definitions:
           - "applicant"
           - "projectId"
           - "roleId"
+          - "status"
         properties:
           id:
             type: "integer"
@@ -361,5 +394,7 @@ definitions:
              type: "string"
           userGithub:
              type: "string"
-
+          status:
+             type: "integer"
+             format: "int64"
 
