@@ -31,6 +31,7 @@ export class ProjectViewComponent implements OnInit {
   rolesApply: number[];
   captionBtn: String;
   id: number;
+  isGithub: boolean;
 
   constructor(
     private projectService: ProjectService,
@@ -45,45 +46,45 @@ export class ProjectViewComponent implements OnInit {
     this.id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
     this.projectService.viewProject(this.id).subscribe(project => {
       this.project = project;
+      this.project.github ? (this.isGithub = true) : (this.isGithub = false);
     });
-
     this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
     this.principal.identity().then(account => {
       this.settingsAccount = this.copyAccount(account);
     });
-    this.applicationService
-      .getRoleApplication(this.id)
-      .subscribe(rolesApply => (this.rolesApply = rolesApply));
+    this.applicationService.getRoleApplication(this.id).subscribe(rolesApply => {
+      this.rolesApply = rolesApply;
+    });
   }
 
   getFilledArray(count) {
     return Array(count).fill(true);
   }
 
-  toggleApply(roleid) {
+  toggleApply(roleId) {
     this.applicant.projectId = this.project.id;
-    this.applicant.roleId = roleid;
-    let found = false;
+    this.applicant.roleId = roleId;
+    let roleFound = false;
     for (let i = 0; i < this.rolesApply.length; i++) {
-      if (roleid === this.rolesApply[i]) {
-        found = true;
+      if (roleId === this.rolesApply[i]) {
+        roleFound = true;
       }
     }
 
-    if (found === false) {
+    if (roleFound === false) {
       this.applicationService
         .addapplication(this.applicant)
         .subscribe(() => this.router.navigate(['/#']));
     } else {
       this.applicationService
-        .delapplication(this.project.id, roleid)
+        .delapplication(this.project.id, roleId)
         .subscribe(() => this.router.navigate(['/#']));
     }
     window.location.reload();
     this.isApplied ? (this.applyButton = 'Applied') : (this.applyButton = 'Apply');
   }
 
-  delete() {
+  deleteProject() {
     this.projectService
       .deleteProject(this.project.id)
       .subscribe(() => this.router.navigate(['/projects']));
@@ -99,10 +100,6 @@ export class ProjectViewComponent implements OnInit {
     return this.captionBtn;
   }
 
-  isGitHub() {
-    return this.project.github ? true : false;
-  }
-
   copyAccount(account) {
     return {
       activated: account.activated,
@@ -116,16 +113,4 @@ export class ProjectViewComponent implements OnInit {
       imageUrl: account.imageUrl
     };
   }
-
-  myloadFunction() {
-    console.log('+++++++++++++++++++++++++++++++++++');
-    console.log(this.project);
-    console.log('+++++++++++++++++++++++++++++++++++');
-  }
-  /*ProjectViewComponent.prototype.addEventListener = function(){
-        if ( === void 0) {  = 'DOMContentLoaded'; }
-    alert('Ready!');
-    console.log(this.project);
-   }, false);
-*/
 }

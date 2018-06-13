@@ -4,7 +4,7 @@
     </div>
     <div class="float-right">
         <a class="btn btn-defult MyBtn MyShadow btn pull-right" [routerLink]="['/project-edit', project.id]">Edit</a>
-        <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="delete()">Delete!</button>
+        <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="deleteProject()">Delete!</button>
     </div>
 </div>
 </br>
@@ -22,8 +22,10 @@
     <p id="comment" name="description" id="comment">{{project.description}}</p>
 </div>
 <div></div>
-<a *ngIf="isGitHub()" class="lightBlue font-weight-bold" href={{project.github}} target="_blank"><u>Check out this project on GitHub</u></a>
-<p *ngIf="!isGitHub()" class="lightBlue">no github project yet</p>
+<!-- <a *ngIf="isGitHub()" class="lightBlue font-weight-bold" href={{project.github}} target="_blank"><u>Check out this project on GitHub</u></a>
+<p *ngIf="!isGitHub()" class="lightBlue">no github project yet</p> -->
+<a *ngIf="isGithub" class="lightBlue font-weight-bold" href={{project.github}} target="_blank"><u>Check out this project on GitHub</u></a>
+<p *ngIf="!isGithub" class="lightBlue">no github project yet</p>
 </br>
 <label class="lightBlue font-weight-bold"><hr>Project Story:</label>
 <ol>
@@ -44,11 +46,11 @@
             <div class="col-xs-6 col-md-4">{{role.roleName}}</div>
             <div class="clearfix visible-xs-block"></div>
             <div class="col-xs-6 col-md-4">
-                <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="toggleApply(role.id)">{{checkisApply(role.id)}}</button>
+                <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="toggleApply(role.id)">{{applyButton.id}}</button>           
             </div>
         </div>
     </div>
-    <label class="lightBlue font-weight-bold">people already apply in Project:<hr></label>
+    <label class="lightBlue font-weight-bold">People already applied:<hr></label>
     <div *ngFor="let application of project.applicationDto">
         <div class="row">
             <div class="col-xs-6 col-md-4">
