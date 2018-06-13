@@ -20,7 +20,7 @@ export class ProjectViewComponent implements OnInit {
     applicationDto: [],
     projectStories: []
   };
-  applicant: ApplicationDto = { id: 0, applicant: 0, projectId: 0, roleId: 0 };
+  applicant: ApplicationDto = { id: 0, applicant: 0, projectId: 0, roleId: 0, status: 1 };
   roleData: ProjectRoleDto = { id: 0, roleName: '', color: '', count: 0 };
   roles: Array<ProjectRoleDto>;
   isOwner: Boolean = false;
@@ -117,15 +117,8 @@ export class ProjectViewComponent implements OnInit {
     };
   }
 
-  myloadFunction() {
-    console.log('+++++++++++++++++++++++++++++++++++');
-    console.log(this.project);
-    console.log('+++++++++++++++++++++++++++++++++++');
+  changeStatus(roleid, statusid) {
+    console.log(roleid);
+    console.log(statusid);
   }
-  /*ProjectViewComponent.prototype.addEventListener = function(){
-        if ( === void 0) {  = 'DOMContentLoaded'; }
-    alert('Ready!');
-    console.log(this.project);
-   }, false);
-*/
 }

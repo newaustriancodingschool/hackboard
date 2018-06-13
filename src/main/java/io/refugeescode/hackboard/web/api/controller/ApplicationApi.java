@@ -92,6 +92,29 @@ public interface ApplicationApi {
     }
 
 
+    @ApiOperation(value = "update  an application status", nickname = "editstatusapplication", notes = "", response = Boolean.class, tags={ "application", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation", response = Boolean.class) })
+    @RequestMapping(value = "/application/{projectId}/{roleId}/{statusId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.PUT)
+    default ResponseEntity<Boolean> editstatusapplication(@ApiParam(value = "ID of project",required=true) @PathVariable("projectId") Long projectId,@ApiParam(value = "ID of role",required=true) @PathVariable("roleId") Long roleId,@ApiParam(value = "ID of Status ",required=true) @PathVariable("statusId") Long statusId) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
+            if (getAcceptHeader().get().contains("application/json")) {
+                try {
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("true", Boolean.class), HttpStatus.NOT_IMPLEMENTED);
+                } catch (IOException e) {
+                    log.error("Couldn't serialize response for content type application/json", e);
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            }
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default ApplicationApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+
     @ApiOperation(value = "Get All Roles for Application", nickname = "getRoleApplication", notes = "", response = Long.class, responseContainer = "List", tags={ "application", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = Long.class, responseContainer = "List") })

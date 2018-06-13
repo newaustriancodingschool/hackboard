@@ -24,6 +24,17 @@ public class Application {
     @ManyToOne(fetch = FetchType.EAGER)
     private Project project;
 
+    @OneToOne
+    @JoinColumn(name="status")
+    private ApplicationStatus status;
+
+    public ApplicationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ApplicationStatus status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;

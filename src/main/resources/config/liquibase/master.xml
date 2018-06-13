@@ -130,5 +130,10 @@
     <include file="config/liquibase/changelog/ApplicationStatus/applicationStatusTypeDataSeeding.xml" relativeToChangelogFile="false"/>
 
 
+    <include file="config/liquibase/changelog/application/xml/application3.xml" relativeToChangelogFile="false"/>
+
+
+
+
 
 </databaseChangeLog>
