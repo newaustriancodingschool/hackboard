@@ -54,22 +54,20 @@ export class ProjectViewComponent implements OnInit {
     });
     this.applicationService.getRoleApplication(this.id).subscribe(rolesApply => {
       this.rolesApply = rolesApply;
-      //
+
       this.applyButton = new Array<string>(this.project.projectRole.length);
       this.applyButton = new Array(this.project.projectRole.length).fill('Apply');
-      console.log(this.applyButton);
-      console.log(this.applyButton.length);
+
       for (let i = 0; i < this.project.projectRole.length; i++) {
         for (let n = 0; n < this.rolesApply.length; n++) {
-          if (this.project.projectRole[i].id === rolesApply[n]) {
+          if (this.project.projectRole[i].id === this.rolesApply[n]) {
             this.applyButton[i] = 'Applied';
           }
         }
       }
-      console.log(this.project.projectRole);
-      console.log(this.rolesApply);
-      console.log(this.applyButton);
     });
+
+    console.log(this.applyButton);
   }
 
   getFilledArray(count) {
@@ -89,32 +87,28 @@ export class ProjectViewComponent implements OnInit {
   toggleApply(roleId) {
     this.applicant.projectId = this.project.id;
     this.applicant.roleId = roleId;
-    // let roleFound = false;
+    let roleFound = false;
+
     for (let i = 0; i < this.rolesApply.length; i++) {
       if (roleId === this.rolesApply[i]) {
-        this.applicationService
-          .addapplication(this.applicant)
-          .subscribe(() => this.router.navigate(['/#']));
-        this.applyButton[i] = 'Apply';
-      } else {
-        this.applicationService
-          .delapplication(this.project.id, roleId)
-          .subscribe(() => this.router.navigate(['/#']));
-        this.applyButton[i] = 'Applied';
+        roleFound = true;
       }
     }
-
-    // if (roleFound === false) {
-    //   this.applicationService
-    //     .addapplication(this.applicant)
-    //     .subscribe(() => this.router.navigate(['/#']));
-    // } else {
-    //   this.applicationService
-    //     .delapplication(this.project.id, roleId)
-    //     .subscribe(() => this.router.navigate(['/#']));
-    // }
-    // window.location.reload();
-    // this.isApplied ? (this.applyButton = 'Applied') : (this.applyButton = 'Apply');
+    if (roleFound === false) {
+      this.applicationService
+        .addapplication(this.applicant)
+        .subscribe(() => this.router.navigate(['/#']));
+      this.rolesApply.push(roleId);
+    } else {
+      this.applicationService
+        .delapplication(this.project.id, roleId)
+        .subscribe(() => this.router.navigate(['/#']));
+      for (let index = 0; index < this.rolesApply.length; index++) {
+        if (this.rolesApply[index] === roleId) {
+          delete this.rolesApply[index];
+        }
+      }
+    }
   }
 
   deleteProject() {
@@ -138,6 +132,9 @@ export class ProjectViewComponent implements OnInit {
   }
 
   changeStatus(roleid, statusid) {
+    this.applicationService
+      .editstatusapplication(this.id, roleid, statusid)
+      .subscribe(() => this.router.navigate(['/#']));
     console.log(roleid);
     console.log(statusid);
   }

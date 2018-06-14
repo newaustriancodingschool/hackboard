@@ -98,7 +98,7 @@ public class ApplicationController implements ApplicationApi {
      }
 
     @Override
-    public ResponseEntity<Boolean> editstatusapplication(Long projectId, Long roleId, Long statusId) {
+    public ResponseEntity<Boolean> editstatusapplication(@PathVariable("projectId") Long projectId,@PathVariable("roleId") Long roleId,@PathVariable("statusId") Long statusId) {
         User user = new User();
         if (SecurityUtils.getCurrentUserLogin().isPresent()) {
             String userlogin = SecurityUtils.getCurrentUserLogin().get();
