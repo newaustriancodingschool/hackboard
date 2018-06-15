@@ -18,7 +18,8 @@ export class ProjectViewComponent implements OnInit {
     github: '',
     projectRole: [],
     applicationDto: [],
-    projectStories: []
+    projectStories: [],
+    tags: []
   };
   applicant: ApplicationDto = { id: 0, applicant: 0, projectId: 0, roleId: 0, status: 1 };
   roleData: ProjectRoleDto = { id: 0, roleName: '', color: '', count: 0 };
@@ -32,6 +33,8 @@ export class ProjectViewComponent implements OnInit {
   // captionBtn: String;
   id: number;
   isGithub: boolean;
+  selectedTags: Array<string> = [];
+  tagstring: String;
 
   constructor(
     private projectService: ProjectService,
@@ -47,6 +50,7 @@ export class ProjectViewComponent implements OnInit {
     this.projectService.viewProject(this.id).subscribe(project => {
       this.project = project;
       this.project.github ? (this.isGithub = true) : (this.isGithub = false);
+      this.selectedTags = this.project.tags;
     });
     this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
     this.principal.identity().then(account => {
@@ -57,7 +61,6 @@ export class ProjectViewComponent implements OnInit {
 
       this.applyButton = new Array<string>(this.project.projectRole.length);
       this.applyButton = new Array(this.project.projectRole.length).fill('Apply');
-
       for (let i = 0; i < this.project.projectRole.length; i++) {
         for (let n = 0; n < this.rolesApply.length; n++) {
           if (this.project.projectRole[i].id === this.rolesApply[n]) {
@@ -67,7 +70,7 @@ export class ProjectViewComponent implements OnInit {
       }
     });
 
-    console.log(this.applyButton);
+    // this.tagstring = itemsToString(this.selectedTags);
   }
 
   getFilledArray(count) {
@@ -139,3 +142,14 @@ export class ProjectViewComponent implements OnInit {
     console.log(statusid);
   }
 }
+/*
+
+itemsToString(value: Array<String> = []): string {
+    return value
+      .map((item: String) => {
+        return item.text;
+      })
+      .join(',');
+  }
+}
+*/

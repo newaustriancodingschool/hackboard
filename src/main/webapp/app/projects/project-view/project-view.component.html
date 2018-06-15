@@ -21,9 +21,14 @@
     <label  class="lightBlue font-weight-bold" for="comment">Description:</label>
     <p id="comment" name="description" id="comment">{{project.description}}</p>
 </div>
-<div></div>
+</br>
 <a *ngIf="isGithub" class="lightBlue font-weight-bold" href={{project.github}} target="_blank"><u>Check out this project on GitHub</u></a>
 <p *ngIf="!isGithub" class="lightBlue">no github project yet</p>
+</br>
+<div>
+    <label class="lightBlue font-weight-bold"><hr>tags for this project</label>{{selectedTags}}
+</div>
+
 </br>
 <label class="lightBlue font-weight-bold"><hr>Project Story:</label>
 <ol>
