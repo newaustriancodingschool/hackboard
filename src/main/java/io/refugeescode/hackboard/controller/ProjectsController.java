@@ -1,14 +1,8 @@
 package io.refugeescode.hackboard.controller;
 
 
-import io.refugeescode.hackboard.domain.Project;
-import io.refugeescode.hackboard.domain.ProjectRole;
-import io.refugeescode.hackboard.domain.ProjectStories;
-import io.refugeescode.hackboard.domain.User;
-import io.refugeescode.hackboard.repository.ProjectRepository;
-import io.refugeescode.hackboard.repository.ProjectRoleRepository;
-import io.refugeescode.hackboard.repository.ProjectStoriesRepository;
-import io.refugeescode.hackboard.repository.UserRepository;
+import io.refugeescode.hackboard.domain.*;
+import io.refugeescode.hackboard.repository.*;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.security.SecurityUtils;
 import io.refugeescode.hackboard.service.ApplicationService;
@@ -25,9 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -42,6 +34,8 @@ public class ProjectsController implements ProjectsApi {
     @Autowired
     private ApplicationService applicationService;
 
+    @Autowired
+    private TagsRepository tagsRepository;
 
     @Autowired
     private ProjectMappers projectMappers;
@@ -124,6 +118,9 @@ public class ProjectsController implements ProjectsApi {
             }
         }
         entity.setProjectRoles(projectRoleList);
+        Set<Tag> collect = new HashSet<>();
+        collect = project.getTags().stream().map(e -> tagsRepository.findOneBytagIgnoreCase(e)).map(e -> e.get()).collect(Collectors.toSet());
+        entity.setTags(collect);
 
         projectsRepository.save(entity);
         projectStoriesRepository.findAll()

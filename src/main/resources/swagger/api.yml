@@ -240,7 +240,8 @@ paths:
             schema:
               type: "array"
               items:
-                $ref: "#/definitions/TagDto"
+                type: "string"
+
       post:
         tags:
         - "tag"
@@ -340,6 +341,10 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/ApplicationDto'
+      tags:
+        type: array
+        items:
+          type: "string"
 
   ProjectRoleDto:
           type: "object"

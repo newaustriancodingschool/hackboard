@@ -3,6 +3,7 @@ import { ProjectDto, ProjectService } from '../../api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectRoleService } from './../../api/api/projectRole.service';
 import { ProjectRoleDto } from './../../api/model/projectRoleDto';
+import { TagService } from './../../api/api/tag.service';
 
 @Component({
   templateUrl: './project-edit.component.html',
@@ -15,16 +16,18 @@ export class ProjectEditComponent implements OnInit {
     description: '',
     github: '',
     projectRole: [],
-    projectStories: []
+    projectStories: [],
+    tags: []
   };
   roles: Array<ProjectRoleDto>;
   projectRoles: Array<ProjectRoleDto>;
   stories: Array<string>;
-  tags: Array<string> = ['tag1', 'tag2', 'tag3'];
-  selectedTags: Array<string> = ['tag1'];
+  tags: Array<string> = [];
+  selectedTags: Array<string> = [];
 
   constructor(
     private projectService: ProjectService,
+    private tagservice: TagService,
     private route: ActivatedRoute,
     private router: Router,
     private projectRoleService: ProjectRoleService
@@ -38,16 +41,19 @@ export class ProjectEditComponent implements OnInit {
       this.stories = [];
 
       this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
+      this.tagservice.showAllTags().subscribe(tags => (this.tags = tags));
 
       this.projectRoles = this.data.projectRole;
 
       this.stories = this.data.projectStories;
+      this.selectedTags = this.data.tags;
     });
   }
 
   submit() {
     this.data.projectRole = this.projectRoles;
     this.data.projectStories = this.stories;
+    this.data.tags = this.selectedTags;
     this.projectService.editProject(this.data).subscribe(() => this.router.navigate(['/projects']));
   }
 

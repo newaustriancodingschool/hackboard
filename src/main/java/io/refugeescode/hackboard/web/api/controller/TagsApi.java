@@ -92,17 +92,17 @@ public interface TagsApi {
     }
 
 
-    @ApiOperation(value = "List all /tags", nickname = "showAllTags", notes = "", response = TagDto.class, responseContainer = "List", tags={ "tag", })
+    @ApiOperation(value = "List all /tags", nickname = "showAllTags", notes = "", response = String.class, responseContainer = "List", tags={ "tag", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = TagDto.class, responseContainer = "List") })
+        @ApiResponse(code = 200, message = "successful operation", response = String.class, responseContainer = "List") })
     @RequestMapping(value = "/tags",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<List<TagDto>> showAllTags() {
+    default ResponseEntity<List<String>> showAllTags() {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"tag\" : \"tag\"}, {  \"tag\" : \"tag\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ \"\", \"\" ]", List.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

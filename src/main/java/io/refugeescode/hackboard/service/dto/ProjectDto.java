@@ -55,6 +55,10 @@ public class ProjectDto   {
   @Valid
   private List<ApplicationDto> applicationDto = null;
 
+  @JsonProperty("tags")
+  @Valid
+  private List<String> tags = null;
+
   public ProjectDto id(Long id) {
     this.id = id;
     return this;
@@ -303,6 +307,34 @@ public class ProjectDto   {
     this.applicationDto = applicationDto;
   }
 
+  public ProjectDto tags(List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public ProjectDto addTagsItem(String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+  /**
+   * Get tags
+   * @return tags
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public List<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<String> tags) {
+    this.tags = tags;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -323,12 +355,13 @@ public class ProjectDto   {
         Objects.equals(this.github, projectDto.github) &&
         Objects.equals(this.projectStories, projectDto.projectStories) &&
         Objects.equals(this.projectRole, projectDto.projectRole) &&
-        Objects.equals(this.applicationDto, projectDto.applicationDto);
+        Objects.equals(this.applicationDto, projectDto.applicationDto) &&
+        Objects.equals(this.tags, projectDto.tags);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, ownerLoginName, github, projectStories, projectRole, applicationDto);
+    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, ownerLoginName, github, projectStories, projectRole, applicationDto, tags);
   }
 
   @Override
@@ -347,6 +380,7 @@ public class ProjectDto   {
     sb.append("    projectStories: ").append(toIndentedString(projectStories)).append("\n");
     sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
     sb.append("    applicationDto: ").append(toIndentedString(applicationDto)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();
   }

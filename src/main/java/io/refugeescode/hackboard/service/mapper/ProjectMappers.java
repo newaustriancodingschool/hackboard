@@ -1,5 +1,6 @@
 package io.refugeescode.hackboard.service.mapper;
 
+import com.sun.java.swing.plaf.windows.WindowsTreeUI;
 import io.refugeescode.hackboard.domain.Application;
 import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.domain.ProjectRole;
@@ -14,10 +15,7 @@ import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -81,26 +79,19 @@ public class ProjectMappers {
             List<ApplicationDto> collect = allByProject.stream().map(e -> applicationMapper.applicationToApplicationDto(e))
                 .collect(Collectors.toList());
 
-         /*   List<ApplicationDto> collect = applicationRepository.findAll()
-                .stream().filter(e -> e.getProject().getId().equals(project.getId()))
-                .map(e -> applicationMapper.applicationToApplicationDto(e))
-                .collect(Collectors.toList());
-*/
             projectDto.setApplicationDto(collect);
 
-
-            //List<ProjectStories> allByProjectId = projectStoriesRepository.findAllByProjectId(project);
 
             List<String> stories = projectStoriesRepository.findAll()
                 .stream().filter(story -> story.getProject().getId().equals(project.getId()))
                 .map(story -> story.getDescription())
                 .collect(Collectors.toList());
-            System.out.println("**********************************************");
-            System.out.println(stories);
-            System.out.println("**********************************************");
-
 
             projectDto.setProjectStories(stories);
+
+            List<String> listTag = project.getTags().stream().map(e -> e.getTag()).collect(Collectors.toList());
+            projectDto.setTags(listTag);
+
 
             return projectDto;
         }

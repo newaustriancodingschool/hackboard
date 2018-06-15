@@ -25,4 +25,5 @@ export interface ProjectDto {
     projectStories?: Array<string>;
     projectRole?: Array<ProjectRoleDto>;
     applicationDto?: Array<ApplicationDto>;
+    tags?: Array<string>;
 }

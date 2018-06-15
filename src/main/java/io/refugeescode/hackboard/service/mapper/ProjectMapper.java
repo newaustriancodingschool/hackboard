@@ -5,7 +5,7 @@ import io.refugeescode.hackboard.service.dto.ProjectDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+//@Mapper
 public interface ProjectMapper {
     ProjectMapper INSTANCE = Mappers.getMapper(ProjectMapper.class);
 
