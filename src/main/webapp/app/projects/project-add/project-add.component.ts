@@ -3,6 +3,7 @@ import { ProjectRoleDto } from './../../api/model/projectRoleDto';
 import { Component, OnInit } from '@angular/core';
 import { ProjectDto, ProjectService } from '../../api';
 import { Router } from '@angular/router';
+import { TagService } from './../../api/api/tag.service';
 
 @Component({
   templateUrl: './project-add.component.html'
@@ -14,32 +15,34 @@ export class ProjectAddComponent implements OnInit {
     ownerId: 0,
     github: '',
     projectRole: [],
-    projectStories: []
+    projectStories: [],
+    tags: []
   };
   roleData: ProjectRoleDto = { roleName: '', color: '', count: 0 };
   roles: Array<ProjectRoleDto>;
   stories: Array<string>;
   projectRoles: Array<ProjectRoleDto>;
-  tagsArray: Array<string>;
-  value: any;
+  tags: Array<string> = [];
+  selectedTags: Array<string> = [];
 
   constructor(
     private projectService: ProjectService,
+    private tagservice: TagService,
     private router: Router,
     private projectRoleService: ProjectRoleService
   ) {}
 
   ngOnInit() {
     this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
+    this.tagservice.showAllTags().subscribe(tags => (this.tags = tags));
     this.projectRoles = [];
     this.stories = [];
-    this.tagsArray = ['Java', 'C#', 'Php', 'Angular', 'Delphi'];
-    this.value = ['Java'];
   }
 
   submit() {
     this.data.projectRole = this.projectRoles;
     this.data.projectStories = this.stories;
+    this.data.tags = this.selectedTags;
     this.projectService.addProject(this.data).subscribe(() => this.router.navigate(['/projects']));
   }
 
@@ -99,10 +102,6 @@ export class ProjectAddComponent implements OnInit {
 
   public removed(value: any): void {
     console.log('Removed value is: ', value);
-  }
-
-  public refreshValue(value: any): void {
-    this.value = value;
   }
 
   public itemsToString(value: Array<any> = []): string {

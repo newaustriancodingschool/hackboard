@@ -81,6 +81,19 @@ public class ProjectsController implements ProjectsApi {
             }
         }
 
+        Set<Tag> collect = new HashSet<>();
+        if (!project.getTags().isEmpty()) {
+            int size = project.getTags().size();
+            for (int i = 0; i < size; i++) {
+                Optional<Tag> oneBytagIgnoreCase = tagsRepository.findOneBytagIgnoreCase(project.getTags().get(0));
+                if (oneBytagIgnoreCase.isPresent())
+                    collect.add(oneBytagIgnoreCase.get());
+            }
+                //collect = project.getTags().stream().map(e -> tagsRepository.findOneBytagIgnoreCase(e)).map(e -> e.get()).collect(Collectors.toSet());
+        }
+        entity.setTags(collect);
+
+
         projectsRepository.save(entity);
 
         project.getProjectStories().stream().forEach(story -> {
