@@ -16,25 +16,33 @@ export class ProjectViewComponent implements OnInit {
     title: '',
     description: '',
     github: '',
+    ownerLoginName: '',
     projectRole: [],
     applicationDto: [],
     projectStories: [],
     tags: []
   };
-  applicant: ApplicationDto = { id: 0, applicant: 0, projectId: 0, roleId: 0, status: 1 };
+  applicant: ApplicationDto = {
+    id: 0,
+    applicant: 0,
+    projectId: 0,
+    roleId: 0,
+    applicantFullName: '',
+    roleName: '',
+    status: 1
+  };
   roleData: ProjectRoleDto = { id: 0, roleName: '', color: '', count: 0 };
   roles: Array<ProjectRoleDto>;
-  isOwner: Boolean = false;
   settingsAccount: any;
   modalRef: NgbModalRef;
   isApplied: Boolean = false;
-  applyButton: String[];
   rolesApply: number[];
-  // captionBtn: String;
   id: number;
-  isGithub: boolean;
+  isGithub: Boolean;
+  isOwner: Boolean = false;
   selectedTags: Array<string> = [];
   tagstring: String;
+  applicationDtoArray: Array<ApplicationDto> = [];
 
   constructor(
     private projectService: ProjectService,
@@ -51,45 +59,34 @@ export class ProjectViewComponent implements OnInit {
       this.project = project;
       this.project.github ? (this.isGithub = true) : (this.isGithub = false);
       this.selectedTags = this.project.tags;
-    });
-    this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
-    this.principal.identity().then(account => {
-      this.settingsAccount = this.copyAccount(account);
-    });
-    this.applicationService.getRoleApplication(this.id).subscribe(rolesApply => {
-      this.rolesApply = rolesApply;
+      this.applicationDtoArray = this.project.applicationDto;
 
-      this.applyButton = new Array<string>(this.project.projectRole.length);
-      this.applyButton = new Array(this.project.projectRole.length).fill('Apply');
-      for (let i = 0; i < this.project.projectRole.length; i++) {
-        for (let n = 0; n < this.rolesApply.length; n++) {
-          if (this.project.projectRole[i].id === this.rolesApply[n]) {
-            this.applyButton[i] = 'Applied';
-          }
+      this.applicationService.getRoleApplication(this.id).subscribe(rolesApply => {
+        this.rolesApply = rolesApply;
+      });
+
+      this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
+      this.principal.identity().then(account => {
+        this.settingsAccount = this.copyAccount(account);
+        this.isOwner = false;
+        if (this.settingsAccount.login === this.project.ownerLoginName) {
+          this.isOwner = true;
         }
-      }
+      });
     });
-
-    // this.tagstring = itemsToString(this.selectedTags);
   }
 
   getFilledArray(count) {
     return Array(count).fill(true);
   }
 
-  // checkisApply(roleId) {
-  //   this.captionBtn = 'Apply';
-  //   for (let i = 0; i < this.rolesApply.length; i++) {
-  //     if (roleId === this.rolesApply[i]) {
-  //       this.captionBtn = 'Applied';
-  //     }
-  //   }
-  //   return this.captionBtn;
-  // }
-
-  toggleApply(roleId) {
+  toggleApply(roleId, roleName) {
     this.applicant.projectId = this.project.id;
     this.applicant.roleId = roleId;
+    this.applicant.applicant = this.settingsAccount.id;
+    this.applicant.applicantFullName =
+      this.settingsAccount.firstName + ' ' + this.settingsAccount.lastName;
+    this.applicant.roleName = roleName;
     let roleFound = false;
 
     for (let i = 0; i < this.rolesApply.length; i++) {
@@ -97,18 +94,26 @@ export class ProjectViewComponent implements OnInit {
         roleFound = true;
       }
     }
+
     if (roleFound === false) {
       this.applicationService
         .addapplication(this.applicant)
         .subscribe(() => this.router.navigate(['/#']));
       this.rolesApply.push(roleId);
+      this.applicationDtoArray.push(this.applicant);
     } else {
       this.applicationService
         .delapplication(this.project.id, roleId)
         .subscribe(() => this.router.navigate(['/#']));
       for (let index = 0; index < this.rolesApply.length; index++) {
         if (this.rolesApply[index] === roleId) {
-          delete this.rolesApply[index];
+          this.rolesApply.splice(index, 1);
+        }
+      }
+      for (let index = 0; index < this.applicationDtoArray.length; index++) {
+        const tmpapplicant = this.applicationDtoArray[index];
+        if (tmpapplicant.roleId === roleId && tmpapplicant.applicant === this.settingsAccount.id) {
+          this.applicationDtoArray.splice(index, 1);
         }
       }
     }
@@ -122,6 +127,7 @@ export class ProjectViewComponent implements OnInit {
 
   copyAccount(account) {
     return {
+      id: account.id,
       activated: account.activated,
       email: account.email,
       github: account.github,
@@ -138,18 +144,14 @@ export class ProjectViewComponent implements OnInit {
     this.applicationService
       .editstatusapplication(this.id, roleid, statusid)
       .subscribe(() => this.router.navigate(['/#']));
-    console.log(roleid);
-    console.log(statusid);
   }
-}
-/*
 
-itemsToString(value: Array<String> = []): string {
-    return value
-      .map((item: String) => {
-        return item.text;
-      })
-      .join(',');
+  getCaption(roleId) {
+    for (let index = 0; index < this.rolesApply.length; index++) {
+      if (this.rolesApply[index] === roleId) {
+        return 'Applied';
+      }
+    }
+    return 'Apply';
   }
 }
-*/
