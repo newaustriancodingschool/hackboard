@@ -66,6 +66,7 @@ export class ProjectViewComponent implements OnInit {
       });
 
       this.projectRoleService.listProjectRoles().subscribe(roles => (this.roles = roles));
+
       this.principal.identity().then(account => {
         this.settingsAccount = this.copyAccount(account);
         this.isOwner = false;
