@@ -4,9 +4,11 @@ import io.refugeescode.hackboard.config.Constants;
 import io.refugeescode.hackboard.HackboardApp;
 import io.refugeescode.hackboard.domain.Authority;
 import io.refugeescode.hackboard.domain.PersistentToken;
+import io.refugeescode.hackboard.domain.Tag;
 import io.refugeescode.hackboard.domain.User;
 import io.refugeescode.hackboard.repository.AuthorityRepository;
 import io.refugeescode.hackboard.repository.PersistentTokenRepository;
+import io.refugeescode.hackboard.repository.TagsRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.service.MailService;
@@ -74,6 +76,9 @@ public class AccountResourceIntTest {
 
     @Autowired
     private ExceptionTranslator exceptionTranslator;
+
+    @Autowired
+    private TagsRepository tagsRepository;
 
     @Mock
     private UserService mockUserService;
@@ -477,7 +482,9 @@ public class AccountResourceIntTest {
         userDto.setImageUrl("http://placehold.it/50x50");
         userDto.setLangKey(Constants.DEFAULT_LANGUAGE);
         userDto.setAuthorities(Collections.singleton(AuthoritiesConstants.ADMIN));
-
+        Set<String> stringset = new HashSet<>();
+        stringset.add("Java");
+        userDto.setTags(stringset);
         restMvc.perform(
             post("/api/account")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -587,7 +594,9 @@ public class AccountResourceIntTest {
         userDto.setImageUrl("http://placehold.it/50x50");
         userDto.setLangKey(Constants.DEFAULT_LANGUAGE);
         userDto.setAuthorities(Collections.singleton(AuthoritiesConstants.ADMIN));
-
+        Set<String> stringset = new HashSet<>();
+        stringset.add("Java");
+        userDto.setTags(stringset);
         restMvc.perform(
             post("/api/account")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)

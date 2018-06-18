@@ -33,7 +33,7 @@ export class SettingsComponent implements OnInit {
   }
 
   save() {
-    this.settingsAccount.tags = this.selectedTags;
+    // this.settingsAccount.tags = this.selectedTags;
     this.account.save(this.settingsAccount).subscribe(
       () => {
         this.error = null;
