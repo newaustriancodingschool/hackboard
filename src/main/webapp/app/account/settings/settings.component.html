@@ -92,17 +92,19 @@
 
 
                 <div class="form-group">
-                    <label class="form-control-label" for="description">About Me</label>
-                    <textarea class="form-control" rows="5" id="description" name="description"
-                              [(ngModel)]="settingsAccount.description" #descriptionInput="ngModel"></textarea>
+                    <label>Tags</label>
+                    <label class="form-control-label"></label>
+                    <ngx-select [multiple]="true" [items]="tags"
+                                [(ngModel)]="settingsAccount.tags" name="tags"
+                                placeholder="Please select tags"></ngx-select>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label"></label>
-                    <ngx-select [multiple]="true" [items]="tags"
-                                [(ngModel)]="selectedTags" name="tags"
-                                placeholder="Please select tags"></ngx-select>
+                    <label class="form-control-label" for="description">About Me</label>
+                    <textarea class="form-control" rows="3" id="description" name="description"
+                              [(ngModel)]="settingsAccount.description" #descriptionInput="ngModel"></textarea>
                 </div>
+
 
                 <button type="submit" [disabled]="settingsForm.form.invalid" class="btn btn-primary" jhiTranslate="settings.form.button">Save</button>
 
