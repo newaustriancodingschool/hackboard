@@ -89,7 +89,7 @@ public class ProjectsController implements ProjectsApi {
                 if (oneBytagIgnoreCase.isPresent())
                     collect.add(oneBytagIgnoreCase.get());
             }
-                //collect = project.getTags().stream().map(e -> tagsRepository.findOneBytagIgnoreCase(e)).map(e -> e.get()).collect(Collectors.toSet());
+            //collect = project.getTags().stream().map(e -> tagsRepository.findOneBytagIgnoreCase(e)).map(e -> e.get()).collect(Collectors.toSet());
         }
         entity.setTags(collect);
 
@@ -155,17 +155,21 @@ public class ProjectsController implements ProjectsApi {
     @Override
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS})
     public ResponseEntity<List<ProjectDto>> listProjects() {
+        List<ProjectDto> listProjectDto = projectsRepository.findAll()
+            .stream()
+            .map(project -> projectMappers.projectToProjectDto(project))
+            .sorted(Comparator.comparing(ProjectDto::getColor).reversed())
+            .collect(Collectors.toList());
         return new ResponseEntity<>(
-            projectsRepository.findAll().stream()
-                .map(project -> projectMappers.projectToProjectDto(project))
-                .collect(Collectors.toList()),
+            listProjectDto,
             HttpStatus.OK
         );
+
     }
 
     @Override
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
-    public  ResponseEntity<ProjectDto> viewProject(@PathVariable("projectId") Long projectId) {
+    public ResponseEntity<ProjectDto> viewProject(@PathVariable("projectId") Long projectId) {
         return new ResponseEntity<>(
             projectMappers.projectToProjectDto(
                 projectsRepository.findOne(projectId)),

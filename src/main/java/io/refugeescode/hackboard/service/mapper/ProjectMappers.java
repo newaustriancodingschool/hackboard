@@ -1,21 +1,24 @@
 package io.refugeescode.hackboard.service.mapper;
 
-import com.sun.java.swing.plaf.windows.WindowsTreeUI;
 import io.refugeescode.hackboard.domain.Application;
 import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.domain.ProjectRole;
-import io.refugeescode.hackboard.domain.ProjectStories;
+import io.refugeescode.hackboard.domain.User;
 import io.refugeescode.hackboard.repository.ApplicationRepository;
 import io.refugeescode.hackboard.repository.ProjectRoleRepository;
 import io.refugeescode.hackboard.repository.ProjectStoriesRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
+import io.refugeescode.hackboard.security.SecurityUtils;
 import io.refugeescode.hackboard.service.dto.ApplicationDto;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
 import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -92,6 +95,18 @@ public class ProjectMappers {
             List<String> listTag = project.getTags().stream().map(e -> e.getTag()).collect(Collectors.toList());
             projectDto.setTags(listTag);
 
+            Long userId = -1L;
+            if (SecurityUtils.getCurrentUserLogin().isPresent()) {
+                String userlogin = SecurityUtils.getCurrentUserLogin().get();
+                Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
+                if (oneByLogin.isPresent()) {
+                    userId = oneByLogin.get().getId();
+                }
+            }
+            projectDto.setColor("#000000");
+            if (userId.equals(project.getOwner().getId())) {
+                projectDto.setColor("#ffd700");
+            }
 
             return projectDto;
         }

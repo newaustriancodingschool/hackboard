@@ -327,6 +327,8 @@ definitions:
         type: "string"
       ownerLoginName:
         type: "string"
+      color:
+         type: "string"
       github:
         type: "string"
       projectStories:

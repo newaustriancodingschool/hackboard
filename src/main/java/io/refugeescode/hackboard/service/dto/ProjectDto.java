@@ -40,6 +40,9 @@ public class ProjectDto   {
   @JsonProperty("ownerLoginName")
   private String ownerLoginName = null;
 
+  @JsonProperty("color")
+  private String color = null;
+
   @JsonProperty("github")
   private String github = null;
 
@@ -201,6 +204,26 @@ public class ProjectDto   {
     this.ownerLoginName = ownerLoginName;
   }
 
+  public ProjectDto color(String color) {
+    this.color = color;
+    return this;
+  }
+
+  /**
+   * Get color
+   * @return color
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getColor() {
+    return color;
+  }
+
+  public void setColor(String color) {
+    this.color = color;
+  }
+
   public ProjectDto github(String github) {
     this.github = github;
     return this;
@@ -352,6 +375,7 @@ public class ProjectDto   {
         Objects.equals(this.ownerFirstName, projectDto.ownerFirstName) &&
         Objects.equals(this.ownerLastName, projectDto.ownerLastName) &&
         Objects.equals(this.ownerLoginName, projectDto.ownerLoginName) &&
+        Objects.equals(this.color, projectDto.color) &&
         Objects.equals(this.github, projectDto.github) &&
         Objects.equals(this.projectStories, projectDto.projectStories) &&
         Objects.equals(this.projectRole, projectDto.projectRole) &&
@@ -361,7 +385,7 @@ public class ProjectDto   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, ownerLoginName, github, projectStories, projectRole, applicationDto, tags);
+    return Objects.hash(id, title, description, ownerId, ownerFirstName, ownerLastName, ownerLoginName, color, github, projectStories, projectRole, applicationDto, tags);
   }
 
   @Override
@@ -376,6 +400,7 @@ public class ProjectDto   {
     sb.append("    ownerFirstName: ").append(toIndentedString(ownerFirstName)).append("\n");
     sb.append("    ownerLastName: ").append(toIndentedString(ownerLastName)).append("\n");
     sb.append("    ownerLoginName: ").append(toIndentedString(ownerLoginName)).append("\n");
+    sb.append("    color: ").append(toIndentedString(color)).append("\n");
     sb.append("    github: ").append(toIndentedString(github)).append("\n");
     sb.append("    projectStories: ").append(toIndentedString(projectStories)).append("\n");
     sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
