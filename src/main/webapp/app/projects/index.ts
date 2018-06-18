@@ -7,3 +7,5 @@ export * from './project-list/project-list.route';
 export * from './project-view/project-view.component';
 export * from './project-view/project-view.route';
 export * from './projects.route';
+export * from './user-details/user-details.component';
+// export * from './user-details/user-details.route';
