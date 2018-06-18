@@ -8,8 +8,7 @@ import {
   ProjectAddComponent,
   ProjectEditComponent,
   ProjectListComponent,
-  ProjectViewComponent,
-  UserDetailsComponent
+  ProjectViewComponent
 } from './';
 import { FormsModule } from '@angular/forms';
 
@@ -24,8 +23,7 @@ import { FormsModule } from '@angular/forms';
     ProjectAddComponent,
     ProjectEditComponent,
     ProjectListComponent,
-    ProjectViewComponent,
-    UserDetailsComponent
+    ProjectViewComponent
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

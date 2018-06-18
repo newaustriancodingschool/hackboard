@@ -28,6 +28,7 @@ import {
 import { ApiModule, Configuration } from './api';
 import { HackboardProjectsModule } from './projects/projects.module';
 import { XsrfInterceptor } from './blocks/interceptor/XsrfInterceptor';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 export function apiConfig() {
   return new Configuration({ basePath: location.origin });
@@ -51,7 +52,8 @@ export function apiConfig() {
     NavbarComponent,
     ErrorComponent,
     ActiveMenuDirective,
-    FooterComponent
+    FooterComponent,
+    UserDetailsComponent
   ],
   providers: [
     PaginationConfig,

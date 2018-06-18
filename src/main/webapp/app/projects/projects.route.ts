@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { projectAddRoute, projectEditRoute, projectListRoute, projectViewRoute } from './';
-import { userDetailsRoute } from './user-details/user-detail.route';
+import { userDetailsRoute } from './../user-details/user-details.route';
 
 const PROJECTS_ROUTES = [
   projectAddRoute,
