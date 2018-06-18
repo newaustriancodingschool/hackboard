@@ -10,13 +10,24 @@
   background: #702d2a;
 }
 .darkBlue {
-  color: #01233f;
+  color: #051522;
+  text-shadow: 0 0 14px #f8f8f8;
 }
 .orange {
   color: #e78200;
 }
 .beige {
   color: #f3b06c;
+}
+.bblack {
+  color: #051522;
+  box-shadow: 3px 3px 3px #01233f;
+  // width: 8em;
+  // height: 3em;
+  margin-left: 15px;
+  font-weight: bold;
+  font-size: 19px;
+  background: #f3f2f2ab;
 }
 .log {
   font-size: 2em;
@@ -147,6 +158,7 @@ p {
   padding-right: 10px;
 }
 .carousel {
-  width: 440px;
+  width: 740px;
   height: 160px;
+  margin: 0 auto;
 }
