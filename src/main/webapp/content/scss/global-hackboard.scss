@@ -38,8 +38,9 @@
 }
 .MyListFont {
   color: rgb(67, 111, 126);
-  font-size: 23px;
+  font-size: 19px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500 !important;
 }
 .MyImg {
   width: 100px;
@@ -57,7 +58,6 @@
   /* #4 AND INFINITY!!! (CSS3 only) */
   box-shadow: 0 0 0 10px hsl(0, 0%, 80%), 0 0 0 15px hsl(0, 0%, 90%);
 }
-
 .circle {
   width: 26px;
   height: 26px;
