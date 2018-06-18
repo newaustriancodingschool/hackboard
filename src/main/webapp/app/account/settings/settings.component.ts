@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JhiLanguageService } from 'ng-jhipster';
 import { Principal, AccountService, JhiLanguageHelper } from '../../shared';
+import { TagService } from '../../api';
 
 @Component({
   templateUrl: './settings.component.html'
@@ -12,19 +13,20 @@ export class SettingsComponent implements OnInit {
   languages: any[];
   value: any;
   tags: Array<string> = [];
-  selectedTags: Array<string> = ['Java'];
+  selectedTags: Array<string> = ['java'];
 
   constructor(
     private account: AccountService,
     private principal: Principal,
     private languageService: JhiLanguageService,
-    private languageHelper: JhiLanguageHelper
+    private languageHelper: JhiLanguageHelper,
+    private tagService: TagService
   ) {}
 
   ngOnInit() {
     this.principal.identity().then(account => {
       this.settingsAccount = this.copyAccount(account);
-      //  this.tagservice.showAllTags().subscribe(tags => (this.tags = tags));
+      this.tagService.showAllTags().subscribe(tags => (this.tags = tags));
       this.languageHelper.getAll().then(languages => (this.languages = languages));
     });
   }

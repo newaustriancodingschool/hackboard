@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { HackboardSharedModule } from '../shared';
+import { NgxSelectModule } from 'ngx-select-ex';
 
 import {
   Register,
@@ -22,7 +23,7 @@ import {
 } from './';
 
 @NgModule({
-  imports: [HackboardSharedModule, RouterModule.forChild(accountState)],
+  imports: [HackboardSharedModule, NgxSelectModule, RouterModule.forChild(accountState)],
   declarations: [
     ActivateComponent,
     RegisterComponent,

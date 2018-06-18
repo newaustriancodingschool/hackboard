@@ -5686,6 +5686,10 @@ ng2-group-multiselect@^0.2.1:
     rxjs "^5.1.0"
     zone.js "^0.8.4"
 
+ngx-bootstrap@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-3.0.0.tgz#563368404dd71962e2ef8eee21794c6aeaab4490"
+
 ngx-cookie@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ngx-cookie/-/ngx-cookie-2.0.1.tgz#031d8938bf9026954356b3b3ae668e2e1964e584"
