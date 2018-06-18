@@ -134,7 +134,7 @@ public class AccountResource {
             throw new InternalServerErrorException("User could not be found");
         }
         userService.updateUser(userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(),
-            userDto.getLangKey(), userDto.getImageUrl() ,userDto.getGithub() , userDto.getDescription());
+            userDto.getLangKey(), userDto.getImageUrl() ,userDto.getGithub() , userDto.getDescription() , userDto.getTags());
    }
 
     /**

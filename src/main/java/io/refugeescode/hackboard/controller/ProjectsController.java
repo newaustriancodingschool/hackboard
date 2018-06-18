@@ -181,27 +181,13 @@ public class ProjectsController implements ProjectsApi {
     @Secured({AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN})
     @PreAuthorize("(@applicationService.hasPermission(#projectId , authentication.name)) or (hasRole('ADMIN')) ")
     public ResponseEntity<Boolean> deleteProject(@PathVariable("projectId") Long projectId) {
-        System.out.println("*************************************************");
-        System.out.println("this is before  delete Stories by id");
-        System.out.println("*************************************************");
 
         List<ProjectStories> currentProjectStrories = projectStoriesRepository.findAll().stream()
             .filter(story -> story.getProject().getId().equals(projectId)).collect(Collectors.toList());
         currentProjectStrories.stream()
             .forEach(stories -> projectStoriesRepository.delete(stories));
 
-        System.out.println("*************************************************");
-        System.out.println("this is After delete Stories by id");
-        System.out.println("*************************************************");
-
-
-        System.out.println("*************************************************");
-        System.out.println("this is before delete project by id");
-        System.out.println("*************************************************");
         projectsRepository.delete(projectId);
-        System.out.println("*************************************************");
-        System.out.println("this is After delete project by id");
-        System.out.println("*************************************************");
 
         return new ResponseEntity<>(true, HttpStatus.OK);
 

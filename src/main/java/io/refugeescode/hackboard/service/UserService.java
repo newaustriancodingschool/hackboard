@@ -6,6 +6,7 @@ import io.refugeescode.hackboard.domain.User;
 import io.refugeescode.hackboard.repository.AuthorityRepository;
 import io.refugeescode.hackboard.repository.PersistentTokenRepository;
 import io.refugeescode.hackboard.config.Constants;
+import io.refugeescode.hackboard.repository.TagsRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
 import io.refugeescode.hackboard.security.AuthoritiesConstants;
 import io.refugeescode.hackboard.security.SecurityUtils;
@@ -14,6 +15,7 @@ import io.refugeescode.hackboard.service.dto.UserDto;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,6 +48,9 @@ public class UserService {
     private final AuthorityRepository authorityRepository;
 
     private final CacheManager cacheManager;
+
+    @Autowired
+    private TagsRepository tagsRepository;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository, CacheManager cacheManager) {
         this.userRepository = userRepository;
@@ -170,7 +175,21 @@ public class UserService {
      * @param langKey   language key
      * @param imageUrl  image URL of user
      */
-    public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl,String github , String description) {
+    public void updateUser(String firstName,
+                           String lastName,
+                           String email,
+                           String langKey,
+                           String imageUrl,
+                           String github ,
+                           String description,
+                           Set<String> tags) {
+        Set<Tag> tagSet = new HashSet<>();
+        for (String tag: tags) {
+            Optional<Tag> tagIgonoreCase = tagsRepository.findOneBytagIgnoreCase(tag);
+            if (tagIgonoreCase.isPresent()){
+                tagSet.add(tagIgonoreCase.get());
+            }
+        }
         SecurityUtils.getCurrentUserLogin()
             .flatMap(userRepository::findOneByLogin)
             .ifPresent(user -> {
@@ -181,6 +200,7 @@ public class UserService {
                 user.setImageUrl(imageUrl);
                 user.setGithub(github);
                 user.setDescription(description);
+                user.setTags(tagSet);
                 cacheManager.getCache(UserRepository.USERS_BY_LOGIN_CACHE).evict(user.getLogin());
                 cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE).evict(user.getEmail());
                 log.debug("Changed Information for User: {}", user);
