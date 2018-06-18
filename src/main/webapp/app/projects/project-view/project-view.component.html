@@ -3,6 +3,8 @@
     <div class = "float-left">
         <h2 class="orange text-capitalize">View your project info.</h2>
     </div>
+</div>
+</br>
     <div class="float-right">
         <a class="btn btn-defult MyBtn MyShadow btn pull-right" [routerLink]="['/project-edit', project.id]">Edit</a>
         <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="deleteProject()">Delete!</button>
@@ -18,20 +20,15 @@
     <label class="lightBlue font-weight-bold">Title:</label>
     <label name="title" id="title">{{project.title}}</label>
 </div>
-<div class="form-group">
-    <label  class="lightBlue font-weight-bold" for="comment">Description:</label>
-    <p id="comment" name="description" id="comment">{{project.description}}</p>
-</div>
-</br>
-<a *ngIf="isGithub" class="lightBlue font-weight-bold" href={{project.github}} target="_blank"><u>Check out this project on GitHub</u></a>
-<p *ngIf="!isGithub" class="lightBlue">no github project yet</p>
-</br>
 <div>
-    <label class="lightBlue font-weight-bold"><hr>Tags for this project: </label>{{selectedTags}}
+    <label  class="lightBlue font-weight-bold" for="comment">Description:</label>
+    <label  name="description" id="comment">{{project.description}}</label>
 </div>
-
-</br>
-<label class="lightBlue font-weight-bold"><hr>Project Story:</label>
+<div>
+    <label class="lightBlue font-weight-bold">Tags for this project: </label>
+    <label  name="tags" id="tags">{{selectedTags}}</label>
+</div>
+<label class="lightBlue font-weight-bold">Project Story:</label>
 <ol>
     <div *ngFor="let story of project.projectStories">
         <div class="row">
@@ -67,6 +64,10 @@
             <div class="col-xs-6 col-md-2"><div *ngIf="isOwner"><button  class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="changeStatus(application.roleId , 2)">refuse</button></div></div>
         </div>
     </div>
+    <div>
+        <a *ngIf="isGithub" class="lightBlue font-weight-bold" href={{project.github}} target="_blank"><u>Check out this project on GitHub</u></a>
+        <p *ngIf="!isGithub" class="lightBlue font-weight-bold">No github's project yet!</p>
+    </div>    
 </form>
 
 
