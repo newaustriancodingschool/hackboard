@@ -1,10 +1,11 @@
+<form>
 <div>
     <div class = "float-left">
         <h2 class="orange text-capitalize">View your project info.</h2>
     </div>
     <div class="float-right">
         <a class="btn btn-defult MyBtn MyShadow btn pull-right" [routerLink]="['/project-edit', project.id]">Edit</a>
-        <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="delete()">Delete!</button>
+        <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="deleteProject()">Delete!</button>
     </div>
 </div>
 </br>
@@ -21,9 +22,14 @@
     <label  class="lightBlue font-weight-bold" for="comment">Description:</label>
     <p id="comment" name="description" id="comment">{{project.description}}</p>
 </div>
-<div></div>
-<a *ngIf=isGithub class="lightBlue font-weight-bold" href={{project.github}} target="_blank"><u>Check out this project on GitHub</u></a>
-<p *ngIf=!isGithub class="lightBlue">no github project yet</p>
+</br>
+<a *ngIf="isGithub" class="lightBlue font-weight-bold" href={{project.github}} target="_blank"><u>Check out this project on GitHub</u></a>
+<p *ngIf="!isGithub" class="lightBlue">no github project yet</p>
+</br>
+<div>
+    <label class="lightBlue font-weight-bold"><hr>Tags for this project: </label>{{selectedTags}}
+</div>
+
 </br>
 <label class="lightBlue font-weight-bold"><hr>Project Story:</label>
 <ol>
@@ -36,24 +42,32 @@
 <label class="lightBlue font-weight-bold"><hr>Looking for these people:</label>
     <div *ngFor="let role of project.projectRole">
         <div class="row">
-            <div class="col-xs-6 col-md-4">
+            <div class="col-xs-6 col-md-3">
                 <div *ngFor="let counter of getFilledArray(role.count)">
                     <div class="circle float-left" [ngStyle]="{'border-color': role.color}"></div>
                 </div>
             </div>
             <div class="col-xs-6 col-md-4">{{role.roleName}}</div>
             <div class="clearfix visible-xs-block"></div>
-            <div class="col-xs-6 col-md-4"><button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="toggleApply(role.id)">{{checkisApply(role.id)}}</button></div>
+            <div class="col-xs-6 col-md-5">
+                <button class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="toggleApply(role.id, role.roleName)">{{getCaption(role.id)}}</button>
+            </div>
         </div>
     </div>
-<label class="lightBlue font-weight-bold">People already apply in the project:<hr></label>
-    <div *ngFor="let application of project.applicationDto">
+    <label class="lightBlue font-weight-bold">People already applied:<hr></label>
+    <div *ngFor="let application of applicationDtoArray">
         <div class="row">
-            <div class="col-xs-6 col-md-4">
+            <div class="col-xs-6 col-md-3">
                 <div class="circle float-left" [ngStyle]="{'border-color': application.roleColor}"></div>
             </div>
-            <div class="col-xs-6 col-md-4 "><a class="lightBlue font-weight-bold" href={{application.userGithub}} target="_blank">{{application.applicantFullName}}</a></div>
+            <div class="col-xs-6 col-md-3">{{application.roleName}}</div>
             <div class="clearfix visible-xs-block"></div>
-            <div class="col-xs-6 col-md-4 font-weight-bold">{{application.roleName}}</div>
+            <div class="col-xs-6 col-md-2"><a class="lightBlue font-weight-bold" href={{application.userGithub}} target="_blank">{{application.applicantFullName}}</a></div>
+            <div class="col-xs-6 col-md-2"><div *ngIf="isOwner"><button  class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="changeStatus(application.roleId , 3)">agree</button></div></div>
+            <div class="col-xs-6 col-md-2"><div *ngIf="isOwner"><button  class="btn btn-defult MyBtn MyShadow btn pull-right" (click)="changeStatus(application.roleId , 2)">refuse</button></div></div>
         </div>
     </div>
+</form>
+
+
+

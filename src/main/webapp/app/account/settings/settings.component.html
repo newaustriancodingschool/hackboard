@@ -82,31 +82,31 @@
                             Your github is required.
                         </small>
                     </div>
-                </div>  
+                </div>
                 <div class="form-group" *ngIf="languages && languages.length > 0">
                     <label for="langKey" jhiTranslate="settings.form.language">Language</label>
                     <select class="form-control" id="langKey" name="langKey" [(ngModel)]="settingsAccount.langKey">
                         <option *ngFor="let language of languages" [value]="language">{{language | findLanguageFromKey}}</option>
                     </select>
                 </div>
+
+
                 <div class="form-group">
                     <label class="form-control-label" for="description">About Me</label>
                     <textarea class="form-control" rows="5" id="description" name="description"
-                        [(ngModel)]="settingsAccount.description" #descriptionInput="ngModel"></textarea>  
+                        [(ngModel)]="settingsAccount.description" #descriptionInput="ngModel"></textarea>
                 </div>
+
+
+                <label class="form-control-label" >Tag</label>
+                <ngx-select [multiple]="true" [items]="tags"
+                            [(ngModel)]="selectedTags" name="tags"
+                            placeholder="Please select tags"></ngx-select>
+
                 <button type="submit" [disabled]="settingsForm.form.invalid" class="btn btn-primary" jhiTranslate="settings.form.button">Save</button>
-                <div style="width: 300px; margin-bottom: 20px;">
-                    <h3>Select multiple roles</h3>
-                    <ng-select  [multiple]="true"
-                                [items]="roles"
-                                (data)="refreshValue($event)"
-                                (selected)="selected($event)"
-                                (removed)="removed($event)"
-                                placeholder="choose your role"></ng-select>
-                            
-                    <pre>{{rolesToString(value) | json}}</pre>    
-                </div>
+
             </form>
         </div>
     </div>
 </div>
+

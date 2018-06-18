@@ -119,6 +119,21 @@
     <include file="config/liquibase/changelog/project_stories/xml/project_stories_seeding.xml" relativeToChangelogFile="false"/>
 
 
+    <!--**********************Add  Index  to Project_Application Mohamed Dahman *****************************-->
+    <include file="config/liquibase/changelog/application/xml/application2.xml" relativeToChangelogFile="false"/>
+
+
+
+    <!--**********************Add  Index  to Project_Application Mohamed Dahman *****************************-->
+    <include file="config/liquibase/changelog/ApplicationStatus/applicationStatus.xml" relativeToChangelogFile="false"/>
+
+    <include file="config/liquibase/changelog/ApplicationStatus/applicationStatusTypeDataSeeding.xml" relativeToChangelogFile="false"/>
+
+
+    <include file="config/liquibase/changelog/application/xml/application3.xml" relativeToChangelogFile="false"/>
+
+
+
 
 
 </databaseChangeLog>

@@ -21,6 +21,12 @@
         <input type="text" class="form-control" [(ngModel)]="data.github" name="github" id="github">
     </div>
 
+
+    <ngx-select [multiple]="true" [items]="tags"
+                [(ngModel)]="selectedTags" name="tags"
+                placeholder="Please select tags for this project"></ngx-select>
+
+
 <!--
 
 </form>

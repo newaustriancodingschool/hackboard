@@ -110,7 +110,7 @@ jhipster:
             key: bc857743b9c199cb5a2dd10198b71544a8d73946
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: hackboard@localhost
-        base-url: http://my-server-url-to-change # Modify according to your server's URL
+        base-url: http://hackboard.refugeescode.io # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         graphite:

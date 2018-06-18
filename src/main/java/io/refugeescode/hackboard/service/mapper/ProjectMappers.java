@@ -1,12 +1,14 @@
 package io.refugeescode.hackboard.service.mapper;
 
+import io.refugeescode.hackboard.domain.Application;
 import io.refugeescode.hackboard.domain.Project;
 import io.refugeescode.hackboard.domain.ProjectRole;
-import io.refugeescode.hackboard.domain.ProjectStories;
+import io.refugeescode.hackboard.domain.User;
 import io.refugeescode.hackboard.repository.ApplicationRepository;
 import io.refugeescode.hackboard.repository.ProjectRoleRepository;
 import io.refugeescode.hackboard.repository.ProjectStoriesRepository;
 import io.refugeescode.hackboard.repository.UserRepository;
+import io.refugeescode.hackboard.security.SecurityUtils;
 import io.refugeescode.hackboard.service.dto.ApplicationDto;
 import io.refugeescode.hackboard.service.dto.ProjectDto;
 import io.refugeescode.hackboard.service.dto.ProjectRoleDto;
@@ -76,26 +78,35 @@ public class ProjectMappers {
                 }
             }
             projectDto.setProjectRole(dtoRolesSet);
-            List<ApplicationDto> collect = applicationRepository.findAll()
-                .stream().filter(e -> e.getProject().getId().equals(project.getId()))
-                .map(e -> applicationMapper.applicationToApplicationDto(e))
+            List<Application> allByProject = applicationRepository.findAllByProject(project);
+            List<ApplicationDto> collect = allByProject.stream().map(e -> applicationMapper.applicationToApplicationDto(e))
                 .collect(Collectors.toList());
 
             projectDto.setApplicationDto(collect);
 
 
-            //List<ProjectStories> allByProjectId = projectStoriesRepository.findAllByProjectId(project);
-
             List<String> stories = projectStoriesRepository.findAll()
                 .stream().filter(story -> story.getProject().getId().equals(project.getId()))
                 .map(story -> story.getDescription())
                 .collect(Collectors.toList());
-            System.out.println("**********************************************");
-            System.out.println(stories);
-            System.out.println("**********************************************");
-
 
             projectDto.setProjectStories(stories);
+
+            List<String> listTag = project.getTags().stream().map(e -> e.getTag()).collect(Collectors.toList());
+            projectDto.setTags(listTag);
+
+            Long userId = -1L;
+            if (SecurityUtils.getCurrentUserLogin().isPresent()) {
+                String userlogin = SecurityUtils.getCurrentUserLogin().get();
+                Optional<User> oneByLogin = userRepository.findOneByLogin(userlogin);
+                if (oneByLogin.isPresent()) {
+                    userId = oneByLogin.get().getId();
+                }
+            }
+            projectDto.setColor("#000000");
+            if (userId.equals(project.getOwner().getId())) {
+                projectDto.setColor("#ffd700");
+            }
 
             return projectDto;
         }

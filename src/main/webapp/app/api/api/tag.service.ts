@@ -147,9 +147,9 @@ export class TagService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public showAllTags(observe?: 'body', reportProgress?: boolean): Observable<Array<TagDto>>;
-    public showAllTags(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<TagDto>>>;
-    public showAllTags(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<TagDto>>>;
+    public showAllTags(observe?: 'body', reportProgress?: boolean): Observable<Array<string>>;
+    public showAllTags(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<string>>>;
+    public showAllTags(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<string>>>;
     public showAllTags(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -167,7 +167,7 @@ export class TagService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<TagDto>>(`${this.basePath}/tags`,
+        return this.httpClient.get<Array<string>>(`${this.basePath}/tags`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

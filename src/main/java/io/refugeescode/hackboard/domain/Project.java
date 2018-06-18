@@ -60,10 +60,6 @@ public class Project implements Serializable {
     //@LazyCollection(LazyCollectionOption.FALSE)*/
 
 
-
-
-
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "project_tag_relation",

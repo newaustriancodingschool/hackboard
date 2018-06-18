@@ -39,6 +39,9 @@ public class ApplicationDto   {
   @JsonProperty("userGithub")
   private String userGithub = null;
 
+  @JsonProperty("status")
+  private Long status = null;
+
   public ApplicationDto id(Long id) {
     this.id = id;
     return this;
@@ -203,6 +206,27 @@ public class ApplicationDto   {
     this.userGithub = userGithub;
   }
 
+  public ApplicationDto status(Long status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public Long getStatus() {
+    return status;
+  }
+
+  public void setStatus(Long status) {
+    this.status = status;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -220,12 +244,13 @@ public class ApplicationDto   {
         Objects.equals(this.applicantFullName, applicationDto.applicantFullName) &&
         Objects.equals(this.roleName, applicationDto.roleName) &&
         Objects.equals(this.roleColor, applicationDto.roleColor) &&
-        Objects.equals(this.userGithub, applicationDto.userGithub);
+        Objects.equals(this.userGithub, applicationDto.userGithub) &&
+        Objects.equals(this.status, applicationDto.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, applicant, projectId, roleId, applicantFullName, roleName, roleColor, userGithub);
+    return Objects.hash(id, applicant, projectId, roleId, applicantFullName, roleName, roleColor, userGithub, status);
   }
 
   @Override
@@ -241,6 +266,7 @@ public class ApplicationDto   {
     sb.append("    roleName: ").append(toIndentedString(roleName)).append("\n");
     sb.append("    roleColor: ").append(toIndentedString(roleColor)).append("\n");
     sb.append("    userGithub: ").append(toIndentedString(userGithub)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

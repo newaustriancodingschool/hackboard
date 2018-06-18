@@ -146,6 +146,55 @@ export class ApplicationService {
     }
 
     /**
+     * update  an application status
+     * 
+     * @param projectId ID of project
+     * @param roleId ID of role
+     * @param statusId ID of Status 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public editstatusapplication(projectId: number, roleId: number, statusId: number, observe?: 'body', reportProgress?: boolean): Observable<boolean>;
+    public editstatusapplication(projectId: number, roleId: number, statusId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<boolean>>;
+    public editstatusapplication(projectId: number, roleId: number, statusId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<boolean>>;
+    public editstatusapplication(projectId: number, roleId: number, statusId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (projectId === null || projectId === undefined) {
+            throw new Error('Required parameter projectId was null or undefined when calling editstatusapplication.');
+        }
+        if (roleId === null || roleId === undefined) {
+            throw new Error('Required parameter roleId was null or undefined when calling editstatusapplication.');
+        }
+        if (statusId === null || statusId === undefined) {
+            throw new Error('Required parameter statusId was null or undefined when calling editstatusapplication.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.put<boolean>(`${this.basePath}/application/${encodeURIComponent(String(projectId))}/${encodeURIComponent(String(roleId))}/${encodeURIComponent(String(statusId))}`,
+            null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Get All Roles for Application
      * 
      * @param projectId ID of project

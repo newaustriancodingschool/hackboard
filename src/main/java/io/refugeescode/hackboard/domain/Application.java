@@ -15,15 +15,26 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private User applicant ;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private ProjectRole role ;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Project project;
 
+    @OneToOne
+    @JoinColumn(name="status")
+    private ApplicationStatus status;
+
+    public ApplicationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ApplicationStatus status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;

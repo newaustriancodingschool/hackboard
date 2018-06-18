@@ -5686,10 +5686,6 @@ ng2-group-multiselect@^0.2.1:
     rxjs "^5.1.0"
     zone.js "^0.8.4"
 
-ng2-select@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ng2-select/-/ng2-select-2.0.0.tgz#99e66f147ae479ef171378cbc526e639ff4e2df7"
-
 ngx-cookie@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ngx-cookie/-/ngx-cookie-2.0.1.tgz#031d8938bf9026954356b3b3ae668e2e1964e584"
@@ -5697,6 +5693,12 @@ ngx-cookie@2.0.1:
 ngx-infinite-scroll@0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/ngx-infinite-scroll/-/ngx-infinite-scroll-0.5.1.tgz#dd9452c602ff7c3222f0ca168481aa14140286b7"
+
+ngx-select-ex@^3.5.9:
+  version "3.5.9"
+  resolved "https://registry.yarnpkg.com/ngx-select-ex/-/ngx-select-ex-3.5.9.tgz#02d33dfee4cf721d501fdedc0b313bdf7eb6b629"
+  dependencies:
+    tslib "^1.7.1"
 
 ngx-webstorage@2.0.1:
   version "2.0.1"
