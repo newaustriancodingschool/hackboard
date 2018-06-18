@@ -13,7 +13,7 @@ export class SettingsComponent implements OnInit {
   languages: any[];
   value: any;
   tags: Array<string> = [];
-  selectedTags: Array<string> = ['java'];
+  selectedTags: Array<string> = [];
 
   constructor(
     private account: AccountService,
@@ -28,10 +28,12 @@ export class SettingsComponent implements OnInit {
       this.settingsAccount = this.copyAccount(account);
       this.tagService.showAllTags().subscribe(tags => (this.tags = tags));
       this.languageHelper.getAll().then(languages => (this.languages = languages));
+      this.selectedTags = this.settingsAccount.tags;
     });
   }
 
   save() {
+    this.settingsAccount.tags = this.selectedTags;
     this.account.save(this.settingsAccount).subscribe(
       () => {
         this.error = null;
