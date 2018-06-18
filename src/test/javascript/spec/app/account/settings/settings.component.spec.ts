@@ -4,83 +4,85 @@ import { Observable } from 'rxjs/Observable';
 import { HackboardTestModule } from '../../../test.module';
 import { Principal, AccountService } from '../../../../../../main/webapp/app/shared';
 import { SettingsComponent } from '../../../../../../main/webapp/app/account/settings/settings.component';
+import { TagService } from '../../../../../../main/webapp/app/api';
 
 describe('Component Tests', () => {
+  describe('SettingsComponent', () => {
+    let comp: SettingsComponent;
+    let fixture: ComponentFixture<SettingsComponent>;
+    let mockAuth: any;
+    let mockPrincipal: any;
 
-    describe('SettingsComponent', () => {
+    const tagService = {
+      showAllTags: () => Observable.of('')
+    };
 
-        let comp: SettingsComponent;
-        let fixture: ComponentFixture<SettingsComponent>;
-        let mockAuth: any;
-        let mockPrincipal: any;
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [HackboardTestModule],
+        declarations: [SettingsComponent],
+        providers: [{ provide: TagService, useValue: tagService }]
+      })
+        .overrideTemplate(SettingsComponent, '')
+        .compileComponents();
+    }));
 
-        beforeEach(async(() => {
-            TestBed.configureTestingModule({
-                imports: [HackboardTestModule],
-                declarations: [SettingsComponent],
-                providers: [
-                ]
-            })
-            .overrideTemplate(SettingsComponent, '')
-            .compileComponents();
-        }));
-
-        beforeEach(() => {
-            fixture = TestBed.createComponent(SettingsComponent);
-            comp = fixture.componentInstance;
-            mockAuth = fixture.debugElement.injector.get(AccountService);
-            mockPrincipal = fixture.debugElement.injector.get(Principal);
-        });
-
-        it('should send the current identity upon save', () => {
-            // GIVEN
-            const accountValues = {
-                firstName: 'John',
-                lastName: 'Doe',
-
-                activated: true,
-                email: 'john.doe@mail.com',
-                langKey: 'en',
-                login: 'john'
-            };
-            mockPrincipal.setResponse(accountValues);
-
-            // WHEN
-            comp.settingsAccount = accountValues;
-            comp.save();
-
-            // THEN
-            expect(mockPrincipal.identitySpy).toHaveBeenCalled();
-            expect(mockAuth.saveSpy).toHaveBeenCalledWith(accountValues);
-            expect(comp.settingsAccount).toEqual(accountValues);
-        });
-
-        it('should notify of success upon successful save', () => {
-            // GIVEN
-            const accountValues = {
-                firstName: 'John',
-                lastName: 'Doe'
-            };
-            mockPrincipal.setResponse(accountValues);
-
-            // WHEN
-            comp.save();
-
-            // THEN
-            expect(comp.error).toBeNull();
-            expect(comp.success).toBe('OK');
-        });
-
-        it('should notify of error upon failed save', () => {
-            // GIVEN
-            mockAuth.saveSpy.and.returnValue(Observable.throw('ERROR'));
-
-            // WHEN
-            comp.save();
-
-            // THEN
-            expect(comp.error).toEqual('ERROR');
-            expect(comp.success).toBeNull();
-        });
+    beforeEach(() => {
+      fixture = TestBed.createComponent(SettingsComponent);
+      comp = fixture.componentInstance;
+      mockAuth = fixture.debugElement.injector.get(AccountService);
+      mockPrincipal = fixture.debugElement.injector.get(Principal);
     });
+
+    it('should send the current identity upon save', () => {
+      // GIVEN
+      const accountValues = {
+        firstName: 'John',
+        lastName: 'Doe',
+
+        activated: true,
+        email: 'john.doe@mail.com',
+        langKey: 'en',
+        login: 'john'
+      };
+      mockPrincipal.setResponse(accountValues);
+
+      // WHEN
+      comp.settingsAccount = accountValues;
+      comp.save();
+
+      // THEN
+      expect(mockPrincipal.identitySpy).toHaveBeenCalled();
+      expect(mockAuth.saveSpy).toHaveBeenCalledWith(accountValues);
+      expect(comp.settingsAccount).toEqual(accountValues);
+    });
+
+    it('should notify of success upon successful save', () => {
+      // GIVEN
+      const accountValues = {
+        firstName: 'John',
+        lastName: 'Doe'
+      };
+      mockPrincipal.setResponse(accountValues);
+
+      // WHEN
+      comp.save();
+
+      // THEN
+      expect(comp.error).toBeNull();
+      expect(comp.success).toBe('OK');
+    });
+
+    it('should notify of error upon failed save', () => {
+      // GIVEN
+      mockAuth.saveSpy.and.returnValue(Observable.throw('ERROR'));
+
+      // WHEN
+      comp.save();
+
+      // THEN
+      expect(comp.error).toEqual('ERROR');
+      expect(comp.success).toBeNull();
+    });
+  });
 });
