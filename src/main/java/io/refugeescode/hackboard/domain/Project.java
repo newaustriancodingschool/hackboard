@@ -19,6 +19,7 @@ import java.util.Set;
 /**
  *
  */
+@Data
 @Entity
 @Table(name = "project")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -51,15 +52,6 @@ public class Project implements Serializable {
         inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<ProjectRole> projectRoles = new ArrayList<>();
 
-/*
-    //@ElementCollection( targetClass = String.class )
-    @OneToMany
-    @JoinColumn(name="project_id")
-    //@JoinTable(name="project_story", joinColumns=@JoinColumn(name="project_id",referencedColumnName ="id") )
-    @Column(name="description")
-    //@LazyCollection(LazyCollectionOption.FALSE)*/
-
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "project_tag_relation",
@@ -67,26 +59,11 @@ public class Project implements Serializable {
         inverseJoinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "id")})
     private Set<Tag> tags;
 
+    public Project() {
+    }
+
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public String getGithub() {
-        return github;
-    }
-
-    public void setGithub(String github) {
-        this.github = github;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
 
     public Project title(String title) {
         this.title = title;
@@ -99,31 +76,13 @@ public class Project implements Serializable {
     }
 
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 
     public Project description(String description) {
         this.description = description;
         return this;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User user) {
-        this.owner = user;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+       // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

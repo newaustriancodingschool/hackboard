@@ -1,12 +1,14 @@
 package io.refugeescode.hackboard.domain;
 
 
+import lombok.Data;
 import org.checkerframework.checker.nullness.qual.EnsuresNonNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "project_application")
 public class Application {
@@ -28,44 +30,4 @@ public class Application {
     @JoinColumn(name="status")
     private ApplicationStatus status;
 
-    public ApplicationStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ApplicationStatus status) {
-        this.status = status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getApplicant() {
-        return applicant;
-    }
-
-    public void setApplicant(User applicant) {
-        this.applicant = applicant;
-    }
-
-
-    public ProjectRole getRole() {
-        return role;
-    }
-
-    public void setRole(ProjectRole role) {
-        this.role = role;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
 }
